@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+</head>
+<body>
+
+<div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
+
+<script src="min/vs/loader.js"></script>
+<script>
+    var editor;
+    require.config({ paths: { 'vs': 'min/vs' }});
+    require(['vs/editor/editor.main'], function() {
+        editor = monaco.editor.create(document.getElementById('container'), {
+            readOnly: true,
+            scrollBeyondLastLine: false,
+            value: [
+                'function x() {',
+                '\tconsole.log("Hello world!");',
+                '}'
+            ].join('\n'),
+            language: 'javascript'
+        });
+        var node = document.getElementById("container");
+    });
+    
+    function load(){
+        var file = document.getElementById("file");
+        var reader = new FileReader();
+        reader.onload = function(){
+            var text = reader.result;
+            editor.setValue(text);
+        }
+        reader.readAsText(file.files[0]);
+    }
+</script>
+<input type="file" name="Select file" id="file">
+<button onclick="load();">Load file</button>
+</body>
+</html>
