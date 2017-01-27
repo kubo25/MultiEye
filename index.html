@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+    <title>Prototyp</title>
+    <meta charset="utf-8">
+
+    <!--<script>window.$ = window.jQuery = require('./jquery-3.1.1.min.js');</script>-->
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=latin-ext" rel="stylesheet">  
+    <link rel="stylesheet" href="style.css">
+    <script>
+        var nodeRequire = global.require;
+        var first = true;
+        var codeWindowsCount = 0;
+        var codeWindows = [];
+    </script>
+    <script src="node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script>
+        var amdRequire = global.require;
+        global.require = nodeRequire;
+    </script>
+    <script src="js/codeWindow.js"></script>
+</head>
+<body>
+    <div id="cyWrapper"></div>
+    <div id="bottom">
+    </div>
+
+    <div id="patternBox">
+        <p>Vzory</p>
+        <ul>
+            <li class="patternButton">Flicking</li>
+            <li class="patternButton">JumpControl</li>
+            <li class="patternButton">JustPassingThrough</li>
+            <li class="patternButton">LinearHorizontal</li>
+            <li class="patternButton">LinearVertical</li>
+            <li class="patternButton">RetraceDeclaration</li>
+            <li class="patternButton">RetraceReference</li>
+            <li class="patternButton">Scan</li>
+            <li class="patternButton">Signatures</li>
+            <li class="patternButton">Thrashing</li>
+            <li class="patternButton">Word(Pattern)Matching</li>
+        </ul>
+        <p>Uložené vzory</p>
+        <ul id="savedPatterns"></ul>
+    </div>
+    
+    <script>
+        codeWindows[0] = new CodeWindow();
+        
+        /*var savedPatterns = [];
+        
+        $(".patternButton").click(function(){
+            var selected = cy.$(".red");
+            var selectedIds = [];
+            var patternName = $(this).text();
+            
+            if(selected.length == 0){
+                return;
+            }
+
+            for(var i = 0; i < selected.length; i++){
+                selectedIds[i] = selected[i].id();
+            }
+            
+            var pattern = {
+                name: patternName,
+                ids: selectedIds
+            };
+            
+            savedPatterns.push(pattern);
+            updateSaved();
+        });
+        
+        $('#savedPatterns').on("click", "li", function(){
+            var pattern = $(this).data("position");
+            
+            for(var i = 0; i < savedPatterns[pattern].ids.length; i++){
+                var node = cy.$("#" + savedPatterns[pattern].ids[i]);
+                node.classes("red");
+            }
+        });
+        
+        function updateSaved(){
+            var ul = document.getElementById("savedPatterns");
+            var li = document.createElement("li");
+            var position = ul.childElementCount;
+            li.innerHTML = savedPatterns[position].name + ": " + savedPatterns[position].ids.toString();
+            
+            li.dataset.position = position;
+
+            ul.appendChild(li);
+        }
+        
+        
+
+        function load1(){
+            var file = document.getElementById("file1");
+            var reader = new FileReader();
+            reader.onload = function(){
+                var text = reader.result;
+                editor1.setValue(text);
+                setTimeout(function(){
+                    document.getElementById("editor").style.height = 
+                        (editor1.getScrollHeight() + 10) + "px";
+                    editor1.layout();
+
+                }, 1);      
+            }
+            reader.readAsText(file.files[0]);
+        }
+        function load2(){
+            var file = document.getElementById("file2");
+            var reader = new FileReader();
+            reader.onload = function(){
+                var text = reader.result;
+                editor2.setValue(text);
+                setTimeout(function(){
+                    document.getElementById("editor2").style.height = 
+                        (editor2.getScrollHeight() + 10) + "px";
+                    editor2.layout();
+
+                }, 1);      
+            }
+            reader.readAsText(file.files[0]);
+        }*/
+    </script>
+    <script>
+        /*var count = 0;
+        var nodes = [
+           {
+            data: {id:'0'},
+            position: {
+                x: 155,
+                y: 50
+            }},
+            {
+            data: {id:'1'},
+            position: {
+                x: 250,
+                y: 50
+            }},
+            {
+            data: {id:'2'},
+            position: {
+                x: 195,
+                y: 70
+            }},
+            {
+            data: {id:'3'},
+            position: {
+                x: 218,
+                y: 90
+            }},
+            {
+            data: {id:'4'},
+            position: {
+                x: 260,
+                y: 105
+            }},
+            {
+            data: {id:'5'},
+            position: {
+                x: 235,
+                y: 125
+            }},
+            {
+            data: {id:'6'},
+            position: {
+                x: 900,
+                y: 185
+            }}, 
+            {
+            data: {id:'7'},
+            position: {
+                x: 920,
+                y: 200
+            }}, 
+            {
+            data: {id:'8'},
+            position: {
+                x: 920,
+                y: 70
+            }}, 
+            {
+            data: {id:'9'},
+            position: {
+                x: 870,
+                y: 100
+            }}, 
+        ];*/
+        
+        /*cy.on("click", function(event){
+            if(event.cyTarget === cy){
+                cy.nodes().forEach(function(node){
+                    node.removeClass("red");
+                });
+            }
+        });*/
+              
+       /* function previous(){
+            if(count >= 0){
+                cy.remove("node#" + (count - 1));
+                if(count > 0){
+                	count--;
+                }
+            }
+        }
+        
+        function next(){
+            if(count < nodes.length){
+                cy.add(nodes[count]);
+                var selector = "#" + count;
+                cy.$(selector).on("select", function(){
+                    var node = cy.$(selector);
+                    node.classes("red");
+                    node.unselect();
+                });
+                if(count > 0){
+                    cy.add({
+                       data: {
+                           id: 'edge' + (count - 1),
+                           source: (count - 1),
+                           target: count
+                       } 
+                    });
+                }
+                count++;
+            }
+        }
+        */
+    </script>
+    <div id="buttons">
+        <button onclick="previous();">&lt;</button>
+        <button onclick="next();">></button>
+    </div>
+    <script src="js/loadFile.js"></script>
+</body>
+</html>

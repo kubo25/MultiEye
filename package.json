@@ -1,0 +1,24 @@
+{
+  "name": "multieye",
+  "version": "0.0.1",
+  "description": "Multi document eye tracking visualizer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubo25/MultiEye.git"
+  },
+  "author": "Jakub Hučko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kubo25/MultiEye/issues"
+  },
+  "homepage": "https://github.com/kubo25/MultiEye#readme",
+  "dependencies": {
+    "cytoscape": "^2.7.14",
+    "electron": "^1.4.13",
+    "monaco-editor": "^0.8.1"
+  }
+}

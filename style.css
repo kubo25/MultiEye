@@ -1,0 +1,105 @@
+html{
+    overflow-x: hidden;
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    transition: 0.5s ease all;
+}
+
+#wrapper{
+    position: relative;
+    margin: 0 auto;
+    width: auto;
+}
+
+#cyWrapper, #bottom{
+    position: absolute;
+    left: 0;
+    z-index: 2;
+}
+
+#bottom{
+    z-index: 1;
+}
+
+#buttons{
+    position: absolute;
+    top: 670px;
+}
+
+.editor{
+    width: 700px;
+    height: 600px;
+    display: inline-block;
+    vertical-align: top;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.08);
+    padding-right: 20px;
+    padding-top: 0px;
+    font-size: 13px !important;
+}
+
+.cytoscape{
+    display: inline-block;
+}
+
+#patternBox{
+    position: absolute;
+    height: 98vh;
+    z-index: 3;
+    right: 20px;
+    transform: translate(98%);
+    
+    padding-right: 40px;
+    background-color: white;
+    box-shadow: 3px 3px 20px rgba(0,0,0,0.25);
+    
+    overflow-y: scroll;
+    
+    transition: 0.5s ease all;  
+}
+
+#patternBox:hover{
+    transform: translate(13%);
+}
+
+#patternBox ul{
+    list-style: none;
+}
+
+#patternBox p{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.categoryName{
+    writing-mode: vertical-rl;
+}
+
+#patternBox ul li{
+    height: 40px;
+    line-height: 40px;
+    align-content: center;
+    border-top: 1px solid rgba(210,210,210,0.4);
+    
+    padding: 5px;
+    
+    transition: 0.5s ease all;
+}
+
+#patternBox ul li:first-child{
+    border-top: none;
+}
+
+#patternBox ul li:last-child{
+    border-bottom: 1px solid rgba(210,210,210,0.4);
+}
+
+#patternBox ul li:hover{
+    cursor: pointer;
+    background-color: rgba(210,210,210,0.4);
+}
