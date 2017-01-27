@@ -70,3 +70,6 @@ $RECYCLE.BIN/
 *.lnk
 
 cytoscape.js-cxtmenu-master
+prototype/package
+prototype/cytoscape.js
+prototype/cytoscape.min.js
