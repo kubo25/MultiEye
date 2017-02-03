@@ -2,38 +2,38 @@ html{
     overflow-x: hidden;
     font-family: "Open Sans", sans-serif;
     font-weight: lighter;
+    height: 100%;
 }
 
-body{
-    width: 100vw;
-    height: 100vh;
+body, #cyWrapper, #bottom, #boxSelectCanvas{
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
     transition: 0.5s ease all;
 }
 
-#wrapper{
-    position: relative;
-    margin: 0 auto;
-    width: auto;
-}
-
-#cyWrapper, #bottom{
+#cyWrapper, #bottom, #boxSelectCanvas{
     position: absolute;
     left: 0;
     z-index: 2;
 }
 
-#bottom{
+#cyWrapper{
     z-index: 1;
 }
 
-#buttons{
-    position: absolute;
-    top: 670px;
+#bottom{
+    z-index: 0;
+    height: auto;
+}
+
+#boxSelectCanvas{
+    cursor: default;
 }
 
 .editor{
+    position: relative;
     width: 700px;
-    height: 600px;
     display: inline-block;
     vertical-align: top;
     box-shadow: 0px 0px 20px rgba(0,0,0,0.08);
@@ -47,7 +47,7 @@ body{
 }
 
 #patternBox{
-    position: absolute;
+    position: fixed;
     height: 98vh;
     z-index: 3;
     right: 20px;

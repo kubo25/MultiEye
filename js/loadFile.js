@@ -1,6 +1,6 @@
-(function() {
+(function() {   
     const fs = require("fs");
-    var body = document.getElementsByTagName("body")[0];
+    let body = document.getElementsByTagName("body")[0];
     
     body.ondragover = () => {
         body.style.opacity = 0.3;
@@ -38,12 +38,24 @@
     };
 })();
 
-function addText(id, data){
+function addText(id, data){  
+    let lines = document.querySelector("#" + codeWindows[id].editorId + " .view-lines");
+    
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            let newHeight = mutation.target.scrollHeight + "px";
+            let newWidth = (mutation.target.scrollWidth + 20) + "px";
+            
+            codeWindows[id].setSize(newHeight, newWidth);
+        });    
+    });
+    
+    var config = { attributes: true, childList: false, characterData: false };
+    observer.observe(lines, config);    
+    
+    codeWindows[id].editor.setValue(data);
+       
     setTimeout(function(){
-        codeWindows[id].editor.setValue(data);
-        document.getElementById(codeWindows[id].editorId).style.height = 
-            (document.getElementById(codeWindows[id].editorId).scrollHeight + 10) + "px";
-        codeWindows[id].editor.layout();
-
-    }, 1);
+        observer.disconnect();
+    }, 1000);
 }

@@ -6,6 +6,7 @@ class CodeWindow{
         
         this.editor = null;
         this.editorId = "editor" + codeWindows.length;
+        this.cy = null;
         this.cyId = "cy" + codeWindows.length;
         
         let bottom = document.getElementById("bottom");
@@ -27,6 +28,7 @@ class CodeWindow{
                 scrollBeyondLastLine: false,
                 language: 'csharp'
             });
+            
             if(first){
                 let editor = document.getElementById("editor0");
                 let cy = document.getElementById("cy0");
@@ -60,6 +62,7 @@ class CodeWindow{
 			container: document.getElementById(cyDiv.id),
             autoungrabify: true,
             userPanningEnabled: false,
+            boxSelectionEnabled: false,
             style: [{
                     selector: 'node',
                     style: {
@@ -85,5 +88,18 @@ class CodeWindow{
                 }],
             
 		});
+    }
+    
+    setSize(newHeight, newWidth){
+        let editorWindow = document.getElementById(this.editorId);
+        let cy = document.getElementById(this.cyId);
+
+        editorWindow.style.height = newHeight;
+        editorWindow.style.width = newWidth;
+
+        this.editor.layout();
+
+        cy.style.height = newHeight;
+        cy.style.width = newWidth;
     }
 }
