@@ -1,57 +1,69 @@
 html{
-    overflow-x: hidden;
+    overflow: hidden;
     font-family: "Open Sans", sans-serif;
     font-weight: lighter;
     height: 100%;
 }
 
-body, #cyWrapper, #bottom, #boxSelectCanvas{
+body, #boxSelectCanvas, #codeWrapper{
     margin: 0;
     width: 100%;
     min-height: 100%;
     transition: 0.5s ease all;
 }
 
-#cyWrapper, #bottom, #boxSelectCanvas{
+#boxSelectCanvas{
     position: absolute;
     left: 0;
     z-index: 2;
-}
-
-#cyWrapper{
-    z-index: 1;
-}
-
-#bottom{
-    z-index: 0;
-    height: auto;
-}
-
-#boxSelectCanvas{
     cursor: default;
 }
 
-.editor{
+#codeWrapper{
+    width: 98%;
+}
+
+.cyWrapper{
     position: relative;
-    width: 700px;
     display: inline-block;
     vertical-align: top;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.08);
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.scaleWrapper{
+    transform-origin: top left;
+    transition: 0.5s ease all;
+}
+
+.editor, .cytoscape{
+    position: absolute;
+    display: inline-block;
+}
+
+.editor{
+    width: 700px;
     padding-right: 20px;
     padding-top: 0px;
-    font-size: 13px !important;
+    z-index: 0;
+    
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.08);
 }
 
 .cytoscape{
-    display: inline-block;
+    z-index: 1;
+    margin-left: 20px;
 }
 
 #patternBox{
     position: fixed;
-    height: 98vh;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    
     z-index: 3;
-    right: 20px;
-    transform: translate(98%);
+    transform: translate(90%);
     
     padding-right: 40px;
     background-color: white;
@@ -63,7 +75,7 @@ body, #cyWrapper, #bottom, #boxSelectCanvas{
 }
 
 #patternBox:hover{
-    transform: translate(13%);
+    transform: translate(0%);
 }
 
 #patternBox ul{
@@ -74,10 +86,6 @@ body, #cyWrapper, #bottom, #boxSelectCanvas{
     text-align: center;
     font-weight: bold;
     font-size: 20px;
-}
-
-.categoryName{
-    writing-mode: vertical-rl;
 }
 
 #patternBox ul li{
@@ -102,4 +110,8 @@ body, #cyWrapper, #bottom, #boxSelectCanvas{
 #patternBox ul li:hover{
     cursor: pointer;
     background-color: rgba(210,210,210,0.4);
+}
+
+::-webkit-scrollbar { 
+    display: none; 
 }

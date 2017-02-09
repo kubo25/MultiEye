@@ -11,6 +11,8 @@
     <script>
         var nodeRequire = global.require;
         var first = true;
+        var overflowDetection = true;
+        var scale = 1;
         var codeWindowsCount = 0;
         var codeWindows = [];
     </script>
@@ -23,8 +25,7 @@
 </head>
 <body>
     <canvas id="boxSelectCanvas"></canvas>
-    <div id="cyWrapper"></div>
-    <div id="bottom"></div>
+    <section id="codeWrapper"></section>
 
     <div id="patternBox">
         <p>Vzory</p>
