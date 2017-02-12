@@ -1,8 +1,15 @@
 const cytoscape = require("cytoscape");
 
+let first = true;
+let scale = 1;
+let overflowDetection = true;
+
 class CodeWindow{  
     constructor(){
         overflowDetection = true;
+        
+        this.originalHeight = 0;
+        this.originalWidth = 0;
         
         let tempEditor;
         
@@ -61,7 +68,7 @@ class CodeWindow{
         cyDiv.id = this.cyId;
         cyDiv.className = "cytoscape";
 
-        scaleWrapper.appendChild(cyDiv);
+        this.cyWrapper.appendChild(cyDiv);
         
         this.cy = cytoscape({
 			container: document.getElementById(cyDiv.id),
@@ -104,13 +111,13 @@ class CodeWindow{
             mutations.forEach(function(mutation) {
                 let newHeight = mutation.target.scrollHeight;
                 let newWidth = mutation.target.scrollWidth + 20;
-                
+                                
                 obj.setSize(newHeight, newWidth);
             });    
         });
 
         let config = { attributes: true, childList: false, characterData: false };
-        observer.observe(lines, config);    
+        observer.observe(lines, config);
 
         this.editor.setValue(data);
 
@@ -120,44 +127,47 @@ class CodeWindow{
     }
     
     setSize(newHeight, newWidth){
+        this.originalHeight = newHeight;
+        this.originalWidth = newWidth;
+        
         let transform = "scale(" + scale + ")";
         
         this.cyWrapper.firstChild.style.transform = transform;
         
         let editorWindow = this.cyWrapper.firstChild.firstChild
-        let cy = this.cyWrapper.firstChild.lastChild;
+        let cy = this.cyWrapper.lastChild
 
         editorWindow.style.height = newHeight + "px";
         editorWindow.style.width = newWidth + "px";
 
         this.editor.layout();
 
-        cy.style.height = newHeight + "px";
-        cy.style.width = newWidth + "px";
+        cy.style.height = (newHeight * scale) + "px";
+        cy.style.width = (newWidth * scale) + "px";
         
         this.cyWrapper.style.height = (newHeight * scale) + "px";
         this.cyWrapper.style.width = (newWidth * scale) + "px";
-                        
+                
         if(overflowDetection && document.body.clientHeight > window.innerHeight){
             overflowDetection = false;
-            
-            let codeWrapper = document.getElementById("codeWrapper");
-            
+                        
             while(document.body.clientHeight > window.innerHeight){
                 scale /= 2;
                 
                 transform = "scale(" + scale + ")";
                         
-                for(const cy of codeWrapper.childNodes){
-                    cy.firstChild.style.transform = transform;
+                for(const code of codeWindows){
+                    code.cyWrapper.firstChild.style.transform = transform;
 
-                    console.log(cy.clientHeight + " " + cy.clientWidth);
+                    let tempHeight = code.originalHeight * scale;
+                    let tempWidth = code.originalWidth * scale;
 
-                    let tempHeight = (cy.clientHeight / 2);
-                    let tempWidth = (cy.clientWidth / 2);
-
-                    cy.style.height = tempHeight + "px";
-                    cy.style.width = tempWidth + "px";
+                    code.cyWrapper.style.height = tempHeight + "px";
+                    code.cyWrapper.style.width = tempWidth + "px";
+                    
+                    code.cyWrapper.lastChild.style.height = tempHeight + "px";
+                    code.cyWrapper.lastChild.style.width = tempWidth + "px";  
+                    code.cy.resize();
                 }
             }
             

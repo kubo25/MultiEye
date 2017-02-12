@@ -14,6 +14,7 @@ body, #boxSelectCanvas, #codeWrapper{
 
 #boxSelectCanvas{
     position: absolute;
+    top: 0;
     left: 0;
     z-index: 2;
     cursor: default;
@@ -21,6 +22,7 @@ body, #boxSelectCanvas, #codeWrapper{
 
 #codeWrapper{
     width: 98%;
+    margin-top: 15px;
 }
 
 .cyWrapper{
@@ -43,7 +45,6 @@ body, #boxSelectCanvas, #codeWrapper{
 }
 
 .editor{
-    width: 700px;
     padding-right: 20px;
     padding-top: 0px;
     z-index: 0;

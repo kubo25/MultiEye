@@ -9,12 +9,9 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=latin-ext" rel="stylesheet">  
     <link rel="stylesheet" href="style.css">
     <script>
-        var nodeRequire = global.require;
-        var first = true;
-        var overflowDetection = true;
-        var scale = 1;
-        var codeWindowsCount = 0;
-        var codeWindows = [];
+        let nodeRequire = global.require;
+        let codeWindowsCount = 0;
+        let codeWindows = [];
     </script>
     <script src="node_modules/monaco-editor/min/vs/loader.js"></script>
     <script>
@@ -27,7 +24,7 @@
     <canvas id="boxSelectCanvas"></canvas>
     <section id="codeWrapper"></section>
 
-    <div id="patternBox">
+    <section id="patternBox">
         <p>Vzory</p>
         <ul>
             <li class="patternButton">Flicking</li>
@@ -44,7 +41,7 @@
         </ul>
         <p>Uložené vzory</p>
         <ul id="savedPatterns"></ul>
-    </div>
+    </section>
     
     <script>
         codeWindows[0] = new CodeWindow();

@@ -1,4 +1,5 @@
 let isDrawing = false;
+let isDragging = false;
 
 let canvas = document.getElementById("boxSelectCanvas");
 let context = canvas.getContext("2d");
@@ -14,8 +15,9 @@ context.fillStyle = "rgba(126, 126, 126, 0.2)";
 
 canvas.onmousedown = function(e){
     isDrawing = true;
-    startX = parseInt(e.clientX - canvas.offsetLeft);
-    startY = parseInt(e.clientY - canvas.offsetTop);
+    isDragging = false;
+    startX = parseInt(e.clientX);
+    startY = parseInt(e.clientY);
 }
 
 canvas.onmouseup = function(){
@@ -25,8 +27,9 @@ canvas.onmouseup = function(){
 
 canvas.onmousemove = function(e){
     if(isDrawing){
-        let mouseX = parseInt(e.clientX - canvas.offsetLeft);
-        let mouseY = parseInt(e.clientY - canvas.offsetTop);
+        isDragging = true;
+        let mouseX = parseInt(e.clientX);
+        let mouseY = parseInt(e.clientY);
         
         context.clearRect(0, 0, canvas.width, canvas.height);
         
