@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="style.css">
     <script>
         let nodeRequire = global.require;
+        
         let codeWindowsCount = 0;
         let codeWindows = [];
+        let jsonArray = null;
     </script>
     <script src="node_modules/monaco-editor/min/vs/loader.js"></script>
     <script>
@@ -48,7 +50,7 @@
                 <span class="leftTriangle"></span>
                 <span class="leftTriangle"></span>
             </a>
-            <a id="playButton">
+            <a id="playButton" class="paused">
                 <span class="left"></span>
                 <span class="right"></span>
                 <span class="triangle1"></span>
@@ -61,7 +63,7 @@
             </a>
         </div>
         <div id="seekbarWrapper">
-            <input type="range" id="seekbar" step="0.25" value="0">
+            <input type="range" id="seekbar" step="1" value="0">
         </div>
     </section>
     

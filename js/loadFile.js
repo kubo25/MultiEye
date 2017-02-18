@@ -1,5 +1,7 @@
 (function() {   
     const fs = require("fs");
+    const path = require("path");
+    
     let body = document.getElementsByTagName("body")[0];
     
     body.ondragover = () => {
@@ -25,14 +27,21 @@
 
         for (let i = 0; i < e.dataTransfer.files.length; i++) {
             let file = e.dataTransfer.files[i];
-            let data = fs.readFileSync(file.path, 'utf-8'); 
-            
-            let codeWindow = new CodeWindow();            
-            codeWindow.addText(data);
-            
-            codeWindows.push(codeWindow);
-            
-            codeWindowsCount++;
+            let data = fs.readFileSync(file.path, 'utf-8');     
+            let extension = path.extname(file.path);
+                        
+            if(extension === ".json"){
+                jsonArray = JSON.parse(data);
+                document.getElementById("seekbar").max = jsonArray.length;
+            }
+            else{               
+                let codeWindow = new CodeWindow();            
+                codeWindow.addText(data);
+
+                codeWindows.push(codeWindow);
+
+                codeWindowsCount++;   
+            }
         }
 
         return false;
