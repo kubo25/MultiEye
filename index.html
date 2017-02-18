@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Prototyp</title>
+    <title>MultiEye</title>
     <meta charset="utf-8">
 
     <!--<script>window.$ = window.jQuery = require('./jquery-3.1.1.min.js');</script>-->
@@ -23,7 +23,6 @@
 <body>
     <canvas id="boxSelectCanvas"></canvas>
     <section id="codeWrapper"></section>
-
     <section id="patternBox">
         <p>Vzory</p>
         <ul>
@@ -41,6 +40,29 @@
         </ul>
         <p>Uložené vzory</p>
         <ul id="savedPatterns"></ul>
+    </section>
+    <section id="player">
+        <div class="controlButtons">
+            <a id="previousButton">
+                <span class="line"></span>
+                <span class="leftTriangle"></span>
+                <span class="leftTriangle"></span>
+            </a>
+            <a id="playButton">
+                <span class="left"></span>
+                <span class="right"></span>
+                <span class="triangle1"></span>
+                <span class="triangle2"></span>
+            </a>
+            <a id="nextButton">
+                <span class="rightTriangle"></span>
+                <span class="rightTriangle"></span>
+                <span class="line"></span>
+            </a>
+        </div>
+        <div id="seekbarWrapper">
+            <input type="range" id="seekbar" step="0.25" value="0">
+        </div>
     </section>
     
     <script>
@@ -89,39 +111,7 @@
 
             ul.appendChild(li);
         }
-        
-        
-
-        function load1(){
-            var file = document.getElementById("file1");
-            var reader = new FileReader();
-            reader.onload = function(){
-                var text = reader.result;
-                editor1.setValue(text);
-                setTimeout(function(){
-                    document.getElementById("editor").style.height = 
-                        (editor1.getScrollHeight() + 10) + "px";
-                    editor1.layout();
-
-                }, 1);      
-            }
-            reader.readAsText(file.files[0]);
-        }
-        function load2(){
-            var file = document.getElementById("file2");
-            var reader = new FileReader();
-            reader.onload = function(){
-                var text = reader.result;
-                editor2.setValue(text);
-                setTimeout(function(){
-                    document.getElementById("editor2").style.height = 
-                        (editor2.getScrollHeight() + 10) + "px";
-                    editor2.layout();
-
-                }, 1);      
-            }
-            reader.readAsText(file.files[0]);
-        }*/
+        */
     </script>
     <script>
         /*var count = 0;
@@ -229,7 +219,7 @@
         */
     </script>
     <script src="js/loadFile.js"></script>
-    <script src="js/boxSelect.js"></script>
-    <script src="js/zoom.js"></script>
+    <script src="js/overlayCanvas.js"></script>
+    <script src="js/player.js"></script>
 </body>
 </html>

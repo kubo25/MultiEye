@@ -10,6 +10,7 @@ class CodeWindow{
         
         this.originalHeight = 0;
         this.originalWidth = 0;
+        this.selected = false;
         
         let tempEditor;
         
@@ -169,8 +170,42 @@ class CodeWindow{
                     code.cyWrapper.lastChild.style.width = tempWidth + "px";  
                     code.cy.resize();
                 }
-            }
-            
+            } 
         }
+    }
+    
+    select(){
+        this.selected = !this.selected;
+        
+        if(this.selected){
+            this.cyWrapper.firstChild.style.transform = "scale(1)";
+        
+            this.cyWrapper.lastChild.style.height = this.originalHeight + "px";
+            this.cyWrapper.lastChild.style.width = this.originalWidth + "px";  
+            this.cy.resize();
+            
+            this.cyWrapper.style.zIndex = 5;
+            
+            let boundingBox = this.cyWrapper.getBoundingClientRect();
+
+            let centerX = window.innerWidth / 2;
+            let centerY = window.innerHeight / 2;
+
+            let positionX = centerX - (boundingBox.left + this.originalWidth / 2);
+            let positionY = centerY - (boundingBox.top + this.originalHeight / 2);
+        
+            this.cyWrapper.style.transform = "translate(" + positionX + "px, " + positionY + "px)";
+        }
+        else{
+            this.cyWrapper.firstChild.style.transform = "scale(" + scale + ")";
+            
+            this.cyWrapper.lastChild.style.height = this.cyWrapper.style.height;
+            this.cyWrapper.lastChild.style.width = this.cyWrapper.style.width;  
+            this.cy.resize();
+            
+            this.cyWrapper.style.zIndex = "";
+            
+            this.cyWrapper.style.transform = "";
+        }           
     }
 }
