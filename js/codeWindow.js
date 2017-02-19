@@ -5,12 +5,14 @@ let scale = 1;
 let overflowDetection = true;
 
 class CodeWindow{  
-    constructor(){
+    constructor(file){
         overflowDetection = true;
         
         this.originalHeight = 0;
         this.originalWidth = 0;
         this.selected = false;
+        this.file = file;
+        this.id = codeWindowsCount;
         
         let tempEditor;
         
@@ -89,17 +91,19 @@ class CodeWindow{
                         'font-size': '15',
                         width: 20,
                         height: 20
-                }}, {
+                    }
+                }, {
                     selector: 'edge',
                     style: {
-                        'line-color': 'grey'
-                }},{
+                        'line-color': 'grey',
+                        width: 3
+                    }
+                }, {
                     selector: '.red',
-                    style:{
+                    style: {
                         'background-color': 'red' 
                     }
                 }],
-            
 		});
     }
     
@@ -184,6 +188,10 @@ class CodeWindow{
             this.cyWrapper.lastChild.style.width = this.originalWidth + "px";  
             this.cy.resize();
             
+            this.cy.zoom(1 / scale);
+            this.cy.style().selector("node").style({"font-size": 15 * scale, "height" : 20 * scale, "width" : 20 * scale}).update();
+            this.cy.style().selector("edge").style({"width" : 3 * scale}).update();
+            
             this.cyWrapper.style.zIndex = 5;
             
             let boundingBox = this.cyWrapper.getBoundingClientRect();
@@ -203,9 +211,32 @@ class CodeWindow{
             this.cyWrapper.lastChild.style.width = this.cyWrapper.style.width;  
             this.cy.resize();
             
+            this.cy.zoom(1);
+            this.cy.style().selector("node").style({"font-size": 15, "height" : 20, "width" : 20}).update();
+            this.cy.style().selector("edge").style({"width" : 3}).update();
+            
             this.cyWrapper.style.zIndex = "";
             
             this.cyWrapper.style.transform = "";
         }           
+    }
+    
+    addNode(json){      
+        let node = this.cy.add({
+                    data: {id: playIndex},
+                    position: {x: json.x * scale, y: json.y * scale}
+        });
+        
+        nodeOrder.push(this.id);
+
+        if(playIndex > 0){
+            let edge = this.cy.add({
+               data: {
+                   id: "edge" + (playIndex - 1),
+                   source: (playIndex - 1),
+                   target: playIndex
+               } 
+            });
+        }
     }
 }

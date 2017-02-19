@@ -1,6 +1,20 @@
+const fs = require("fs");
+const path = require("path");
+
+function loadFile(file){
+    let codeWindow = new CodeWindow(file);
+    
+    let data = fs.readFileSync(file, "utf-8");
+    
+    codeWindow.addText(data);
+    codeWindows.push(codeWindow);
+    codeWindowsCount++;
+    
+    return codeWindow;
+}
+
 (function() {   
-    const fs = require("fs");
-    const path = require("path");
+
     
     let body = document.getElementsByTagName("body")[0];
     
@@ -35,12 +49,7 @@
                 document.getElementById("seekbar").max = jsonArray.length;
             }
             else{               
-                let codeWindow = new CodeWindow();            
-                codeWindow.addText(data);
-
-                codeWindows.push(codeWindow);
-
-                codeWindowsCount++;   
+                loadFile(file.path);
             }
         }
 
