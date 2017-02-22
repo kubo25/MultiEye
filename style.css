@@ -255,7 +255,6 @@ body{
 }
 
 /* Player control buttons hover */
-
 #playButton:hover > .left, #playButton:hover > .right, #nextButton:hover > .line, #previousButton:hover > .line{
     background-color: #c70219;
 }

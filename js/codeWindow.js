@@ -173,6 +173,15 @@ class CodeWindow{
                     code.cyWrapper.lastChild.style.height = tempHeight + "px";
                     code.cyWrapper.lastChild.style.width = tempWidth + "px";  
                     code.cy.resize();
+                    
+                    code.cy.nodes().positions(function(i, node){
+                        let position = node.position();
+                        
+                        return{
+                            x: position.x * scale,
+                            y: position.y * scale
+                        };
+                    });
                 }
             } 
         }
@@ -221,15 +230,19 @@ class CodeWindow{
         }           
     }
     
-    addNode(json){      
+    addNode(json, color = null){      
         let node = this.cy.add({
                     data: {id: playIndex},
                     position: {x: json.x * scale, y: json.y * scale}
         });
         
+        if(color !== null){
+            this.cy.style().selector("#" + playIndex).style({"background-color" : color}).update();
+        }
+        
         nodeOrder.push(this.id);
-
-        if(playIndex > 0){
+        
+        if(this.cy.nodes().length > 1){
             let edge = this.cy.add({
                data: {
                    id: "edge" + (playIndex - 1),

@@ -1,5 +1,6 @@
 let paused = true;
 let playIndex = -1;
+let lastColor = null;
 
 Array.prototype.objectWithFile = function(file){
     for(let i = 0; i < this.length; i++){
@@ -10,7 +11,7 @@ Array.prototype.objectWithFile = function(file){
     return null;
 }
 
-function loop(i, next, seekbarSet){
+function loop(i, next = false, seekbarSet = false){
     playIndex++;
     
     let json = jsonArray[playIndex];
@@ -28,10 +29,21 @@ function loop(i, next, seekbarSet){
                 document.getElementById("seekbar").value = playIndex + 1;
             }
             
-            codeWindow.addNode(json);      
-            i--;
-            if(i > 0){
-                loop(i, next, seekbarSet);
+            if(playIndex < jsonArray.length - 1 && json.file !== jsonArray[playIndex + 1].file){
+                lastColor = '#'+Math.random().toString(16).substr(-6);
+                codeWindow.addNode(json, lastColor);
+            }
+            else if(lastColor !== null){
+                codeWindow.addNode(json, lastColor);
+                lastColor = null;
+            }
+            else{
+                codeWindow.addNode(json);
+            }
+            
+
+            if(--i > 0){
+                loop(i, next, seekbarSet, lastColor);
             }
             else{              
                 paused = true;
@@ -59,7 +71,7 @@ function previousStep(){
             paused = false;
             playButton.classList.remove("paused");
             
-            loop(jsonArray.length - (playIndex + 1), false, false);
+            loop(jsonArray.length - (playIndex + 1));
         }
         else{
             paused = true;
@@ -71,7 +83,7 @@ function previousStep(){
     
     nextButton.onclick = function(){
         if(playIndex < jsonArray.length - 1){
-            loop(1, true, false);
+            loop(1, true);
         }
     };
     
@@ -83,7 +95,6 @@ function previousStep(){
     
     seekbar.oninput = function(){
         if(this.value > nodeOrder.length){
-            console.log(this.value);
             loop(this.value - nodeOrder.length, true, true);
         }
         else{
