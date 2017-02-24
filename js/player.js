@@ -21,7 +21,13 @@ function loop(i, next = false, seekbarSet = false){
         codeWindow = loadFile(json.file);
     }
     
-    let duration = (next) ? 0 : json.duration;
+    codeWindow.setActive(true);
+    
+    if(nodeOrder.length > 0 && codeWindows[nodeOrder[nodeOrder.length - 1]].id !== codeWindow.id){
+        codeWindows[nodeOrder[nodeOrder.length - 2]].setActive(false);
+    }
+    
+    let duration = (next) ? 1 : json.duration;
     
     if(next || !paused){
         setTimeout(function(){
@@ -57,7 +63,12 @@ function previousStep(){
     if(playIndex >= 0){
         document.getElementById("seekbar").value = playIndex;
         codeWindows[nodeOrder[nodeOrder.length - 1]].cy.remove("node#" + playIndex);
-                    
+        
+        if(nodeOrder.length > 1 && codeWindows[nodeOrder[nodeOrder.length - 1]].file !== codeWindows[nodeOrder[nodeOrder.length - 2]].file){
+            codeWindows[nodeOrder[nodeOrder.length - 1]].setActive(false);
+            codeWindows[nodeOrder[nodeOrder.length - 2]].setActive(true);
+        }
+        
         nodeOrder.pop();
         playIndex--;
     }
@@ -67,15 +78,17 @@ function previousStep(){
     let playButton = document.getElementById("playButton");
     
     playButton.onclick = function(){
-        if(playButton.classList.contains("paused")){
-            paused = false;
-            playButton.classList.remove("paused");
-            
-            loop(jsonArray.length - (playIndex + 1));
-        }
-        else{
-            paused = true;
-            playButton.classList.add("paused");
+        if(jsonArray.length > 0){
+            if(playButton.classList.contains("paused")){
+                paused = false;
+                playButton.classList.remove("paused");
+
+                loop(jsonArray.length - (playIndex + 1));
+            }
+            else{
+                paused = true;
+                playButton.classList.add("paused");
+            }
         }
     };
     
@@ -94,12 +107,14 @@ function previousStep(){
     let seekbar = document.getElementById("seekbar");
     
     seekbar.oninput = function(){
-        if(this.value > nodeOrder.length){
-            loop(this.value - nodeOrder.length, true, true);
-        }
-        else{
-            for(let i = nodeOrder.length; i > this.value; i--){
-                previousStep();
+        if(jsonArray.length > 0){
+            if(this.value > nodeOrder.length){
+                loop(this.value - nodeOrder.length, true, true);
+            }
+            else{
+                for(let i = nodeOrder.length; i > this.value; i--){
+                    previousStep();
+                }
             }
         }
     }

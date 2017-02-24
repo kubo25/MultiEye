@@ -20,5 +20,8 @@
     "cytoscape": "^2.7.14",
     "electron": "^1.4.13",
     "monaco-editor": "^0.8.1"
+  },
+  "devDependencies":{
+    "electron-reload": "^1.1.0"
   }
 }

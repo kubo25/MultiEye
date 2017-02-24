@@ -252,4 +252,13 @@ class CodeWindow{
             });
         }
     }
+    
+    setActive(activate){
+        if(activate){
+            this.cyWrapper.firstChild.firstChild.classList.add("active");
+        }
+        else{
+            this.cyWrapper.firstChild.firstChild.classList.remove("active");
+        }
+    }
 }
