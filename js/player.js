@@ -1,6 +1,5 @@
 let paused = true;
 let playIndex = -1;
-let lastColor = null;
 
 Array.prototype.objectWithFile = function(file){
     for(let i = 0; i < this.length; i++){
@@ -14,20 +13,16 @@ Array.prototype.objectWithFile = function(file){
 function loop(i, next = false, seekbarSet = false){
     playIndex++;
     
-    let json = jsonArray[playIndex];
-    let codeWindow = codeWindows.objectWithFile(json.file);
-        
-    if(codeWindow === null){
-        codeWindow = loadFile(json.file);
+    let node = nodeOrder[playIndex];
+    
+    node.codeWindow.setVisible();
+    node.codeWindow.setActive(true);
+    
+    if(playIndex > 0 && node.codeWindow.id !== nodeOrder[playIndex - 1].codeWindow.id){
+        nodeOrder[playIndex - 1].codeWindow.setActive(false);
     }
     
-    codeWindow.setActive(true);
-    
-    if(nodeOrder.length > 0 && codeWindows[nodeOrder[nodeOrder.length - 1]].id !== codeWindow.id){
-        codeWindows[nodeOrder[nodeOrder.length - 2]].setActive(false);
-    }
-    
-    let duration = (next) ? 1 : json.duration;
+    let duration = (next) ? 1 : node.duration;
     
     if(next || !paused){
         setTimeout(function(){
@@ -35,21 +30,10 @@ function loop(i, next = false, seekbarSet = false){
                 document.getElementById("seekbar").value = playIndex + 1;
             }
             
-            if(playIndex < jsonArray.length - 1 && json.file !== jsonArray[playIndex + 1].file){
-                lastColor = '#'+Math.random().toString(16).substr(-6);
-                codeWindow.addNode(json, lastColor);
-            }
-            else if(lastColor !== null){
-                codeWindow.addNode(json, lastColor);
-                lastColor = null;
-            }
-            else{
-                codeWindow.addNode(json);
-            }
+            node.codeWindow.showNextNode();
             
-
             if(--i > 0){
-                loop(i, next, seekbarSet, lastColor);
+                loop(i, next, seekbarSet);
             }
             else{              
                 paused = true;
@@ -62,14 +46,12 @@ function loop(i, next = false, seekbarSet = false){
 function previousStep(){
     if(playIndex >= 0){
         document.getElementById("seekbar").value = playIndex;
-        codeWindows[nodeOrder[nodeOrder.length - 1]].cy.remove("node#" + playIndex);
+        nodeOrder[playIndex].codeWindow.hideLastNode();
         
-        if(nodeOrder.length > 1 && codeWindows[nodeOrder[nodeOrder.length - 1]].file !== codeWindows[nodeOrder[nodeOrder.length - 2]].file){
-            codeWindows[nodeOrder[nodeOrder.length - 1]].setActive(false);
-            codeWindows[nodeOrder[nodeOrder.length - 2]].setActive(true);
+        if(playIndex > 1 && nodeOrder[playIndex].codeWindow.file !== nodeOrder[playIndex - 1].codeWindow.file){
+            nodeOrder[playIndex].codeWindow.setActive(false);
+            nodeOrder[playIndex - 1].codeWindow.setActive(true);
         }
-        
-        nodeOrder.pop();
         playIndex--;
     }
 }
@@ -107,12 +89,12 @@ function previousStep(){
     let seekbar = document.getElementById("seekbar");
     
     seekbar.oninput = function(){
-        if(jsonArray.length > 0){
-            if(this.value > nodeOrder.length){
-                loop(this.value - nodeOrder.length, true, true);
+        if(nodeOrder.length > 0){
+            if(this.value > playIndex){
+                loop(this.value - playIndex - 2, true, true);
             }
             else{
-                for(let i = nodeOrder.length; i > this.value; i--){
+                for(let i = playIndex + 1; i > this.value; i--){
                     previousStep();
                 }
             }

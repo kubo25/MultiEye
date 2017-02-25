@@ -1,8 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-function loadFile(file){
-    let codeWindow = new CodeWindow(file);
+let nodeOrder = [];
+
+function loadFile(hidden, file){
+    let codeWindow = new CodeWindow(hidden, file);
     
     let data = fs.readFileSync(file, "utf-8");
     
@@ -13,9 +15,35 @@ function loadFile(file){
     return codeWindow;
 }
 
-(function() {   
-
+function loadAllNodes(jsonArray){
+    let lastColor = null;
     
+    for(const json of jsonArray){
+        playIndex++;
+    
+        let codeWindow = codeWindows.objectWithFile(json.file);
+
+        if(codeWindow === null){
+            codeWindow = loadFile(true, json.file);
+        }
+
+        if(playIndex < jsonArray.length - 1 && json.file !== jsonArray[playIndex + 1].file){
+            lastColor = '#'+Math.random().toString(16).substr(-6);
+            codeWindow.addNode(json, lastColor);
+        }
+        else if(lastColor !== null){
+            codeWindow.addNode(json, lastColor);
+            lastColor = null;
+        }
+        else{
+            codeWindow.addNode(json);
+        }
+    }
+    
+    playIndex = -1;
+}
+
+(function() {   
     let body = document.getElementsByTagName("body")[0];
     
     body.ondragover = () => {
@@ -46,6 +74,7 @@ function loadFile(file){
                         
             if(extension === ".json"){
                 jsonArray = JSON.parse(data);
+                loadAllNodes(jsonArray);
                 document.getElementById("seekbar").max = jsonArray.length;
             }
             else{               

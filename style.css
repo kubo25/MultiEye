@@ -65,7 +65,7 @@ body{
 }
 
 .active{
-    --box-shadow-color: rgba(0, 0, 0, 0.4);
+    --box-shadow-color: rgba(0, 0, 0, 0.7);
 }
 
 .cytoscape{
@@ -109,7 +109,6 @@ body{
 }
 
 #patternBox ul li{
-    height: 40px;
     line-height: 40px;
     align-content: center;
     border-top: 1px solid rgba(210,210,210,0.4);

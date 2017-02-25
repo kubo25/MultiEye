@@ -1,3 +1,43 @@
+function findSelectedCodeWindows(click, startX, startY, endX, endY){
+    let selectedWindows = [];
+    for(const codeWindow of codeWindows){
+        if(!codeWindow.hidden){
+            let dx, dy;
+        
+            let boundingRect = codeWindow.getBoundingClientRect();
+
+            if(click){
+                dx = startX >= boundingRect.left && startX <= (boundingRect.width + boundingRect.left);
+                dy = startY >= boundingRect.top && startY <= (boundingRect.height + boundingRect.top);
+            }
+            else{
+                let codeWindowRx = (boundingRect.right - boundingRect.left) / 2;
+                let codeWindowRy = (boundingRect.bottom - boundingRect.top) / 2;
+                let codeWindowMidX = codeWindowRx + boundingRect.left;
+                let codeWindowMidY = codeWindowRy + boundingRect.top;
+
+                let selectionBoxRx = Math.abs(endX - startX) / 2;
+                let selectionBoxRy = Math.abs(endY - startY) / 2;
+
+                let selectionBoxMidX = selectionBoxRx + ((startX < endX) ? startX : endX);
+                let selectionBoxMidY = selectionBoxRy + ((startY < endY) ? startY : endY);
+
+                dx = Math.abs(codeWindowMidX - selectionBoxMidX) <= Math.abs(codeWindowRx + selectionBoxRx);
+                dy = Math.abs(codeWindowMidY - selectionBoxMidY) <= Math.abs(codeWindowRy + selectionBoxRy);
+            }
+
+            if(dx && dy){
+                if(click){
+                    return codeWindow;
+                }
+
+                selectedWindows.push(codeWindow);
+            }
+        }
+    }
+    return selectedWindows;
+}
+
 (function(){
     let isDrawing = false;
     let isDragging = false;
@@ -21,9 +61,55 @@
         startY = parseInt(e.clientY);
     }
 
-    canvas.onmouseup = function(){
+    canvas.onmouseup = function(e){
         isDrawing = false;
         context.clearRect(0, 0, canvas.width, canvas.height);
+        
+        if(startX !== e.clientX && startY !== e.clientY){
+            let selectedWindows = findSelectedCodeWindows(false, startX, startY, e.clientX, e.clientY);
+            
+            for(const codeWindow of selectedWindows){
+                let nodes = codeWindow.cy.nodes();
+                let boundingRect = codeWindow.getBoundingClientRect();
+                
+                for(let i = 0; i < nodes.length; i++){
+                    let position = nodes[i].position();
+                    
+                    let topX, topY, bottomX, bottomY;
+                    
+                    if(startX > e.clientX){
+                        topX = e.clientX;
+                        bottomX = startX;
+                    }
+                    else{
+                        topX = startX;
+                        bottomX = e.clientX;
+                    }
+                    
+                    if(startY > e.clientY){
+                        topY = e.clientY;
+                        bottomY = startY;
+                    }
+                    else{
+                        topY = startY;
+                        bottomY = e.clientY;
+                    }
+                    
+                    topX -= boundingRect.left;
+                    bottomX -= boundingRect.left;
+                    
+                    topY -= boundingRect.top;
+                    bottomY -= boundingRect.top;
+                    
+                    let dx = position.x >= topX && position.x <= bottomX;
+                    let dy = position.y >= topY && position.y <= bottomY;
+                    
+                    if(dx && dy){
+                        nodes[i].addClass("selected");
+                    }
+                }
+            }
+        }
     }
 
     canvas.onmousemove = function(e){
@@ -41,33 +127,30 @@
         }
     }
 
-    canvas.onclick = function(event){
+    canvas.onclick = function(e){
         if(!isDragging){
-            let x = event.clientX;
-            let y = event.clientY;
+            let codeWindow = findSelectedCodeWindows(true, startX, startY, e.clientX, e.clientY);
 
-            for(const codeWindow of codeWindows){
-                let boundingRect = codeWindow.cyWrapper.lastChild.getBoundingClientRect();
-
-                let dx = x >= boundingRect.left && x <= (boundingRect.width + boundingRect.left);
-                let dy = y >= boundingRect.top && y <= (boundingRect.height + boundingRect.top);
-
-                if(dx && dy){
-                    console.log(codeWindow);
-
-                    codeWindow.select();
-
-                    for(const blur of codeWindows){
-                        if(blur !== codeWindow){
-                            if(blur.cyWrapper.classList.contains("blurred")){
-                                blur.cyWrapper.classList.remove("blurred");
-                            }
-                            else{
-                                blur.cyWrapper.classList.add("blurred");
-                            }
-                        }
+            if(codeWindow.length === 0){
+                for(const codeWindow of codeWindows){
+                    let selected = codeWindow.cy.$(".selected");
+                    for(let i = 0; i < selected.length; i++){
+                        selected[i].removeClass("selected");
                     }
-                    break;
+                }
+                return;
+            }
+            
+            codeWindow.select();
+
+            for(const blur of codeWindows){
+                if(blur !== codeWindow){
+                    if(blur.cyWrapper.classList.contains("blurred")){
+                        blur.cyWrapper.classList.remove("blurred");
+                    }
+                    else{
+                        blur.cyWrapper.classList.add("blurred");
+                    }
                 }
             }
         }

@@ -5,7 +5,7 @@ let scale = 1;
 let overflowDetection = true;
 
 class CodeWindow{  
-    constructor(file){
+    constructor(hidden, file){
         overflowDetection = true;
         
         this.originalHeight = 0;
@@ -13,6 +13,7 @@ class CodeWindow{
         this.selected = false;
         this.file = file;
         this.id = codeWindowsCount;
+        this.lastNode = -1;
         
         let tempEditor;
         
@@ -23,6 +24,10 @@ class CodeWindow{
         this.cyWrapper.id = "cyWrapper" + codeWindows.length;
         
         codeWrapper.appendChild(this.cyWrapper);
+        
+        if(hidden){
+            this.setHidden();
+        }
         
         let scaleWrapper = document.createElement("div");
         scaleWrapper.className = "scaleWrapper";
@@ -99,9 +104,11 @@ class CodeWindow{
                         width: 3
                     }
                 }, {
-                    selector: '.red',
+                    selector: '.selected',
                     style: {
-                        'background-color': 'red' 
+                        'border-width': '4px',
+                        'border-color': 'red',
+                        'border-style': 'solid'
                     }
                 }],
 		});
@@ -203,7 +210,7 @@ class CodeWindow{
             
             this.cyWrapper.style.zIndex = 5;
             
-            let boundingBox = this.cyWrapper.getBoundingClientRect();
+            let boundingBox = this.getBoundingClientRect();
 
             let centerX = window.innerWidth / 2;
             let centerY = window.innerHeight / 2;
@@ -231,25 +238,71 @@ class CodeWindow{
     }
     
     addNode(json, color = null){      
-        let node = this.cy.add({
-                    data: {id: playIndex},
-                    position: {x: json.x * scale, y: json.y * scale}
-        });
+        let node = {
+            data: {id: playIndex},
+            position: {x: json.x * scale, y: json.y * scale}
+        };
         
-        if(color !== null){
-            this.cy.style().selector("#" + playIndex).style({"background-color" : color}).update();
+        if(this.hidden){
+            node.style = {
+                "opacity": 0
+            };
         }
         
-        nodeOrder.push(this.id);
+        node = this.cy.add(node);
+        
+        if(color !== null){
+            this.cy.style().selector("#" + playIndex).style({
+                "background-color" : color,
+                "shape": "rectangle",
+                "width": 25 * scale,
+                "height": 25 * scale
+            }).update();
+        }
+        
+        nodeOrder.push({
+            "codeWindow": this,
+            "duration": json.duration
+        });
         
         if(this.cy.nodes().length > 1){
-            let edge = this.cy.add({
+            let edge = {
                data: {
                    id: "edge" + (playIndex - 1),
                    source: (playIndex - 1),
                    target: playIndex
                } 
-            });
+            };
+            
+            if(this.hidden){
+                edge.style = {
+                    "opacity": 0
+                };
+            }
+            
+            this.cy.add(edge);
+        }
+    }
+    
+    showNextNode(){
+        this.lastNode++;
+        
+        let node = this.cy.nodes()[this.lastNode];
+        node.style({"opacity": 1});
+        
+        if(this.lastNode > 0){
+            this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 1});
+        }
+    }
+    
+    hideLastNode(){
+        this.lastNode--;
+        
+        let node = this.cy.nodes()[this.lastNode + 1];
+        node.style({"opacity": 0});
+        
+        if(this.lastNode >= 0){
+            this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 0});
         }
     }
     
@@ -260,5 +313,19 @@ class CodeWindow{
         else{
             this.cyWrapper.firstChild.firstChild.classList.remove("active");
         }
+    }
+    
+    setHidden(){
+        this.hidden = true;
+        this.cyWrapper.style.visibility = "hidden";
+    }
+    
+    setVisible(){
+        this.hidden = false;
+        this.cyWrapper.style.visibility = "visible";
+    }
+    
+    getBoundingClientRect(){
+        return this.cyWrapper.lastChild.getBoundingClientRect();
     }
 }

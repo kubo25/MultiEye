@@ -13,10 +13,6 @@
         
         let codeWindowsCount = 0;
         let codeWindows = [];
-        
-        let jsonArray = [];
-        
-        let nodeOrder = [];
     </script>
     <script src="node_modules/monaco-editor/min/vs/loader.js"></script>
     <script>
@@ -43,8 +39,8 @@
             <li class="patternButton">Thrashing</li>
             <li class="patternButton">Word(Pattern)Matching</li>
         </ul>
-        <!--<p>Uložené vzory</p>
-        <ul id="savedPatterns"></ul>-->
+        <p>Saved patterns</p>
+        <ul id="savedPatterns"></ul>
     </section>
     <section id="player">
         <div class="controlButtons">
@@ -226,5 +222,6 @@
     <script src="js/loadFile.js"></script>
     <script src="js/overlayCanvas.js"></script>
     <script src="js/player.js"></script>
+    <script src="js/patterns.js"></script>
 </body>
 </html>
