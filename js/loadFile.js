@@ -10,7 +10,6 @@ function loadFile(hidden, file){
     
     codeWindow.addText(data);
     codeWindows.push(codeWindow);
-    codeWindowsCount++;
     
     return codeWindow;
 }

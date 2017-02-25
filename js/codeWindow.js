@@ -1,5 +1,7 @@
 const cytoscape = require("cytoscape");
 
+let codeWindows = [];
+
 let first = true;
 let scale = 1;
 let overflowDetection = true;
@@ -12,7 +14,7 @@ class CodeWindow{
         this.originalWidth = 0;
         this.selected = false;
         this.file = file;
-        this.id = codeWindowsCount;
+        this.id = codeWindows.length;
         this.lastNode = -1;
         
         let tempEditor;
@@ -107,7 +109,7 @@ class CodeWindow{
                     selector: '.selected',
                     style: {
                         'border-width': '4px',
-                        'border-color': 'red',
+                        'border-color': '#c70219',
                         'border-style': 'solid'
                     }
                 }],
