@@ -330,4 +330,8 @@ class CodeWindow{
     getBoundingClientRect(){
         return this.cyWrapper.lastChild.getBoundingClientRect();
     }
+    
+    getNodeWithId(id){
+        return this.cy.$("#" + id);
+    }
 }

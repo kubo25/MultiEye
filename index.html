@@ -16,6 +16,7 @@
         var amdRequire = global.require;
         global.require = nodeRequire;
     </script>
+    <script src="js/save.js"></script>
     <script src="js/codeWindow.js"></script>
 </head>
 <body>
@@ -61,8 +62,7 @@
         <div id="seekbarWrapper">
             <input type="range" id="seekbar" step="1" value="0">
         </div>
-    </section>
-    
+    </section>   
     <script>new CodeWindow();</script>
     <script src="js/loadFile.js"></script>
     <script src="js/overlayCanvas.js"></script>

@@ -1,15 +1,6 @@
 let paused = true;
 let playIndex = -1;
 
-Array.prototype.objectWithFile = function(file){
-    for(let i = 0; i < this.length; i++){
-        if(this[i].file === file){
-            return this[i];
-        }
-    }    
-    return null;
-}
-
 function loop(i, next = false, seekbarSet = false){
     playIndex++;
     
@@ -41,6 +32,9 @@ function loop(i, next = false, seekbarSet = false){
             }
         }, duration);
     }
+    else if(paused){
+        playIndex--;
+    }
 }
 
 function previousStep(){
@@ -60,12 +54,12 @@ function previousStep(){
     let playButton = document.getElementById("playButton");
     
     playButton.onclick = function(){
-        if(jsonArray.length > 0){
+        if(jsonArray !== null && jsonArray.fixations.length > 0){
             if(playButton.classList.contains("paused")){
                 paused = false;
                 playButton.classList.remove("paused");
 
-                loop(jsonArray.length - (playIndex + 1));
+                loop(jsonArray.fixations.length - (playIndex + 1));
             }
             else{
                 paused = true;
@@ -77,7 +71,7 @@ function previousStep(){
     let nextButton = document.getElementById("nextButton");
     
     nextButton.onclick = function(){
-        if(playIndex < jsonArray.length - 1){
+        if(playIndex < jsonArray.fixations.length - 1){
             loop(1, true);
         }
     };

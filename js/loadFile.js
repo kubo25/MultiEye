@@ -1,7 +1,18 @@
 const fs = require("fs");
 const path = require("path");
 
+let jsonFilePath;
 let nodeOrder = [];
+let jsonArray = null;
+
+Array.prototype.objectWithFile = function(file){
+    for(let i = 0; i < this.length; i++){
+        if(this[i].file === file){
+            return this[i];
+        }
+    }    
+    return null;
+}
 
 function loadFile(hidden, file){
     let codeWindow = new CodeWindow(hidden, file);
@@ -14,10 +25,10 @@ function loadFile(hidden, file){
     return codeWindow;
 }
 
-function loadAllNodes(jsonArray){
+function loadAllNodes(){
     let lastColor = null;
     
-    for(const json of jsonArray){
+    for(const json of jsonArray.fixations){
         playIndex++;
     
         let codeWindow = codeWindows.objectWithFile(json.file);
@@ -26,7 +37,7 @@ function loadAllNodes(jsonArray){
             codeWindow = loadFile(true, json.file);
         }
 
-        if(playIndex < jsonArray.length - 1 && json.file !== jsonArray[playIndex + 1].file){
+        if(playIndex < jsonArray.fixations.length - 1 && json.file !== jsonArray.fixations[playIndex + 1].file){
             lastColor = '#'+Math.random().toString(16).substr(-6);
             codeWindow.addNode(json, lastColor);
         }
@@ -40,6 +51,10 @@ function loadAllNodes(jsonArray){
     }
     
     playIndex = -1;
+    
+    for(const pattern of jsonArray.patterns){
+        new Pattern(pattern);
+    }
 }
 
 (function() {   
@@ -68,16 +83,17 @@ function loadAllNodes(jsonArray){
 
         for (let i = 0; i < e.dataTransfer.files.length; i++) {
             let file = e.dataTransfer.files[i];
-            let data = fs.readFileSync(file.path, 'utf-8');     
-            let extension = path.extname(file.path);
+            jsonFilePath = file.path;
+            let data = fs.readFileSync(jsonFilePath, 'utf-8');     
+            let extension = path.extname(jsonFilePath);
                         
             if(extension === ".json"){
-                jsonArray = JSON.parse(data);
-                loadAllNodes(jsonArray);
-                document.getElementById("seekbar").max = jsonArray.length;
+                jsonArray = (JSON.parse(data));
+                loadAllNodes();
+                document.getElementById("seekbar").max = jsonArray.fixations.length;
             }
             else{               
-                loadFile(file.path);
+                loadFile(jsonFilePath);
             }
         }
 

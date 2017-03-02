@@ -1,182 +1,203 @@
-[
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 271,
-    "y": 14,
-    "duration": 303
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 55,
-    "y": 370,
-    "duration": 484
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 385,
-    "y": 465,
-    "duration": 248
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 573,
-    "y": 159,
-    "duration": 246
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 162,
-    "y": 86,
-    "duration": 421
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 115,
-    "y": 476,
-    "duration": 228
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 481,
-    "y": 274,
-    "duration": 318
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 221,
-    "y": 17,
-    "duration": 329
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 431,
-    "y": 16,
-    "duration": 339
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 281,
-    "y": 427,
-    "duration": 419
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 573,
-    "y": 388,
-    "duration": 261
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 302,
-    "y": 26,
-    "duration": 216
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 167,
-    "y": 76,
-    "duration": 396
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 104,
-    "y": 238,
-    "duration": 305
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 213,
-    "y": 196,
-    "duration": 353
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 413,
-    "y": 236,
-    "duration": 483
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 364,
-    "y": 35,
-    "duration": 304
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 34,
-    "y": 507,
-    "duration": 479
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 508,
-    "y": 368,
-    "duration": 469
-  },
-  {
-    "file": "testCodes/Action.cs",
-    "x": 447,
-    "y": 400,
-    "duration": 269
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 88,
-    "y": 434,
-    "duration": 331
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 9,
-    "y": 487,
-    "duration": 221
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 274,
-    "y": 333,
-    "duration": 404
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 445,
-    "y": 65,
-    "duration": 444
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 377,
-    "y": 10,
-    "duration": 480
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 316,
-    "y": 510,
-    "duration": 414
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 46,
-    "y": 125,
-    "duration": 488
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 290,
-    "y": 111,
-    "duration": 406
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 489,
-    "y": 496,
-    "duration": 416
-  },
-  {
-    "file": "testCodes/Rule.cs",
-    "x": 251,
-    "y": 501,
-    "duration": 260
-  }
-]
+{
+    "fixations": [
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 271,
+        "y": 14,
+        "duration": 303
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 55,
+        "y": 370,
+        "duration": 484
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 385,
+        "y": 465,
+        "duration": 248
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 573,
+        "y": 159,
+        "duration": 246
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 162,
+        "y": 86,
+        "duration": 421
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 115,
+        "y": 476,
+        "duration": 228
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 481,
+        "y": 274,
+        "duration": 318
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 221,
+        "y": 17,
+        "duration": 329
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 431,
+        "y": 16,
+        "duration": 339
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 281,
+        "y": 427,
+        "duration": 419
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 573,
+        "y": 388,
+        "duration": 261
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 302,
+        "y": 26,
+        "duration": 216
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 167,
+        "y": 76,
+        "duration": 396
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 104,
+        "y": 238,
+        "duration": 305
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 213,
+        "y": 196,
+        "duration": 353
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 413,
+        "y": 236,
+        "duration": 483
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 364,
+        "y": 35,
+        "duration": 304
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 34,
+        "y": 507,
+        "duration": 479
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 508,
+        "y": 368,
+        "duration": 469
+      },
+      {
+        "file": "testCodes/Action.cs",
+        "x": 447,
+        "y": 400,
+        "duration": 269
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 88,
+        "y": 434,
+        "duration": 331
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 9,
+        "y": 487,
+        "duration": 221
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 274,
+        "y": 333,
+        "duration": 404
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 445,
+        "y": 65,
+        "duration": 444
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 377,
+        "y": 10,
+        "duration": 480
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 316,
+        "y": 510,
+        "duration": 414
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 46,
+        "y": 125,
+        "duration": 488
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 290,
+        "y": 111,
+        "duration": 406
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 489,
+        "y": 496,
+        "duration": 416
+      },
+      {
+        "file": "testCodes/Rule.cs",
+        "x": 251,
+        "y": 501,
+        "duration": 260
+      }
+    ],
+    "patterns":[
+        {
+            "type": "Flicking",
+            "nodes": [
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": 3
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": 7
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": 20
+                }
+            ]
+        }
+    ]
+}

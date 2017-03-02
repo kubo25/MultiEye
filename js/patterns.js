@@ -1,23 +1,42 @@
 let savedPatterns = [];
 
 class Pattern{
-    constructor(type){
+    constructor(arg){
         this.id = savedPatterns.length;
-        this.type = type;    
         this.nodes = [];
         
-        for(const codeWindow of codeWindows){
-            let selected = codeWindow.cy.$(".selected");
+        if(typeof arg === "string"){
+            this.type = arg;
+            for(const codeWindow of codeWindows){
+                let selected = codeWindow.cy.$(".selected");
 
-            for(let i = 0; i < selected.length; i++){
-                this.nodes.push(selected[i]);
-                
-                selected[i].removeClass("selected");
+                for(let i = 0; i < selected.length; i++){
+                    this.nodes.push({
+                        "node": selected[i], 
+                        "codeWindow": codeWindow
+                    });
+
+                    selected[i].removeClass("selected");
+                }
             }
-        }
+
+            if(this.nodes.length == 0){
+                return;
+            }
             
-        if(this.nodes.length == 0){
-            return;
+            this._addToJsonArray();
+        }
+        else{
+            this.type = arg.type;
+                    
+            for(const node of arg.nodes){
+                let codeWindow = codeWindows.objectWithFile(node.file);
+                
+                this.nodes.push({
+                    "node": codeWindow.getNodeWithId(node.id),
+                    "codeWindow": codeWindow
+                });
+            }
         }
         
         savedPatterns.push(this);
@@ -31,7 +50,7 @@ class Pattern{
         let button = this.type + ": ";
         
         for(const node of this.nodes){
-            button += node.id();
+            button += node.node.id();
             
             if(node !== this.nodes[this.nodes.length - 1]){
                 button += ", ";
@@ -46,9 +65,28 @@ class Pattern{
 
         ul.appendChild(li);
     }
+    
+    _addToJsonArray(){
+        let pattern = {
+            "type": this.type,
+            "nodes": []
+        };
+        
+        for(const node of this.nodes){
+            let obj = {
+                "id": node.node.id(),
+                "file": node.codeWindow.file
+            };
+            
+            pattern.nodes.push(obj);
+        }
+        
+        jsonArray.patterns.push(pattern);
+    }
+    
     displayPattern(){
         for(const node of this.nodes){
-            node.addClass("selected");
+            node.node.addClass("selected");
         }
     }
 }
