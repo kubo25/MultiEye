@@ -73,39 +73,41 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                 let boundingRect = codeWindow.getBoundingClientRect();
                 
                 for(let i = 0; i < nodes.length; i++){
-                    let position = nodes[i].position();
+                    if(nodes[i].id() <= playIndex){
+                        let position = nodes[i].position();
                     
-                    let topX, topY, bottomX, bottomY;
-                    
-                    if(startX > e.clientX){
-                        topX = e.clientX;
-                        bottomX = startX;
-                    }
-                    else{
-                        topX = startX;
-                        bottomX = e.clientX;
-                    }
-                    
-                    if(startY > e.clientY){
-                        topY = e.clientY;
-                        bottomY = startY;
-                    }
-                    else{
-                        topY = startY;
-                        bottomY = e.clientY;
-                    }
-                    
-                    topX -= boundingRect.left;
-                    bottomX -= boundingRect.left;
-                    
-                    topY -= boundingRect.top;
-                    bottomY -= boundingRect.top;
-                    
-                    let dx = position.x >= topX && position.x <= bottomX;
-                    let dy = position.y >= topY && position.y <= bottomY;
-                    
-                    if(dx && dy){
-                        nodes[i].addClass("selected");
+                        let topX, topY, bottomX, bottomY;
+
+                        if(startX > e.clientX){
+                            topX = e.clientX;
+                            bottomX = startX;
+                        }
+                        else{
+                            topX = startX;
+                            bottomX = e.clientX;
+                        }
+
+                        if(startY > e.clientY){
+                            topY = e.clientY;
+                            bottomY = startY;
+                        }
+                        else{
+                            topY = startY;
+                            bottomY = e.clientY;
+                        }
+
+                        topX -= boundingRect.left;
+                        bottomX -= boundingRect.left;
+
+                        topY -= boundingRect.top;
+                        bottomY -= boundingRect.top;
+
+                        let dx = position.x >= topX && position.x <= bottomX;
+                        let dy = position.y >= topY && position.y <= bottomY;
+
+                        if(dx && dy){
+                            nodes[i].addClass("selected");
+                        }   
                     }
                 }
             }
