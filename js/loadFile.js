@@ -93,7 +93,7 @@ function loadAllNodes(){
                 document.getElementById("seekbar").max = jsonArray.fixations.length;
             }
             else{               
-                loadFile(jsonFilePath);
+                loadFile(false, jsonFilePath);
             }
         }
 

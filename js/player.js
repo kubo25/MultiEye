@@ -15,14 +15,14 @@ function loop(i, next = false, seekbarSet = false){
     
     let duration = (next) ? 1 : node.duration;
     
+    if(!seekbarSet){
+        document.getElementById("seekbar").value = playIndex + 1;
+    }
+            
+    node.codeWindow.showNextNode();
+    
     if(next || !paused){
         setTimeout(function(){
-            if(!seekbarSet){
-                document.getElementById("seekbar").value = playIndex + 1;
-            }
-            
-            node.codeWindow.showNextNode();
-            
             if(--i > 0){
                 loop(i, next, seekbarSet);
             }

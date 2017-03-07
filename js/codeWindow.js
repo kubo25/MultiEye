@@ -6,6 +6,8 @@ let first = true;
 let scale = 1;
 let overflowDetection = true;
 
+let basicSize = 20;
+
 class CodeWindow{  
     constructor(hidden, file){
         overflowDetection = true;
@@ -90,14 +92,14 @@ class CodeWindow{
                     style: {
                         shape: 'circle',
                         'background-color': 'black',
-                        'background-opacity': '0.7',
+                        'background-opacity': 0.7,
                         'content': 'data(id)',
                         'text-valign': 'center',
                         'text-halign': 'center',
                         'color': 'white',
-                        'font-size': '15',
-                        width: 20,
-                        height: 20
+                        'font-size': 15,
+                        width: basicSize,
+                        height: basicSize
                     }
                 }, {
                     selector: 'edge',
@@ -207,7 +209,7 @@ class CodeWindow{
             this.cy.resize();
             
             this.cy.zoom(1 / scale);
-            this.cy.style().selector("node").style({"font-size": 15 * scale, "height" : 20 * scale, "width" : 20 * scale}).update();
+            this.cy.style().selector("node").style({"font-size": 15 * scale, "height" : basicSize * scale, "width" : basicSize * scale}).update();
             this.cy.style().selector("edge").style({"width" : 3 * scale}).update();
             
             this.cyWrapper.style.zIndex = 5;
@@ -230,7 +232,7 @@ class CodeWindow{
             this.cy.resize();
             
             this.cy.zoom(1);
-            this.cy.style().selector("node").style({"font-size": 15, "height" : 20, "width" : 20}).update();
+            this.cy.style().selector("node").style({"font-size": 15, "height" : basicSize, "width" : basicSize}).update();
             this.cy.style().selector("edge").style({"width" : 3}).update();
             
             this.cyWrapper.style.zIndex = "";
@@ -239,10 +241,13 @@ class CodeWindow{
         }           
     }
     
-    addNode(json, color = null){      
+    addNode(json, color = null){        
         let node = {
-            data: {id: playIndex},
-            position: {x: json.x * scale, y: json.y * scale}
+            data: {
+                id: playIndex,
+                "duration": json.duration
+            },
+            position: {x: json.x * scale, y: json.y * scale},
         };
         
         if(this.hidden){
@@ -257,9 +262,13 @@ class CodeWindow{
             this.cy.style().selector("#" + playIndex).style({
                 "background-color" : color,
                 "shape": "rectangle",
-                "width": 25 * scale,
-                "height": 25 * scale
             }).update();
+        }
+        else{
+            /*this.cy.style().selector("#" + playIndex).style({
+                "width": size * scale,
+                "height": size * scale
+            }).update();*/
         }
         
         nodeOrder.push({
@@ -290,7 +299,13 @@ class CodeWindow{
         this.lastNode++;
         
         let node = this.cy.nodes()[this.lastNode];
-        node.style({"opacity": 1});
+        let size = basicSize * (1 + node.data("duration") / 500);
+        
+        node.style({
+            "opacity": 1,
+            "width": size * scale,
+            "height": size * scale
+        });
         
         if(this.lastNode > 0){
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 1});
