@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/kubo25/MultiEye#readme",
   "dependencies": {
-    "cytoscape": "^2.7.14",
-    "electron": "^1.4.13",
-    "monaco-editor": "^0.8.1"
+    "cytoscape": "^2.7.16",
+    "electron": "^1.6.2",
+    "monaco-editor": "^0.8.3"
   },
   "devDependencies":{
     "electron-reload": "^1.1.0"

@@ -128,10 +128,10 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
             context.stroke();
         }
     }
-
+    
     canvas.onclick = function(e){
         if(!isDragging){
-            let codeWindow = findSelectedCodeWindows(true, startX, startY, e.clientX, e.clientY);
+            let codeWindow = findSelectedCodeWindows(true, startX, startY);
 
             if(codeWindow.length === 0){
                 for(const codeWindow of codeWindows){
@@ -143,8 +143,25 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                 return;
             }
             
+            let nodes = codeWindow.cy.nodes();
+            let nodeSelected = false;
+            
+            for(let i = 0; i < nodes.length; i++){
+                let outerPosition = codeWindow.getBoundingClientRect();
+                let position = nodes[i].position();
+                let size = nodes[i].outerHeight();
+                
+                let dx = e.clientX >= (outerPosition.left + position.x - size / 2) && e.clientX <= (outerPosition.left + position.x + size / 2);
+                let dy = e.clientY >= (outerPosition.top + position.y - size / 2) && e.clientY <= (outerPosition.top + position.y + size / 2);
+                
+                if(dx && dy){
+                    nodes[i].addClass("selected");
+                    return;
+                }
+            }
+            
             codeWindow.select();
-
+            
             for(const blur of codeWindows){
                 if(blur !== codeWindow){
                     if(blur.cyWrapper.classList.contains("blurred")){
@@ -154,10 +171,10 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                         blur.cyWrapper.classList.add("blurred");
                     }
                 }
-            }
+            } 
         }
     }
-    
+        
     window.onresize = function(){
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
