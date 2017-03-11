@@ -31,7 +31,7 @@ class Project{
         return this.project.patterns;
     }
     
-    //Method to save a pattern object to the file
+    //Method to add a pattern object to the project
     savePattern(pattern){
         let savedPattern = {
             "type": pattern.type,

@@ -1,10 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 
-let jsonFilePath;
+let projectFilePath;
 let nodeOrder = [];
 let project = null;
 
+//Array prototype function for codeWindows array to find which CodeWindow has (file)
 Array.prototype.objectWithFile = function(file){
     for(let i = 0; i < this.length; i++){
         if(this[i].file === file){
@@ -14,8 +15,9 @@ Array.prototype.objectWithFile = function(file){
     return null;
 }
 
-function loadFile(hidden, file){
-    let codeWindow = new CodeWindow(hidden, file);
+//Function creates a new CodeWindow object with text from file 
+function loadFile(file){
+    let codeWindow = new CodeWindow(file);
     
     let data = fs.readFileSync(file, "utf-8");
     
@@ -25,23 +27,25 @@ function loadFile(hidden, file){
     return codeWindow;
 }
 
-function loadAllNodes(){
+//Function loads all fixations and patterns
+function loadProject(){
     let lastColor = null;
     
     for(const json of project.getFixations()){
         playIndex++;
     
-        let codeWindow = codeWindows.objectWithFile(json.file);
+        let codeWindow = codeWindows.objectWithFile(json.file); //find if CodeWindow with file already exists
 
         if(codeWindow === null){
-            codeWindow = loadFile(true, json.file);
+            codeWindow = loadFile(json.file);
         }
 
+        //if next fixation is in another file then generate a color for current fixations
         if(playIndex < project.getFixations().length - 1 && json.file !== project.getFixations()[playIndex + 1].file){
             lastColor = '#'+Math.random().toString(16).substr(-6);
             codeWindow.addNode(json, lastColor);
         }
-        else if(lastColor !== null){
+        else if(lastColor !== null){ //if current fixation is first in this file set its color
             codeWindow.addNode(json, lastColor);
             lastColor = null;
         }
@@ -50,8 +54,9 @@ function loadAllNodes(){
         }
     }
     
-    playIndex = -1;
+    playIndex = -1; //reinitialize playIndex
     
+    //load all patterns saved in project
     for(const pattern of project.getPatterns()){
         new Pattern(pattern);
     }
@@ -60,43 +65,35 @@ function loadAllNodes(){
 (function() {   
     let body = document.getElementsByTagName("body")[0];
     
-    body.ondragover = () => {
+    body.ondragover = function(){
         body.style.opacity = 0.3;
         
         return false;
     }
     
-    body.ondragleave = () => { 
+    body.ondragleave = function(){ 
         body.style.opacity = 1;
-
+        
         return false;
     }
     
-    body.ondragend = () => {
-        return false;
-    }
-    
-    body.ondrop = (e) => {
+    body.ondrop = function(e){
         e.preventDefault();
         
         body.style.opacity = 1;
 
-        for (let i = 0; i < e.dataTransfer.files.length; i++) {
-            let file = e.dataTransfer.files[i];
-            jsonFilePath = file.path;
-            let data = fs.readFileSync(jsonFilePath, 'utf-8');     
-            let extension = path.extname(jsonFilePath);
-                        
-            if(extension === ".json"){
-                project = new Project(JSON.parse(data));
-                loadAllNodes();
-                document.getElementById("seekbar").max = project.getFixations().length;
-            }
-            else{               
-                loadFile(false, jsonFilePath);
-            }
-        }
+        let file = e.dataTransfer.files[0];
+        projectFilePath = file.path;
+        let extension = path.extname(projectFilePath);
 
+        if(extension === ".json"){
+            let data = fs.readFileSync(projectFilePath, 'utf-8');    
+            
+            project = new Project(JSON.parse(data));
+            loadProject();
+            document.getElementById("seekbar").max = project.getFixations().length; //set the number of steps on seekbar to the amount of fixations
+        }
+        
         return false;
     };
 })();

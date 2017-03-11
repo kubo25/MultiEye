@@ -8,13 +8,13 @@ class Pattern{
         if(typeof arg === "string"){
             this.type = arg;
             for(const codeWindow of codeWindows){
-                let selected = codeWindow.cy.$(".selected");
+                let selected = codeWindow.cy.$(".selected"); //get every selected node
 
-                for(let i = 0; i < selected.length; i++){
-                    this.fixations.push({
-                        "node": selected[i], 
-                        "codeWindow": codeWindow
-                    });
+                for(let i = 0; i < selected.length; i++){ //Create fixation object for every selected node
+                    this.fixations.push({                 //in format: {
+                        "node": selected[i],              //                "node": (nodeObject),
+                        "codeWindow": codeWindow          //                "codeWindow: (codeWindow)
+                    });                                   //            }
 
                     selected[i].removeClass("selected");
                 }
@@ -45,6 +45,7 @@ class Pattern{
         this._showOnSeekbar();
     }
     
+    //Method adds newly created patterns into the Saved patterns area on the right
     _updateList(){
         let ul = document.getElementById("savedPatterns");
         let li = document.createElement("li");
@@ -67,6 +68,7 @@ class Pattern{
         ul.appendChild(li);
     }
     
+    //Method show newly created pattern on the seekbar
     _showOnSeekbar(){
         let seekbarWrapper = document.getElementById("seekbarWrapper");
         let stepWidth = seekbarWrapper.firstElementChild.clientWidth / nodeOrder.length;
@@ -76,11 +78,11 @@ class Pattern{
         let seekbarDiv = document.getElementById(lastFixationId);
         let seekbarUl = null;
         
-        if(seekbarDiv === null){
+        if(seekbarDiv === null){ //If no other pattern ends in lastFixationId create new line
             let seekbarDivWrapper = document.createElement("div");
             seekbarDivWrapper.classList.add("seekbarPattern");
             
-            let position = ((lastFixationId + 1) * stepWidth) + (11 - 2 * 11 * (lastFixationId / nodeOrder.length));
+            let position = ((lastFixationId + 1) * stepWidth) + (11 - 22 * (lastFixationId / nodeOrder.length)); //position of line on seekbar -> position of xth step + compensation of seekbar thumb size(11: thumb radius, 22: thumb diamter)
             
             seekbarDivWrapper.style.left = position + "px";
             seekbarDiv = document.createElement("div");
@@ -88,7 +90,7 @@ class Pattern{
             
              seekbarUl = document.createElement("ul");
             
-            if(position + 2 * 240 >= window.innerWidth){
+            if(position + 2 * 240 >= window.innerWidth){ //change direction of the tooltip to prevent clipping
                 seekbarUl.style.left = "-240px";
             }
             
@@ -100,7 +102,7 @@ class Pattern{
             seekbarUl = seekbarDiv.firstChild;  
         }
         
-        let seekbarLi = document.createElement("li");
+        let seekbarLi = document.createElement("li"); //create an element with this pattern's description
         seekbarLi.innerHTML = this.patternString;
         seekbarLi.dataset.patternID = this.id;
         seekbarLi.dataset.lastFixationID = lastFixationId;

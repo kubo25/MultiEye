@@ -9,7 +9,7 @@ let overflowDetection = true;
 let basicSize = 20;
 
 class CodeWindow{  
-    constructor(hidden, file){
+    constructor(file){
         overflowDetection = true;
         
         //Initializing class attributes
@@ -31,10 +31,8 @@ class CodeWindow{
         
         codeWrapper.appendChild(this.cyWrapper);
         
-        //TODO: remove
-        if(hidden){
-            this.setHidden();
-        }
+        //When creating instances start them hidden
+        this.setHidden();
         
         //Create scaling wrapper for the editor
         let scaleWrapper = document.createElement("div");

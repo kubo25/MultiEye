@@ -148,19 +148,21 @@ ipcMain.on("saveAs", function(event, args){
     };
     
     dialog.showSaveDialog(mainWindow, options, function(filename){
-        const fs = require("fs");
-        
-        fs.writeFileSync("a.json", JSON.stringify(args[1], null, 4), "utf-8");
-        
-        if(fs.existsSync(filename)){
-            fs.unlinkSync(filename);
-            
-            setTimeout(function(){
+        if(filename !== undefined){
+            const fs = require("fs");
+            fs.writeFileSync("B.txt", filename);
+            fs.writeFileSync("a.json", JSON.stringify(args[1], null, 4), "utf-8");
+
+            if(fs.existsSync(filename)){
+                fs.unlinkSync(filename);
+
+                setTimeout(function(){
+                    fs.renameSync("a.json", filename);
+                }, 100);
+            }
+            else{
                 fs.renameSync("a.json", filename);
-            }, 100);
-        }
-        else{
-            fs.renameSync("a.json", filename);
+            }
         }
     });
 });
