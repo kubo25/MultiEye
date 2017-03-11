@@ -24,7 +24,7 @@ class Pattern{
                 return;
             }
             
-            this._addToJsonArray();
+            project.savePattern(this);
         }
         else{
             this.type = arg.type;
@@ -65,24 +65,6 @@ class Pattern{
         };
 
         ul.appendChild(li);
-    }
-    
-    _addToJsonArray(){
-        let pattern = {
-            "type": this.type,
-            "fixations": []
-        };
-        
-        for(const fixation of this.fixations){
-            let obj = {
-                "id": fixation.node.id(),
-                "file": fixation.codeWindow.file
-            };
-            
-            pattern.fixations.push(obj);
-        }
-        
-        jsonArray.patterns.push(pattern);
     }
     
     _showOnSeekbar(){

@@ -544,6 +544,27 @@
                 }
             ],
             "type": "LinearHorizontal"
+        },
+        {
+            "fixations": [
+                {
+                    "file": "testCodes/Action.cs",
+                    "id": "11"
+                },
+                {
+                    "file": "testCodes/Action.cs",
+                    "id": "12"
+                },
+                {
+                    "file": "testCodes/Action.cs",
+                    "id": "13"
+                },
+                {
+                    "file": "testCodes/Action.cs",
+                    "id": "14"
+                }
+            ],
+            "type": "Flicking"
         }
     ]
 }

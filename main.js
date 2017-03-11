@@ -125,6 +125,7 @@ app.on('activate', function () {
   }
 })
 
+//Methods that save the project, need to change to save a format other than JSON
 ipcMain.on("save", function(event, args){    
     const fs = require("fs");
     

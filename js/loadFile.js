@@ -3,7 +3,7 @@ const path = require("path");
 
 let jsonFilePath;
 let nodeOrder = [];
-let jsonArray = null;
+let project = null;
 
 Array.prototype.objectWithFile = function(file){
     for(let i = 0; i < this.length; i++){
@@ -28,7 +28,7 @@ function loadFile(hidden, file){
 function loadAllNodes(){
     let lastColor = null;
     
-    for(const json of jsonArray.fixations){
+    for(const json of project.getFixations()){
         playIndex++;
     
         let codeWindow = codeWindows.objectWithFile(json.file);
@@ -37,7 +37,7 @@ function loadAllNodes(){
             codeWindow = loadFile(true, json.file);
         }
 
-        if(playIndex < jsonArray.fixations.length - 1 && json.file !== jsonArray.fixations[playIndex + 1].file){
+        if(playIndex < project.getFixations().length - 1 && json.file !== project.getFixations()[playIndex + 1].file){
             lastColor = '#'+Math.random().toString(16).substr(-6);
             codeWindow.addNode(json, lastColor);
         }
@@ -52,7 +52,7 @@ function loadAllNodes(){
     
     playIndex = -1;
     
-    for(const pattern of jsonArray.patterns){
+    for(const pattern of project.getPatterns()){
         new Pattern(pattern);
     }
 }
@@ -88,9 +88,9 @@ function loadAllNodes(){
             let extension = path.extname(jsonFilePath);
                         
             if(extension === ".json"){
-                jsonArray = (JSON.parse(data));
+                project = new Project(JSON.parse(data));
                 loadAllNodes();
-                document.getElementById("seekbar").max = jsonArray.fixations.length;
+                document.getElementById("seekbar").max = project.getFixations().length;
             }
             else{               
                 loadFile(false, jsonFilePath);

@@ -54,12 +54,12 @@ function previousStep(){
     let playButton = document.getElementById("playButton");
     
     playButton.onclick = function(){
-        if(jsonArray !== null && jsonArray.fixations.length > 0){
+        if(project !== null && project.getFixations().length > 0){
             if(playButton.classList.contains("paused")){
                 paused = false;
                 playButton.classList.remove("paused");
 
-                loop(jsonArray.fixations.length - (playIndex + 1));
+                loop(project.getFixations().length - (playIndex + 1));
             }
             else{
                 paused = true;
@@ -71,7 +71,7 @@ function previousStep(){
     let nextButton = document.getElementById("nextButton");
     
     nextButton.onclick = function(){
-        if(playIndex < jsonArray.fixations.length - 1){
+        if(playIndex < project.getFixations().length - 1){
             loop(1, true);
         }
     };
