@@ -1,4 +1,8 @@
 /*Full page */
+:root{
+    --red-color: #c70219;
+}
+
 html{
     overflow: hidden;
     font-family: "Open Sans", sans-serif;
@@ -261,20 +265,21 @@ body{
 
 /* Player control buttons hover */
 #playButton:hover > .left, #playButton:hover > .right, #nextButton:hover > .line, #previousButton:hover > .line{
-    background-color: #c70219;
+    background-color: var(--red-color);
 }
 
 #previousButton:hover > .leftTriangle{
-    border-right-color: #c70219;
+    border-right-color: var(--red-color);
 }
 
 #nextButton:hover > .rightTriangle{
-    border-left-color: #c70219;
+    border-left-color: var(--red-color);
 }
 
 /* Seekbar */
 #seekbarWrapper{
     display: inline-block;
+    position: relative;
     height: 100%;
     flex: 1;
 }
@@ -282,6 +287,67 @@ body{
 #seekbar{
     height: 100%;
     width: 97%;
+}
+
+.seekbarPattern{
+    display: block;
+    position: absolute;
+    top: -20%;
+    width: 15px;
+    height: 60%;
+}
+
+.seekbarPattern div{
+    position: absolute;
+    height: 65%;
+    bottom: 0;
+    width: 0;
+    border: 1px solid var(--red-color);
+}
+
+.seekbarPattern ul{
+    display: none;
+    position: absolute;
+    
+    width: 240px;
+    height: 80px;
+    line-height: 80px;
+    
+    padding: 0;
+    padding-left: 16px;
+    margin: 0;
+    
+    top: calc(-100% - 55px);
+    left: -20px;
+    
+    background-color: var(--red-color);
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    list-style: none;
+    
+    overflow-y: auto;
+}
+
+.seekbarPattern ul li{
+    cursor: pointer;
+}
+
+.seekbarPattern:hover div::before{
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--red-color);
+}
+
+.seekbarPattern:hover div > ul{
+    display: block;
 }
 
 input:focus{
@@ -305,7 +371,7 @@ input[type=range]::-webkit-slider-thumb{
 }
 
 input[type=range]:active::-webkit-slider-thumb, input[type=range]:hover::-webkit-slider-thumb{
-    border-color: #c70219;
+    border-color: var(--red-color);
 }
 
 input[type=range]::-webkit-slider-runnable-track {

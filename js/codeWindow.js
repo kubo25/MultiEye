@@ -12,6 +12,7 @@ class CodeWindow{
     constructor(hidden, file){
         overflowDetection = true;
         
+        //Initializing class attributes
         this.originalHeight = 0;
         this.originalWidth = 0;
         this.selected = false;
@@ -23,27 +24,32 @@ class CodeWindow{
         
         let codeWrapper = document.getElementById("codeWrapper");
         
+        //Create main wrapper div
         this.cyWrapper = document.createElement("div");
         this.cyWrapper.className = "cyWrapper";
         this.cyWrapper.id = "cyWrapper" + codeWindows.length;
         
         codeWrapper.appendChild(this.cyWrapper);
         
+        //TODO: remove
         if(hidden){
             this.setHidden();
         }
         
+        //Create scaling wrapper for the editor
         let scaleWrapper = document.createElement("div");
         scaleWrapper.className = "scaleWrapper";
         
         this.cyWrapper.appendChild(scaleWrapper);
         
+        //Initialize editor and cytoscape ids
         this.editor = null;
         this.editorId = "editor" + codeWindows.length;
         
         this.cy = null;
         this.cyId = "cy" + codeWindows.length;
         
+        //Create wrapper for the editor
         let editorDiv = document.createElement("div");
         
         editorDiv.id = this.editorId;
@@ -51,6 +57,7 @@ class CodeWindow{
         
         scaleWrapper.appendChild(editorDiv);
         
+        //Create monaco instance
         amdRequire.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' }});
 
         self.module = undefined;
@@ -63,6 +70,8 @@ class CodeWindow{
                 language: 'csharp'
             });
             
+            //First loading takes some time, so create first instance on application init
+            //and delete it right after that
             if(first){               
                 codeWrapper.removeChild(document.getElementById("cyWrapper0"));
                 
@@ -71,6 +80,7 @@ class CodeWindow{
             }
         });
         
+        //Add monaco instance to the object
         if(tempEditor != null){
             this.editor = tempEditor;
         }
@@ -82,6 +92,7 @@ class CodeWindow{
 
         this.cyWrapper.appendChild(cyDiv);
         
+        //Create cytoscape instance and add it to the object
         this.cy = cytoscape({
 			container: document.getElementById(cyDiv.id),
             autoungrabify: true,
@@ -119,12 +130,14 @@ class CodeWindow{
     }
     
     addText(data){
-        let lines = this.cyWrapper.querySelector(".view-lines");
+        let lines = this.cyWrapper.querySelector(".view-lines"); //get object with the full width and height of the code
         
         let obj = this;
     
+        //Set up MutationObserver to get every change to the final width and height
         let observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
+                //Get the newly loaded sizes
                 let newHeight = mutation.target.scrollHeight;
                 let newWidth = mutation.target.scrollWidth + 20;
                                 
@@ -137,15 +150,17 @@ class CodeWindow{
 
         this.editor.setValue(data);
 
-        setTimeout(function(){
+        setTimeout(function(){ //disconnect observer after 1s
             observer.disconnect();
         }, 1000);
     }
     
     setSize(newHeight, newWidth){
+        //Method only used 1 time so newHeight and newWidth are the originals
         this.originalHeight = newHeight;
         this.originalWidth = newWidth;
         
+        //Apply scaling
         let transform = "scale(" + scale + ")";
         
         this.cyWrapper.firstChild.style.transform = transform;
@@ -153,20 +168,24 @@ class CodeWindow{
         let editorWindow = this.cyWrapper.firstChild.firstChild
         let cy = this.cyWrapper.lastChild
 
+        //Set new height and width to editor and recreate it's layout
         editorWindow.style.height = newHeight + "px";
         editorWindow.style.width = newWidth + "px";
 
         this.editor.layout();
 
+        //Set new width and height to cytoscape
         cy.style.height = (newHeight * scale) + "px";
         cy.style.width = (newWidth * scale) + "px";
         
         this.cyWrapper.style.height = (newHeight * scale) + "px";
         this.cyWrapper.style.width = (newWidth * scale) + "px";
-                
+             
+        //Check for overflow
         if(overflowDetection && document.body.clientHeight > window.innerHeight){
             overflowDetection = false;
-                        
+            
+            //Scale down the codeWindows until no more overflow is found
             while(document.body.clientHeight > window.innerHeight){
                 scale /= 2;
                 
@@ -185,6 +204,7 @@ class CodeWindow{
                     code.cyWrapper.lastChild.style.width = tempWidth + "px";  
                     code.cy.resize();
                     
+                    //Make move fixations according to the scaling
                     code.cy.nodes().positions(function(i, node){
                         let position = node.position();
                         
@@ -241,7 +261,8 @@ class CodeWindow{
         }           
     }
     
-    addNode(json, color = null){        
+    addNode(json, color = null){ 
+        //Create new node
         let node = {
             data: {
                 id: playIndex,
@@ -258,24 +279,21 @@ class CodeWindow{
         
         node = this.cy.add(node);
         
+        //Change color and shape of last nodes in the same file
         if(color !== null){
             this.cy.style().selector("#" + playIndex).style({
                 "background-color" : color,
                 "shape": "rectangle",
             }).update();
         }
-        else{
-            /*this.cy.style().selector("#" + playIndex).style({
-                "width": size * scale,
-                "height": size * scale
-            }).update();*/
-        }
         
+        //Add node information to nodeOrder array
         nodeOrder.push({
             "codeWindow": this,
             "duration": json.duration
         });
         
+        //Create edge between nodes
         if(this.cy.nodes().length > 1){
             let edge = {
                data: {
@@ -298,16 +316,16 @@ class CodeWindow{
     showNextNode(){
         this.lastNode++;
         
-        let node = this.cy.nodes()[this.lastNode];
-        let size = basicSize * (1 + node.data("duration") / 500);
+        let node = this.cy.nodes()[this.lastNode]; //find next node
+        let size = basicSize * (1 + node.data("duration") / 500); //calculate it's size according to duration
         
-        node.style({
+        node.style({ //show the node and set it's new size
             "opacity": 1,
             "width": size * scale,
             "height": size * scale
         });
         
-        if(this.lastNode > 0){
+        if(this.lastNode > 0){ //if there should be an edge show it too
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 1});
         }
     }
@@ -315,15 +333,16 @@ class CodeWindow{
     hideLastNode(){
         this.lastNode--;
         
-        let node = this.cy.nodes()[this.lastNode + 1];
-        node.style({"opacity": 0});
+        let node = this.cy.nodes()[this.lastNode + 1]; //find last node
+        node.style({"opacity": 0}); //make it invisible
         
-        if(this.lastNode >= 0){
+        if(this.lastNode >= 0){ //hide it's edge
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 0});
         }
     }
     
     setActive(activate){
+        //Set monaco editor div as active to change it's shadow color
         if(activate){
             this.cyWrapper.firstChild.firstChild.classList.add("active");
         }

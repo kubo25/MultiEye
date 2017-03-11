@@ -3,7 +3,7 @@ let savedPatterns = [];
 class Pattern{
     constructor(arg){
         this.id = savedPatterns.length;
-        this.nodes = [];
+        this.fixations = [];
         
         if(typeof arg === "string"){
             this.type = arg;
@@ -11,7 +11,7 @@ class Pattern{
                 let selected = codeWindow.cy.$(".selected");
 
                 for(let i = 0; i < selected.length; i++){
-                    this.nodes.push({
+                    this.fixations.push({
                         "node": selected[i], 
                         "codeWindow": codeWindow
                     });
@@ -20,7 +20,7 @@ class Pattern{
                 }
             }
 
-            if(this.nodes.length == 0){
+            if(this.fixations.length == 0){
                 return;
             }
             
@@ -29,11 +29,11 @@ class Pattern{
         else{
             this.type = arg.type;
                     
-            for(const node of arg.nodes){
-                let codeWindow = codeWindows.objectWithFile(node.file);
+            for(const fixation of arg.fixations){
+                let codeWindow = codeWindows.objectWithFile(fixation.file);
                 
-                this.nodes.push({
-                    "node": codeWindow.getNodeWithId(node.id),
+                this.fixations.push({
+                    "node": codeWindow.getNodeWithId(fixation.id),
                     "codeWindow": codeWindow
                 });
             }
@@ -42,22 +42,23 @@ class Pattern{
         savedPatterns.push(this);
         
         this._updateList();
+        this._showOnSeekbar();
     }
     
     _updateList(){
         let ul = document.getElementById("savedPatterns");
         let li = document.createElement("li");
-        let button = this.type + ": ";
+        this.patternString = this.type + ": ";
         
-        for(const node of this.nodes){
-            button += node.node.id();
+        for(const fixation of this.fixations){
+            this.patternString += fixation.node.id();
             
-            if(node !== this.nodes[this.nodes.length - 1]){
-                button += ", ";
+            if(fixation !== this.fixations[this.fixations.length - 1]){
+                this.patternString += ", ";
             }
         }
 
-        li.innerHTML = button;
+        li.innerHTML = this.patternString;
         li.dataset.patternID = this.id;
         li.onclick = function(){
             savedPatterns[this.dataset.patternID].displayPattern();
@@ -69,24 +70,76 @@ class Pattern{
     _addToJsonArray(){
         let pattern = {
             "type": this.type,
-            "nodes": []
+            "fixations": []
         };
         
-        for(const node of this.nodes){
+        for(const fixation of this.fixations){
             let obj = {
-                "id": node.node.id(),
-                "file": node.codeWindow.file
+                "id": fixation.node.id(),
+                "file": fixation.codeWindow.file
             };
             
-            pattern.nodes.push(obj);
+            pattern.fixations.push(obj);
         }
         
         jsonArray.patterns.push(pattern);
     }
     
+    _showOnSeekbar(){
+        let seekbarWrapper = document.getElementById("seekbarWrapper");
+        let stepWidth = seekbarWrapper.firstElementChild.clientWidth / nodeOrder.length;
+        
+        let lastFixationId = parseInt(this.fixations[this.fixations.length - 1].node.id());
+        
+        let seekbarDiv = document.getElementById(lastFixationId);
+        let seekbarUl = null;
+        
+        if(seekbarDiv === null){
+            let seekbarDivWrapper = document.createElement("div");
+            seekbarDivWrapper.classList.add("seekbarPattern");
+            
+            let position = ((lastFixationId + 1) * stepWidth) + (11 - 2 * 11 * (lastFixationId / nodeOrder.length));
+            
+            seekbarDivWrapper.style.left = position + "px";
+            seekbarDiv = document.createElement("div");
+            seekbarDiv.id = lastFixationId;
+            
+             seekbarUl = document.createElement("ul");
+            
+            if(position + 2 * 240 >= window.innerWidth){
+                seekbarUl.style.left = "-240px";
+            }
+            
+            seekbarWrapper.appendChild(seekbarDivWrapper);
+            seekbarDivWrapper.appendChild(seekbarDiv);
+            seekbarDiv.appendChild(seekbarUl);
+        }
+        else{
+            seekbarUl = seekbarDiv.firstChild;  
+        }
+        
+        let seekbarLi = document.createElement("li");
+        seekbarLi.innerHTML = this.patternString;
+        seekbarLi.dataset.patternID = this.id;
+        seekbarLi.dataset.lastFixationID = lastFixationId;
+        seekbarLi.onclick = function(){
+            savedPatterns[this.dataset.patternID].displayPattern();
+
+            if(this.dataset.lastFixationID > playIndex){
+                loop(this.dataset.lastFixationID - playIndex, true, false);
+            }
+            else{
+                for(let i = playIndex; i > this.dataset.lastFixationID; i--){
+                    previousStep();
+                }
+            }
+        }
+        seekbarUl.appendChild(seekbarLi);
+    }
+    
     displayPattern(){
-        for(const node of this.nodes){
-            node.node.addClass("selected");
+        for(const fixation of this.fixations){
+            fixation.node.addClass("selected");
         }
     }
 }
