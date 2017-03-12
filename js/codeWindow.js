@@ -309,6 +309,8 @@ class CodeWindow{
             
             this.cy.add(edge);
         }
+        
+        return node;
     }
     
     showNextNode(){

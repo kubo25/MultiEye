@@ -181,5 +181,8 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
 
         context.strokeStyle = "rgba(126, 126, 126, 1)";
         context.fillStyle = "rgba(126, 126, 126, 0.2)";
+        
+        fileLinesCanvas.width = fileLinesCanvas.clientWidth;
+        fileLinesCanvas.height = fileLinesCanvas.clientHeight;
     }
 })();

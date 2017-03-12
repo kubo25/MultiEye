@@ -1,5 +1,6 @@
 let paused = true; //bool to represent state of player
 let playIndex = -1; //integer that says on what index of nodeOrder is the playback currently
+let fileIndex = 0;
 
 //Function to recursively replay the eye movement
 // i -> how many loops are to be played
@@ -16,6 +17,8 @@ function loop(i, next = false, seekbarSet = false){
     //if next fixation is in a different file unselect the current one
     if(playIndex > 0 && node.codeWindow.id !== nodeOrder[playIndex - 1].codeWindow.id){
         nodeOrder[playIndex - 1].codeWindow.setActive(false);
+        
+        addNextFileLine();
     }
     
     //set duration of the transition to the next step
@@ -53,6 +56,8 @@ function previousStep(){
         if(playIndex > 1 && nodeOrder[playIndex].codeWindow.file !== nodeOrder[playIndex - 1].codeWindow.file){
             nodeOrder[playIndex].codeWindow.setActive(false);
             nodeOrder[playIndex - 1].codeWindow.setActive(true);
+            
+            removeLastLine();
         }
         playIndex--;
     }

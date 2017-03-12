@@ -43,11 +43,22 @@ function loadProject(){
         //if next fixation is in another file then generate a color for current fixations
         if(playIndex < project.getFixations().length - 1 && json.file !== project.getFixations()[playIndex + 1].file){
             lastColor = '#'+Math.random().toString(16).substr(-6);
-            codeWindow.addNode(json, lastColor);
+            
+            let node = codeWindow.addNode(json, lastColor);
+            
+            fileLines.push({
+                "color": lastColor,
+                "codeWindow1": codeWindow,
+                "node1": node
+            });
         }
         else if(lastColor !== null){ //if current fixation is first in this file set its color
-            codeWindow.addNode(json, lastColor);
+            let node = codeWindow.addNode(json, lastColor);
             lastColor = null;
+            
+            fileLines[fileIndex].node2 = node;
+            fileLines[fileIndex].codeWindow2 = codeWindow;
+            fileIndex++;
         }
         else{
             codeWindow.addNode(json);
@@ -55,6 +66,7 @@ function loadProject(){
     }
     
     playIndex = -1; //reinitialize playIndex
+    fileIndex = 0; //reinitialize fileIndex
     
     //load all patterns saved in project
     for(const pattern of project.getPatterns()){
