@@ -119,6 +119,7 @@ body{
     
     padding: 5px;
     
+    cursor: pointer;
     transition: 0.5s ease all;
 }
 
@@ -131,12 +132,18 @@ body{
 }
 
 #patternBox ul li:hover{
-    cursor: pointer;
     background-color: rgba(210,210,210,0.4);
 }
 
-::-webkit-scrollbar { 
-    display: none; 
+/* Scrollbar */
+
+::-webkit-scrollbar{ 
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Player */
@@ -315,6 +322,7 @@ body{
     
     padding: 0;
     padding-left: 16px;
+    padding-right: 16px;
     margin: 0;
     
     top: calc(-100% - 55px);

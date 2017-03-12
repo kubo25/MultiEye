@@ -90,7 +90,7 @@ class CodeWindow{
 
         this.cyWrapper.appendChild(cyDiv);
         
-        //Create cytoscape instance and add it to the object
+        //Create cytoscape instance and add it to this CodeWindow
         this.cy = cytoscape({
 			container: document.getElementById(cyDiv.id),
             autoungrabify: true,
