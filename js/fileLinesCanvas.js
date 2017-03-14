@@ -1,11 +1,10 @@
 let fileLinesCanvas = document.getElementById("fileLinesCanvas");
 let fileLinesContext = fileLinesCanvas.getContext("2d");
-let fileLines = [];
 
 fileLinesCanvas.width = fileLinesCanvas.clientWidth;
 fileLinesCanvas.height = fileLinesCanvas.clientHeight;
 
-fileLinesContext.globalAlpha = 0.7;
+fileLinesContext.globalAlpha = 0.5;
 
 function addFileLine(color, x1, y1, x2, y2){
     fileLinesContext.strokeStyle = color;

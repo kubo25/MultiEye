@@ -1,6 +1,4 @@
 let paused = true; //bool to represent state of player
-let playIndex = -1; //integer that says on what index of nodeOrder is the playback currently
-let fileIndex = 0;
 
 //Function to recursively replay the eye movement
 // i -> how many loops are to be played

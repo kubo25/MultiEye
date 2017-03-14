@@ -16,6 +16,7 @@
         var amdRequire = global.require;
         global.require = nodeRequire;
     </script>
+    <script src="js/global.js"></script>
     <script src="js/project.js"></script>
     <script src="js/save.js"></script>
     <script src="js/codeWindow.js"></script>
@@ -64,7 +65,16 @@
         <div id="seekbarWrapper">
             <input type="range" id="seekbar" step="1" value="0">
         </div>
-    </section>   
+    </section>
+    <section class="hidden" id="patternGraph">
+        <div id="hideGraph">
+            <div id="hideGraphArrow"></div>
+        </div>
+        <div id="push"></div>
+        <div id="patternWrapper">
+            <div class="patternLine" id="pushPattern"></div>
+        </div>
+    </section>
     <script>new CodeWindow();</script>
     <script src="js/fileLinesCanvas.js"></script>
     <script src="js/loadFile.js"></script>

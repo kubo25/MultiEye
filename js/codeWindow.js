@@ -1,7 +1,5 @@
 const cytoscape = require("cytoscape");
 
-let codeWindows = [];
-
 let first = true;
 let scale = 1;
 let overflowDetection = true;
@@ -338,6 +336,10 @@ class CodeWindow{
         
         if(this.lastNode >= 0){ //hide it's edge
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 0});
+        }
+        
+        if(this.lastNode < 0){
+            this.setHidden();
         }
     }
     

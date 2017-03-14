@@ -1,6 +1,7 @@
 /*Full page */
 :root{
     --red-color: #c70219;
+    --light-gray: #e6e6e6;
 }
 
 html{
@@ -36,7 +37,7 @@ body{
 }
 
 #codeWrapper{
-    width: 98%;
+    width: calc(100% - 30px);
     margin-top: 15px;
     flex: 1;
 }
@@ -88,7 +89,7 @@ body{
 #patternBox{
     position: fixed;
     top: 0;
-    left: 98.5vw;
+    left: calc(100vw - 20px);
     height: 100vh;
     
     z-index: 12;
@@ -103,7 +104,7 @@ body{
 }
 
 #patternBox:hover{
-    transform: translate(-90%);
+    transform: translate(-92%);
 }
 
 #patternBox ul{
@@ -119,7 +120,7 @@ body{
 #patternBox ul li{
     line-height: 40px;
     align-content: center;
-    border-top: 1px solid rgba(210,210,210,0.4);
+    border-bottom: 1px solid var(--light-gray);
     
     padding: 5px;
     
@@ -127,16 +128,8 @@ body{
     transition: 0.5s ease all;
 }
 
-#patternBox ul li:first-child{
-    border-top: none;
-}
-
-#patternBox ul li:last-child{
-    border-bottom: 1px solid rgba(210,210,210,0.4);
-}
-
 #patternBox ul li:hover{
-    background-color: rgba(210,210,210,0.4);
+    background-color: var(--light-gray);
 }
 
 /* Scrollbar */
@@ -158,7 +151,7 @@ body{
     z-index: 11;
     flex: 0;
     
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid var(--light-gray);
 }
 
 /* Control Buttons */
@@ -297,7 +290,7 @@ body{
 
 #seekbar{
     height: 100%;
-    width: 97%;
+    width: calc(100% - 30px);
 }
 
 .seekbarPattern{
@@ -391,4 +384,105 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 1px;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* Pattern graph */
+#patternGraph{
+    display: block;
+    width: 100vw;
+    max-height: 30vh;
+    height: 30vh;
+    z-index: 11;
+    flex: 0;
+    
+    overflow-y: auto;
+    
+    transition: max-height 0.25s ease;
+}
+
+/* Hide graph */
+#push{
+    display: block;
+    width: 100%;
+    height: 15px;
+}
+
+#hideGraph{
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 15px;
+    border-top: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+    background-color: white;
+    cursor: pointer;
+    z-index: 12;
+    transition: background-color 0.25s ease;
+}
+
+#hideGraphArrow{
+    display: block;
+    width: 0; 
+	height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid var(--light-gray);
+    margin: 0 auto;
+    transition: all 0.25s ease;
+}
+
+#hideGraph:hover{
+    background-color: var(--light-gray);
+}
+
+#hideGraph:hover #hideGraphArrow{
+    border-top-color: var(--red-color);
+}
+
+.hidden{
+    max-height: 15px !important;
+}
+
+.hidden #hideGraphArrow{
+    transform: rotate(180deg);
+}
+
+/* Pattern background */
+#patternWrapper{
+    position: relative;
+    display: block;
+    width: calc(100% - 100px);
+    user-select: none;
+}
+
+.fixation{
+    position: absolute;
+    top: -35px;
+    border-left: 1px solid var(--light-gray);
+    cursor: default;
+    height: calc(100% + 40px);
+}
+
+.patternLine{
+    position: relative;
+    border-top: 3px solid black;
+    margin-bottom: 40px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.patternLine:last-child{
+    margin-bottom: 0;
+}
+
+.patternLine::after{
+    content: attr(data-pattern);
+}
+
+.patternLine:hover{
+    border-top-color: var(--red-color);
+}
+
+#pushPattern{
+    border-top: 0px;
 }

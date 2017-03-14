@@ -1,20 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 
-let projectFilePath;
-let nodeOrder = [];
-let project = null;
-
-//Array prototype function for codeWindows array to find which CodeWindow has (file)
-Array.prototype.objectWithFile = function(file){
-    for(let i = 0; i < this.length; i++){
-        if(this[i].file === file){
-            return this[i];
-        }
-    }    
-    return null;
-}
-
 //Function creates a new CodeWindow object with text from file 
 function loadFile(file){
     let codeWindow = new CodeWindow(file);
@@ -46,7 +32,7 @@ function loadProject(){
             
             let node = codeWindow.addNode(json, lastColor);
             
-            fileLines.push({
+            fileLines.push({ //add first end of file line
                 "color": lastColor,
                 "codeWindow1": codeWindow,
                 "node1": node
@@ -56,13 +42,28 @@ function loadProject(){
             let node = codeWindow.addNode(json, lastColor);
             lastColor = null;
             
-            fileLines[fileIndex].node2 = node;
+            fileLines[fileIndex].node2 = node; //add second end of file line
             fileLines[fileIndex].codeWindow2 = codeWindow;
             fileIndex++;
         }
         else{
             codeWindow.addNode(json);
         }
+    }
+    
+    let patternWrapper = document.getElementById("patternWrapper");
+    let step = patternWrapper.clientWidth / playIndex;
+    
+    for(let i = 0; i <= playIndex; i++){
+        let line = document.createElement("div");
+        let x = step * i;
+        
+        line.style.left = x + "px";
+        line.setAttribute("id", "fix" + i);
+        line.classList.add("fixation");
+        line.textContent = i;
+        
+        patternWrapper.appendChild(line);
     }
     
     playIndex = -1; //reinitialize playIndex
@@ -72,6 +73,8 @@ function loadProject(){
     for(const pattern of project.getPatterns()){
         new Pattern(pattern);
     }
+    
+    sortPatternLines();
 }
 
 (function() {   

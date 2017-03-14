@@ -253,15 +253,6 @@
             "fixations": [
                 {
                     "file": "testCodes/Rule.cs",
-                    "id": "22"
-                }
-            ],
-            "type": "Flicking"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
                     "id": "8"
                 },
                 {
@@ -270,15 +261,6 @@
                 }
             ],
             "type": "LinearVertical"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "1"
-                }
-            ],
-            "type": "JumpControl"
         },
         {
             "fixations": [
@@ -317,147 +299,12 @@
         {
             "fixations": [
                 {
-                    "file": "testCodes/Rule.cs",
-                    "id": "0"
-                }
-            ],
-            "type": "LinearVertical"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "2"
-                }
-            ],
-            "type": "LinearVertical"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "3"
-                }
-            ],
-            "type": "LinearHorizontal"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "4"
-                }
-            ],
-            "type": "RetraceReference"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "5"
-                }
-            ],
-            "type": "LinearVertical"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "6"
-                }
-            ],
-            "type": "JustPassingThrough"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "8"
-                }
-            ],
-            "type": "LinearVertical"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "9"
-                }
-            ],
-            "type": "LinearHorizontal"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Action.cs",
-                    "id": "10"
-                }
-            ],
-            "type": "Thrashing"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Action.cs",
-                    "id": "12"
-                }
-            ],
-            "type": "LinearHorizontal"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Action.cs",
-                    "id": "13"
-                }
-            ],
-            "type": "RetraceReference"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Action.cs",
-                    "id": "14"
-                }
-            ],
-            "type": "JustPassingThrough"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Action.cs",
-                    "id": "15"
-                }
-            ],
-            "type": "Scan"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Action.cs",
-                    "id": "17"
-                }
-            ],
-            "type": "LinearVertical"
-        },
-        {
-            "fixations": [
-                {
                     "file": "testCodes/Action.cs",
                     "id": "10"
                 },
                 {
                     "file": "testCodes/Action.cs",
                     "id": "18"
-                }
-            ],
-            "type": "RetraceDeclaration"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Action.cs",
-                    "id": "19"
                 }
             ],
             "type": "RetraceDeclaration"
@@ -500,15 +347,6 @@
             "fixations": [
                 {
                     "file": "testCodes/Rule.cs",
-                    "id": "26"
-                }
-            ],
-            "type": "LinearVertical"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
                     "id": "4"
                 },
                 {
@@ -517,33 +355,6 @@
                 }
             ],
             "type": "RetraceDeclaration"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "28"
-                }
-            ],
-            "type": "Signatures"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "25"
-                }
-            ],
-            "type": "RetraceDeclaration"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Rule.cs",
-                    "id": "29"
-                }
-            ],
-            "type": "LinearHorizontal"
         },
         {
             "fixations": [

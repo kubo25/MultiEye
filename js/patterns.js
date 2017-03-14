@@ -1,7 +1,5 @@
-let savedPatterns = [];
-
 class Pattern{
-    constructor(arg){
+    constructor(arg, sort){
         this.id = savedPatterns.length;
         this.fixations = [];
         
@@ -43,21 +41,18 @@ class Pattern{
         
         this._updateList();
         this._showOnSeekbar();
+        this._createPatternLine();
+        
+        if(sort === true){
+            sortPatternLines();
+        }
     }
     
     //Method adds newly created patterns into the Saved patterns area on the right
     _updateList(){
         let ul = document.getElementById("savedPatterns");
         let li = document.createElement("li");
-        this.patternString = this.type + ": ";
-        
-        for(const fixation of this.fixations){
-            this.patternString += fixation.node.id();
-            
-            if(fixation !== this.fixations[this.fixations.length - 1]){
-                this.patternString += ", ";
-            }
-        }
+        this.patternString = this.type + ": " + this.fixations[0].node.id() + " - " + this.fixations[this.fixations.length - 1].node.id();
 
         li.innerHTML = this.patternString;
         li.dataset.patternID = this.id;
@@ -121,10 +116,74 @@ class Pattern{
         seekbarUl.appendChild(seekbarLi);
     }
     
+    _createPatternLine(){
+        let patternWrapper = document.getElementById("patternWrapper"); 
+        let line  = document.createElement("div");
+
+        let start = parseInt(document.getElementById("fix" + this.fixations[0].node.id()).style.left);
+        let end = parseInt(document.getElementById("fix" + this.fixations[this.fixations.length - 1].node.id()).style.left);
+        
+        let width = end - start + 1;
+        
+        line.style.left = start + "px";
+        line.style.width = width + "px";
+        line.dataset.pattern = this.patternString;
+        line.dataset.patternID = this.id;
+        line.dataset.firstFixationID = this.fixations[0].node.id();
+        line.dataset.lastFixationID = this.fixations[this.fixations.length - 1].node.id();
+        line.classList.add("patternLine");
+        line.onclick = function(){
+            savedPatterns[this.dataset.patternID].displayPattern();
+
+            if(this.dataset.lastFixationID > playIndex){
+                loop(this.dataset.lastFixationID - playIndex, true, false);
+            }
+            else{
+                for(let i = playIndex; i > this.dataset.lastFixationID; i--){
+                    previousStep();
+                }
+            }
+        }
+                
+        patternWrapper.appendChild(line);
+    }
+    
     displayPattern(){
+        for(const codeWindow of codeWindows){
+            codeWindow.cy.$(".selected").removeClass("selected");
+        }
+        
         for(const fixation of this.fixations){
             fixation.node.addClass("selected");
         }
+    }
+}
+
+function sortPatternLines(){
+    let patternLines  = document.querySelectorAll(".patternLine");
+    patternLines = Array.prototype.slice.call(patternLines, 1);
+    
+    patternLines.sort(function(a, b){
+        let aID = parseInt(a.dataset.firstFixationID);
+        let bID = parseInt(b.dataset.firstFixationID);
+        
+        return (aID === bID) ? 0 :
+               ((aID > bID) ? 1 : -1);
+    });
+    
+    let patternWrapper = document.getElementById("patternWrapper");
+    let patternWrapperChildren = patternWrapper.children;
+    
+    for(let i = 1; i < patternWrapperChildren.length - 1; i++){    
+        if(patternWrapperChildren[i].classList.contains("fixation")){
+            continue;
+        }
+        
+        patternWrapper.removeChild(patternWrapperChildren[i]);
+    }
+    
+    for(const patternLine of patternLines){
+        patternWrapper.appendChild(patternLine);
     }
 }
 
@@ -133,7 +192,13 @@ class Pattern{
     
     for(const button of buttons){
         button.onclick = function(){
-            new Pattern(this.innerHTML);
+            new Pattern(this.innerHTML, true);
         }
+    }
+    
+    let hideGraph = document.getElementById("hideGraph");
+    hideGraph.onclick = function(){
+        let graphSection = document.getElementById("patternGraph");
+        graphSection.classList.toggle("hidden");
     }
 })();
