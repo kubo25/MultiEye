@@ -85,8 +85,8 @@ class Pattern{
             
              seekbarUl = document.createElement("ul");
             
-            if(position + 2 * 240 >= window.innerWidth){ //change direction of the tooltip to prevent clipping
-                seekbarUl.style.left = "-240px";
+            if(position + 2 * 300 >= window.innerWidth){ //change direction of the tooltip to prevent clipping
+                seekbarUl.style.left = "-280px";
             }
             
             seekbarWrapper.appendChild(seekbarDivWrapper);
@@ -200,5 +200,57 @@ function sortPatternLines(){
     hideGraph.onclick = function(){
         let graphSection = document.getElementById("patternGraph");
         graphSection.classList.toggle("hidden");
+    }
+    
+    let mouseDown = false;
+    let startX = 0;
+    let startY = 0;
+    
+    let lastX = 0;
+    let lastY = 0;
+    
+    let patternWrapper = document.getElementById("patternWrapper");
+    let patternGraph = document.getElementById("patternGraph");
+    
+    let translate = "translate3d(0, 0, 0)";
+    let scale = "scale(1)";
+    
+    patternGraph.onmousedown = function(e){
+        mouseDown = true;
+
+        startX = parseInt(e.clientX);
+        startY = parseInt(e.clientY);
+    }    
+    
+    patternGraph.onmouseup = function(e){
+        mouseDown = false;
+
+        lastX = parseInt(patternWrapper.dataset.x);
+        lastY = parseInt(patternWrapper.dataset.y);
+    }
+    
+    patternGraph.onmousemove = function(e){
+        if(mouseDown){              
+            let x = lastX + (e.clientX - startX);
+            let y = lastY + (e.clientY - startY);
+            
+            translate = "translate3d(" + x + "px, " + y + "px, 0)";
+            
+            patternWrapper.style.transform = translate;
+            patternWrapper.style.transform += scale;
+            
+            patternWrapper.dataset.x = x;
+            patternWrapper.dataset.y = y;
+        }
+    }
+    
+    let lastScale = 1;
+    
+    patternGraph.onwheel = function(e){
+        lastScale -= e.deltaY / 1000;
+        scale = "scale(" + lastScale + ")";
+        
+        patternWrapper.style.transform = translate;
+        patternWrapper.style.transform += scale;
     }
 })();

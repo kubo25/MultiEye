@@ -313,7 +313,7 @@ body{
     display: none;
     position: absolute;
     
-    width: 240px;
+    width: 270px;
     height: 80px;
     line-height: 80px;
     
@@ -395,7 +395,7 @@ input[type=range]::-webkit-slider-runnable-track {
     z-index: 11;
     flex: 0;
     
-    overflow-y: auto;
+    overflow:hidden;
     
     transition: max-height 0.25s ease;
 }
@@ -451,8 +451,11 @@ input[type=range]::-webkit-slider-runnable-track {
 #patternWrapper{
     position: relative;
     display: block;
-    width: calc(100% - 100px);
     user-select: none;
+}
+
+#patternWrapper:active, #patternGraph:active{
+    cursor: default;
 }
 
 .fixation{

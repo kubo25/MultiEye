@@ -52,7 +52,7 @@ function loadProject(){
     }
     
     let patternWrapper = document.getElementById("patternWrapper");
-    let step = patternWrapper.clientWidth / playIndex;
+    let step = 50;
     
     for(let i = 0; i <= playIndex; i++){
         let line = document.createElement("div");
