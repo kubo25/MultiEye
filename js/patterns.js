@@ -40,7 +40,6 @@ class Pattern{
         savedPatterns.push(this);
         
         this._updateList();
-        this._showOnSeekbar();
         this._createPatternLine();
         
         if(sort === true){
@@ -63,59 +62,6 @@ class Pattern{
         ul.appendChild(li);
     }
     
-    //Method show newly created pattern on the seekbar
-    _showOnSeekbar(){
-        let seekbarWrapper = document.getElementById("seekbarWrapper");
-        let stepWidth = seekbarWrapper.firstElementChild.clientWidth / nodeOrder.length;
-        
-        let lastFixationId = parseInt(this.fixations[this.fixations.length - 1].node.id());
-        
-        let seekbarDiv = document.getElementById(lastFixationId);
-        let seekbarUl = null;
-        
-        if(seekbarDiv === null){ //If no other pattern ends in lastFixationId create new line
-            let seekbarDivWrapper = document.createElement("div");
-            seekbarDivWrapper.classList.add("seekbarPattern");
-            
-            let position = ((lastFixationId + 1) * stepWidth) + (11 - 22 * (lastFixationId / nodeOrder.length)); //position of line on seekbar -> position of xth step + compensation of seekbar thumb size(11: thumb radius, 22: thumb diamter)
-            
-            seekbarDivWrapper.style.left = position + "px";
-            seekbarDiv = document.createElement("div");
-            seekbarDiv.id = lastFixationId;
-            
-             seekbarUl = document.createElement("ul");
-            
-            if(position + 2 * 300 >= window.innerWidth){ //change direction of the tooltip to prevent clipping
-                seekbarUl.style.left = "-280px";
-            }
-            
-            seekbarWrapper.appendChild(seekbarDivWrapper);
-            seekbarDivWrapper.appendChild(seekbarDiv);
-            seekbarDiv.appendChild(seekbarUl);
-        }
-        else{
-            seekbarUl = seekbarDiv.firstChild;  
-        }
-        
-        let seekbarLi = document.createElement("li"); //create an element with this pattern's description
-        seekbarLi.innerHTML = this.patternString;
-        seekbarLi.dataset.patternID = this.id;
-        seekbarLi.dataset.lastFixationID = lastFixationId;
-        seekbarLi.onclick = function(){
-            savedPatterns[this.dataset.patternID].displayPattern();
-
-            if(this.dataset.lastFixationID > playIndex){
-                loop(this.dataset.lastFixationID - playIndex, true, false);
-            }
-            else{
-                for(let i = playIndex; i > this.dataset.lastFixationID; i--){
-                    previousStep();
-                }
-            }
-        }
-        seekbarUl.appendChild(seekbarLi);
-    }
-    
     _createPatternLine(){
         let patternWrapper = document.getElementById("patternWrapper"); 
         let line  = document.createElement("div");
@@ -128,18 +74,18 @@ class Pattern{
         line.style.left = start + "px";
         line.style.width = width + "px";
         line.dataset.pattern = this.patternString;
-        line.dataset.patternID = this.id;
-        line.dataset.firstFixationID = this.fixations[0].node.id();
-        line.dataset.lastFixationID = this.fixations[this.fixations.length - 1].node.id();
+        line.dataset.patternid = this.id;
+        line.dataset.firstFixationid = this.fixations[0].node.id();
+        line.dataset.lastFixationid = this.fixations[this.fixations.length - 1].node.id();
         line.classList.add("patternLine");
         line.onclick = function(){
-            savedPatterns[this.dataset.patternID].displayPattern();
+            savedPatterns[this.dataset.patternid].displayPattern();
 
-            if(this.dataset.lastFixationID > playIndex){
-                loop(this.dataset.lastFixationID - playIndex, true, false);
+            if(this.dataset.lastFixationid > playIndex){
+                loop(this.dataset.lastFixationid - playIndex, true, false);
             }
             else{
-                for(let i = playIndex; i > this.dataset.lastFixationID; i--){
+                for(let i = playIndex; i > this.dataset.lastFixationid; i--){
                     previousStep();
                 }
             }
@@ -164,8 +110,8 @@ function sortPatternLines(){
     patternLines = Array.prototype.slice.call(patternLines, 1);
     
     patternLines.sort(function(a, b){
-        let aID = parseInt(a.dataset.firstFixationID);
-        let bID = parseInt(b.dataset.firstFixationID);
+        let aID = parseInt(a.dataset.firstFixationid);
+        let bID = parseInt(b.dataset.firstFixationid);
         
         return (aID === bID) ? 0 :
                ((aID > bID) ? 1 : -1);
@@ -202,55 +148,53 @@ function sortPatternLines(){
         graphSection.classList.toggle("hidden");
     }
     
-    let mouseDown = false;
-    let startX = 0;
-    let startY = 0;
-    
-    let lastX = 0;
-    let lastY = 0;
-    
     let patternWrapper = document.getElementById("patternWrapper");
     let patternGraph = document.getElementById("patternGraph");
+    let tickWrapper = document.getElementById("tickWrapper");
+    let seekbar = document.getElementById("seekbar");
+    let push = document.getElementById("push");
+    let pushBottom = document.getElementById("pushBottom");
+        
+    let lastScale = 1;
+    let originalWidth = seekbar.clientWidth;
+    let originalHeight;
     
-    let translate = "translate3d(0, 0, 0)";
-    let scale = "scale(1)";
-    
-    patternGraph.onmousedown = function(e){
-        mouseDown = true;
+    patternGraph.onwheel = function(e){
+        if(e.ctrlKey){
+            if(lastScale === 1){
+                originalHeight = patternWrapper.clientHeight;
+            }    
+            
+            lastScale -= e.deltaY / 1000;
+            
+            if(lastScale < 1){
+                lastScale = 1;
+            }
+            
+            let scale = "scale(" + lastScale + ")";
+            let scaleX = "scaleX(" + lastScale + ")";
 
-        startX = parseInt(e.clientX);
-        startY = parseInt(e.clientY);
-    }    
-    
-    patternGraph.onmouseup = function(e){
-        mouseDown = false;
-
-        lastX = parseInt(patternWrapper.dataset.x);
-        lastY = parseInt(patternWrapper.dataset.y);
-    }
-    
-    patternGraph.onmousemove = function(e){
-        if(mouseDown){              
-            let x = lastX + (e.clientX - startX);
-            let y = lastY + (e.clientY - startY);
+            patternWrapper.style.transform = scale;
+            tickWrapper.style.transform = scaleX;
+            seekbar.style.width = (originalWidth * lastScale) + "px";
+            push.style.width = (lastScale * 100) + "%";
             
-            translate = "translate3d(" + x + "px, " + y + "px, 0)";
+            let newHeight = patternWrapper.getBoundingClientRect().height;
             
-            patternWrapper.style.transform = translate;
-            patternWrapper.style.transform += scale;
+            console.log(originalHeight);
+            console.log(newHeight);
             
-            patternWrapper.dataset.x = x;
-            patternWrapper.dataset.y = y;
+            pushBottom.style.height = (1.1 * (newHeight - originalHeight) + 10) + "px";
+        }
+        else{
+            return true;
         }
     }
     
-    let lastScale = 1;
+    let seekbarWrapper = document.getElementById("seekbarWrapper");
+    let graphScrollWrapper = document.getElementById("graphScrollWrapper");
     
-    patternGraph.onwheel = function(e){
-        lastScale -= e.deltaY / 1000;
-        scale = "scale(" + lastScale + ")";
-        
-        patternWrapper.style.transform = translate;
-        patternWrapper.style.transform += scale;
+    seekbarWrapper.onscroll = function(e){
+        graphScrollWrapper.scrollLeft = seekbarWrapper.scrollLeft;
     }
 })();

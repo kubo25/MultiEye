@@ -24,7 +24,18 @@ function loop(i, next = false, seekbarSet = false){
     let duration = (next) ? 1 : node.duration; 
     
     if(!seekbarSet){ //move the seekbar thumb
-        document.getElementById("seekbar").value = playIndex + 1;
+        let seekbar = document.getElementById("seekbar");
+        let seekbarWrapper = document.getElementById("seekbarWrapper");
+        let step = seekbar.clientWidth / nodeOrder.length;
+        
+        let graphScrollWrapper = document.getElementById("graphScrollWrapper");
+        
+        if((playIndex + 2) * step > seekbarWrapper.clientWidth + seekbarWrapper.scrollLeft){
+            seekbarWrapper.scrollLeft += step;
+            graphScrollWrapper.scrollLeft = seekbarWrapper.scrollLeft;
+        }
+        
+        seekbar.value = playIndex + 1;
     }
             
     node.codeWindow.showNextNode();
@@ -45,9 +56,23 @@ function loop(i, next = false, seekbarSet = false){
     }
 }
 
-function previousStep(){
+function previousStep(scrollbarSet){
     if(playIndex >= 0){
-        document.getElementById("seekbar").value = playIndex;
+        if(!scrollbarSet){
+            let seekbar = document.getElementById("seekbar");
+            let seekbarWrapper = document.getElementById("seekbarWrapper");
+            let step = seekbar.clientWidth / nodeOrder.length;
+            let graphScrollWrapper = document.getElementById("graphScrollWrapper");
+            
+            
+            if((playIndex - 1) * step < seekbarWrapper.scrollLeft){
+                seekbarWrapper.scrollLeft -= step;
+                graphScrollWrapper.scrollLeft = seekbarWrapper.scrollLeft;
+            }
+
+            seekbar.value = playIndex;
+        }
+
         nodeOrder[playIndex].codeWindow.hideLastNode();
         
         //change the active codeWindow
@@ -91,7 +116,9 @@ function previousStep(){
     
     let previousButton = document.getElementById("previousButton");
     
-    previousButton.onclick = previousStep;
+    previousButton.onclick = function(){
+        previousStep(false);
+    }
     
     let seekbar = document.getElementById("seekbar");
     
@@ -102,7 +129,7 @@ function previousStep(){
             }
             else{
                 for(let i = playIndex + 1; i > this.value; i--){
-                    previousStep();
+                    previousStep(true);
                 }
             }
         }

@@ -63,16 +63,20 @@
             </a>
         </div>
         <div id="seekbarWrapper">
+            <div id="tickWrapper"></div>
             <input type="range" id="seekbar" step="1" value="0">
         </div>
     </section>
     <section class="hidden" id="patternGraph">
-        <div id="hideGraph">
-            <div id="hideGraphArrow"></div>
-        </div>
-        <div id="push"></div>
-        <div id="patternWrapper" data-x="0" data-y="0">
-            <div class="patternLine" id="pushPattern"></div>
+        <div id="graphScrollWrapper">
+            <div id="hideGraph">
+                <div id="hideGraphArrow"></div>
+            </div>
+            <div id="push"></div>
+            <div id="patternWrapper" data-x="0" data-y="0">
+                <div class="patternLine" id="pushPattern"></div>
+            </div>
+            <div id="pushBottom"></div>
         </div>
     </section>
     <script>new CodeWindow();</script>

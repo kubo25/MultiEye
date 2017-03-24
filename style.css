@@ -2,6 +2,7 @@
 :root{
     --red-color: #c70219;
     --light-gray: #e6e6e6;
+    --seekbar-size: 1700px;
 }
 
 html{
@@ -138,6 +139,10 @@ body{
     width: 8px;
 }
 
+::-webkit-scrollbar:horizontal{ 
+    height: 7px;
+}
+
 ::-webkit-scrollbar-thumb{
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -157,6 +162,9 @@ body{
 /* Control Buttons */
 .controlButtons{
     display: inline-block;
+    width: 154px;
+    height: 100%;
+    vertical-align: top;
     margin-left: 20px;
     -webkit-user-select: none;
 }
@@ -285,74 +293,52 @@ body{
     display: inline-block;
     position: relative;
     height: 100%;
+    width: 1710px;
+    overflow-x: auto;
+    overflow-y: hidden;
     flex: 1;
+    transform: rotateX(180deg);
+}
+
+div#seekbarWrapper::-webkit-scrollbar:horizontal{ 
+    height: 7px;
+}
+
+div#seekbarWrapper::-webkit-scrollbar-thumb:horizontal{
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #seekbar{
     height: 100%;
-    width: calc(100% - 30px);
+    width: var(--seekbar-size);
+    margin: 0 40px 0 0;
 }
 
-.seekbarPattern{
+#tickWrapper{
+    display: block;
+    height: 100%;
+    width: var(--seekbar-size);
+    position: absolute;
+    pointer-events: none;
+    transform-origin: left top 0;
+}
+
+.tick{
     display: block;
     position: absolute;
-    top: -20%;
+    top: 0;
     width: 15px;
-    height: 60%;
+    height: 29px;
+    pointer-events: none;
 }
 
-.seekbarPattern div{
+.tick div{
     position: absolute;
-    height: 65%;
+    height: 100%;
     bottom: 0;
     width: 0;
     border: 1px solid var(--red-color);
-}
-
-.seekbarPattern ul{
-    display: none;
-    position: absolute;
-    
-    width: 270px;
-    height: 80px;
-    line-height: 80px;
-    
-    padding: 0;
-    padding-left: 16px;
-    padding-right: 16px;
-    margin: 0;
-    
-    top: calc(-100% - 55px);
-    left: -20px;
-    
-    background-color: var(--red-color);
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    list-style: none;
-    
-    overflow-y: auto;
-}
-
-.seekbarPattern ul li{
-    cursor: pointer;
-}
-
-.seekbarPattern:hover div::before{
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    
-    width: 0; 
-    height: 0; 
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid var(--red-color);
-}
-
-.seekbarPattern:hover div > ul{
-    display: block;
 }
 
 input:focus{
@@ -395,9 +381,22 @@ input[type=range]::-webkit-slider-runnable-track {
     z-index: 11;
     flex: 0;
     
-    overflow:hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    direction: rtl;
     
     transition: max-height 0.25s ease;
+}
+
+#graphScrollWrapper{
+    display: block;
+    width: 100vw;
+    direction: ltr;
+    overflow-x: hidden;
+}
+
+#pushBottom{
+    height: 10px;
 }
 
 /* Hide graph */
@@ -449,9 +448,12 @@ input[type=range]::-webkit-slider-runnable-track {
 
 /* Pattern background */
 #patternWrapper{
-    position: relative;
     display: block;
+    position: relative;
+    margin-left: 174px;
+    direction: ltr;
     user-select: none;
+    transform-origin: left -35px 0;
 }
 
 #patternWrapper:active, #patternGraph:active{

@@ -52,13 +52,15 @@ function loadProject(){
     }
     
     let patternWrapper = document.getElementById("patternWrapper");
-    let step = 50;
+    let seekbar = document.getElementById("seekbar");
     
-    for(let i = 0; i <= playIndex; i++){
+    playIndex++;
+    let step = seekbar.clientWidth / playIndex;
+    
+    for(let i = 0; i <= playIndex - 1; i++){
         let line = document.createElement("div");
-        let x = step * i;
-        
-        line.style.left = x + "px";
+                
+        line.style.left = ((i + 1) * step) + (11 - 22 * (i / playIndex)) + "px";
         line.setAttribute("id", "fix" + i);
         line.classList.add("fixation");
         line.textContent = i;
@@ -75,6 +77,25 @@ function loadProject(){
     }
     
     sortPatternLines();
+}
+
+function createTicks(max){
+    let tickWrapper = document.getElementById("tickWrapper");
+    let seekbar = document.getElementById("seekbar");
+    
+    let step = seekbar.clientWidth / max;
+    console.log(max);
+    tickWrapper.style.width = seekbar.clientWidth + "px";
+    
+    for(let i = 1; i <= max; i++){
+        let tick = document.createElement("div");
+        let div = document.createElement("div");
+        tick.classList.add("tick");        
+        
+        tick.style.left = (i * step) + (11 - 22 * (i / max)) + "px";
+        tick.appendChild(div);
+        tickWrapper.appendChild(tick);
+    }
 }
 
 (function() {   
@@ -106,7 +127,13 @@ function loadProject(){
             
             project = new Project(JSON.parse(data));
             loadProject();
-            document.getElementById("seekbar").max = project.getFixations().length; //set the number of steps on seekbar to the amount of fixations
+            
+            let max = project.getFixations().length;
+            
+            let seekbar = document.getElementById("seekbar");
+            seekbar.max = max; //set the number of steps on seekbar to the amount of fixations
+            
+            createTicks(max);
         }
         
         return false;
