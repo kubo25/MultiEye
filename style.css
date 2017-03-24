@@ -95,7 +95,6 @@ body{
     
     z-index: 12;
     
-    padding-right: 40px;
     background-color: white;
     box-shadow: 3px 3px 20px rgba(0,0,0,0.25);
     
@@ -110,12 +109,8 @@ body{
 
 #patternBox ul{
     list-style: none;
-}
-
-#patternBox p{
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
+    padding: 0 40px;
+    margin 0;
 }
 
 #patternBox ul li{
@@ -131,6 +126,111 @@ body{
 
 #patternBox ul li:hover{
     background-color: var(--light-gray);
+}
+
+.slider div{
+    padding: 0 40px;
+    margin: 40px 0;
+}
+
+.slider input[type="text"]{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--light-gray);
+    
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.slider input[type="text"]:focus{
+    border-bottom-color: var(--red-color);
+}
+
+.slider input[type="button"]{
+    width: 100%;
+    
+    padding: 10px 0;
+    
+    background-color: white;
+    border: none;
+    
+    cursor: pointer;
+    
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    
+    transition: all 0.3s ease;
+}
+
+.slider input[type="button"]:hover, .slider input[type="button"]:focus{
+    background-color: var(--red-color);
+    color: white;
+    font-weight: bold;
+}
+
+.sliderTitle{
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    
+    padding: 20px 0 15px 0;
+    
+    transition: background-color 0.5s ease;
+}
+
+.sliderTitle p{
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    
+    margin: 0;
+}
+
+.sliderTitle svg{
+    display: inline-block;
+    height: 12px;
+    width: 20px;
+    transition: transform 0.5s ease;
+}
+
+.sliderTitle path{
+    stroke: var(--red-color);
+    stroke-width: 2px;
+    stroke-linecap: round;
+    fill: transparent;
+}
+
+.sliderTitle:hover{
+    background-color: var(--light-gray);
+}
+
+.slider{
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.5s ease all;
+}
+
+.slider ul{
+    transform: translateY(-100%);
+    transition: 0.5s transform ease;
+}
+
+.slided{
+    max-height: 1000px;
+}
+
+div.slided > *{
+    transform: translateY(0);
+}
+
+svg.rotated{
+    transform: rotate3d(1,0,0,180deg);
 }
 
 /* Scrollbar */

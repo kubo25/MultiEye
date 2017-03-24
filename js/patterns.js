@@ -39,27 +39,11 @@ class Pattern{
         
         savedPatterns.push(this);
         
-        this._updateList();
         this._createPatternLine();
         
         if(sort === true){
             sortPatternLines();
         }
-    }
-    
-    //Method adds newly created patterns into the Saved patterns area on the right
-    _updateList(){
-        let ul = document.getElementById("savedPatterns");
-        let li = document.createElement("li");
-        this.patternString = this.type + ": " + this.fixations[0].node.id() + " - " + this.fixations[this.fixations.length - 1].node.id();
-
-        li.innerHTML = this.patternString;
-        li.dataset.patternID = this.id;
-        li.onclick = function(){
-            savedPatterns[this.dataset.patternID].displayPattern();
-        };
-
-        ul.appendChild(li);
     }
     
     _createPatternLine(){
@@ -73,7 +57,7 @@ class Pattern{
         
         line.style.left = start + "px";
         line.style.width = width + "px";
-        line.dataset.pattern = this.patternString;
+        line.dataset.pattern = this.type + ": " + this.fixations[0].node.id() + " - " + this.fixations[this.fixations.length - 1].node.id();;
         line.dataset.patternid = this.id;
         line.dataset.firstFixationid = this.fixations[0].node.id();
         line.dataset.lastFixationid = this.fixations[this.fixations.length - 1].node.id();

@@ -26,22 +26,65 @@
     <canvas id="fileLinesCanvas"></canvas>
     <section id="codeWrapper"></section>
     <section id="patternBox">
-        <p>Patterns</p>
-        <ul>
-            <li class="patternButton">Flicking</li>
-            <li class="patternButton">JumpControl</li>
-            <li class="patternButton">JustPassingThrough</li>
-            <li class="patternButton">LinearHorizontal</li>
-            <li class="patternButton">LinearVertical</li>
-            <li class="patternButton">RetraceDeclaration</li>
-            <li class="patternButton">RetraceReference</li>
-            <li class="patternButton">Scan</li>
-            <li class="patternButton">Signatures</li>
-            <li class="patternButton">Thrashing</li>
-            <li class="patternButton">Word(Pattern)Matching</li>
-        </ul>
-        <p>Saved patterns</p>
-        <ul id="savedPatterns"></ul>
+        <div class="sliderTitle">
+            <p>Patterns</p>
+            <svg>
+                <path id="p1" d="M2 2 L10 10 L18 2"></path>
+            </svg>
+        </div>
+        <div class="slider">
+            <ul>
+                <li class="patternButton">Flicking</li>
+                <li class="patternButton">JumpControl</li>
+                <li class="patternButton">JustPassingThrough</li>
+                <li class="patternButton">LinearHorizontal</li>
+                <li class="patternButton">LinearVertical</li>
+                <li class="patternButton">RetraceDeclaration</li>
+                <li class="patternButton">RetraceReference</li>
+                <li class="patternButton">Scan</li>
+                <li class="patternButton">Signatures</li>
+                <li class="patternButton">Thrashing</li>
+                <li class="patternButton">Word(Pattern)Matching</li>
+            </ul>
+        </div>
+        <div class="sliderTitle">
+            <p>Strategies</p>
+            <svg>
+                <path id="p2" d="M2 2 L10 10 L18 2"></path>
+            </svg>
+        </div>
+        <div class="slider">
+            <ul>
+                <li class="patternButton">DesignAtOnce</li>
+                <li class="patternButton">Debugging</li>
+                <li class="patternButton">AttentionToDetail</li>
+                <li class="patternButton">DataFlow</li>
+                <li class="patternButton">Deductive</li>
+                <li class="patternButton">FlowCycle</li>
+                <li class="patternButton">Inductive</li>
+                <li class="patternButton">InterproceduralControlFlow</li>
+                <li class="patternButton">IntraproceduralControlFlow</li>
+                <li class="patternButton">StrayGlance</li>
+                <li class="patternButton">TestHypothesis</li>
+                <li class="patternButton">Touchstone</li>
+                <li class="patternButton">Trial&amp;Error</li>
+                <li class="patternButton">Wandering</li>
+            </ul>
+        </div>
+        <div class="sliderTitle">
+            <p>Custom</p>
+            <svg>
+                <path id="p2" d="M2 2 L10 10 L18 2"></path>
+            </svg>
+        </div>
+        <div class="slider">
+            <div>
+                <form>
+                    <input id="customText" type="text">
+                    <input id="submitButton" type="button" value="OK">
+                </form>
+            </div>
+        </div>
     </section>
     <section id="player">
         <div class="controlButtons">
@@ -85,5 +128,6 @@
     <script src="js/overlayCanvas.js"></script>
     <script src="js/player.js"></script>
     <script src="js/patterns.js"></script>
+    <script src="js/patternBox.js"></script>
 </body>
 </html>
