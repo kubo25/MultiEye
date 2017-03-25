@@ -584,8 +584,25 @@ input[type=range]::-webkit-slider-runnable-track {
     content: attr(data-pattern);
 }
 
+.patternLine div{
+    position: absolute;
+    display: block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    top: -6.5px;
+    margin-left: -4px;
+    background-color: black;
+    
+    transition: background-color 0.5s ease;
+}
+
 .patternLine:hover{
     border-top-color: var(--red-color);
+}
+
+.patternLine:hover div{
+    background-color: var(--red-color);
 }
 
 #pushPattern{

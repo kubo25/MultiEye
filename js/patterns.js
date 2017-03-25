@@ -49,18 +49,21 @@ class Pattern{
     _createPatternLine(){
         let patternWrapper = document.getElementById("patternWrapper"); 
         let line  = document.createElement("div");
-
-        let start = parseInt(document.getElementById("fix" + this.fixations[0].node.id()).style.left);
-        let end = parseInt(document.getElementById("fix" + this.fixations[this.fixations.length - 1].node.id()).style.left);
+             
+        let firstFixationId = this.fixations[0].node.id();
+        let lastFixationId = this.fixations[this.fixations.length - 1].node.id();
+        
+        let start = parseFloat(document.getElementById("fix" + firstFixationId).style.left);
+        let end = parseFloat(document.getElementById("fix" + lastFixationId).style.left);
         
         let width = end - start + 1;
         
         line.style.left = start + "px";
         line.style.width = width + "px";
-        line.dataset.pattern = this.type + ": " + this.fixations[0].node.id() + " - " + this.fixations[this.fixations.length - 1].node.id();;
+        line.dataset.pattern = this.type + ": " + firstFixationId + " - " + lastFixationId;
         line.dataset.patternid = this.id;
-        line.dataset.firstFixationid = this.fixations[0].node.id();
-        line.dataset.lastFixationid = this.fixations[this.fixations.length - 1].node.id();
+        line.dataset.firstFixationid = firstFixationId;
+        line.dataset.lastFixationid = lastFixationId;
         line.classList.add("patternLine");
         line.onclick = function(){
             savedPatterns[this.dataset.patternid].displayPattern();
@@ -73,6 +76,16 @@ class Pattern{
                     previousStep();
                 }
             }
+        }
+        
+        for(const fixation of this.fixations){
+            let div = document.createElement("div");
+            let id = parseInt(fixation.node.id());
+            
+            let fixationLineLeft = parseFloat(document.getElementById("fix" + id).style.left);
+            
+            div.style.left = (fixationLineLeft - start) + "px";
+            line.appendChild(div);
         }
                 
         patternWrapper.appendChild(line);
