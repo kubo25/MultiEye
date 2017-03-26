@@ -561,11 +561,12 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .fixation{
-    position: absolute;
-    top: -35px;
+    position: fixed;
+    margin-top: -35px;
     border-left: 1px solid var(--light-gray);
     cursor: default;
-    height: calc(100% + 40px);
+    height: 30vh;
+    pointer-events: none;
 }
 
 .patternLine{

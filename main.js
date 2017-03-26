@@ -6,69 +6,6 @@ const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
 const Menu = electron.Menu;
 
-let template = [{
-        label: "File",
-        submenu: [
-            {
-                label: "Save",
-                accelerator: "CmdOrCtrl+S",
-                click: function(){
-                    mainWindow.webContents.send("save");
-                }
-            },
-            {
-                label: "Save As...",
-                accelerator: "Shift+CmdOrCtrl+S",
-                click: function(){
-                    mainWindow.webContents.send("saveAs");
-                }
-            },
-            {
-                label: "Exit",
-                role: "quit"
-            }
-        ]
-    },
-    {
-        label: "View",
-        submenu:[
-            {
-                label: "Reload",
-                accelerator: "CmdOrCtrl+R",
-                role: "reload"
-            },
-            {
-                label: "Toggle Developer Tools",
-                accelerator: (function () {
-                    if (process.platform === 'darwin') {
-                        return 'Alt+Command+I'
-                    } 
-                    else {
-                        return 'Ctrl+Shift+I'
-                    }
-                })(),
-                role: "toggledevtools"
-            },
-            {
-                type: "separator"
-            },
-            {
-                label: "Toggle Fullscreen",
-                accelerator: (function () {
-                    if (process.platform === 'darwin') {
-                        return 'Ctrl+Command+F'
-                    } 
-                    else {
-                        return 'F11'
-                    }
-                })(),
-                role: "togglefullscreen"
-            }
-        ]
-    }
-];
-    
-
 const path = require('path')
 const url = require('url')
 require('electron-reload')(__dirname);
@@ -80,6 +17,88 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow();
   mainWindow.maximize();
+    
+    let template = [{
+            label: "File",
+            submenu: [
+                {
+                  label: "Open",
+                    accelerator: "CmdOrCtrl+O",
+                    click: function(){
+                        const dialog = electron.dialog;
+
+                        let options = {
+                            title: "Open File",
+                            filters: [
+                                {name: "JSON", extensions: ["json"]}
+                            ]
+                        };
+
+                        dialog.showOpenDialog(mainWindow, options, function(filename){
+                            if(filename !== undefined){
+                                mainWindow.webContents.send("open", filename[0]);
+                            }
+                        });
+                    }
+                },
+                {
+                    label: "Save",
+                    accelerator: "CmdOrCtrl+S",
+                    click: function(){
+                        mainWindow.webContents.send("save");
+                    }
+                },
+                {
+                    label: "Save As...",
+                    accelerator: "Shift+CmdOrCtrl+S",
+                    click: function(){
+                        mainWindow.webContents.send("saveAs");
+                    }
+                },
+                {
+                    label: "Exit",
+                    role: "quit"
+                }
+            ]
+        },
+        {
+            label: "View",
+            submenu:[
+                {
+                    label: "Reload",
+                    accelerator: "F5",
+                    role: "reload"
+                },
+                {
+                    label: "Toggle Developer Tools",
+                    accelerator: (function () {
+                        if (process.platform === 'darwin') {
+                            return 'Alt+Command+I'
+                        } 
+                        else {
+                            return 'Ctrl+Shift+I'
+                        }
+                    })(),
+                    role: "toggledevtools"
+                },
+                {
+                    type: "separator"
+                },
+                {
+                    label: "Toggle Fullscreen",
+                    accelerator: (function () {
+                        if (process.platform === 'darwin') {
+                            return 'Ctrl+Command+F'
+                        } 
+                        else {
+                            return 'F11'
+                        }
+                    })(),
+                    role: "togglefullscreen"
+                }
+            ]
+        }
+    ];
     
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu);
@@ -150,7 +169,6 @@ ipcMain.on("saveAs", function(event, args){
     dialog.showSaveDialog(mainWindow, options, function(filename){
         if(filename !== undefined){
             const fs = require("fs");
-            fs.writeFileSync("B.txt", filename);
             fs.writeFileSync("a.json", JSON.stringify(args[1], null, 4), "utf-8");
 
             if(fs.existsSync(filename)){
@@ -164,5 +182,15 @@ ipcMain.on("saveAs", function(event, args){
                 fs.renameSync("a.json", filename);
             }
         }
+    });
+});
+
+ipcMain.on("open", function(event, filePath){
+    mainWindow.webContents.reload();
+        
+    mainWindow.webContents.once("dom-ready", function(){
+        setTimeout(function(){
+            mainWindow.webContents.send("open", filePath); 
+        }, 500);
     });
 });

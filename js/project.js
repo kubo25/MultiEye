@@ -9,7 +9,14 @@ class Project{
     //  "duration": (int),
     //  "file": (filePath),
     //  "x": (int),
-    //  "y": (int)
+    //  "y": (int),
+    //  "text": (string),
+    //  "range":{
+    //    "startLine": (int),
+    //    "startCol": (int),
+    //    "endLine": (int),
+    //    "endCol": (int)
+    //  }
     //},...]
     getFixations(){
         return this.project.fixations;
@@ -22,7 +29,7 @@ class Project{
     //  "fixations":[
     //      {
     //          "file": (filePath),
-    //          "id": int
+    //          "id": (int)
     //      },...
     //  ]
     //},...]

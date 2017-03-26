@@ -8,3 +8,7 @@ ipcRenderer.on("save", function(event, message){
 ipcRenderer.on("saveAs", function(event, message){
    ipcRenderer.send("saveAs", [projectFilePath, project.getFile()]);
 });
+
+ipcRenderer.on("open", function(event, filePath){
+    loadFile(filePath);
+});

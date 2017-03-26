@@ -39,7 +39,7 @@ function loop(i, next = false, seekbarSet = false){
     }
             
     node.codeWindow.showNextNode();
-    
+        
     if(next || !paused){
         setTimeout(function(){
             if(--i > 0){ //go to next iteration

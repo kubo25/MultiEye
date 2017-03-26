@@ -2,15 +2,28 @@ const fs = require("fs");
 const path = require("path");
 
 //Function creates a new CodeWindow object with text from file 
-function loadFile(file){
-    let codeWindow = new CodeWindow(file);
+function loadFile(filePath){
+    projectFilePath = filePath;
     
-    let data = fs.readFileSync(file, "utf-8");
-    
-    codeWindow.addText(data);
-    codeWindows.push(codeWindow);
-    
-    return codeWindow;
+    let extension = path.extname(projectFilePath);
+
+    if(extension === ".json"){
+        let data = fs.readFileSync(projectFilePath, 'utf-8');    
+
+        if(project !== null){
+            ipcRenderer.send("open", projectFilePath);
+            return;
+        }
+
+        project = new Project(JSON.parse(data));
+        loadProject();
+
+        let max = project.getFixations().length;
+
+        let seekbar = document.getElementById("seekbar");
+
+        createTicks(max);
+    }
 }
 
 //Function loads all fixations and patterns
@@ -23,7 +36,12 @@ function loadProject(){
         let codeWindow = codeWindows.objectWithFile(json.file); //find if CodeWindow with file already exists
 
         if(codeWindow === null){
-            codeWindow = loadFile(json.file);
+            codeWindow = new CodeWindow(json.file);
+            
+            let data = fs.readFileSync(json.file, "utf-8");
+            
+            codeWindow.addText(data);
+            codeWindows.push(codeWindow);
         }
 
         //if next fixation is in another file then generate a color for current fixations
@@ -49,6 +67,11 @@ function loadProject(){
         else{
             codeWindow.addNode(json);
         }
+        
+        codeWindow.edits.push({
+           "range": json.range,
+            "text": json.text
+        });
     }
     
     let patternWrapper = document.getElementById("patternWrapper");
@@ -60,7 +83,7 @@ function loadProject(){
     for(let i = 0; i <= playIndex - 1; i++){
         let line = document.createElement("div");
                 
-        line.style.left = ((i + 1) * step) + (11 - 22 * (i / playIndex)) + "px";
+        line.style.left = (174 + ((i + 1) * step) + (11 - 22 * (i / playIndex))) + "px";
         line.setAttribute("id", "fix" + i);
         line.classList.add("fixation");
         line.textContent = i;
@@ -84,7 +107,9 @@ function createTicks(max){
     let seekbar = document.getElementById("seekbar");
     
     let step = seekbar.clientWidth / max;
-    console.log(max);
+
+    seekbar.max = max; //set the number of steps on seekbar to the amount of fixations
+
     tickWrapper.style.width = seekbar.clientWidth + "px";
     
     for(let i = 1; i <= max; i++){
@@ -119,22 +144,8 @@ function createTicks(max){
         body.style.opacity = 1;
 
         let file = e.dataTransfer.files[0];
-        projectFilePath = file.path;
-        let extension = path.extname(projectFilePath);
-
-        if(extension === ".json"){
-            let data = fs.readFileSync(projectFilePath, 'utf-8');    
-            
-            project = new Project(JSON.parse(data));
-            loadProject();
-            
-            let max = project.getFixations().length;
-            
-            let seekbar = document.getElementById("seekbar");
-            seekbar.max = max; //set the number of steps on seekbar to the amount of fixations
-            
-            createTicks(max);
-        }
+        
+        loadFile(file.path);
         
         return false;
     };

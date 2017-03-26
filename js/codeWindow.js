@@ -17,6 +17,7 @@ class CodeWindow{
         this.file = file;
         this.id = codeWindows.length;
         this.lastNode = -1;
+        this.edits = [];
         
         let tempEditor;
         
@@ -61,7 +62,6 @@ class CodeWindow{
                 
         amdRequire(['vs/editor/editor.main'], function() {
             tempEditor = monaco.editor.create(document.getElementById(editorDiv.id), {
-                readOnly: true,
                 scrollBeyondLastLine: false,
                 language: 'csharp'
             });
@@ -323,16 +323,56 @@ class CodeWindow{
             "height": size * scale
         });
         
+        let edit = this.edits[this.lastNode];
+        
+        if(edit.range !== undefined){
+            this.editor.executeEdits("", [
+                {range: new monaco.Range(
+                    edit.range.startLine,
+                    edit.range.startCol,
+                    edit.range.endLine,
+                    edit.range.endCol),
+                 text: edit.text,
+                 endCursoState: new monaco.Selection(
+                    edit.range.endLine, 
+                    edit.range.endCol, 
+                    edit.range.endLine, 
+                    edit.range.endCol
+                 )
+                }
+            ]);
+        }
+        
         if(this.lastNode > 0){ //if there should be an edge show it too
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 1});
         }
     }
     
-    hideLastNode(){
-        this.lastNode--;
-        
-        let node = this.cy.nodes()[this.lastNode + 1]; //find last node
+    hideLastNode(){        
+        let node = this.cy.nodes()[this.lastNode]; //find last node
         node.style({"opacity": 0}); //make it invisible
+        
+        let edit = this.edits[this.lastNode];
+        
+        if(edit.range !== undefined){
+          this.editor.executeEdits("", [
+                {range: new monaco.Range(
+                    edit.range.startLine,
+                    edit.range.startCol,
+                    edit.range.endLine,
+                    edit.range.endCol),
+                 text: "",
+                 endCursoState: new monaco.Selection(
+                    edit.range.endLine, 
+                    edit.range.endCol, 
+                    edit.range.endLine, 
+                    edit.range.endCol
+                 )
+                }
+            ]);  
+        }
+        
+        this.lastNode--;
         
         if(this.lastNode >= 0){ //hide it's edge
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 0});

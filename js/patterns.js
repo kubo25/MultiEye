@@ -53,8 +53,8 @@ class Pattern{
         let firstFixationId = this.fixations[0].node.id();
         let lastFixationId = this.fixations[this.fixations.length - 1].node.id();
         
-        let start = parseFloat(document.getElementById("fix" + firstFixationId).style.left);
-        let end = parseFloat(document.getElementById("fix" + lastFixationId).style.left);
+        let start = parseFloat(document.getElementById("fix" + firstFixationId).style.left) - 174;
+        let end = parseFloat(document.getElementById("fix" + lastFixationId).style.left) - 174;
         
         let width = end - start + 1;
         
@@ -82,7 +82,7 @@ class Pattern{
             let div = document.createElement("div");
             let id = parseInt(fixation.node.id());
             
-            let fixationLineLeft = parseFloat(document.getElementById("fix" + id).style.left);
+            let fixationLineLeft = parseFloat(document.getElementById("fix" + id).style.left) - 174;
             
             div.style.left = (fixationLineLeft - start) + "px";
             line.appendChild(div);
