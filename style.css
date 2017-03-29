@@ -48,9 +48,20 @@ body{
     position: relative;
     display: inline-block;
     vertical-align: top;
+    
+    height: 600px;
+    width: 800px;
+    
     margin-right: 20px;
     margin-bottom: 20px;
     margin-left: 20px;
+    
+    overflow: hidden;
+    
+    --box-shadow-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 0px 20px var(--box-shadow-color);
+    
+    background-color: white;
     
     transition: 0.5s ease transform;
 }
@@ -63,23 +74,20 @@ body{
 .editor, .cytoscape{
     position: absolute;
     display: inline-block;
+    
+    height: 600px;
+    width: 800px;
+    
+    z-index: 1;
 }
 
 .editor{
-    padding-right: 20px;
     padding-top: 0px;
     z-index: 0; 
-    
-    --box-shadow-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0px 0px 20px var(--box-shadow-color);
 }
 
 .active{
     --box-shadow-color: rgba(0, 0, 0, 0.7);
-}
-
-.cytoscape{
-    z-index: 10;
 }
 
 .blurred{
@@ -491,6 +499,7 @@ input[type=range]::-webkit-slider-runnable-track {
 #graphScrollWrapper{
     display: block;
     width: 100vw;
+    height: 100%;
     direction: ltr;
     overflow-x: hidden;
 }
@@ -551,6 +560,7 @@ input[type=range]::-webkit-slider-runnable-track {
     display: block;
     position: relative;
     margin-left: 174px;
+    margin-bottom: 40px;
     direction: ltr;
     user-select: none;
     transform-origin: left -35px 0;
@@ -561,12 +571,13 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .fixation{
-    position: fixed;
-    margin-top: -35px;
+    position: absolute;
+    top: -35px;
     border-left: 1px solid var(--light-gray);
     cursor: default;
-    height: 30vh;
+    height: calc(100% + 40px);
     pointer-events: none;
+    writing-mode: vertical-lr;
 }
 
 .patternLine{
@@ -583,6 +594,8 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .patternLine::after{
     content: attr(data-pattern);
+    position: relative;
+    top: 5px;
 }
 
 .patternLine div{

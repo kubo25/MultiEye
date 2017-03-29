@@ -16,7 +16,7 @@ function loop(i, next = false, seekbarSet = false){
     if(playIndex > 0 && node.codeWindow.id !== nodeOrder[playIndex - 1].codeWindow.id){
         nodeOrder[playIndex - 1].codeWindow.setActive(false);
         
-        addNextFileLine();
+        //addNextFileLine();
     }
     
     //set duration of the transition to the next step
@@ -80,7 +80,7 @@ function previousStep(scrollbarSet){
             nodeOrder[playIndex].codeWindow.setActive(false);
             nodeOrder[playIndex - 1].codeWindow.setActive(true);
             
-            removeLastLine();
+            //removeLastLine();
         }
         playIndex--;
     }

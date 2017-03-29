@@ -71,7 +71,7 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
             for(const codeWindow of selectedWindows){
                 let nodes = codeWindow.cy.nodes();
                 let boundingRect = codeWindow.getBoundingClientRect();
-                
+                let pan = codeWindow.cy.pan().y;
                 for(let i = 0; i < nodes.length; i++){
                     if(nodes[i].id() <= playIndex){
                         let position = nodes[i].position();
@@ -88,12 +88,12 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                         }
 
                         if(startY > e.clientY){
-                            topY = e.clientY;
-                            bottomY = startY;
+                            topY = e.clientY - pan;
+                            bottomY = startY - pan;
                         }
                         else{
-                            topY = startY;
-                            bottomY = e.clientY;
+                            topY = startY - pan;
+                            bottomY = e.clientY - pan;
                         }
 
                         topX -= boundingRect.left;
@@ -144,7 +144,7 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
             }
             
             let nodes = codeWindow.cy.nodes();
-            let nodeSelected = false;
+            let pan = codeWindow.cy.pan().y;
             
             for(let i = 0; i < nodes.length; i++){
                 let outerPosition = codeWindow.getBoundingClientRect();
@@ -152,7 +152,7 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                 let size = nodes[i].outerHeight();
                 
                 let dx = e.clientX >= (outerPosition.left + position.x - size / 2) && e.clientX <= (outerPosition.left + position.x + size / 2);
-                let dy = e.clientY >= (outerPosition.top + position.y - size / 2) && e.clientY <= (outerPosition.top + position.y + size / 2);
+                let dy = (e.clientY - pan) >= (outerPosition.top + position.y - size / 2) && (e.clientY - pan) <= (outerPosition.top + position.y + size / 2);
                 
                 if(dx && dy){
                     nodes[i].addClass("selected");
@@ -160,18 +160,7 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                 }
             }
             
-            codeWindow.select();
-            
-            for(const blur of codeWindows){
-                if(blur !== codeWindow){
-                    if(blur.cyWrapper.classList.contains("blurred")){
-                        blur.cyWrapper.classList.remove("blurred");
-                    }
-                    else{
-                        blur.cyWrapper.classList.add("blurred");
-                    }
-                }
-            } 
+            codeWindow.select(); 
         }
     }
         

@@ -5,6 +5,7 @@ let scale = 1;
 let overflowDetection = true;
 
 let basicSize = 20;
+let basicHeight = 560;
 
 class CodeWindow{  
     constructor(file){
@@ -93,7 +94,6 @@ class CodeWindow{
 			container: document.getElementById(cyDiv.id),
             autoungrabify: true,
             userPanningEnabled: false,
-            boxSelectionEnabled: false,
             style: [{
                     selector: 'node',
                     style: {
@@ -123,6 +123,34 @@ class CodeWindow{
                     }
                 }],
 		});
+        
+        let codeWindow = this;
+        
+        this.cy.on("click", function(e){
+            if(e.cyTarget === e.cy){
+                codeWindow.select();
+            }
+        });
+        
+        this.cy.on("click", "edge", function(e){
+           codeWindow.select(); 
+        });
+        
+        this.cy.on("click", "node", function(e){
+           e.cyTarget.addClass("selected");
+        });
+        
+        this.cy.on("box", "node", function(e){
+            e.cyTarget.addClass("selected");
+        });
+        
+        this.cyWrapper.onwheel = function(e){
+            let scroll = codeWindow.editor.getScrollTop() + e.deltaY;
+            scroll = (scroll < 0)? 0 : scroll;
+            
+            codeWindow.editor.setScrollTop(scroll);
+            codeWindow.cy.pan({x: 0, y: -scroll});
+        }
     }
     
     addText(data){
@@ -135,9 +163,9 @@ class CodeWindow{
             mutations.forEach(function(mutation) {
                 //Get the newly loaded sizes
                 let newHeight = mutation.target.scrollHeight;
-                let newWidth = mutation.target.scrollWidth + 20;
+                let newWidth = mutation.target.scrollWidth + 40;
                                 
-                obj.setSize(newHeight, newWidth);
+                //obj.setSize(newHeight, newWidth);
             });    
         });
 
@@ -152,7 +180,7 @@ class CodeWindow{
     }
     
     setSize(newHeight, newWidth){
-        //Method only used 1 time so newHeight and newWidth are the originals
+        //Any time this method is used the new height and width becom the original
         this.originalHeight = newHeight;
         this.originalWidth = newWidth;
         
@@ -174,7 +202,6 @@ class CodeWindow{
         cy.style.height = (newHeight * scale) + "px";
         cy.style.width = (newWidth * scale) + "px";
         
-        this.cyWrapper.style.height = (newHeight * scale) + "px";
         this.cyWrapper.style.width = (newWidth * scale) + "px";
              
         //Check for overflow
@@ -193,7 +220,7 @@ class CodeWindow{
                     let tempHeight = code.originalHeight * scale;
                     let tempWidth = code.originalWidth * scale;
 
-                    code.cyWrapper.style.height = tempHeight + "px";
+                    code.cyWrapper.style.height = (basicHeight * scale) + "px";
                     code.cyWrapper.style.width = tempWidth + "px";
                     
                     code.cyWrapper.lastChild.style.height = tempHeight + "px";
@@ -214,37 +241,41 @@ class CodeWindow{
         }
     }
     
+    _scaleDown(){
+        
+    }
+    
     select(){
         this.selected = !this.selected;
         
         if(this.selected){
-            this.cyWrapper.firstChild.style.transform = "scale(1)";
-        
-            this.cyWrapper.lastChild.style.height = this.originalHeight + "px";
-            this.cyWrapper.lastChild.style.width = this.originalWidth + "px";  
-            this.cy.resize();
+            this.cyWrapper.firstChild.style.transform = "scale(1)";  
             
             this.cy.zoom(1 / scale);
             this.cy.style().selector("node").style({"font-size": 15 * scale, "height" : basicSize * scale, "width" : basicSize * scale}).update();
             this.cy.style().selector("edge").style({"width" : 3 * scale}).update();
             
-            this.cyWrapper.style.zIndex = 5;
+            let cy = this.cy;
+            
+            this.cyWrapper.addEventListener("webkitTransitionEnd", function(){
+                cy.resize();
+            })
+            
+            this.cyWrapper.style.zIndex = 13;
             
             let boundingBox = this.getBoundingClientRect();
 
             let centerX = window.innerWidth / 2;
             let centerY = window.innerHeight / 2;
 
-            let positionX = centerX - (boundingBox.left + this.originalWidth / 2);
-            let positionY = centerY - (boundingBox.top + this.originalHeight / 2);
+            let positionX = centerX - (boundingBox.left + 600 / 2);
+            let positionY = centerY - (boundingBox.top + boundingBox.height / 2);
         
             this.cyWrapper.style.transform = "translate(" + positionX + "px, " + positionY + "px)";
         }
         else{
             this.cyWrapper.firstChild.style.transform = "scale(" + scale + ")";
-            
-            this.cyWrapper.lastChild.style.height = this.cyWrapper.style.height;
-            this.cyWrapper.lastChild.style.width = this.cyWrapper.style.width;  
+             
             this.cy.resize();
             
             this.cy.zoom(1);
@@ -254,7 +285,18 @@ class CodeWindow{
             this.cyWrapper.style.zIndex = "";
             
             this.cyWrapper.style.transform = "";
-        }           
+        }
+        
+        for(const blur of codeWindows){
+            if(blur !== this){
+                if(blur.cyWrapper.classList.contains("blurred")){
+                    blur.cyWrapper.classList.remove("blurred");
+                }
+                else{
+                    blur.cyWrapper.classList.add("blurred");
+                }
+            }
+        }
     }
     
     addNode(json, color = null){ 
@@ -341,6 +383,17 @@ class CodeWindow{
                  )
                 }
             ]);
+            
+            this.editor.pushUndoStop();
+            
+            this.editor.revealLineInCenter(edit.range.endLine);
+            
+            let codeWindow = this;
+            
+            setTimeout(function(){
+                let lineOffset = codeWindow.editor.getScrollTop();
+                codeWindow.cy.pan({x: 0, y: -lineOffset});
+            }, 1);
         }
         
         if(this.lastNode > 0){ //if there should be an edge show it too
@@ -354,22 +407,20 @@ class CodeWindow{
         
         let edit = this.edits[this.lastNode];
         
-        if(edit.range !== undefined){
-          this.editor.executeEdits("", [
-                {range: new monaco.Range(
-                    edit.range.startLine,
-                    edit.range.startCol,
-                    edit.range.endLine,
-                    edit.range.endCol),
-                 text: "",
-                 endCursoState: new monaco.Selection(
-                    edit.range.endLine, 
-                    edit.range.endCol, 
-                    edit.range.endLine, 
-                    edit.range.endCol
-                 )
-                }
-            ]);  
+        if(edit.range !== undefined){ 
+            this.editor.getModel().undo();
+            
+            let previousEdit = this.edits[this.lastNode - 1];
+            
+            if(previousEdit !== undefined){            
+                this.editor.revealLineInCenter(previousEdit.range.endLine);
+                
+                let codeWindow = this;
+                setTimeout(function(){
+                    let lineOffset = codeWindow.editor.getScrollTop();
+                    codeWindow.cy.pan({x: 0, y: -lineOffset});
+                }, 1);
+            }
         }
         
         this.lastNode--;
@@ -386,10 +437,10 @@ class CodeWindow{
     setActive(activate){
         //Set monaco editor div as active to change it's shadow color
         if(activate){
-            this.cyWrapper.firstChild.firstChild.classList.add("active");
+            this.cyWrapper.classList.add("active");
         }
         else{
-            this.cyWrapper.firstChild.firstChild.classList.remove("active");
+            this.cyWrapper.classList.remove("active");
         }
     }
     
@@ -404,7 +455,7 @@ class CodeWindow{
     }
     
     getBoundingClientRect(){
-        return this.cyWrapper.lastChild.getBoundingClientRect();
+        return this.cyWrapper.getBoundingClientRect();
     }
     
     getNodeWithId(id){

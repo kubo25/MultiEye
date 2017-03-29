@@ -1,0 +1,3587 @@
+{
+    "fixations": [
+        {
+            "duration": 292,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 29,
+                "endLine": 39,
+                "startCol": 25,
+                "startLine": 34
+            },
+            "tempCol": 25,
+            "text": "TEST\na\na\na\na\na",
+            "x": 363,
+            "y": 639
+        },
+        {
+            "duration": 423,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 15,
+                "endLine": 79,
+                "startCol": 11,
+                "startLine": 74
+            },
+            "tempCol": 11,
+            "text": "TEST\na\na\na\na\na",
+            "x": 150,
+            "y": 1393
+        },
+        {
+            "duration": 500,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 33,
+                "endLine": 20,
+                "startCol": 29,
+                "startLine": 15
+            },
+            "tempCol": 29,
+            "text": "TEST\na\na\na\na\na",
+            "x": 471,
+            "y": 279
+        },
+        {
+            "duration": 371,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 32,
+                "endLine": 50,
+                "startCol": 28,
+                "startLine": 45
+            },
+            "tempCol": 28,
+            "text": "TEST\na\na\na\na\na",
+            "x": 15,
+            "y": 842
+        },
+        {
+            "duration": 482,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 7,
+                "endLine": 46,
+                "startCol": 3,
+                "startLine": 41
+            },
+            "tempCol": 3,
+            "text": "TEST\na\na\na\na\na",
+            "x": 416,
+            "y": 775
+        },
+        {
+            "duration": 423,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 16,
+                "endLine": 40,
+                "startCol": 12,
+                "startLine": 35
+            },
+            "tempCol": 12,
+            "text": "TEST\na\na\na\na\na",
+            "x": 297,
+            "y": 657
+        },
+        {
+            "duration": 292,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 12,
+                "endLine": 16,
+                "startCol": 8,
+                "startLine": 11
+            },
+            "tempCol": 8,
+            "text": "TEST\na\na\na\na\na",
+            "x": 417,
+            "y": 215
+        },
+        {
+            "duration": 417,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 33,
+                "endLine": 23,
+                "startCol": 29,
+                "startLine": 18
+            },
+            "tempCol": 29,
+            "text": "TEST\na\na\na\na\na",
+            "x": 313,
+            "y": 343
+        },
+        {
+            "duration": 478,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 14,
+                "endLine": 41,
+                "startCol": 10,
+                "startLine": 36
+            },
+            "tempCol": 10,
+            "text": "TEST\na\na\na\na\na",
+            "x": 152,
+            "y": 675
+        },
+        {
+            "duration": 246,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 28,
+                "startCol": 16,
+                "startLine": 23
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 253,
+            "y": 425
+        },
+        {
+            "duration": 393,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 29,
+                "startCol": 17,
+                "startLine": 24
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 60,
+            "y": 454
+        },
+        {
+            "duration": 280,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 19,
+                "endLine": 18,
+                "startCol": 15,
+                "startLine": 13
+            },
+            "tempCol": 15,
+            "text": "TEST\na\na\na\na\na",
+            "x": 475,
+            "y": 249
+        },
+        {
+            "duration": 322,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 79,
+                "startCol": 6,
+                "startLine": 74
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 316,
+            "y": 1390
+        },
+        {
+            "duration": 485,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 19,
+                "startCol": 22,
+                "startLine": 14
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 472,
+            "y": 268
+        },
+        {
+            "duration": 296,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 13,
+                "endLine": 76,
+                "startCol": 9,
+                "startLine": 71
+            },
+            "tempCol": 9,
+            "text": "TEST\na\na\na\na\na",
+            "x": 145,
+            "y": 1329
+        },
+        {
+            "duration": 382,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 17,
+                "endLine": 47,
+                "startCol": 13,
+                "startLine": 42
+            },
+            "tempCol": 13,
+            "text": "TEST\na\na\na\na\na",
+            "x": 300,
+            "y": 786
+        },
+        {
+            "duration": 226,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 22,
+                "startCol": 22,
+                "startLine": 17
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 297,
+            "y": 326
+        },
+        {
+            "duration": 366,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 53,
+                "startCol": 16,
+                "startLine": 48
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 125,
+            "y": 900
+        },
+        {
+            "duration": 243,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 24,
+                "startCol": 17,
+                "startLine": 19
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 232,
+            "y": 357
+        },
+        {
+            "duration": 203,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 35,
+                "startCol": 23,
+                "startLine": 30
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 237,
+            "y": 562
+        },
+        {
+            "duration": 304,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 34,
+                "startCol": 1,
+                "startLine": 29
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 29,
+            "y": 537
+        },
+        {
+            "duration": 423,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 6,
+                "startCol": 6,
+                "startLine": 1
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 205,
+            "y": 19
+        },
+        {
+            "duration": 365,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 61,
+                "startCol": 17,
+                "startLine": 56
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 186,
+            "y": 1049
+        },
+        {
+            "duration": 459,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 58,
+                "startCol": 1,
+                "startLine": 53
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 207,
+            "y": 993
+        },
+        {
+            "duration": 439,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 22,
+                "endLine": 77,
+                "startCol": 18,
+                "startLine": 72
+            },
+            "tempCol": 18,
+            "text": "TEST\na\na\na\na\na",
+            "x": 440,
+            "y": 1349
+        },
+        {
+            "duration": 424,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 11,
+                "endLine": 21,
+                "startCol": 7,
+                "startLine": 16
+            },
+            "tempCol": 7,
+            "text": "TEST\na\na\na\na\na",
+            "x": 272,
+            "y": 300
+        },
+        {
+            "duration": 398,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 35,
+                "startCol": 23,
+                "startLine": 30
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 95,
+            "y": 562
+        },
+        {
+            "duration": 290,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 14,
+                "startCol": 6,
+                "startLine": 9
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 139,
+            "y": 172
+        },
+        {
+            "duration": 218,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 30,
+                "endLine": 46,
+                "startCol": 26,
+                "startLine": 41
+            },
+            "tempCol": 26,
+            "text": "TEST\na\na\na\na\na",
+            "x": 105,
+            "y": 772
+        },
+        {
+            "duration": 356,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 53,
+                "startCol": 22,
+                "startLine": 48
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 60,
+            "y": 892
+        },
+        {
+            "duration": 315,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 24,
+                "endLine": 83,
+                "startCol": 20,
+                "startLine": 78
+            },
+            "tempCol": 20,
+            "text": "TEST\na\na\na\na\na",
+            "x": 378,
+            "y": 1460
+        },
+        {
+            "duration": 420,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 47,
+                "startCol": 17,
+                "startLine": 42
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 260,
+            "y": 785
+        },
+        {
+            "duration": 301,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 30,
+                "startCol": 6,
+                "startLine": 25
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 12,
+            "y": 466
+        },
+        {
+            "duration": 352,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 42,
+                "startCol": 1,
+                "startLine": 37
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 527,
+            "y": 694
+        },
+        {
+            "duration": 239,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 18,
+                "endLine": 51,
+                "startCol": 14,
+                "startLine": 46
+            },
+            "tempCol": 14,
+            "text": "TEST\na\na\na\na\na",
+            "x": 500,
+            "y": 862
+        },
+        {
+            "duration": 321,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 14,
+                "endLine": 31,
+                "startCol": 10,
+                "startLine": 26
+            },
+            "tempCol": 10,
+            "text": "TEST\na\na\na\na\na",
+            "x": 177,
+            "y": 488
+        },
+        {
+            "duration": 289,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 32,
+                "endLine": 12,
+                "startCol": 28,
+                "startLine": 7
+            },
+            "tempCol": 28,
+            "text": "TEST\na\na\na\na\na",
+            "x": 281,
+            "y": 132
+        },
+        {
+            "duration": 495,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 45,
+                "startCol": 27,
+                "startLine": 40
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 506,
+            "y": 759
+        },
+        {
+            "duration": 201,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 9,
+                "endLine": 24,
+                "startCol": 5,
+                "startLine": 19
+            },
+            "tempCol": 5,
+            "text": "TEST\na\na\na\na\na",
+            "x": 236,
+            "y": 353
+        },
+        {
+            "duration": 285,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 10,
+                "startCol": 16,
+                "startLine": 5
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 192,
+            "y": 89
+        },
+        {
+            "duration": 258,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 36,
+                "startCol": 23,
+                "startLine": 31
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 93,
+            "y": 577
+        },
+        {
+            "duration": 200,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 31,
+                "startCol": 23,
+                "startLine": 26
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 51,
+            "y": 487
+        },
+        {
+            "duration": 424,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 29,
+                "endLine": 71,
+                "startCol": 25,
+                "startLine": 66
+            },
+            "tempCol": 25,
+            "text": "TEST\na\na\na\na\na",
+            "x": 116,
+            "y": 1230
+        },
+        {
+            "duration": 479,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 28,
+                "endLine": 41,
+                "startCol": 24,
+                "startLine": 36
+            },
+            "tempCol": 24,
+            "text": "TEST\na\na\na\na\na",
+            "x": 394,
+            "y": 682
+        },
+        {
+            "duration": 294,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 24,
+                "endLine": 77,
+                "startCol": 20,
+                "startLine": 72
+            },
+            "tempCol": 20,
+            "text": "TEST\na\na\na\na\na",
+            "x": 470,
+            "y": 1356
+        },
+        {
+            "duration": 448,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 34,
+                "endLine": 82,
+                "startCol": 30,
+                "startLine": 77
+            },
+            "tempCol": 30,
+            "text": "TEST\na\na\na\na\na",
+            "x": 397,
+            "y": 1441
+        },
+        {
+            "duration": 310,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 13,
+                "endLine": 74,
+                "startCol": 9,
+                "startLine": 69
+            },
+            "tempCol": 9,
+            "text": "TEST\na\na\na\na\na",
+            "x": 212,
+            "y": 1292
+        },
+        {
+            "duration": 457,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 42,
+                "startCol": 1,
+                "startLine": 37
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 163,
+            "y": 703
+        },
+        {
+            "duration": 295,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 33,
+                "endLine": 77,
+                "startCol": 29,
+                "startLine": 72
+            },
+            "tempCol": 29,
+            "text": "TEST\na\na\na\na\na",
+            "x": 355,
+            "y": 1341
+        },
+        {
+            "duration": 321,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 8,
+                "endLine": 73,
+                "startCol": 4,
+                "startLine": 68
+            },
+            "tempCol": 4,
+            "text": "TEST\na\na\na\na\na",
+            "x": 141,
+            "y": 1283
+        },
+        {
+            "duration": 233,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 7,
+                "endLine": 50,
+                "startCol": 3,
+                "startLine": 45
+            },
+            "tempCol": 3,
+            "text": "TEST\na\na\na\na\na",
+            "x": 512,
+            "y": 850
+        },
+        {
+            "duration": 378,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 25,
+                "endLine": 68,
+                "startCol": 21,
+                "startLine": 63
+            },
+            "tempCol": 21,
+            "text": "TEST\na\na\na\na\na",
+            "x": 425,
+            "y": 1179
+        },
+        {
+            "duration": 476,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 22,
+                "endLine": 67,
+                "startCol": 18,
+                "startLine": 62
+            },
+            "tempCol": 18,
+            "text": "TEST\na\na\na\na\na",
+            "x": 487,
+            "y": 1160
+        },
+        {
+            "duration": 261,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 19,
+                "endLine": 72,
+                "startCol": 15,
+                "startLine": 67
+            },
+            "tempCol": 15,
+            "text": "TEST\na\na\na\na\na",
+            "x": 437,
+            "y": 1265
+        },
+        {
+            "duration": 228,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 33,
+                "endLine": 17,
+                "startCol": 29,
+                "startLine": 12
+            },
+            "tempCol": 29,
+            "text": "TEST\na\na\na\na\na",
+            "x": 87,
+            "y": 228
+        },
+        {
+            "duration": 222,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 23,
+                "startCol": 16,
+                "startLine": 18
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 190,
+            "y": 343
+        },
+        {
+            "duration": 476,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 18,
+                "startCol": 22,
+                "startLine": 13
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 478,
+            "y": 253
+        },
+        {
+            "duration": 325,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 37,
+                "startCol": 27,
+                "startLine": 32
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 11,
+            "y": 608
+        },
+        {
+            "duration": 217,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 6,
+                "endLine": 11,
+                "startCol": 2,
+                "startLine": 6
+            },
+            "tempCol": 2,
+            "text": "TEST\na\na\na\na\na",
+            "x": 148,
+            "y": 107
+        },
+        {
+            "duration": 344,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 7,
+                "endLine": 74,
+                "startCol": 3,
+                "startLine": 69
+            },
+            "tempCol": 3,
+            "text": "TEST\na\na\na\na\na",
+            "x": 80,
+            "y": 1301
+        },
+        {
+            "duration": 328,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 34,
+                "endLine": 14,
+                "startCol": 30,
+                "startLine": 9
+            },
+            "tempCol": 30,
+            "text": "TEST\na\na\na\na\na",
+            "x": 321,
+            "y": 160
+        },
+        {
+            "duration": 266,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 19,
+                "startCol": 23,
+                "startLine": 14
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 234,
+            "y": 257
+        },
+        {
+            "duration": 349,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 74,
+                "startCol": 1,
+                "startLine": 69
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 515,
+            "y": 1293
+        },
+        {
+            "duration": 348,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 30,
+                "endLine": 23,
+                "startCol": 26,
+                "startLine": 18
+            },
+            "tempCol": 26,
+            "text": "TEST\na\na\na\na\na",
+            "x": 364,
+            "y": 344
+        },
+        {
+            "duration": 409,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 24,
+                "endLine": 39,
+                "startCol": 20,
+                "startLine": 34
+            },
+            "tempCol": 20,
+            "text": "TEST\na\na\na\na\na",
+            "x": 119,
+            "y": 637
+        },
+        {
+            "duration": 498,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 11,
+                "endLine": 68,
+                "startCol": 7,
+                "startLine": 63
+            },
+            "tempCol": 7,
+            "text": "TEST\na\na\na\na\na",
+            "x": 247,
+            "y": 1175
+        },
+        {
+            "duration": 207,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 16,
+                "endLine": 27,
+                "startCol": 12,
+                "startLine": 22
+            },
+            "tempCol": 12,
+            "text": "TEST\na\na\na\na\na",
+            "x": 266,
+            "y": 411
+        },
+        {
+            "duration": 480,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 18,
+                "endLine": 82,
+                "startCol": 14,
+                "startLine": 77
+            },
+            "tempCol": 14,
+            "text": "TEST\na\na\na\na\na",
+            "x": 334,
+            "y": 1444
+        },
+        {
+            "duration": 412,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 22,
+                "endLine": 24,
+                "startCol": 18,
+                "startLine": 19
+            },
+            "tempCol": 18,
+            "text": "TEST\na\na\na\na\na",
+            "x": 129,
+            "y": 348
+        },
+        {
+            "duration": 397,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 57,
+                "startCol": 1,
+                "startLine": 52
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 31,
+            "y": 972
+        },
+        {
+            "duration": 472,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 23,
+                "endLine": 49,
+                "startCol": 19,
+                "startLine": 44
+            },
+            "tempCol": 19,
+            "text": "TEST\na\na\na\na\na",
+            "x": 192,
+            "y": 821
+        },
+        {
+            "duration": 265,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 12,
+                "endLine": 28,
+                "startCol": 8,
+                "startLine": 23
+            },
+            "tempCol": 8,
+            "text": "TEST\na\na\na\na\na",
+            "x": 216,
+            "y": 436
+        },
+        {
+            "duration": 394,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 6,
+                "endLine": 58,
+                "startCol": 2,
+                "startLine": 53
+            },
+            "tempCol": 2,
+            "text": "TEST\na\na\na\na\na",
+            "x": 425,
+            "y": 1002
+        },
+        {
+            "duration": 444,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 52,
+                "startCol": 27,
+                "startLine": 47
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 377,
+            "y": 886
+        },
+        {
+            "duration": 234,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 24,
+                "startCol": 27,
+                "startLine": 19
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 463,
+            "y": 364
+        },
+        {
+            "duration": 223,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 8,
+                "endLine": 22,
+                "startCol": 4,
+                "startLine": 17
+            },
+            "tempCol": 4,
+            "text": "TEST\na\na\na\na\na",
+            "x": 462,
+            "y": 327
+        },
+        {
+            "duration": 209,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 73,
+                "startCol": 16,
+                "startLine": 68
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 160,
+            "y": 1271
+        },
+        {
+            "duration": 261,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 28,
+                "endLine": 41,
+                "startCol": 24,
+                "startLine": 36
+            },
+            "tempCol": 24,
+            "text": "TEST\na\na\na\na\na",
+            "x": 506,
+            "y": 666
+        },
+        {
+            "duration": 500,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 13,
+                "endLine": 63,
+                "startCol": 9,
+                "startLine": 58
+            },
+            "tempCol": 9,
+            "text": "TEST\na\na\na\na\na",
+            "x": 340,
+            "y": 1089
+        },
+        {
+            "duration": 370,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 27,
+                "startCol": 6,
+                "startLine": 22
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 501,
+            "y": 421
+        },
+        {
+            "duration": 487,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 9,
+                "startCol": 23,
+                "startLine": 4
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 502,
+            "y": 82
+        },
+        {
+            "duration": 398,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 54,
+                "startCol": 17,
+                "startLine": 49
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 386,
+            "y": 927
+        },
+        {
+            "duration": 342,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 14,
+                "endLine": 67,
+                "startCol": 10,
+                "startLine": 62
+            },
+            "tempCol": 10,
+            "text": "TEST\na\na\na\na\na",
+            "x": 145,
+            "y": 1165
+        },
+        {
+            "duration": 318,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 30,
+                "endLine": 13,
+                "startCol": 26,
+                "startLine": 8
+            },
+            "tempCol": 26,
+            "text": "TEST\na\na\na\na\na",
+            "x": 198,
+            "y": 151
+        },
+        {
+            "duration": 289,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 16,
+                "endLine": 75,
+                "startCol": 12,
+                "startLine": 70
+            },
+            "tempCol": 12,
+            "text": "TEST\na\na\na\na\na",
+            "x": 464,
+            "y": 1315
+        },
+        {
+            "duration": 355,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 32,
+                "endLine": 18,
+                "startCol": 28,
+                "startLine": 13
+            },
+            "tempCol": 28,
+            "text": "TEST\na\na\na\na\na",
+            "x": 19,
+            "y": 249
+        },
+        {
+            "duration": 455,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 66,
+                "startCol": 22,
+                "startLine": 61
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 299,
+            "y": 1137
+        },
+        {
+            "duration": 224,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 84,
+                "startCol": 23,
+                "startLine": 79
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 539,
+            "y": 1481
+        },
+        {
+            "duration": 414,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 25,
+                "endLine": 8,
+                "startCol": 21,
+                "startLine": 3
+            },
+            "tempCol": 21,
+            "text": "TEST\na\na\na\na\na",
+            "x": 385,
+            "y": 62
+        },
+        {
+            "duration": 455,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 6,
+                "endLine": 52,
+                "startCol": 2,
+                "startLine": 47
+            },
+            "tempCol": 2,
+            "text": "TEST\na\na\na\na\na",
+            "x": 218,
+            "y": 882
+        },
+        {
+            "duration": 314,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 11,
+                "endLine": 45,
+                "startCol": 7,
+                "startLine": 40
+            },
+            "tempCol": 7,
+            "text": "TEST\na\na\na\na\na",
+            "x": 172,
+            "y": 747
+        },
+        {
+            "duration": 208,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 9,
+                "endLine": 84,
+                "startCol": 5,
+                "startLine": 79
+            },
+            "tempCol": 5,
+            "text": "TEST\na\na\na\na\na",
+            "x": 164,
+            "y": 1486
+        },
+        {
+            "duration": 344,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 6,
+                "startCol": 27,
+                "startLine": 1
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 300,
+            "y": 24
+        },
+        {
+            "duration": 254,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 14,
+                "endLine": 62,
+                "startCol": 10,
+                "startLine": 57
+            },
+            "tempCol": 10,
+            "text": "TEST\na\na\na\na\na",
+            "x": 189,
+            "y": 1076
+        },
+        {
+            "duration": 368,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 71,
+                "startCol": 6,
+                "startLine": 66
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 350,
+            "y": 1230
+        },
+        {
+            "duration": 393,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 7,
+                "endLine": 52,
+                "startCol": 3,
+                "startLine": 47
+            },
+            "tempCol": 3,
+            "text": "TEST\na\na\na\na\na",
+            "x": 469,
+            "y": 877
+        },
+        {
+            "duration": 354,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 15,
+                "endLine": 25,
+                "startCol": 11,
+                "startLine": 20
+            },
+            "tempCol": 11,
+            "text": "TEST\na\na\na\na\na",
+            "x": 278,
+            "y": 384
+        },
+        {
+            "duration": 249,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 34,
+                "endLine": 45,
+                "startCol": 30,
+                "startLine": 40
+            },
+            "tempCol": 30,
+            "text": "TEST\na\na\na\na\na",
+            "x": 478,
+            "y": 754
+        },
+        {
+            "duration": 408,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 34,
+                "endLine": 21,
+                "startCol": 30,
+                "startLine": 16
+            },
+            "tempCol": 30,
+            "text": "TEST\na\na\na\na\na",
+            "x": 81,
+            "y": 291
+        },
+        {
+            "duration": 468,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 9,
+                "endLine": 50,
+                "startCol": 5,
+                "startLine": 45
+            },
+            "tempCol": 5,
+            "text": "TEST\na\na\na\na\na",
+            "x": 147,
+            "y": 853
+        },
+        {
+            "duration": 292,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 29,
+                "endLine": 39,
+                "startCol": 25,
+                "startLine": 34
+            },
+            "tempCol": 25,
+            "text": "TEST\na\na\na\na\na",
+            "x": 363,
+            "y": 639
+        },
+        {
+            "duration": 423,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 15,
+                "endLine": 79,
+                "startCol": 11,
+                "startLine": 74
+            },
+            "tempCol": 11,
+            "text": "TEST\na\na\na\na\na",
+            "x": 150,
+            "y": 1393
+        },
+        {
+            "duration": 500,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 33,
+                "endLine": 20,
+                "startCol": 29,
+                "startLine": 15
+            },
+            "tempCol": 29,
+            "text": "TEST\na\na\na\na\na",
+            "x": 471,
+            "y": 279
+        },
+        {
+            "duration": 371,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 32,
+                "endLine": 50,
+                "startCol": 28,
+                "startLine": 45
+            },
+            "tempCol": 28,
+            "text": "TEST\na\na\na\na\na",
+            "x": 15,
+            "y": 842
+        },
+        {
+            "duration": 482,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 7,
+                "endLine": 46,
+                "startCol": 3,
+                "startLine": 41
+            },
+            "tempCol": 3,
+            "text": "TEST\na\na\na\na\na",
+            "x": 416,
+            "y": 775
+        },
+        {
+            "duration": 423,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 16,
+                "endLine": 40,
+                "startCol": 12,
+                "startLine": 35
+            },
+            "tempCol": 12,
+            "text": "TEST\na\na\na\na\na",
+            "x": 297,
+            "y": 657
+        },
+        {
+            "duration": 292,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 12,
+                "endLine": 16,
+                "startCol": 8,
+                "startLine": 11
+            },
+            "tempCol": 8,
+            "text": "TEST\na\na\na\na\na",
+            "x": 417,
+            "y": 215
+        },
+        {
+            "duration": 417,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 33,
+                "endLine": 23,
+                "startCol": 29,
+                "startLine": 18
+            },
+            "tempCol": 29,
+            "text": "TEST\na\na\na\na\na",
+            "x": 313,
+            "y": 343
+        },
+        {
+            "duration": 478,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 14,
+                "endLine": 41,
+                "startCol": 10,
+                "startLine": 36
+            },
+            "tempCol": 10,
+            "text": "TEST\na\na\na\na\na",
+            "x": 152,
+            "y": 675
+        },
+        {
+            "duration": 246,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 28,
+                "startCol": 16,
+                "startLine": 23
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 253,
+            "y": 425
+        },
+        {
+            "duration": 393,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 29,
+                "startCol": 17,
+                "startLine": 24
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 60,
+            "y": 454
+        },
+        {
+            "duration": 280,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 19,
+                "endLine": 18,
+                "startCol": 15,
+                "startLine": 13
+            },
+            "tempCol": 15,
+            "text": "TEST\na\na\na\na\na",
+            "x": 475,
+            "y": 249
+        },
+        {
+            "duration": 322,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 79,
+                "startCol": 6,
+                "startLine": 74
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 316,
+            "y": 1390
+        },
+        {
+            "duration": 485,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 19,
+                "startCol": 22,
+                "startLine": 14
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 472,
+            "y": 268
+        },
+        {
+            "duration": 296,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 13,
+                "endLine": 76,
+                "startCol": 9,
+                "startLine": 71
+            },
+            "tempCol": 9,
+            "text": "TEST\na\na\na\na\na",
+            "x": 145,
+            "y": 1329
+        },
+        {
+            "duration": 382,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 17,
+                "endLine": 47,
+                "startCol": 13,
+                "startLine": 42
+            },
+            "tempCol": 13,
+            "text": "TEST\na\na\na\na\na",
+            "x": 300,
+            "y": 786
+        },
+        {
+            "duration": 226,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 22,
+                "startCol": 22,
+                "startLine": 17
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 297,
+            "y": 326
+        },
+        {
+            "duration": 366,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 53,
+                "startCol": 16,
+                "startLine": 48
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 125,
+            "y": 900
+        },
+        {
+            "duration": 243,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 24,
+                "startCol": 17,
+                "startLine": 19
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 232,
+            "y": 357
+        },
+        {
+            "duration": 203,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 35,
+                "startCol": 23,
+                "startLine": 30
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 237,
+            "y": 562
+        },
+        {
+            "duration": 304,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 34,
+                "startCol": 1,
+                "startLine": 29
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 29,
+            "y": 537
+        },
+        {
+            "duration": 423,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 6,
+                "startCol": 6,
+                "startLine": 1
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 205,
+            "y": 19
+        },
+        {
+            "duration": 365,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 61,
+                "startCol": 17,
+                "startLine": 56
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 186,
+            "y": 1049
+        },
+        {
+            "duration": 459,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 58,
+                "startCol": 1,
+                "startLine": 53
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 207,
+            "y": 993
+        },
+        {
+            "duration": 439,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 22,
+                "endLine": 77,
+                "startCol": 18,
+                "startLine": 72
+            },
+            "tempCol": 18,
+            "text": "TEST\na\na\na\na\na",
+            "x": 440,
+            "y": 1349
+        },
+        {
+            "duration": 424,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 11,
+                "endLine": 21,
+                "startCol": 7,
+                "startLine": 16
+            },
+            "tempCol": 7,
+            "text": "TEST\na\na\na\na\na",
+            "x": 272,
+            "y": 300
+        },
+        {
+            "duration": 398,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 35,
+                "startCol": 23,
+                "startLine": 30
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 95,
+            "y": 562
+        },
+        {
+            "duration": 290,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 14,
+                "startCol": 6,
+                "startLine": 9
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 139,
+            "y": 172
+        },
+        {
+            "duration": 218,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 30,
+                "endLine": 46,
+                "startCol": 26,
+                "startLine": 41
+            },
+            "tempCol": 26,
+            "text": "TEST\na\na\na\na\na",
+            "x": 105,
+            "y": 772
+        },
+        {
+            "duration": 356,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 53,
+                "startCol": 22,
+                "startLine": 48
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 60,
+            "y": 892
+        },
+        {
+            "duration": 315,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 24,
+                "endLine": 83,
+                "startCol": 20,
+                "startLine": 78
+            },
+            "tempCol": 20,
+            "text": "TEST\na\na\na\na\na",
+            "x": 378,
+            "y": 1460
+        },
+        {
+            "duration": 420,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 47,
+                "startCol": 17,
+                "startLine": 42
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 260,
+            "y": 785
+        },
+        {
+            "duration": 301,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 30,
+                "startCol": 6,
+                "startLine": 25
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 12,
+            "y": 466
+        },
+        {
+            "duration": 352,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 42,
+                "startCol": 1,
+                "startLine": 37
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 527,
+            "y": 694
+        },
+        {
+            "duration": 239,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 18,
+                "endLine": 51,
+                "startCol": 14,
+                "startLine": 46
+            },
+            "tempCol": 14,
+            "text": "TEST\na\na\na\na\na",
+            "x": 500,
+            "y": 862
+        },
+        {
+            "duration": 321,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 14,
+                "endLine": 31,
+                "startCol": 10,
+                "startLine": 26
+            },
+            "tempCol": 10,
+            "text": "TEST\na\na\na\na\na",
+            "x": 177,
+            "y": 488
+        },
+        {
+            "duration": 289,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 32,
+                "endLine": 12,
+                "startCol": 28,
+                "startLine": 7
+            },
+            "tempCol": 28,
+            "text": "TEST\na\na\na\na\na",
+            "x": 281,
+            "y": 132
+        },
+        {
+            "duration": 495,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 45,
+                "startCol": 27,
+                "startLine": 40
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 506,
+            "y": 759
+        },
+        {
+            "duration": 201,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 9,
+                "endLine": 24,
+                "startCol": 5,
+                "startLine": 19
+            },
+            "tempCol": 5,
+            "text": "TEST\na\na\na\na\na",
+            "x": 236,
+            "y": 353
+        },
+        {
+            "duration": 285,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 10,
+                "startCol": 16,
+                "startLine": 5
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 192,
+            "y": 89
+        },
+        {
+            "duration": 258,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 36,
+                "startCol": 23,
+                "startLine": 31
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 93,
+            "y": 577
+        },
+        {
+            "duration": 200,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 31,
+                "startCol": 23,
+                "startLine": 26
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 51,
+            "y": 487
+        },
+        {
+            "duration": 424,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 29,
+                "endLine": 71,
+                "startCol": 25,
+                "startLine": 66
+            },
+            "tempCol": 25,
+            "text": "TEST\na\na\na\na\na",
+            "x": 116,
+            "y": 1230
+        },
+        {
+            "duration": 479,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 28,
+                "endLine": 41,
+                "startCol": 24,
+                "startLine": 36
+            },
+            "tempCol": 24,
+            "text": "TEST\na\na\na\na\na",
+            "x": 394,
+            "y": 682
+        },
+        {
+            "duration": 294,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 24,
+                "endLine": 77,
+                "startCol": 20,
+                "startLine": 72
+            },
+            "tempCol": 20,
+            "text": "TEST\na\na\na\na\na",
+            "x": 470,
+            "y": 1356
+        },
+        {
+            "duration": 448,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 34,
+                "endLine": 82,
+                "startCol": 30,
+                "startLine": 77
+            },
+            "tempCol": 30,
+            "text": "TEST\na\na\na\na\na",
+            "x": 397,
+            "y": 1441
+        },
+        {
+            "duration": 310,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 13,
+                "endLine": 74,
+                "startCol": 9,
+                "startLine": 69
+            },
+            "tempCol": 9,
+            "text": "TEST\na\na\na\na\na",
+            "x": 212,
+            "y": 1292
+        },
+        {
+            "duration": 457,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 42,
+                "startCol": 1,
+                "startLine": 37
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 163,
+            "y": 703
+        },
+        {
+            "duration": 295,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 33,
+                "endLine": 77,
+                "startCol": 29,
+                "startLine": 72
+            },
+            "tempCol": 29,
+            "text": "TEST\na\na\na\na\na",
+            "x": 355,
+            "y": 1341
+        },
+        {
+            "duration": 321,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 8,
+                "endLine": 73,
+                "startCol": 4,
+                "startLine": 68
+            },
+            "tempCol": 4,
+            "text": "TEST\na\na\na\na\na",
+            "x": 141,
+            "y": 1283
+        },
+        {
+            "duration": 233,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 7,
+                "endLine": 50,
+                "startCol": 3,
+                "startLine": 45
+            },
+            "tempCol": 3,
+            "text": "TEST\na\na\na\na\na",
+            "x": 512,
+            "y": 850
+        },
+        {
+            "duration": 378,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 25,
+                "endLine": 68,
+                "startCol": 21,
+                "startLine": 63
+            },
+            "tempCol": 21,
+            "text": "TEST\na\na\na\na\na",
+            "x": 425,
+            "y": 1179
+        },
+        {
+            "duration": 476,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 22,
+                "endLine": 67,
+                "startCol": 18,
+                "startLine": 62
+            },
+            "tempCol": 18,
+            "text": "TEST\na\na\na\na\na",
+            "x": 487,
+            "y": 1160
+        },
+        {
+            "duration": 261,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 19,
+                "endLine": 72,
+                "startCol": 15,
+                "startLine": 67
+            },
+            "tempCol": 15,
+            "text": "TEST\na\na\na\na\na",
+            "x": 437,
+            "y": 1265
+        },
+        {
+            "duration": 228,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 33,
+                "endLine": 17,
+                "startCol": 29,
+                "startLine": 12
+            },
+            "tempCol": 29,
+            "text": "TEST\na\na\na\na\na",
+            "x": 87,
+            "y": 228
+        },
+        {
+            "duration": 222,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 23,
+                "startCol": 16,
+                "startLine": 18
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 190,
+            "y": 343
+        },
+        {
+            "duration": 476,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 18,
+                "startCol": 22,
+                "startLine": 13
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 478,
+            "y": 253
+        },
+        {
+            "duration": 325,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 37,
+                "startCol": 27,
+                "startLine": 32
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 11,
+            "y": 608
+        },
+        {
+            "duration": 217,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 6,
+                "endLine": 11,
+                "startCol": 2,
+                "startLine": 6
+            },
+            "tempCol": 2,
+            "text": "TEST\na\na\na\na\na",
+            "x": 148,
+            "y": 107
+        },
+        {
+            "duration": 344,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 7,
+                "endLine": 74,
+                "startCol": 3,
+                "startLine": 69
+            },
+            "tempCol": 3,
+            "text": "TEST\na\na\na\na\na",
+            "x": 80,
+            "y": 1301
+        },
+        {
+            "duration": 328,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 34,
+                "endLine": 14,
+                "startCol": 30,
+                "startLine": 9
+            },
+            "tempCol": 30,
+            "text": "TEST\na\na\na\na\na",
+            "x": 321,
+            "y": 160
+        },
+        {
+            "duration": 266,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 19,
+                "startCol": 23,
+                "startLine": 14
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 234,
+            "y": 257
+        },
+        {
+            "duration": 349,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 74,
+                "startCol": 1,
+                "startLine": 69
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 515,
+            "y": 1293
+        },
+        {
+            "duration": 348,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 30,
+                "endLine": 23,
+                "startCol": 26,
+                "startLine": 18
+            },
+            "tempCol": 26,
+            "text": "TEST\na\na\na\na\na",
+            "x": 364,
+            "y": 344
+        },
+        {
+            "duration": 409,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 24,
+                "endLine": 39,
+                "startCol": 20,
+                "startLine": 34
+            },
+            "tempCol": 20,
+            "text": "TEST\na\na\na\na\na",
+            "x": 119,
+            "y": 637
+        },
+        {
+            "duration": 498,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 11,
+                "endLine": 68,
+                "startCol": 7,
+                "startLine": 63
+            },
+            "tempCol": 7,
+            "text": "TEST\na\na\na\na\na",
+            "x": 247,
+            "y": 1175
+        },
+        {
+            "duration": 207,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 16,
+                "endLine": 27,
+                "startCol": 12,
+                "startLine": 22
+            },
+            "tempCol": 12,
+            "text": "TEST\na\na\na\na\na",
+            "x": 266,
+            "y": 411
+        },
+        {
+            "duration": 480,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 18,
+                "endLine": 82,
+                "startCol": 14,
+                "startLine": 77
+            },
+            "tempCol": 14,
+            "text": "TEST\na\na\na\na\na",
+            "x": 334,
+            "y": 1444
+        },
+        {
+            "duration": 412,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 22,
+                "endLine": 24,
+                "startCol": 18,
+                "startLine": 19
+            },
+            "tempCol": 18,
+            "text": "TEST\na\na\na\na\na",
+            "x": 129,
+            "y": 348
+        },
+        {
+            "duration": 397,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 5,
+                "endLine": 57,
+                "startCol": 1,
+                "startLine": 52
+            },
+            "tempCol": 1,
+            "text": "TEST\na\na\na\na\na",
+            "x": 31,
+            "y": 972
+        },
+        {
+            "duration": 472,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 23,
+                "endLine": 49,
+                "startCol": 19,
+                "startLine": 44
+            },
+            "tempCol": 19,
+            "text": "TEST\na\na\na\na\na",
+            "x": 192,
+            "y": 821
+        },
+        {
+            "duration": 265,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 12,
+                "endLine": 28,
+                "startCol": 8,
+                "startLine": 23
+            },
+            "tempCol": 8,
+            "text": "TEST\na\na\na\na\na",
+            "x": 216,
+            "y": 436
+        },
+        {
+            "duration": 394,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 6,
+                "endLine": 58,
+                "startCol": 2,
+                "startLine": 53
+            },
+            "tempCol": 2,
+            "text": "TEST\na\na\na\na\na",
+            "x": 425,
+            "y": 1002
+        },
+        {
+            "duration": 444,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 52,
+                "startCol": 27,
+                "startLine": 47
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 377,
+            "y": 886
+        },
+        {
+            "duration": 234,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 24,
+                "startCol": 27,
+                "startLine": 19
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 463,
+            "y": 364
+        },
+        {
+            "duration": 223,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 8,
+                "endLine": 22,
+                "startCol": 4,
+                "startLine": 17
+            },
+            "tempCol": 4,
+            "text": "TEST\na\na\na\na\na",
+            "x": 462,
+            "y": 327
+        },
+        {
+            "duration": 209,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 20,
+                "endLine": 73,
+                "startCol": 16,
+                "startLine": 68
+            },
+            "tempCol": 16,
+            "text": "TEST\na\na\na\na\na",
+            "x": 160,
+            "y": 1271
+        },
+        {
+            "duration": 261,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 28,
+                "endLine": 41,
+                "startCol": 24,
+                "startLine": 36
+            },
+            "tempCol": 24,
+            "text": "TEST\na\na\na\na\na",
+            "x": 506,
+            "y": 666
+        },
+        {
+            "duration": 500,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 13,
+                "endLine": 63,
+                "startCol": 9,
+                "startLine": 58
+            },
+            "tempCol": 9,
+            "text": "TEST\na\na\na\na\na",
+            "x": 340,
+            "y": 1089
+        },
+        {
+            "duration": 370,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 27,
+                "startCol": 6,
+                "startLine": 22
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 501,
+            "y": 421
+        },
+        {
+            "duration": 487,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 9,
+                "startCol": 23,
+                "startLine": 4
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 502,
+            "y": 82
+        },
+        {
+            "duration": 398,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 21,
+                "endLine": 54,
+                "startCol": 17,
+                "startLine": 49
+            },
+            "tempCol": 17,
+            "text": "TEST\na\na\na\na\na",
+            "x": 386,
+            "y": 927
+        },
+        {
+            "duration": 342,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 14,
+                "endLine": 67,
+                "startCol": 10,
+                "startLine": 62
+            },
+            "tempCol": 10,
+            "text": "TEST\na\na\na\na\na",
+            "x": 145,
+            "y": 1165
+        },
+        {
+            "duration": 318,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 30,
+                "endLine": 13,
+                "startCol": 26,
+                "startLine": 8
+            },
+            "tempCol": 26,
+            "text": "TEST\na\na\na\na\na",
+            "x": 198,
+            "y": 151
+        },
+        {
+            "duration": 289,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 16,
+                "endLine": 75,
+                "startCol": 12,
+                "startLine": 70
+            },
+            "tempCol": 12,
+            "text": "TEST\na\na\na\na\na",
+            "x": 464,
+            "y": 1315
+        },
+        {
+            "duration": 355,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 32,
+                "endLine": 18,
+                "startCol": 28,
+                "startLine": 13
+            },
+            "tempCol": 28,
+            "text": "TEST\na\na\na\na\na",
+            "x": 19,
+            "y": 249
+        },
+        {
+            "duration": 455,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 26,
+                "endLine": 66,
+                "startCol": 22,
+                "startLine": 61
+            },
+            "tempCol": 22,
+            "text": "TEST\na\na\na\na\na",
+            "x": 299,
+            "y": 1137
+        },
+        {
+            "duration": 224,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 27,
+                "endLine": 84,
+                "startCol": 23,
+                "startLine": 79
+            },
+            "tempCol": 23,
+            "text": "TEST\na\na\na\na\na",
+            "x": 539,
+            "y": 1481
+        },
+        {
+            "duration": 414,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 25,
+                "endLine": 8,
+                "startCol": 21,
+                "startLine": 3
+            },
+            "tempCol": 21,
+            "text": "TEST\na\na\na\na\na",
+            "x": 385,
+            "y": 62
+        },
+        {
+            "duration": 455,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 6,
+                "endLine": 52,
+                "startCol": 2,
+                "startLine": 47
+            },
+            "tempCol": 2,
+            "text": "TEST\na\na\na\na\na",
+            "x": 218,
+            "y": 882
+        },
+        {
+            "duration": 314,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 11,
+                "endLine": 45,
+                "startCol": 7,
+                "startLine": 40
+            },
+            "tempCol": 7,
+            "text": "TEST\na\na\na\na\na",
+            "x": 172,
+            "y": 747
+        },
+        {
+            "duration": 208,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 9,
+                "endLine": 84,
+                "startCol": 5,
+                "startLine": 79
+            },
+            "tempCol": 5,
+            "text": "TEST\na\na\na\na\na",
+            "x": 164,
+            "y": 1486
+        },
+        {
+            "duration": 344,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 31,
+                "endLine": 6,
+                "startCol": 27,
+                "startLine": 1
+            },
+            "tempCol": 27,
+            "text": "TEST\na\na\na\na\na",
+            "x": 300,
+            "y": 24
+        },
+        {
+            "duration": 254,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 14,
+                "endLine": 62,
+                "startCol": 10,
+                "startLine": 57
+            },
+            "tempCol": 10,
+            "text": "TEST\na\na\na\na\na",
+            "x": 189,
+            "y": 1076
+        },
+        {
+            "duration": 368,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 10,
+                "endLine": 71,
+                "startCol": 6,
+                "startLine": 66
+            },
+            "tempCol": 6,
+            "text": "TEST\na\na\na\na\na",
+            "x": 350,
+            "y": 1230
+        },
+        {
+            "duration": 393,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 7,
+                "endLine": 52,
+                "startCol": 3,
+                "startLine": 47
+            },
+            "tempCol": 3,
+            "text": "TEST\na\na\na\na\na",
+            "x": 469,
+            "y": 877
+        },
+        {
+            "duration": 354,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 15,
+                "endLine": 25,
+                "startCol": 11,
+                "startLine": 20
+            },
+            "tempCol": 11,
+            "text": "TEST\na\na\na\na\na",
+            "x": 278,
+            "y": 384
+        },
+        {
+            "duration": 249,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 34,
+                "endLine": 45,
+                "startCol": 30,
+                "startLine": 40
+            },
+            "tempCol": 30,
+            "text": "TEST\na\na\na\na\na",
+            "x": 478,
+            "y": 754
+        },
+        {
+            "duration": 408,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 34,
+                "endLine": 21,
+                "startCol": 30,
+                "startLine": 16
+            },
+            "tempCol": 30,
+            "text": "TEST\na\na\na\na\na",
+            "x": 81,
+            "y": 291
+        },
+        {
+            "duration": 468,
+            "file": "testCodes/Rule.cs",
+            "range": {
+                "endCol": 9,
+                "endLine": 50,
+                "startCol": 5,
+                "startLine": 45
+            },
+            "tempCol": 5,
+            "text": "TEST\na\na\na\na\na",
+            "x": 147,
+            "y": 853
+        }
+    ],
+    "patterns": [
+        {
+            "fixations": [
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "2"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "6"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "7"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "9"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "10"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "11"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "13"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "16"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "18"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "20"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "25"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "27"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "32"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "35"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "36"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "38"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "39"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "41"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "54"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "55"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "56"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "58"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "60"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "61"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "63"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "66"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "68"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "71"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "74"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "75"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "79"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "80"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "83"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "85"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "88"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "96"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "98"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "102"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "106"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "107"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "109"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "110"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "111"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "113"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "116"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "118"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "120"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "125"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "127"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "132"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "135"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "136"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "138"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "139"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "141"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "154"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "155"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "156"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "158"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "160"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "161"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "163"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "166"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "168"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "171"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "174"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "175"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "179"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "180"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "183"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "185"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "188"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "196"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "198"
+                }
+            ],
+            "type": "Deductive"
+        },
+        {
+            "fixations": [
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "9"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "10"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "32"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "35"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "41"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "66"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "71"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "74"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "79"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "96"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "109"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "110"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "132"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "135"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "141"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "166"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "171"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "174"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "179"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "196"
+                }
+            ],
+            "type": "IntraproceduralControlFlow"
+        },
+        {
+            "fixations": [
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "2"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "6"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "7"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "9"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "10"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "11"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "13"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "16"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "18"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "21"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "25"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "27"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "35"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "36"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "38"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "39"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "41"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "54"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "55"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "56"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "58"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "60"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "61"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "63"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "66"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "68"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "71"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "74"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "75"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "79"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "80"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "83"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "88"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "92"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "96"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "98"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "102"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "106"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "107"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "109"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "110"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "111"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "113"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "116"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "118"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "121"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "125"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "127"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "135"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "136"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "138"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "139"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "141"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "154"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "155"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "156"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "158"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "160"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "161"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "163"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "166"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "168"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "171"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "174"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "175"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "179"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "180"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "183"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "188"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "192"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "196"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "198"
+                }
+            ],
+            "type": "RetraceDeclaration"
+        },
+        {
+            "fixations": [
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "9"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "10"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "20"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "35"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "41"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "66"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "71"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "79"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "96"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "109"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "110"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "120"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "135"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "141"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "166"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "171"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "179"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "196"
+                }
+            ],
+            "type": "LinearVertical"
+        },
+        {
+            "fixations": [
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "6"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "11"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "36"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "60"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "88"
+                }
+            ],
+            "type": "JustPassingThrough"
+        }
+    ]
+}

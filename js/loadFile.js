@@ -83,10 +83,14 @@ function loadProject(){
     for(let i = 0; i <= playIndex - 1; i++){
         let line = document.createElement("div");
                 
-        line.style.left = (174 + ((i + 1) * step) + (11 - 22 * (i / playIndex))) + "px";
+        line.style.left = ((i + 1) * step) + (11 - 22 * (i / playIndex)) + "px";
         line.setAttribute("id", "fix" + i);
         line.classList.add("fixation");
         line.textContent = i;
+        
+        let fontSize = 80 / (playIndex - 1);
+        
+        line.style.fontSize = ((fontSize > 1.5) ? 1.5 : fontSize) + "em";
         
         patternWrapper.appendChild(line);
     }
