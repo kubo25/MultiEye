@@ -74,16 +74,20 @@ body{
 .editor, .cytoscape{
     position: absolute;
     display: inline-block;
-    
-    height: 600px;
-    width: 800px;
-    
+}
+
+.cytoscape{
+    width: 786px;
+    height: 590px;
     z-index: 1;
 }
 
 .editor{
     padding-top: 0px;
     z-index: 0; 
+      
+    height: 600px;
+    width: 800px;
 }
 
 .active{
@@ -136,12 +140,12 @@ body{
     background-color: var(--light-gray);
 }
 
-.slider div{
+.slideDown div{
     padding: 0 40px;
     margin: 40px 0;
 }
 
-.slider input[type="text"]{
+.slideDown input[type="text"]{
     display: block;
     margin: 0 auto;
     margin-bottom: 10px;
@@ -155,11 +159,11 @@ body{
     transition: all 0.3s ease;
 }
 
-.slider input[type="text"]:focus{
+.slideDown input[type="text"]:focus{
     border-bottom-color: var(--red-color);
 }
 
-.slider input[type="button"]{
+.slideDown input[type="button"]{
     width: 100%;
     
     padding: 10px 0;
@@ -175,7 +179,7 @@ body{
     transition: all 0.3s ease;
 }
 
-.slider input[type="button"]:hover, .slider input[type="button"]:focus{
+.slideDown input[type="button"]:hover, .slideDown input[type="button"]:focus{
     background-color: var(--red-color);
     color: white;
     font-weight: bold;
@@ -218,13 +222,13 @@ body{
     background-color: var(--light-gray);
 }
 
-.slider{
+.slideDown{
     max-height: 0;
     overflow: hidden;
     transition: 0.5s ease all;
 }
 
-.slider ul{
+.slideDown ul{
     transform: translateY(-100%);
     transition: 0.5s transform ease;
 }
@@ -242,7 +246,6 @@ svg.rotated{
 }
 
 /* Scrollbar */
-
 ::-webkit-scrollbar{ 
     width: 8px;
 }

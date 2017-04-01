@@ -18,6 +18,7 @@ class CodeWindow{
         this.file = file;
         this.id = codeWindows.length;
         this.lastNode = -1;
+        this.nodeId = 0;
         this.edits = [];
         
         let tempEditor;
@@ -92,7 +93,6 @@ class CodeWindow{
         //Create cytoscape instance and add it to this CodeWindow
         this.cy = cytoscape({
 			container: document.getElementById(cyDiv.id),
-            autoungrabify: true,
             userPanningEnabled: false,
             style: [{
                     selector: 'node',
@@ -144,13 +144,69 @@ class CodeWindow{
             e.cyTarget.addClass("selected");
         });
         
+        let scrollVert = 300;
+        let scrollHor = 400;
+        
         this.cyWrapper.onwheel = function(e){
-            let scroll = codeWindow.editor.getScrollTop() + e.deltaY;
-            scroll = (scroll < 0)? 0 : scroll;
+            scrollVert += e.deltaY / 10;
+            
+            if(scrollVert < 0){
+                return false;
+            }
+            
+            let scroll = 10 * (scrollVert - 300);
+            let scrollTop = codeWindow.editor.getScrollTop();
+            if(scrollTop + 600 === codeWindow.editor.getScrollHeight()){
+                let transform = scroll - scrollTop;
+                
+                if(transform < 0){
+                    transform = 0;
+                }
+                
+                codeWindow.cyWrapper.getElementsByClassName("editor")[0].style.transform = "translateY(" + -transform + "px)";
+            }
             
             codeWindow.editor.setScrollTop(scroll);
             codeWindow.cy.pan({x: 0, y: -scroll});
+            
+            if(codeWindow.editor.getScrollTop() === 0 && scroll <= 0){
+                codeWindow.cyWrapper.getElementsByClassName("editor")[0].style.transform = "translateY(" + -scroll + "px)";
+            }
+        };
+        
+        if(this.editor !== null){
+            this.editor.onDidScrollChange(function(e){
+                codeWindow.cy.pan({x: - e.scrollLeft, y: -e.scrollTop});
+            });
         }
+
+        let origPosition;
+        
+        this.cy.on("grab", "node", function(e){
+            origPosition = JSON.parse(JSON.stringify(e.cyTarget.position()));
+        });
+        
+        this.cy.on("free", "node", function(e){
+            let newPosition = e.cyTarget.position();
+            let dPosition = {};
+                dPosition.x = newPosition.x - origPosition.x;
+                dPosition.y = newPosition.y - origPosition.y;
+            
+            let nodes = e.cy.nodes();
+            
+            let id = parseInt(e.cyTarget.data("idInCy"));
+            
+            project.saveFixationEdit(e.cyTarget);
+            
+            for(let i = id + 1; i < nodes.length; i++){
+                let nodePosition = nodes[i].position();
+                nodePosition.x += dPosition.x;
+                nodePosition.y += dPosition.y;
+                nodes[i].position(nodePosition);
+                
+                project.saveFixationEdit(nodes[i]);
+            }
+        });
     }
     
     addText(data){
@@ -171,9 +227,15 @@ class CodeWindow{
 
         let config = { attributes: true, childList: false, characterData: false };
         observer.observe(lines, config);
-
-        this.editor.setValue(data);
-
+        
+        let oldModel = this.editor.getModel();
+        let newModel = monaco.editor.createModel(data, "csharp");
+        
+        this.editor.setModel(newModel);
+        if(oldModel){
+            oldModel.dispose();
+        }
+        
         setTimeout(function(){ //disconnect observer after 1s
             observer.disconnect();
         }, 1000);
@@ -299,15 +361,19 @@ class CodeWindow{
         }
     }
     
-    addNode(json, color = null){ 
+    addNode(json, color = null, fixationIndex){ 
         //Create new node
         let node = {
             data: {
                 id: playIndex,
-                "duration": json.duration
+                "duration": json.duration,
+                "idInCy": this.nodeId,
+                "fixationIndex": fixationIndex
             },
             position: {x: json.x * scale, y: json.y * scale},
         };
+        
+        this.nodeId++;
         
         if(this.hidden){
             node.style = {
@@ -387,12 +453,18 @@ class CodeWindow{
             this.editor.pushUndoStop();
             
             this.editor.revealLineInCenter(edit.range.endLine);
-            
+                        
             let codeWindow = this;
             
             setTimeout(function(){
                 let lineOffset = codeWindow.editor.getScrollTop();
                 codeWindow.cy.pan({x: 0, y: -lineOffset});
+                let scrollVert = codeWindow.cyWrapper.getElementsByClassName("scrollVertical")[0];
+                
+                let scroll = lineOffset / 10 + 300;
+                scroll -= scroll % 10;
+                scrollVert.dataset.scroll = scroll;
+                scrollVert.style.transform = "translateY(" + scroll + "px)";
             }, 1);
         }
         
@@ -419,6 +491,11 @@ class CodeWindow{
                 setTimeout(function(){
                     let lineOffset = codeWindow.editor.getScrollTop();
                     codeWindow.cy.pan({x: 0, y: -lineOffset});
+                    
+                    let scroll = lineOffset / 10 + 300;
+                    scroll -= scroll % 10;
+                    scrollVert.dataset.scroll = scroll;
+                    scrollVert.style.transform = "translateY(" + scroll + "px)";
                 }, 1);
             }
         }

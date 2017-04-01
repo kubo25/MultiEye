@@ -57,6 +57,13 @@ class Project{
         this.project.patterns.push(savedPattern);
     }
     
+    saveFixationEdit(fixation){
+        let saved = this.getFixations()[parseInt(fixation.data("fixationIndex"))];
+        let pos = fixation.position();
+        saved.x = pos.x;
+        saved.y = pos.y;
+    }
+    
     //Method to return the object in format to be saved
     getFile(){
         return this.project;

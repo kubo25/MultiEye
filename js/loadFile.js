@@ -15,6 +15,8 @@ function loadFile(filePath){
             return;
         }
 
+        document.title += " - " + path.basename(filePath);
+        
         project = new Project(JSON.parse(data));
         loadProject();
 
@@ -29,26 +31,27 @@ function loadFile(filePath){
 //Function loads all fixations and patterns
 function loadProject(){
     let lastColor = null;
+    let fixations = project.getFixations();
     
-    for(const json of project.getFixations()){
+    for(let i = 0; i < fixations.length; i++){
         playIndex++;
     
-        let codeWindow = codeWindows.objectWithFile(json.file); //find if CodeWindow with file already exists
+        let codeWindow = codeWindows.objectWithFile(fixations[i].file); //find if CodeWindow with file already exists
 
         if(codeWindow === null){
-            codeWindow = new CodeWindow(json.file);
+            codeWindow = new CodeWindow(fixations[i].file);
             
-            let data = fs.readFileSync(json.file, "utf-8");
+            let data = fs.readFileSync(fixations[i].file, "utf-8");
             
             codeWindow.addText(data);
             codeWindows.push(codeWindow);
         }
 
         //if next fixation is in another file then generate a color for current fixations
-        if(playIndex < project.getFixations().length - 1 && json.file !== project.getFixations()[playIndex + 1].file){
+        if(playIndex < fixations.length - 1 && fixations[i].file !== fixations[playIndex + 1].file){
             lastColor = '#'+Math.random().toString(16).substr(-6);
             
-            let node = codeWindow.addNode(json, lastColor);
+            let node = codeWindow.addNode(fixations[i], lastColor, i);
             
             fileLines.push({ //add first end of file line
                 "color": lastColor,
@@ -57,7 +60,7 @@ function loadProject(){
             });
         }
         else if(lastColor !== null){ //if current fixation is first in this file set its color
-            let node = codeWindow.addNode(json, lastColor);
+            let node = codeWindow.addNode(fixations[i], lastColor, i);
             lastColor = null;
             
             fileLines[fileIndex].node2 = node; //add second end of file line
@@ -65,12 +68,12 @@ function loadProject(){
             fileIndex++;
         }
         else{
-            codeWindow.addNode(json);
+            codeWindow.addNode(fixations[i], null, i);
         }
         
         codeWindow.edits.push({
-           "range": json.range,
-            "text": json.text
+           "range": fixations[i].range,
+            "text": fixations[i].text
         });
     }
     

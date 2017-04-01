@@ -15,7 +15,7 @@ namespace Production_system.Classes {
             conditions = new List<string>();
             actions = new List<Action>();
 
-            foreach(string condition in list[1].Substring(3).Split(';')) {
+            foreach(string condition in list[1].Substring(3).Split(';')) {eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                 conditions.Add(condition);
             }
 
