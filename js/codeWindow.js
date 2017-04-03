@@ -398,7 +398,7 @@ class CodeWindow{
         });
         
         //Create edge between nodes
-        if(this.cy.nodes().length > 1){
+        if(this.cy.nodes().length > 1 && nodeOrder[playIndex - 1].codeWindow === this){
             let edge = {
                data: {
                    id: "edge" + (playIndex - 1),
