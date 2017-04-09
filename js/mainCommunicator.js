@@ -12,3 +12,12 @@ ipcRenderer.on("saveAs", function(event, message){
 ipcRenderer.on("open", function(event, filePath){
     loadFile(filePath);
 });
+
+ipcRenderer.on("export", function(event, message){
+    let patternPath = path.dirname(projectFilePath).replace(/\\/g, "\\\\") + "\\" + path.basename(projectFilePath, ".json") + "Patterns.json";
+    ipcRenderer.send("export", [patternPath, project.getPatterns()]); 
+});
+
+ipcRenderer.on("import", function(event, filePath){
+    importPatterns(filePath)
+});

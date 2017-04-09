@@ -142,7 +142,7 @@ function sortPatternLines(){
     let hideGraph = document.getElementById("hideGraph");
     hideGraph.onclick = function(){
         let graphSection = document.getElementById("patternGraph");
-        graphSection.classList.toggle("hidden");
+        let scaleDown = graphSection.classList.toggle("hidden");
     }
     
     let patternWrapper = document.getElementById("patternWrapper");

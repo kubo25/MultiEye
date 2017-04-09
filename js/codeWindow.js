@@ -2,18 +2,14 @@ const cytoscape = require("cytoscape");
 
 let first = true;
 let scale = 1;
-let overflowDetection = true;
+let originalScale = 1;
 
 let basicSize = 20;
 let basicHeight = 560;
 
 class CodeWindow{  
-    constructor(file){
-        overflowDetection = true;
-        
+    constructor(file){        
         //Initializing class attributes
-        this.originalHeight = 0;
-        this.originalWidth = 0;
         this.selected = false;
         this.file = file;
         this.id = codeWindows.length;
@@ -194,40 +190,23 @@ class CodeWindow{
             
             let nodes = e.cy.nodes();
             
-            let id = parseInt(e.cyTarget.data("idInCy"));
+            let id = parseInt(e.cyTarget.id());
             
             project.saveFixationEdit(e.cyTarget);
             
-            for(let i = id + 1; i < nodes.length; i++){
-                let nodePosition = nodes[i].position();
+            for(let i = id + 1; i < nodeOrder.length; i++){
+                let node = nodeOrder[i].codeWindow.cy.$("#" + i);
+                let nodePosition = node.position();
                 nodePosition.x += dPosition.x;
                 nodePosition.y += dPosition.y;
-                nodes[i].position(nodePosition);
+                node.position(nodePosition);
                 
-                project.saveFixationEdit(nodes[i]);
+                project.saveFixationEdit(node);
             }
         });
     }
     
     addText(data){
-        let lines = this.cyWrapper.querySelector(".view-lines"); //get object with the full width and height of the code
-        
-        let obj = this;
-    
-        //Set up MutationObserver to get every change to the final width and height
-        let observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                //Get the newly loaded sizes
-                let newHeight = mutation.target.scrollHeight;
-                let newWidth = mutation.target.scrollWidth + 40;
-                                
-                //obj.setSize(newHeight, newWidth);
-            });    
-        });
-
-        let config = { attributes: true, childList: false, characterData: false };
-        observer.observe(lines, config);
-        
         let oldModel = this.editor.getModel();
         let newModel = monaco.editor.createModel(data, "csharp");
         
@@ -235,10 +214,6 @@ class CodeWindow{
         if(oldModel){
             oldModel.dispose();
         }
-        
-        setTimeout(function(){ //disconnect observer after 1s
-            observer.disconnect();
-        }, 1000);
     }
     
     setSize(newHeight, newWidth){
@@ -303,10 +278,6 @@ class CodeWindow{
         }
     }
     
-    _scaleDown(){
-        
-    }
-    
     select(){
         this.selected = !this.selected;
         
@@ -367,8 +338,9 @@ class CodeWindow{
             data: {
                 id: playIndex,
                 "duration": json.duration,
-                "idInCy": this.nodeId,
-                "fixationIndex": fixationIndex
+                "fixationIndex": fixationIndex,
+                "originalX": json.x,
+                "originalY": json.y
             },
             position: {x: json.x * scale, y: json.y * scale},
         };
@@ -537,5 +509,76 @@ class CodeWindow{
     
     getNodeWithId(id){
         return this.cy.$("#" + id);
+    }
+}
+
+function changeScale(down, maxHeight, original = false){
+    let codeWrapper = document.getElementById("codeWrapper");
+    if(down){
+        let finalHeight = codeWrapper.offsetHeight - maxHeight;
+        while(finalHeight > 0 && codeWrapper.offsetHeight > finalHeight){
+            scale /= 2;
+
+            transform = "scale(" + scale + ")";
+
+            for(const code of codeWindows){
+                code.cyWrapper.firstChild.style.transform = transform;
+
+                let tempHeight = 600 * scale;
+                let tempWidth = 800 * scale;
+
+                code.cyWrapper.style.height = tempHeight + "px";
+                code.cyWrapper.style.width = tempWidth + "px";
+
+                code.cyWrapper.lastChild.style.height = tempHeight + "px";
+                code.cyWrapper.lastChild.style.width = tempWidth + "px";  
+                code.cy.resize();
+
+                //Move fixations according to the scaling
+                code.cy.nodes().positions(function(i, node){
+                    let position = node.position();
+                    
+                    let upscale = (originalScale < 1)? 2 : 1;
+                    
+                    return{
+                        x: position.x * scale * upscale,
+                        y: position.y * scale * upscale
+                    };
+                });
+            }
+        }
+        
+        if(original){
+            originalScale = scale;
+        }
+    }
+    else{
+        scale = originalScale;
+        transform = "scale(" + scale + ")";
+
+        for(const code of codeWindows){
+            code.cyWrapper.firstChild.style.transform = transform;
+
+            let tempHeight = 600 * scale;
+            let tempWidth = 800 * scale;
+
+            code.cyWrapper.style.height = tempHeight + "px";
+            code.cyWrapper.style.width = tempWidth + "px";
+
+            code.cyWrapper.lastChild.style.height = tempHeight + "px";
+            code.cyWrapper.lastChild.style.width = tempWidth + "px";  
+            code.cy.resize();
+
+            //Move fixations according to the scaling
+            code.cy.nodes().positions(function(i, node){
+                let originalX = node.data("originalX");
+                let originalY = node.data("originalY");
+
+                return{
+                    x: originalX * originalScale,
+                    y: originalY * originalScale
+                };
+            });
+        }
     }
 }

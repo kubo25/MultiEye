@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 //Array of codeWindows
 let codeWindows = [];
 

@@ -38,6 +38,10 @@ class Project{
         return this.project.patterns;
     }
     
+    setPatterns(patterns){
+        this.project.patterns = patterns;
+    }
+    
     //Method to add a pattern object to the project
     savePattern(pattern){
         let savedPattern = {

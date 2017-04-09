@@ -14,9 +14,9 @@ require('electron-reload')(__dirname);
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 function createWindow () {
-  // Create the browser window.
-  mainWindow = new BrowserWindow();
-  mainWindow.maximize();
+    // Create the browser window.
+    mainWindow = new BrowserWindow();
+    mainWindow.maximize();
     
     let template = [{
             label: "File",
@@ -53,6 +53,31 @@ function createWindow () {
                     accelerator: "Shift+CmdOrCtrl+S",
                     click: function(){
                         mainWindow.webContents.send("saveAs");
+                    }
+                },
+                {
+                    label: "Export Patterns As...",
+                    click: function(){
+                        mainWindow.webContents.send("export");
+                    }
+                },
+                {
+                    label: "Import Patterns",
+                    click: function(){
+                        const dialog = electron.dialog;
+
+                        let options = {
+                            title: "Import Patterns",
+                            filters: [
+                                {name: "JSON", extensions: ["json"]}
+                            ]
+                        };
+
+                        dialog.showOpenDialog(mainWindow, options, function(filename){
+                            if(filename !== undefined){
+                                mainWindow.webContents.send("import", filename[0]);
+                            }
+                        });
                     }
                 },
                 {
@@ -100,26 +125,26 @@ function createWindow () {
         }
     ];
     
-  const menu = Menu.buildFromTemplate(template)
-  Menu.setApplicationMenu(menu);
+    const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu);
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+    // and load the index.html of the app.
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'index.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools()
 
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null
-  })
+    // Emitted when the window is closed.;
+    mainWindow.on('closed', function () {
+        // Dereference the window object, usually you would store windows
+        // in an array if your app supports multi windows, this is the time
+        // when you should delete the corresponding element.
+        mainWindow = null
+    })
 }
 
 // This method will be called when Electron has finished
@@ -129,19 +154,19 @@ app.on('ready', createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+    // On OS X it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
 })
 
 app.on('activate', function () {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) {
-    createWindow()
-  }
+    // On OS X it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (mainWindow === null) {
+        createWindow()
+    }
 })
 
 //Methods that save the project, need to change to save a format other than JSON
@@ -192,5 +217,35 @@ ipcMain.on("open", function(event, filePath){
         setTimeout(function(){
             mainWindow.webContents.send("open", filePath); 
         }, 500);
+    });
+});
+
+ipcMain.on("export", function(event, args){
+    const dialog = electron.dialog;
+    
+    let options = {
+        title: "Export Patterns As...",
+        defaultPath: args[0],
+        filters: [
+            {name: "JSON", extensions: ["json"]}
+        ]
+    };
+    
+    dialog.showSaveDialog(mainWindow, options, function(filename){
+        if(filename !== undefined){
+            const fs = require("fs");
+            fs.writeFileSync("a.json", JSON.stringify(args[1], null, 4), "utf-8");
+
+            if(fs.existsSync(filename)){
+                fs.unlinkSync(filename);
+
+                setTimeout(function(){
+                    fs.renameSync("a.json", filename);
+                }, 100);
+            }
+            else{
+                fs.renameSync("a.json", filename);
+            }
+        }
     });
 });

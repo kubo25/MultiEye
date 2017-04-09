@@ -1,6 +1,3 @@
-const fs = require("fs");
-const path = require("path");
-
 //Function creates a new CodeWindow object with text from file 
 function loadFile(filePath){
     projectFilePath = filePath;
@@ -76,7 +73,7 @@ function loadProject(){
             "text": fixations[i].text
         });
     }
-    
+        
     let patternWrapper = document.getElementById("patternWrapper");
     let seekbar = document.getElementById("seekbar");
     
@@ -101,12 +98,14 @@ function loadProject(){
     playIndex = -1; //reinitialize playIndex
     fileIndex = 0; //reinitialize fileIndex
     
-    //load all patterns saved in project
-    for(const pattern of project.getPatterns()){
-        new Pattern(pattern);
+    if(project.getPatterns() !== undefined){
+         //load all patterns saved in project
+        for(const pattern of project.getPatterns()){
+            new Pattern(pattern);
+        }
+
+        sortPatternLines();   
     }
-    
-    sortPatternLines();
 }
 
 function createTicks(max){
@@ -128,6 +127,18 @@ function createTicks(max){
         tick.appendChild(div);
         tickWrapper.appendChild(tick);
     }
+}
+
+function importPatterns(filePath){
+    let patterns = fs.readFileSync(filePath, "utf-8");
+    
+    project.setPatterns(JSON.parse(patterns));
+    
+    for(const pattern of project.getPatterns()){
+        new Pattern(pattern);
+    }
+    
+    sortPatternLines();
 }
 
 (function() {   

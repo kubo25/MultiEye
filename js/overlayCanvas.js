@@ -165,6 +165,15 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
     }
         
     window.onresize = function(){
+        let down;
+        
+        if(canvas.width > canvas.clientWidth || canvas.height > canvas.clientHeight){
+            down = true;
+        }
+        else{
+            down = false;
+        }
+        
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
 

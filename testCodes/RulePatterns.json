@@ -1,0 +1,197 @@
+[
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Rule.cs",
+                "id": 3
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": 7
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": 20
+            }
+        ],
+        "type": "Flicking"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Action.cs",
+                "id": "11"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "12"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "13"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "14"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "15"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "16"
+            }
+        ],
+        "type": "JumpControl"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "1"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "5"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "20"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "21"
+            }
+        ],
+        "type": "JustPassingThrough"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "8"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "23"
+            }
+        ],
+        "type": "LinearVertical"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "0"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "4"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "6"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "7"
+            }
+        ],
+        "type": "Flicking"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Action.cs",
+                "id": "10"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "11"
+            }
+        ],
+        "type": "JustPassingThrough"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Action.cs",
+                "id": "10"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "18"
+            }
+        ],
+        "type": "RetraceDeclaration"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "8"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "23"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "24"
+            }
+        ],
+        "type": "Flicking"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "2"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "9"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "25"
+            }
+        ],
+        "type": "Signatures"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "4"
+            },
+            {
+                "file": "testCodes/Rule.cs",
+                "id": "27"
+            }
+        ],
+        "type": "RetraceDeclaration"
+    },
+    {
+        "fixations": [
+            {
+                "file": "testCodes/Action.cs",
+                "id": "11"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "12"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "13"
+            },
+            {
+                "file": "testCodes/Action.cs",
+                "id": "14"
+            }
+        ],
+        "type": "Flicking"
+    }
+]
