@@ -443,6 +443,14 @@ class CodeWindow{
         if(this.lastNode > 0){ //if there should be an edge show it too
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 1});
         }
+        
+        if(playIndex >= config.fixationsDisplayed){
+            let index = playIndex - config.fixationsDisplayed;
+            let node = nodeOrder[index].codeWindow.cy.$("#" + index);
+            let edge = nodeOrder[index].codeWindow.cy.$("#edge" + index);
+            node.style({"opacity": 0});
+            edge.style({"opacity": 0});
+        }
     }
     
     hideLastNode(){        
@@ -480,6 +488,17 @@ class CodeWindow{
         
         if(this.lastNode < 0){
             this.setHidden();
+        }
+        
+        if(playIndex >= config.fixationsDisplayed){
+            let index = playIndex - config.fixationsDisplayed;
+            let node = nodeOrder[index].codeWindow.cy.$("#" + index);
+            let edge = nodeOrder[index].codeWindow.cy.$("#edge" + index);
+            node.style({"opacity": 1});
+            
+            if(config.fixationsDisplayed > 1){
+                edge.style({"opacity": 1});
+            }     
         }
     }
     
@@ -579,6 +598,33 @@ function changeScale(down, maxHeight, original = false){
                     y: originalY * originalScale
                 };
             });
+        }
+    }
+}
+
+function changeVisibleFixations(oldConfig, newConfig){
+    let index = playIndex - oldConfig;
+    index = (index > 0) ? index : 0;
+    
+    if(oldConfig < newConfig){
+        let diff = newConfig - oldConfig;
+        
+        
+        for(let i = index; i > index - diff && i >= 0; i--){
+            let node = nodeOrder[i].codeWindow.cy.$("#" + i);
+            let edge = nodeOrder[i].codeWindow.cy.$("#edge" + i);
+            node.style({"opacity": 1});
+            edge.style({"opacity": 1});
+        }
+    }
+    else{
+        let diff = playIndex - newConfig + 1;
+        
+        for(let i = index; i < index + diff && i < nodeOrder.length; i++){
+            let node = nodeOrder[i].codeWindow.cy.$("#" + i);
+            let edge = nodeOrder[i].codeWindow.cy.$("#edge" + i);
+            node.style({"opacity": 0});
+            edge.style({"opacity": 0});
         }
     }
 }

@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
+//Configuration object
+let config = null;
+
 //Array of codeWindows
 let codeWindows = [];
 

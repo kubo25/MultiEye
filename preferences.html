@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>Preferences</title>
+    <meta charset="utf-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="preferences.css">
+</head>
+<body>
+    <div class="rightPane"></div>
+    <ul>
+        <li>
+            <span>Number of fixations shown:</span>
+            <div class="prefTriangle"></div>
+            <input id="fixationCount" type="text" tabindex="1">
+        </li>
+    </ul>
+    <div class="buttonContainer">
+        <input type="button" value="Apply" onclick="apply()" tabindex="22">
+        <input type="button" value="Cancel" onclick="cancel()" tabindex="21">
+        <input type="button" value="OK" onclick="ok()" tabindex="20">
+    </div>
+    <script src="js/preferences.js"></script>
+</body>

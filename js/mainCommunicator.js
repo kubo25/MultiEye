@@ -21,3 +21,11 @@ ipcRenderer.on("export", function(event, message){
 ipcRenderer.on("import", function(event, filePath){
     importPatterns(filePath)
 });
+
+ipcRenderer.on("config", function(event, configObj){
+    if(config !== null && playIndex > 0){
+        changeVisibleFixations(config.fixationsDisplayed, configObj.fixationsDisplayed);
+    }
+    
+    config = configObj; 
+});

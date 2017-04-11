@@ -145,11 +145,7 @@ body{
     margin: 40px 0;
 }
 
-.slideDown input[type="text"]{
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    width: 100%;
+input[type="text"]{
     border: none;
     border-bottom: 2px solid var(--light-gray);
     
@@ -159,11 +155,18 @@ body{
     transition: all 0.3s ease;
 }
 
-.slideDown input[type="text"]:focus{
+input[type="text"]:focus{
     border-bottom-color: var(--red-color);
 }
 
-.slideDown input[type="button"]{
+.slideDown input[type="text"]{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+input[type="button"]{
     width: 100%;
     
     padding: 10px 0;
@@ -179,7 +182,7 @@ body{
     transition: all 0.3s ease;
 }
 
-.slideDown input[type="button"]:hover, .slideDown input[type="button"]:focus{
+input[type="button"]:hover, input[type="button"]:focus{
     background-color: var(--red-color);
     color: white;
     font-weight: bold;

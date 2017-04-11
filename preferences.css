@@ -1,0 +1,59 @@
+ul{
+    padding: 0;
+    margin-top: 30px;
+    margin-left: 20px;
+    list-style: none;
+    z-index: 1;
+}
+
+span{
+    display: inline-block;
+    width: 280px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 18px;
+    color: white;
+    overflow: visible;
+}
+
+ul input[type="text"]{
+    width: 250px;
+}
+
+.prefTriangle{
+    position: relative;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 0 9px 15.6px;
+    border-color: transparent transparent transparent var(--red-color); 
+    
+    top: 2px;
+    margin-left: -5px;
+    
+    user-select: none;
+}
+
+div.rightPane{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--red-color);
+    width: 300px;
+}
+
+div.buttonContainer{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+}
+
+.buttonContainer input[type="button"]{
+    display: inline-block;
+    float: right;
+    width: 94px;
+    font-size: 15px;
+}

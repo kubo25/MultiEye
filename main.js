@@ -10,9 +10,12 @@ const path = require('path')
 const url = require('url')
 require('electron-reload')(__dirname);
 
+let config;
+let configPath;
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow;
 function createWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow();
@@ -42,6 +45,9 @@ function createWindow () {
                     }
                 },
                 {
+                    type: "separator"
+                },
+                {
                     label: "Save",
                     accelerator: "CmdOrCtrl+S",
                     click: function(){
@@ -56,13 +62,18 @@ function createWindow () {
                     }
                 },
                 {
+                    type: "separator"
+                },
+                {
                     label: "Export Patterns As...",
+                    accelerator: "CmdOrCtrl+E",
                     click: function(){
                         mainWindow.webContents.send("export");
                     }
                 },
                 {
                     label: "Import Patterns",
+                    accelerator: "CmdOrCtrl+I",
                     click: function(){
                         const dialog = electron.dialog;
 
@@ -79,6 +90,33 @@ function createWindow () {
                             }
                         });
                     }
+                },
+                {
+                    type: "separator"
+                },
+                {
+                    label: "Preferences",
+                    click: function(){
+                        const path = require('path');
+                        
+                        const prefPath = path.join('file://', __dirname, '/preferences.html');
+                        
+                        let win = new BrowserWindow({ width: 600, height: 400 });
+                        win.on('close', function () { win = null });
+                        win.loadURL(prefPath);
+                        win.setResizable(false);
+                        win.setMaximizable(false);
+                        win.setMenu(null);
+                        
+                        win.webContents.once("dom-ready", function(){
+                            win.webContents.send("config", config);
+                        });
+                        
+                        win.show();
+                    }
+                },
+                {
+                    type: "separator"
                 },
                 {
                     label: "Exit",
@@ -133,24 +171,38 @@ function createWindow () {
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
         slashes: true
-    }))
+    }));
 
-    // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    let fs = require("fs");
+    configPath = app.getPath("userData") + "/config.json";
+    
+    if(fs.existsSync(configPath)){
+        config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    }
+    else{
+        config = {
+            "fixationsDisplayed": 10
+        };
+        fs.writeFileSync(configPath, JSON.stringify(config, null, 4), "utf-8");
+    }
 
+    mainWindow.webContents.on("dom-ready", function(){
+        mainWindow.webContents.send("config", config);
+    });
+    
     // Emitted when the window is closed.;
     mainWindow.on('closed', function () {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
         mainWindow = null
-    })
+    });
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -159,7 +211,7 @@ app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
         app.quit()
     }
-})
+});
 
 app.on('activate', function () {
     // On OS X it's common to re-create a window in the app when the
@@ -167,7 +219,7 @@ app.on('activate', function () {
     if (mainWindow === null) {
         createWindow()
     }
-})
+});
 
 //Methods that save the project, need to change to save a format other than JSON
 ipcMain.on("save", function(event, args){    
@@ -248,4 +300,18 @@ ipcMain.on("export", function(event, args){
             }
         }
     });
+});
+
+ipcMain.on("config", function(event, configObj){
+    config = configObj;
+    
+    mainWindow.webContents.send("config", config);
+    
+    const fs = require("fs");
+    
+    fs.writeFileSync("a.json", JSON.stringify(configObj, null, 4), "utf-8");
+    fs.unlinkSync(configPath);
+    setTimeout(function(){
+       fs.renameSync("a.json", configPath);
+    }, 100);
 });
