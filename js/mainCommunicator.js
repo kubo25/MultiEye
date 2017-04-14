@@ -24,7 +24,7 @@ ipcRenderer.on("import", function(event, filePath){
 
 ipcRenderer.on("config", function(event, configObj){
     if(config !== null && playIndex > 0){
-        changeVisibleFixations(config.fixationsDisplayed, configObj.fixationsDisplayed);
+        applyPreferences(config, configObj);
     }
     
     config = configObj; 

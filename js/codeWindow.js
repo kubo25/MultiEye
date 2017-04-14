@@ -447,6 +447,11 @@ class CodeWindow{
         if(playIndex >= config.fixationsDisplayed){
             let index = playIndex - config.fixationsDisplayed;
             let node = nodeOrder[index].codeWindow.cy.$("#" + index);
+            
+            if(node.hasClass("selected")){
+                return;
+            }
+            
             let edge = nodeOrder[index].codeWindow.cy.$("#edge" + index);
             node.style({"opacity": 0});
             edge.style({"opacity": 0});
@@ -598,33 +603,6 @@ function changeScale(down, maxHeight, original = false){
                     y: originalY * originalScale
                 };
             });
-        }
-    }
-}
-
-function changeVisibleFixations(oldConfig, newConfig){
-    let index = playIndex - oldConfig;
-    index = (index > 0) ? index : 0;
-    
-    if(oldConfig < newConfig){
-        let diff = newConfig - oldConfig;
-        
-        
-        for(let i = index; i > index - diff && i >= 0; i--){
-            let node = nodeOrder[i].codeWindow.cy.$("#" + i);
-            let edge = nodeOrder[i].codeWindow.cy.$("#edge" + i);
-            node.style({"opacity": 1});
-            edge.style({"opacity": 1});
-        }
-    }
-    else{
-        let diff = playIndex - newConfig + 1;
-        
-        for(let i = index; i < index + diff && i < nodeOrder.length; i++){
-            let node = nodeOrder[i].codeWindow.cy.$("#" + i);
-            let edge = nodeOrder[i].codeWindow.cy.$("#edge" + i);
-            node.style({"opacity": 0});
-            edge.style({"opacity": 0});
         }
     }
 }

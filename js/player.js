@@ -23,11 +23,11 @@ function loop(i, next = false, seekbarSet = false){
     //if next is set the duration is 1 to prevent async problems from popping up
     let duration = (next) ? 1 : node.duration; 
     
+    let seekbar = document.getElementById("seekbar");
+    let seekbarWrapper = document.getElementById("seekbarWrapper");
+    let step = seekbar.clientWidth / nodeOrder.length;
+
     if(!seekbarSet){ //move the seekbar thumb
-        let seekbar = document.getElementById("seekbar");
-        let seekbarWrapper = document.getElementById("seekbarWrapper");
-        let step = seekbar.clientWidth / nodeOrder.length;
-        
         let graphScrollWrapper = document.getElementById("graphScrollWrapper");
         
         if((playIndex + 2) * step > seekbarWrapper.clientWidth + seekbarWrapper.scrollLeft){
@@ -39,6 +39,9 @@ function loop(i, next = false, seekbarSet = false){
     }
             
     node.codeWindow.showNextNode();
+    
+    let slidingWindow = document.getElementById("slidingWindow");
+    slidingWindow.style.left = (step * (playIndex + 1) + 30 - parseInt(slidingWindow.style.width) + 174) + "px";
         
     if(next || !paused){
         setTimeout(function(){
@@ -58,10 +61,11 @@ function loop(i, next = false, seekbarSet = false){
 
 function previousStep(scrollbarSet){
     if(playIndex >= 0){
+        let seekbar = document.getElementById("seekbar");
+        let seekbarWrapper = document.getElementById("seekbarWrapper");
+        let step = seekbar.clientWidth / nodeOrder.length;
+        
         if(!scrollbarSet){
-            let seekbar = document.getElementById("seekbar");
-            let seekbarWrapper = document.getElementById("seekbarWrapper");
-            let step = seekbar.clientWidth / nodeOrder.length;
             let graphScrollWrapper = document.getElementById("graphScrollWrapper");
             
             
@@ -74,6 +78,9 @@ function previousStep(scrollbarSet){
         }
 
         nodeOrder[playIndex].codeWindow.hideLastNode();
+        
+        let slidingWindow = document.getElementById("slidingWindow");
+        slidingWindow.style.left = (step * playIndex + 30 - parseInt(slidingWindow.style.width) + 174) + "px";
         
         //change the active codeWindow
         if(playIndex > 1 && nodeOrder[playIndex].codeWindow.file !== nodeOrder[playIndex - 1].codeWindow.file){

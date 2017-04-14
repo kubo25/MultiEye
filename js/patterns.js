@@ -176,11 +176,16 @@ function sortPatternLines(){
             seekbar.style.width = (originalWidth * lastScale) + "px";
             push.style.width = (lastScale * 100) + "%";
             
+            let slidingWindow = document.getElementById("slidingWindow");
+            
+            slidingWindow.style.transform = scaleX;
+            slidingWindow.style.left = (parseInt(slidingWindow.style.left) + 30 * lastScale) + "px";
+            
+            loop(1, true, true);
+            previousStep(true);
+            
             let newHeight = patternWrapper.getBoundingClientRect().height;
-            
-            console.log(originalHeight);
-            console.log(newHeight);
-            
+
             pushBottom.style.height = (1.1 * (newHeight - originalHeight) + 10) + "px";
         }
         else{
@@ -193,5 +198,11 @@ function sortPatternLines(){
     
     seekbarWrapper.onscroll = function(e){
         graphScrollWrapper.scrollLeft = seekbarWrapper.scrollLeft;
+        
+        let slidingWindow = document.getElementById("slidingWindow");
+        
+        let transform = "scaleX(" + lastScale + ") translateX(" + (-seekbarWrapper.scrollLeft / lastScale) + "px)";
+        
+        slidingWindow.style.transform = transform;
     }
 })();

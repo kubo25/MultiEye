@@ -181,7 +181,8 @@ function createWindow () {
     }
     else{
         config = {
-            "fixationsDisplayed": 10
+            "fixationsDisplayed": 10,
+            "showSlidingWindow": true
         };
         fs.writeFileSync(configPath, JSON.stringify(config, null, 4), "utf-8");
     }

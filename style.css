@@ -279,8 +279,10 @@ svg.rotated{
     width: 154px;
     height: 100%;
     vertical-align: top;
-    margin-left: 20px;
+    padding-left: 20px;
     -webkit-user-select: none;
+    z-index: 13;
+    background-color: white;
 }
 
 #previousButton, #playButton, #nextButton{
@@ -484,6 +486,21 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 1px;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,0.2);
+}
+
+#slidingWindow{
+    position: absolute;
+    left: 174px;
+    width: 30px;
+    height: 95%;
+    
+    margin-top: 10px;
+    
+    border: 1px solid black;
+    transform-origin: right;
+    
+    pointer-events: none;
+    z-index: 12;
 }
 
 /* Pattern graph */

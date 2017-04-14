@@ -127,6 +127,11 @@ function createTicks(max){
         tick.appendChild(div);
         tickWrapper.appendChild(tick);
     }
+    
+    let slidingWindow = document.getElementById("slidingWindow");
+    
+    slidingWindow.style.width = (config.fixationsDisplayed * step) + "px";
+    slidingWindow.style.left = (174 + 30 - config.fixationsDisplayed * step) + "px";
 }
 
 function importPatterns(filePath){
