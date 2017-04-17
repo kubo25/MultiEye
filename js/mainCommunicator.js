@@ -23,9 +23,7 @@ ipcRenderer.on("import", function(event, filePath){
 });
 
 ipcRenderer.on("config", function(event, configObj){
-    if(config !== null){
-        applyPreferences(config, configObj);
-    }
-    
+    applyPreferences(config, configObj);
+        
     config = configObj; 
 });

@@ -120,10 +120,7 @@ body{
     margin-bottom: 20px;
     margin-left: 20px;
     
-    overflow: hidden;
-    
-    --box-shadow-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0px 0px 20px var(--box-shadow-color);
+    overflow: visible;
     
     background-color: white;
     
@@ -131,8 +128,24 @@ body{
 }
 
 .scaleWrapper{
+    display: block;
+    position: absolute;
+    width: 800px;
+    height: 600px;
+    background-color: white;
+    --box-shadow-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 0px 20px var(--box-shadow-color);
+    overflow: hidden;
     transform-origin: top left;
     transition: 0.5s ease all;
+}
+
+.active > .scaleWrapper{
+    --box-shadow-color: rgba(0, 0, 0, 0.7);
+}
+
+.pendingSelection > .scaleWrapper{
+    --box-shadow-color: var(--red-color) !important;
 }
 
 .editor, .cytoscape{
@@ -152,14 +165,8 @@ body{
       
     height: 600px;
     width: 800px;
-}
-
-.active{
-    --box-shadow-color: rgba(0, 0, 0, 0.7);
-}
-
-.pendingSelection{
-    --box-shadow-color: var(--red-color) !important;
+    
+    background-color: white;
 }
 
 .blurred{

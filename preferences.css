@@ -1,4 +1,4 @@
-ul{
+.preferences{
     padding: 0;
     margin-top: 30px;
     margin-left: 20px;
@@ -6,7 +6,7 @@ ul{
     z-index: 1;
 }
 
-li{
+.preferences li{
     margin-bottom: 20px;
 }
 
@@ -114,4 +114,58 @@ input[type=checkbox] {
 
 .checkBox input[type=checkbox]:checked + label {
 	left: 40px;
+}
+
+#languageSelect{
+    display: inline-block;
+    width: 250px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+#languageSelect span{
+    width: 250px;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    color: black;
+    border-bottom: 2px solid var(--light-gray);
+    user-select: none;
+}
+
+#languageSelect span:hover, .selectingLanguage{
+    border-color: var(--red-color) !important;
+}
+
+#languageSelect ul{
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    max-height: 0;
+    width: 248px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: white;
+    overflow: auto;
+    z-index: 1;
+    
+    transition: max-height 0.1s ease;
+}
+
+.open{
+    max-height: 150px !important;
+    border: 1px solid var(--red-color);
+    border-top: none;
+}
+
+#languageSelect li{
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+#languageSelect li:hover{
+    background-color: var(--light-gray);
 }

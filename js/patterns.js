@@ -53,6 +53,10 @@ class Pattern{
         let firstFixationId = this.fixations[0].node.id();
         let lastFixationId = this.fixations[this.fixations.length - 1].node.id();
         
+        if(firstFixationId == undefined || lastFixationId == undefined){
+            console.log(this);
+        }
+        
         let start = parseFloat(document.getElementById("fix" + firstFixationId).style.left);
         let end = parseFloat(document.getElementById("fix" + lastFixationId).style.left);
         
@@ -142,7 +146,16 @@ function sortPatternLines(){
     let hideGraph = document.getElementById("hideGraph");
     hideGraph.onclick = function(){
         let graphSection = document.getElementById("patternGraph");
-        let scaleDown = graphSection.classList.toggle("hidden");
+        let scaleUp = graphSection.classList.toggle("hidden");
+        
+        setTimeout(function(){
+            if(scaleUp){
+                 changeScale(false, window.innerHeight - 110);
+            }
+            else{
+                changeScale(true, window.innerHeight - 250);    
+            }
+        }, 250);
     }
     
     let patternWrapper = document.getElementById("patternWrapper");

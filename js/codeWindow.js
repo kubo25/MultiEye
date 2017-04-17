@@ -62,8 +62,7 @@ class CodeWindow{
                 
         amdRequire(['vs/editor/editor.main'], function() {
             tempEditor = monaco.editor.create(document.getElementById(editorDiv.id), {
-                scrollBeyondLastLine: false,
-                language: 'csharp'
+                scrollBeyondLastLine: false
             });
             
             //First loading takes some time, so create first instance on application init
@@ -131,6 +130,10 @@ class CodeWindow{
                 selectedWindows = [];
                 codeWindow.unselect();
                 document.getElementById("selectionButtons").style.opacity = 0;
+                
+                for(const blur of codeWindows){
+                    blur.cyWrapper.classList.remove("blurred");
+                }
             }
         });
         
@@ -139,6 +142,10 @@ class CodeWindow{
                 selectedWindows = [];
                 codeWindow.unselect(); 
                 document.getElementById("selectionButtons").style.opacity = 0;
+                
+                for(const blur of codeWindows){
+                    blur.cyWrapper.classList.remove("blurred");
+                }
             }
         });
         
@@ -152,15 +159,18 @@ class CodeWindow{
         
         let scrollVert = 300;
         let scrollHor = 400;
+        let wheel = false;
+        let transformed = false;
         
-        this.cyWrapper.onwheel = function(e){
+        this.cyWrapper.onwheel = function(e){  
+            wheel = true;
             scrollVert += e.deltaY / 10;
             
             if(scrollVert < 0){
                 return false;
             }
             
-            let scroll = 10 * (scrollVert - 300);
+            let scroll = (Math.ceil(10 * (scrollVert - 300) / 100)) * 100;
             let scrollTop = codeWindow.editor.getScrollTop();
             if(scrollTop + 600 === codeWindow.editor.getScrollHeight()){
                 let transform = scroll - scrollTop;
@@ -175,14 +185,24 @@ class CodeWindow{
             codeWindow.editor.setScrollTop(scroll);
             codeWindow.cy.pan({x: 0, y: -scroll});
             
-            if(codeWindow.editor.getScrollTop() === 0 && scroll <= 0){
+            if(codeWindow.editor.getScrollTop() === 0 && scroll <= -100){
+                transformed = true;
                 codeWindow.cyWrapper.getElementsByClassName("editor")[0].style.transform = "translateY(" + -scroll + "px)";
             }
+            else if(transformed && scroll >= 0){
+                transformed = false;
+                codeWindow.cyWrapper.getElementsByClassName("editor")[0].style.transform = "";
+            }
+            
+            wheel = false;
         };
         
         if(this.editor !== null){
             this.editor.onDidScrollChange(function(e){
                 codeWindow.cy.pan({x: - e.scrollLeft, y: -e.scrollTop});
+                if(!wheel){
+                    scrollVert = e.scrollTop / 10 + 300;
+                }
             });
         }
 
@@ -218,7 +238,7 @@ class CodeWindow{
     
     addText(data){
         let oldModel = this.editor.getModel();
-        let newModel = monaco.editor.createModel(data, "csharp");
+        let newModel = monaco.editor.createModel(data, config.language);
         
         this.editor.setModel(newModel);
         if(oldModel){
@@ -292,9 +312,12 @@ class CodeWindow{
         this.selected = true;
         
         this.cyWrapper.classList.remove("pendingSelection");
-        
+
         this.cyWrapper.firstChild.style.transform = "scale(1)";  
 
+        this.cyWrapper.lastChild.style.width = "786px";
+        this.cyWrapper.lastChild.style.height = "590px";
+        
         this.cy.zoom(1 / scale);
         this.cy.style().selector("node").style({"font-size": 15 * scale, "height" : basicSize * scale, "width" : basicSize * scale}).update();
         this.cy.style().selector("edge").style({"width" : 3 * scale}).update();
@@ -303,15 +326,16 @@ class CodeWindow{
 
         this.cyWrapper.addEventListener("webkitTransitionEnd", function(){
             cy.resize();
-        })
+        });
 
         this.cyWrapper.style.zIndex = 13;
 
         let boundingBox = this.getBoundingClientRect();
-
         
-        let centerX = window.innerWidth / 2;
-        let centerY = window.innerHeight / 2;
+        let codeWrapper = document.getElementById("codeWrapper");
+        
+        let centerX = codeWrapper.offsetWidth / 2;
+        let centerY = codeWrapper.offsetHeight / 2;
 
         let positionX = centerX - (boundingBox.left + 800 / 2);
         let positionY = centerY - (boundingBox.top + 600 / 2);
@@ -324,21 +348,16 @@ class CodeWindow{
         }
 
         this.cyWrapper.style.transform = "translate(" + positionX + "px, " + positionY + "px)";
-        
-        for(const blur of codeWindows){
-            if(blur !== this){
-                blur.cyWrapper.classList.add("blurred");
-            }
-        }
     }
     
     unselect(){
         this.selected = false;
         
         this.cyWrapper.firstChild.style.transform = "scale(" + scale + ")";
-
-        this.cy.resize();
-
+        
+        this.cyWrapper.lastChild.style.width = (786 * scale) + "px";
+        this.cyWrapper.lastChild.style.height = (590 * scale) + "px";
+        
         this.cy.zoom(1);
         this.cy.style().selector("node").style({"font-size": 15, "height" : basicSize, "width" : basicSize}).update();
         this.cy.style().selector("edge").style({"width" : 3}).update();
@@ -346,12 +365,6 @@ class CodeWindow{
         this.cyWrapper.style.zIndex = "";
 
         this.cyWrapper.style.transform = "";
-        
-        for(const blur of codeWindows){
-            if(blur !== this){
-                blur.cyWrapper.classList.remove("blurred");
-            }
-        }
     }
     
     addNode(json, color = null, fixationIndex){ 
@@ -422,7 +435,8 @@ class CodeWindow{
         node.style({ //show the node and set it's new size
             "opacity": 1,
             "width": size * scale,
-            "height": size * scale
+            "height": size * scale,
+            "font-size": 15 * scale
         });
         
         let edit = this.edits[this.lastNode];
@@ -561,34 +575,32 @@ class CodeWindow{
 function changeScale(down, maxHeight, original = false){
     let codeWrapper = document.getElementById("codeWrapper");
     if(down){
-        let finalHeight = codeWrapper.offsetHeight - maxHeight;
-        while(finalHeight > 0 && codeWrapper.offsetHeight > finalHeight){
-            scale /= 2;
+        while(codeWrapper.offsetHeight > maxHeight){
+            scale /= 1.2;
 
             transform = "scale(" + scale + ")";
 
-            for(const code of codeWindows){
-                code.cyWrapper.firstChild.style.transform = transform;
+            for(const codeWindow of codeWindows){
+                codeWindow.cyWrapper.firstChild.style.transform = transform;
 
                 let tempHeight = 600 * scale;
                 let tempWidth = 800 * scale;
 
-                code.cyWrapper.style.height = tempHeight + "px";
-                code.cyWrapper.style.width = tempWidth + "px";
+                codeWindow.cyWrapper.style.height = tempHeight + "px";
+                codeWindow.cyWrapper.style.width = tempWidth + "px";
 
-                code.cyWrapper.lastChild.style.height = tempHeight + "px";
-                code.cyWrapper.lastChild.style.width = tempWidth + "px";  
-                code.cy.resize();
+                codeWindow.cyWrapper.lastChild.style.height = tempHeight + "px";
+                codeWindow.cyWrapper.lastChild.style.width = tempWidth + "px";  
+                codeWindow.cy.resize();
 
                 //Move fixations according to the scaling
-                code.cy.nodes().positions(function(i, node){
-                    let position = node.position();
-                    
-                    let upscale = (originalScale < 1)? 2 : 1;
-                    
+                codeWindow.cy.nodes().positions(function(i, node){
+                    let positionX = node.data("originalX");
+                    let positionY = node.data("originalY");
+                                        
                     return{
-                        x: position.x * scale * upscale,
-                        y: position.y * scale * upscale
+                        x: positionX * scale,
+                        y: positionY * scale
                     };
                 });
             }
@@ -599,32 +611,37 @@ function changeScale(down, maxHeight, original = false){
         }
     }
     else{
-        scale = originalScale;
-        transform = "scale(" + scale + ")";
+        while(codeWrapper.offsetHeight < maxHeight){
+            scale *= 1.2;
 
-        for(const code of codeWindows){
-            code.cyWrapper.firstChild.style.transform = transform;
+            transform = "scale(" + scale + ")";
 
-            let tempHeight = 600 * scale;
-            let tempWidth = 800 * scale;
+            for(const codeWindow of codeWindows){
+                codeWindow.cyWrapper.firstChild.style.transform = transform;
 
-            code.cyWrapper.style.height = tempHeight + "px";
-            code.cyWrapper.style.width = tempWidth + "px";
+                let tempHeight = 600 * scale;
+                let tempWidth = 800 * scale;
 
-            code.cyWrapper.lastChild.style.height = tempHeight + "px";
-            code.cyWrapper.lastChild.style.width = tempWidth + "px";  
-            code.cy.resize();
+                codeWindow.cyWrapper.style.height = tempHeight + "px";
+                codeWindow.cyWrapper.style.width = tempWidth + "px";
 
-            //Move fixations according to the scaling
-            code.cy.nodes().positions(function(i, node){
-                let originalX = node.data("originalX");
-                let originalY = node.data("originalY");
+                codeWindow.cyWrapper.lastChild.style.height = tempHeight + "px";
+                codeWindow.cyWrapper.lastChild.style.width = tempWidth + "px";  
+                codeWindow.cy.resize();
 
-                return{
-                    x: originalX * originalScale,
-                    y: originalY * originalScale
-                };
-            });
+                //Move fixations according to the scaling
+                codeWindow.cy.nodes().positions(function(i, node){
+                    let positionX = node.data("originalX");
+                    let positionY = node.data("originalY");
+                                        
+                    return{
+                        x: positionX * scale,
+                        y: positionY * scale
+                    };
+                });
+            }
         }
+        
+        changeScale(true, maxHeight);
     }
 }

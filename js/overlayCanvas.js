@@ -46,6 +46,10 @@ function unselectWindows(){
     selectedWindows = [];
     
     document.getElementById("selectionButtons").style.opacity = 0;
+    
+    for(const blur of codeWindows){
+        blur.cyWrapper.classList.remove("blurred");
+    }
 }
 
 function showNext(){
@@ -208,9 +212,15 @@ function showPrevious(){
             if(ctrlDown){
                 codeWindow.cyWrapper.classList.add("pendingSelection");
             }
-            else{
+            else if(!ctrlDown && selectedWindows.length === 1){
                 document.getElementById("selectionButtons").style.opacity = 1;
                 codeWindow.select(true); 
+                      
+                for(const blur of codeWindows){
+                    if(blur !== codeWindow){
+                        blur.cyWrapper.classList.add("blurred");
+                    }
+                }
             }
         }
     }
@@ -239,10 +249,18 @@ function showPrevious(){
                 first = false;
             }
             
+            for(const blur of codeWindows){
+                if(!blur.selected){
+                    blur.cyWrapper.classList.add("blurred");
+                }
+            }
+            
             return false;
         }
     }
-        
+    
+    let scaling;
+    
     window.onresize = function(){
         let down;
         
@@ -252,6 +270,11 @@ function showPrevious(){
         else{
             down = false;
         }
+        
+        clearTimeout(scaling);
+        scaling = setTimeout(function(){
+            changeScale(down, window.innerHeight - 110);   
+        }, 300);
         
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
@@ -264,6 +287,6 @@ function showPrevious(){
     }
     
     document.getElementById("closeSelection").onclick = unselectWindows;
-    document.getElementById("changeLeft").onclick = showNext;
-    document.getElementById("changeRight").onclick = showPrevious;
+    document.getElementById("changeLeft").onclick = showPrevious;
+    document.getElementById("changeRight").onclick = showNext;
 })();

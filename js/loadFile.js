@@ -73,6 +73,8 @@ function loadProject(){
             "text": fixations[i].text
         });
     }
+    
+    changeScale(true, window.innerHeight - 110, true);
         
     let patternWrapper = document.getElementById("patternWrapper");
     let seekbar = document.getElementById("seekbar");
