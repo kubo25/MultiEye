@@ -38,6 +38,46 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
     return selectedWindows;
 }
 
+function unselectWindows(){
+    for(const codeWindow of selectedWindows){
+        codeWindow.unselect();
+    }
+    
+    selectedWindows = [];
+    
+    document.getElementById("selectionButtons").style.opacity = 0;
+}
+
+function showNext(){
+    if(currentlySelectedIndex === selectedWindows.length - 1){
+        return;
+    }
+        
+    selectedWindows[currentlySelectedIndex].cyWrapper.style.transform = "translate(-10000px," + 
+        selectedWindows[currentlySelectedIndex].centerY + "px)";
+    
+    currentlySelectedIndex++;
+    
+    selectedWindows[currentlySelectedIndex].cyWrapper.style.transform = "translate(" +
+        selectedWindows[currentlySelectedIndex].centerX + "px, " +
+        selectedWindows[currentlySelectedIndex].centerY + "px)";
+}
+
+function showPrevious(){
+    if(currentlySelectedIndex === 0){
+        return;
+    }
+        
+    selectedWindows[currentlySelectedIndex].cyWrapper.style.transform = "translate(10000px," + 
+        selectedWindows[currentlySelectedIndex].centerY + "px)";
+    
+    currentlySelectedIndex--;
+
+    selectedWindows[currentlySelectedIndex].cyWrapper.style.transform = "translate(" +
+        selectedWindows[currentlySelectedIndex].centerX + "px, " +
+        selectedWindows[currentlySelectedIndex].centerY + "px)";
+}
+
 (function(){
     let isDrawing = false;
     let isDragging = false;
@@ -128,11 +168,12 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
             context.stroke();
         }
     }
-    
+        
     canvas.onclick = function(e){
         if(!isDragging){
             let codeWindow = findSelectedCodeWindows(true, startX, startY);
 
+            //deselect fixations when clicking to empty space
             if(codeWindow.length === 0){
                 for(const codeWindow of codeWindows){
                     let selected = codeWindow.cy.$(".selected");
@@ -160,7 +201,45 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                 }
             }
             
-            codeWindow.select(); 
+            if(!codeWindow.cyWrapper.classList.contains("pendingSelection")){
+               selectedWindows.push(codeWindow);
+            }
+            
+            if(ctrlDown){
+                codeWindow.cyWrapper.classList.add("pendingSelection");
+            }
+            else{
+                document.getElementById("selectionButtons").style.opacity = 1;
+                codeWindow.select(true); 
+            }
+        }
+    }
+    
+    let ctrlDown = false;
+    
+    window.onkeydown = function(event){
+        if(!ctrlDown && event.ctrlKey){
+            ctrlDown = true;
+            return false;
+        }
+    }
+    
+    window.onkeyup = function(event){
+        if(ctrlDown && !event.ctrlKey){
+            ctrlDown = false;
+            
+            if(selectedWindows.length > 0){
+                document.getElementById("selectionButtons").style.opacity = 1;
+            }
+            
+            let first = true;
+            
+            for(const codeWindow of selectedWindows){
+                codeWindow.select(first);
+                first = false;
+            }
+            
+            return false;
         }
     }
         
@@ -183,4 +262,8 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
         fileLinesCanvas.width = fileLinesCanvas.clientWidth;
         fileLinesCanvas.height = fileLinesCanvas.clientHeight;
     }
+    
+    document.getElementById("closeSelection").onclick = unselectWindows;
+    document.getElementById("changeLeft").onclick = showNext;
+    document.getElementById("changeRight").onclick = showPrevious;
 })();

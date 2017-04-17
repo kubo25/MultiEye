@@ -102,7 +102,7 @@ input[type=checkbox] {
 
 	border-radius: 50px;
 
-	transition: all 0.1s ease;
+	transition: all 0.2s ease;
 	cursor: pointer;
 	position: absolute;
 	top: 1px;

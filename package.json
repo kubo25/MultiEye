@@ -1,6 +1,6 @@
 {
   "name": "multieye",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "Multi-document eye tracking visualizer",
   "main": "main.js",
   "scripts": {

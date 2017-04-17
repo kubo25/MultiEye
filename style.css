@@ -43,14 +43,78 @@ body{
     flex: 1;
 }
 
+#selectionButtons{
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.changeSelected{
+    display: block;
+    position: absolute;
+    height: 70px;
+    width: 30px;
+    top: 50%;
+    z-index: 13;
+    cursor: pointer;
+}
+
+.changeSelected svg{
+    height: 70px;
+    width: 30px;
+}
+
+.changeSelected path{
+    stroke: black;
+    stroke-width: 4px;
+    stroke-linecap: square;
+    fill: transparent;
+    transition: stroke 0.3s ease;
+}
+
+.changeSelected:hover path{
+    stroke: var(--red-color);
+}
+
+#changeLeft{
+    margin-left: 5px;
+}
+
+#changeRight{
+    right: 25px;
+}
+
+#closeSelection{
+    display: block;
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    top: 0;
+    right: 25px;
+    cursor: pointer;
+    z-index: 13;
+}
+
+#closeSelection::after{
+    content: "\00d7";
+    display: block;
+    text-align: center;
+    font-size: 60px;
+    line-height: 60px;
+    transition: color 0.3s ease;
+}
+
+#closeSelection:hover::after{
+    color: var(--red-color);
+}
+
 /* Code window*/
 .cyWrapper{
     position: relative;
     display: inline-block;
     vertical-align: top;
     
-    height: 600px;
     width: 800px;
+    height: 600px;
     
     margin-right: 20px;
     margin-bottom: 20px;
@@ -94,6 +158,10 @@ body{
     --box-shadow-color: rgba(0, 0, 0, 0.7);
 }
 
+.pendingSelection{
+    --box-shadow-color: var(--red-color) !important;
+}
+
 .blurred{
     filter: blur(3px);
 }
@@ -105,7 +173,7 @@ body{
     left: calc(100vw - 20px);
     height: 100vh;
     
-    z-index: 12;
+    z-index: 14;
     
     background-color: white;
     box-shadow: 3px 3px 20px rgba(0,0,0,0.25);

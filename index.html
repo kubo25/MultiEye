@@ -24,7 +24,20 @@
 <body>
     <canvas id="boxSelectCanvas"></canvas>
     <canvas id="fileLinesCanvas"></canvas>
-    <section id="codeWrapper"></section>
+    <section id="codeWrapper">
+        <div id="selectionButtons">
+            <div id="closeSelection"></div>
+            <div class="changeSelected" id="changeLeft">
+                <svg>
+                    <path id="p1" d="M25 10 L2 35 L25 60"></path>
+                </svg>
+            </div>
+            <div class="changeSelected" id="changeRight"><svg>
+                    <path id="p1" d="M2 10 L25 35 L2 60"></path>
+                </svg>
+            </div>
+        </div>
+    </section>
     <section id="patternBox">
         <div class="sliderTitle">
             <p>Patterns</p>

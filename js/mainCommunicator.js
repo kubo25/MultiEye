@@ -23,7 +23,7 @@ ipcRenderer.on("import", function(event, filePath){
 });
 
 ipcRenderer.on("config", function(event, configObj){
-    if(config !== null && playIndex > 0){
+    if(config !== null){
         applyPreferences(config, configObj);
     }
     

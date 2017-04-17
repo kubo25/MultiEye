@@ -24,6 +24,10 @@ let fileLines = [];
 let playIndex = -1; //integer that says on what index of nodeOrder is the playback currently
 let fileIndex = 0;
 
+//Array of selected codeWindows
+let selectedWindows = [];
+let currentlySelectedIndex = 0;
+
 //Array prototype function for codeWindows array to find which CodeWindow has (file)
 Array.prototype.objectWithFile = function(file){
     for(let i = 0; i < this.length; i++){
@@ -34,13 +38,13 @@ Array.prototype.objectWithFile = function(file){
     return null;
 }
 
-
+//Function to apply preferences after change
 function applyPreferences(oldConfig, newConfig){
     let index = playIndex - oldConfig.fixationsDisplayed;
     index = (index > 0) ? index : 0;
     let slidingWindow = document.getElementById("slidingWindow");
     
-    if(oldConfig.fixationsDisplayed !== newConfig.fixationsDisplayed){
+    if(playIndex > 1 && oldConfig.fixationsDisplayed !== newConfig.fixationsDisplayed){
         let seekbar = document.getElementById("seekbar");
         let step = 1700 / nodeOrder.length;
 

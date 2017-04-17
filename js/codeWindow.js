@@ -16,6 +16,8 @@ class CodeWindow{
         this.lastNode = -1;
         this.nodeId = 0;
         this.edits = [];
+        this.centerX = 0;
+        this.centerY = 0;
         
         let tempEditor;
         
@@ -104,32 +106,40 @@ class CodeWindow{
                         width: basicSize,
                         height: basicSize
                     }
-                }, {
+                }, 
+                {
                     selector: 'edge',
                     style: {
                         'line-color': 'grey',
                         width: 3
                     }
-                }, {
+                }, 
+                {
                     selector: '.selected',
                     style: {
                         'border-width': '4px',
                         'border-color': '#c70219',
                         'border-style': 'solid'
                     }
-                }],
+                }]
 		});
         
         let codeWindow = this;
         
         this.cy.on("click", function(e){
-            if(e.cyTarget === e.cy){
-                codeWindow.select();
+            if(e.cyTarget === e.cy && selectedWindows.length === 1){
+                selectedWindows = [];
+                codeWindow.unselect();
+                document.getElementById("selectionButtons").style.opacity = 0;
             }
         });
         
         this.cy.on("click", "edge", function(e){
-           codeWindow.select(); 
+            if(selectedWindows.length === 1){
+                selectedWindows = [];
+                codeWindow.unselect(); 
+                document.getElementById("selectionButtons").style.opacity = 0;
+            }
         });
         
         this.cy.on("click", "node", function(e){
@@ -278,56 +288,68 @@ class CodeWindow{
         }
     }
     
-    select(){
-        this.selected = !this.selected;
+    select(first){
+        this.selected = true;
         
-        if(this.selected){
-            this.cyWrapper.firstChild.style.transform = "scale(1)";  
-            
-            this.cy.zoom(1 / scale);
-            this.cy.style().selector("node").style({"font-size": 15 * scale, "height" : basicSize * scale, "width" : basicSize * scale}).update();
-            this.cy.style().selector("edge").style({"width" : 3 * scale}).update();
-            
-            let cy = this.cy;
-            
-            this.cyWrapper.addEventListener("webkitTransitionEnd", function(){
-                cy.resize();
-            })
-            
-            this.cyWrapper.style.zIndex = 13;
-            
-            let boundingBox = this.getBoundingClientRect();
-
-            let centerX = window.innerWidth / 2;
-            let centerY = window.innerHeight / 2;
-
-            let positionX = centerX - (boundingBox.left + 600 / 2);
-            let positionY = centerY - (boundingBox.top + boundingBox.height / 2);
+        this.cyWrapper.classList.remove("pendingSelection");
         
-            this.cyWrapper.style.transform = "translate(" + positionX + "px, " + positionY + "px)";
+        this.cyWrapper.firstChild.style.transform = "scale(1)";  
+
+        this.cy.zoom(1 / scale);
+        this.cy.style().selector("node").style({"font-size": 15 * scale, "height" : basicSize * scale, "width" : basicSize * scale}).update();
+        this.cy.style().selector("edge").style({"width" : 3 * scale}).update();
+
+        let cy = this.cy;
+
+        this.cyWrapper.addEventListener("webkitTransitionEnd", function(){
+            cy.resize();
+        })
+
+        this.cyWrapper.style.zIndex = 13;
+
+        let boundingBox = this.getBoundingClientRect();
+
+        
+        let centerX = window.innerWidth / 2;
+        let centerY = window.innerHeight / 2;
+
+        let positionX = centerX - (boundingBox.left + 800 / 2);
+        let positionY = centerY - (boundingBox.top + 600 / 2);
+        
+        this.centerX = positionX;
+        this.centerY = positionY;
+        
+        if(!first){
+            positionX = 10000;
         }
-        else{
-            this.cyWrapper.firstChild.style.transform = "scale(" + scale + ")";
-             
-            this.cy.resize();
-            
-            this.cy.zoom(1);
-            this.cy.style().selector("node").style({"font-size": 15, "height" : basicSize, "width" : basicSize}).update();
-            this.cy.style().selector("edge").style({"width" : 3}).update();
-            
-            this.cyWrapper.style.zIndex = "";
-            
-            this.cyWrapper.style.transform = "";
-        }
+
+        this.cyWrapper.style.transform = "translate(" + positionX + "px, " + positionY + "px)";
         
         for(const blur of codeWindows){
             if(blur !== this){
-                if(blur.cyWrapper.classList.contains("blurred")){
-                    blur.cyWrapper.classList.remove("blurred");
-                }
-                else{
-                    blur.cyWrapper.classList.add("blurred");
-                }
+                blur.cyWrapper.classList.add("blurred");
+            }
+        }
+    }
+    
+    unselect(){
+        this.selected = false;
+        
+        this.cyWrapper.firstChild.style.transform = "scale(" + scale + ")";
+
+        this.cy.resize();
+
+        this.cy.zoom(1);
+        this.cy.style().selector("node").style({"font-size": 15, "height" : basicSize, "width" : basicSize}).update();
+        this.cy.style().selector("edge").style({"width" : 3}).update();
+
+        this.cyWrapper.style.zIndex = "";
+
+        this.cyWrapper.style.transform = "";
+        
+        for(const blur of codeWindows){
+            if(blur !== this){
+                blur.cyWrapper.classList.remove("blurred");
             }
         }
     }
