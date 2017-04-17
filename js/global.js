@@ -42,10 +42,7 @@ Array.prototype.objectWithFile = function(file){
 function applyPreferences(oldConfig, newConfig){
     let slidingWindow = document.getElementById("slidingWindow");
     if(oldConfig !== null){
-        let index = playIndex - oldConfig.fixationsDisplayed;
-        index = (index > 0) ? index : 0;
-
-        if(playIndex > 1 && oldConfig.fixationsDisplayed !== newConfig.fixationsDisplayed){
+        if(oldConfig.fixationsDisplayed !== newConfig.fixationsDisplayed){
             let seekbar = document.getElementById("seekbar");
             let step = 1700 / nodeOrder.length;
 
@@ -53,7 +50,7 @@ function applyPreferences(oldConfig, newConfig){
             slidingWindow.style.width = (newConfig.fixationsDisplayed * step) + "px";
             slidingWindow.style.left = (step * (playIndex + 1) + 30 - newConfig.fixationsDisplayed * step + 174) + "px";
 
-            if(playIndex - 1 === nodeOrder.length){
+            if(playIndex + 1 === nodeOrder.length){
                 previousStep(true);
                 loop(1, true, true);
             }
@@ -63,8 +60,9 @@ function applyPreferences(oldConfig, newConfig){
             }
 
             if(oldConfig.fixationsDisplayed < newConfig.fixationsDisplayed){
+                let index = playIndex - oldConfig.fixationsDisplayed;
+                index = (index > 0) ? index : 0;
                 let diff = newConfig.fixationsDisplayed - oldConfig.fixationsDisplayed;
-
 
                 for(let i = index; i > index - diff && i >= 0; i--){
                     let node = nodeOrder[i].codeWindow.cy.$("#" + i);
@@ -76,7 +74,7 @@ function applyPreferences(oldConfig, newConfig){
             else{
                 let diff = playIndex - newConfig.fixationsDisplayed + 1;
 
-                for(let i = 0; i < index + diff && i < nodeOrder.length; i++){
+                for(let i = 0; i < diff && i < nodeOrder.length; i++){
                     let node = nodeOrder[i].codeWindow.cy.$("#" + i);
                     let edge = nodeOrder[i].codeWindow.cy.$("#edge" + i);
                     node.style({"opacity": 0});
