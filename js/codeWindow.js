@@ -5,7 +5,7 @@ let scale = 1;
 let originalScale = 1;
 
 let basicSize = 20;
-let basicHeight = 560;
+let basicFontSize = 18;
 
 class CodeWindow{  
     constructor(file){        
@@ -101,7 +101,7 @@ class CodeWindow{
                         'text-valign': 'center',
                         'text-halign': 'center',
                         'color': 'white',
-                        'font-size': 15,
+                        'font-size': basicFontSize,
                         width: basicSize,
                         height: basicSize
                     }
@@ -127,6 +127,7 @@ class CodeWindow{
         
         this.cy.on("click", function(e){
             if(e.cyTarget === e.cy && selectedWindows.length === 1){
+                windowsOpen = false;
                 selectedWindows = [];
                 codeWindow.unselect();
                 document.getElementById("selectionButtons").style.opacity = 0;
@@ -139,6 +140,7 @@ class CodeWindow{
         
         this.cy.on("click", "edge", function(e){
             if(selectedWindows.length === 1){
+                windowsOpen = false;
                 selectedWindows = [];
                 codeWindow.unselect(); 
                 document.getElementById("selectionButtons").style.opacity = 0;
@@ -246,68 +248,6 @@ class CodeWindow{
         }
     }
     
-    setSize(newHeight, newWidth){
-        //Any time this method is used the new height and width becom the original
-        this.originalHeight = newHeight;
-        this.originalWidth = newWidth;
-        
-        //Apply scaling
-        let transform = "scale(" + scale + ")";
-        
-        this.cyWrapper.firstChild.style.transform = transform;
-        
-        let editorWindow = this.cyWrapper.firstChild.firstChild
-        let cy = this.cyWrapper.lastChild
-
-        //Set new height and width to editor and recreate it's layout
-        editorWindow.style.height = newHeight + "px";
-        editorWindow.style.width = newWidth + "px";
-
-        this.editor.layout();
-
-        //Set new width and height to cytoscape
-        cy.style.height = (newHeight * scale) + "px";
-        cy.style.width = (newWidth * scale) + "px";
-        
-        this.cyWrapper.style.width = (newWidth * scale) + "px";
-             
-        //Check for overflow
-        if(overflowDetection && document.body.clientHeight > window.innerHeight){
-            overflowDetection = false;
-            
-            //Scale down the codeWindows until no more overflow is found
-            while(document.body.clientHeight > window.innerHeight){
-                scale /= 2;
-                
-                transform = "scale(" + scale + ")";
-                        
-                for(const code of codeWindows){
-                    code.cyWrapper.firstChild.style.transform = transform;
-
-                    let tempHeight = code.originalHeight * scale;
-                    let tempWidth = code.originalWidth * scale;
-
-                    code.cyWrapper.style.height = (basicHeight * scale) + "px";
-                    code.cyWrapper.style.width = tempWidth + "px";
-                    
-                    code.cyWrapper.lastChild.style.height = tempHeight + "px";
-                    code.cyWrapper.lastChild.style.width = tempWidth + "px";  
-                    code.cy.resize();
-                    
-                    //Make move fixations according to the scaling
-                    code.cy.nodes().positions(function(i, node){
-                        let position = node.position();
-                        
-                        return{
-                            x: position.x * scale,
-                            y: position.y * scale
-                        };
-                    });
-                }
-            } 
-        }
-    }
-    
     select(first){
         this.selected = true;
         
@@ -318,9 +258,7 @@ class CodeWindow{
         this.cyWrapper.lastChild.style.width = "786px";
         this.cyWrapper.lastChild.style.height = "590px";
         
-        this.cy.zoom(1 / scale);
-        this.cy.style().selector("node").style({"font-size": 15 * scale, "height" : basicSize * scale, "width" : basicSize * scale}).update();
-        this.cy.style().selector("edge").style({"width" : 3 * scale}).update();
+        this.cy.zoom(1);
 
         let cy = this.cy;
 
@@ -358,9 +296,7 @@ class CodeWindow{
         this.cyWrapper.lastChild.style.width = (786 * scale) + "px";
         this.cyWrapper.lastChild.style.height = (590 * scale) + "px";
         
-        this.cy.zoom(1);
-        this.cy.style().selector("node").style({"font-size": 15, "height" : basicSize, "width" : basicSize}).update();
-        this.cy.style().selector("edge").style({"width" : 3}).update();
+        this.cy.zoom(scale);
 
         this.cyWrapper.style.zIndex = "";
 
@@ -434,9 +370,8 @@ class CodeWindow{
         
         node.style({ //show the node and set it's new size
             "opacity": 1,
-            "width": size * scale,
-            "height": size * scale,
-            "font-size": 15 * scale
+            "width": size,
+            "height": size
         });
         
         let edit = this.edits[this.lastNode];
@@ -463,17 +398,6 @@ class CodeWindow{
             this.editor.revealLineInCenter(edit.range.endLine);
                         
             let codeWindow = this;
-            
-            setTimeout(function(){
-                let lineOffset = codeWindow.editor.getScrollTop();
-                codeWindow.cy.pan({x: 0, y: -lineOffset});
-                let scrollVert = codeWindow.cyWrapper.getElementsByClassName("scrollVertical")[0];
-                
-                let scroll = lineOffset / 10 + 300;
-                scroll -= scroll % 10;
-                scrollVert.dataset.scroll = scroll;
-                scrollVert.style.transform = "translateY(" + scroll + "px)";
-            }, 1);
         }
         
         if(this.lastNode > 0){ //if there should be an edge show it too
@@ -593,16 +517,8 @@ function changeScale(down, maxHeight, original = false){
                 codeWindow.cyWrapper.lastChild.style.width = tempWidth + "px";  
                 codeWindow.cy.resize();
 
-                //Move fixations according to the scaling
-                codeWindow.cy.nodes().positions(function(i, node){
-                    let positionX = node.data("originalX");
-                    let positionY = node.data("originalY");
-                                        
-                    return{
-                        x: positionX * scale,
-                        y: positionY * scale
-                    };
-                });
+                //Zoom according to the scaling
+                codeWindow.cy.zoom(scale);
             }
         }
         
@@ -629,16 +545,8 @@ function changeScale(down, maxHeight, original = false){
                 codeWindow.cyWrapper.lastChild.style.width = tempWidth + "px";  
                 codeWindow.cy.resize();
 
-                //Move fixations according to the scaling
-                codeWindow.cy.nodes().positions(function(i, node){
-                    let positionX = node.data("originalX");
-                    let positionY = node.data("originalY");
-                                        
-                    return{
-                        x: positionX * scale,
-                        y: positionY * scale
-                    };
-                });
+                //Zoom according to the scaling
+                codeWindow.cy.zoom(scale);
             }
         }
         

@@ -18,7 +18,10 @@ let configPath;
 let mainWindow;
 function createWindow () {
     // Create the browser window.
-    mainWindow = new BrowserWindow();
+    mainWindow = new BrowserWindow({
+        'minHeight': 800,
+        'minWidth': 1000
+    });
     mainWindow.maximize();
     
     let template = [{

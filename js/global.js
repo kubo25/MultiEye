@@ -27,6 +27,7 @@ let fileIndex = 0;
 //Array of selected codeWindows
 let selectedWindows = [];
 let currentlySelectedIndex = 0;
+let windowsOpen = false;
 
 //Array prototype function for codeWindows array to find which CodeWindow has (file)
 Array.prototype.objectWithFile = function(file){
