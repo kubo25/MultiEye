@@ -8,7 +8,6 @@ let config = null;
 let codeWindows = [];
 
 //Project file information
-let projectFilePath;
 let project = null;
 
 //Order of fixations
@@ -28,6 +27,9 @@ let fileIndex = 0;
 let selectedWindows = [];
 let currentlySelectedIndex = 0;
 let windowsOpen = false;
+
+//Pattern that is being edited
+let editingPattern = null;
 
 //Array prototype function for codeWindows array to find which CodeWindow has (file)
 Array.prototype.objectWithFile = function(file){
@@ -96,3 +98,7 @@ function applyPreferences(oldConfig, newConfig){
         monaco.editor.setModelLanguage(codeWindow.editor.getModel(), newConfig.language);
     }
 }
+
+document.addEventListener("click", function(){
+   document.getElementById("patternMenu").classList.remove("contextMenuOpen");
+});

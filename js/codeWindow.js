@@ -126,7 +126,7 @@ class CodeWindow{
         let codeWindow = this;
         
         this.cy.on("click", function(e){
-            if(e.cyTarget === e.cy && selectedWindows.length === 1){
+            if(e.target === e.cy && selectedWindows.length === 1){
                 windowsOpen = false;
                 selectedWindows = [];
                 codeWindow.unselect();
@@ -152,11 +152,21 @@ class CodeWindow{
         });
         
         this.cy.on("click", "node", function(e){
-           e.cyTarget.addClass("selected");
+            if(e.target.hasClass("selected")){
+                e.target.removeClass("selected");
+            }
+            else{
+                e.target.addClass("selected");
+            }
         });
         
         this.cy.on("box", "node", function(e){
-            e.cyTarget.addClass("selected");
+            if(e.target.hasClass("selected")){
+                e.target.removeClass("selected");
+            }
+            else{
+                e.target.addClass("selected");
+            }
         });
         
         let scrollVert = 300;
@@ -210,21 +220,22 @@ class CodeWindow{
 
         let origPosition;
         
-        this.cy.on("grab", "node", function(e){
-            origPosition = JSON.parse(JSON.stringify(e.cyTarget.position()));
+        this.cy.on("grabon", "node", function(e){
+            origPosition = JSON.parse(JSON.stringify(e.target.position()));
         });
         
         this.cy.on("free", "node", function(e){
-            let newPosition = e.cyTarget.position();
+            project.changesPending = true;
+            let newPosition = e.target.position();
             let dPosition = {};
                 dPosition.x = newPosition.x - origPosition.x;
                 dPosition.y = newPosition.y - origPosition.y;
             
             let nodes = e.cy.nodes();
             
-            let id = parseInt(e.cyTarget.id());
+            let id = parseInt(e.target.id());
             
-            project.saveFixationEdit(e.cyTarget);
+            project.saveFixationEdit(e.target);
             
             for(let i = id + 1; i < nodeOrder.length; i++){
                 let node = nodeOrder[i].codeWindow.cy.$("#" + i);
@@ -497,6 +508,10 @@ class CodeWindow{
 }
 
 function changeScale(down, maxHeight, original = false){
+    if(nodeOrder.length <= 0){
+        return;
+    }
+    
     let codeWrapper = document.getElementById("codeWrapper");
     if(down){
         while(codeWrapper.offsetHeight > maxHeight){

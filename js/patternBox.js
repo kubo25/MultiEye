@@ -8,19 +8,42 @@
         }
     }
     
+    let buttons = document.querySelectorAll(".patternButton");
+    
+    for(const button of buttons){
+        button.onclick = function(){
+            if(editingPattern === null){
+                new Pattern(this.innerHTML, true);
+            }
+            else{
+                editingPattern.changeType(this.innerHTML);
+            }
+        }
+    }
+        
     let submitButton = document.getElementById("submitButton");
     let customText = document.getElementById("customText");
     
-    submitButton.onclick = function(){        
-        new Pattern(customText.value, true);
-        
+    submitButton.onclick = function(){
+        if(editingPattern === null){
+            new Pattern(customText.value, true);;
+        }
+        else{
+            editingPattern.changeType(customText.value);
+        }
+    
         customText.value = "";
-        this.blur();
+        this.blur()
     }
     
     customText.onkeypress = function(e){
         if(e.keyCode === 13){
-            new Pattern(this.value, true);
+            if(editingPattern === null){
+                new Pattern(this.value, true);
+            }
+            else{
+                editingPattern.changeType(customText.value);
+            }
         
             this.value = "";
             

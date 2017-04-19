@@ -236,6 +236,11 @@ ipcMain.on("save", function(event, args){
     }, 100);
 });
 
+ipcMain.on("closingSave", function(event, args){
+    const fs = require("fs");
+    fs.writeFileSync(args[0], JSON.stringify(args[1], null, 4), "utf-8");
+});
+
 ipcMain.on("saveAs", function(event, args){
     const dialog = electron.dialog;
     
@@ -250,6 +255,9 @@ ipcMain.on("saveAs", function(event, args){
     dialog.showSaveDialog(mainWindow, options, function(filename){
         if(filename !== undefined){
             const fs = require("fs");
+            
+            mainWindow.webContents.send("newPath", filename);
+            
             fs.writeFileSync("a.json", JSON.stringify(args[1], null, 4), "utf-8");
 
             if(fs.existsSync(filename)){

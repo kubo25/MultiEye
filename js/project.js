@@ -1,6 +1,12 @@
 class Project{
-    constructor(json){
+    constructor(json, filePath){
         this.project = json;
+        this.filePath = filePath;
+        this.changesPending = false;
+        
+        if(this.project.patterns === undefined){
+            this.project.patterns = [];
+        }
     }
     
     //Method to return an array of all fixations
@@ -59,6 +65,22 @@ class Project{
         }
         
         this.project.patterns.push(savedPattern);
+    }
+    
+    changePattern(pattern){
+        this.project.patterns[pattern.id].type = pattern.type;
+        let fixations = [];
+        
+        for(const fixation of pattern.fixations){
+            let obj = {
+                "id": fixation.node.id(),
+                "file": fixation.codeWindow.file
+            };
+            
+            fixations.push(obj);
+        }
+        
+        this.project.patterns[pattern.id].fixations = fixations;
     }
     
     saveFixationEdit(fixation){

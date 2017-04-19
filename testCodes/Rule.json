@@ -270,7 +270,23 @@
                 },
                 {
                     "file": "testCodes/Rule.cs",
+                    "id": "1"
+                },
+                {
+                    "file": "testCodes/Rule - Copy (2).cs",
+                    "id": "2"
+                },
+                {
+                    "file": "testCodes/Rule - Copy (3).cs",
+                    "id": "3"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
                     "id": "4"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "5"
                 },
                 {
                     "file": "testCodes/Rule.cs",
@@ -281,7 +297,7 @@
                     "id": "7"
                 }
             ],
-            "type": "Flicking"
+            "type": "LinearVertical"
         },
         {
             "fixations": [

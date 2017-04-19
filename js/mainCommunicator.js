@@ -2,11 +2,12 @@ const {ipcRenderer} = require("electron");
 
 //Communication with the main process to save the project
 ipcRenderer.on("save", function(event, message){
-    ipcRenderer.send("save", [projectFilePath, project.getFile()]);
+    project.changesPending = false;
+    ipcRenderer.send("save", [project.filePath, project.getFile()]);
 });
 
 ipcRenderer.on("saveAs", function(event, message){
-   ipcRenderer.send("saveAs", [projectFilePath, project.getFile()]);
+   ipcRenderer.send("saveAs", [project.filePath, project.getFile()]);
 });
 
 ipcRenderer.on("open", function(event, filePath){
@@ -14,7 +15,7 @@ ipcRenderer.on("open", function(event, filePath){
 });
 
 ipcRenderer.on("export", function(event, message){
-    let patternPath = path.dirname(projectFilePath).replace(/\\/g, "\\\\") + "\\" + path.basename(projectFilePath, ".json") + "Patterns.json";
+    let patternPath = path.dirname(project.filePath).replace(/\\/g, "\\\\") + "\\" + path.basename(project.filePath, ".json") + "Patterns.json";
     ipcRenderer.send("export", [patternPath, project.getPatterns()]); 
 });
 
@@ -27,3 +28,35 @@ ipcRenderer.on("config", function(event, configObj){
         
     config = configObj; 
 });
+
+ipcRenderer.on("newPath", function(event, filePath){
+    project.filePath =  filePath;
+    project.changesPending = false;
+    
+    document.title = "MultiEye - " + filePath;
+});
+
+window.onbeforeunload = function(e){
+    if(project.changesPending){
+        const {remote} = require("electron");
+        const {dialog} = require("electron").remote;
+    
+        let d = dialog.showMessageBox(
+            remote.getCurrentWindow(),
+            {
+                type: "warning",
+                buttons: ["Yes", "No", "Cancel"],
+                title: "MultiEye",
+                message: "Do you want to save changes to '" + project.filePath + "' before closing?"
+        });
+        
+         switch(d){
+            case 0:
+                ipcRenderer.send("closingSave", [project.filePath, project.getFile()]);
+            case 1:
+                return;
+            case 2:
+                return "false";
+        }
+    }
+};

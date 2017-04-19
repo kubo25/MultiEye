@@ -1,7 +1,10 @@
+let contextPattern = null;
+
 class Pattern{
     constructor(arg, sort){
         this.id = savedPatterns.length;
         this.fixations = [];
+        this.line = null;
         
         if(typeof arg === "string"){
             this.type = arg;
@@ -22,6 +25,15 @@ class Pattern{
                 return;
             }
             
+            this.fixations.sort(function(a, b){
+                let aID = parseInt(a.node.id());
+                let bID = parseInt(b.node.id());
+
+                return (aID === bID) ? 0 :
+                       ((aID > bID) ? 1 : -1);
+            });
+            
+            project.changesPending = true;
             project.savePattern(this);
         }
         else{
@@ -48,7 +60,7 @@ class Pattern{
     
     _createPatternLine(){
         let patternWrapper = document.getElementById("patternWrapper"); 
-        let line  = document.createElement("div");
+        this.line  = document.createElement("div");
              
         let firstFixationId = this.fixations[0].node.id();
         let lastFixationId = this.fixations[this.fixations.length - 1].node.id();
@@ -62,24 +74,27 @@ class Pattern{
         
         let width = end - start + 1;
         
-        line.style.left = start + "px";
-        line.style.width = width + "px";
-        line.dataset.pattern = this.type + ": " + firstFixationId + " - " + lastFixationId;
-        line.dataset.patternid = this.id;
-        line.dataset.firstFixationid = firstFixationId;
-        line.dataset.lastFixationid = lastFixationId;
-        line.classList.add("patternLine");
-        line.onclick = function(){
-            savedPatterns[this.dataset.patternid].displayPattern();
-
-            if(this.dataset.lastFixationid > playIndex){
-                loop(this.dataset.lastFixationid - playIndex, true, false);
-            }
-            else{
-                for(let i = playIndex; i > this.dataset.lastFixationid; i--){
-                    previousStep();
-                }
-            }
+        this.line.style.left = start + "px";
+        this.line.style.width = width + "px";
+        this.line.dataset.pattern = this.type + ": " + firstFixationId + " - " + lastFixationId;
+        this.line.dataset.patternid = this.id;
+        this.line.dataset.firstFixationid = firstFixationId;
+        this.line.dataset.lastFixationid = lastFixationId;
+        this.line.classList.add("patternLine");        
+        this.line.onclick = function(){
+            savedPatterns[this.dataset.patternid].displayPattern();  
+        }
+        
+        let pattern = this;
+        
+        this.line.oncontextmenu = function(e){
+            contextPattern = pattern;
+            let contextMenu = document.getElementById("patternMenu");
+            let patternGraph = document.getElementById("patternGraph");
+            let boundinggClient = patternGraph.getBoundingClientRect();
+            contextMenu.style.top = (e.clientY - boundinggClient.top + patternGraph.scrollTop) + "px";
+            contextMenu.style.left = e.clientX + "px";
+            contextMenu.classList.add("contextMenuOpen");
         }
         
         for(const fixation of this.fixations){
@@ -89,10 +104,10 @@ class Pattern{
             let fixationLineLeft = parseFloat(document.getElementById("fix" + id).style.left);
             
             div.style.left = (fixationLineLeft - start) + "px";
-            line.appendChild(div);
+            this.line.appendChild(div);
         }
                 
-        patternWrapper.appendChild(line);
+        patternWrapper.appendChild(this.line);
     }
     
     displayPattern(){
@@ -103,6 +118,87 @@ class Pattern{
         for(const fixation of this.fixations){
             fixation.node.addClass("selected");
         }
+        
+        let lastFixationid = parseInt(this.fixations[this.fixations.length - 1].node.id());
+        
+        if(lastFixationid > playIndex){
+            loop(lastFixationid - playIndex, true, false);
+        }
+        else{
+            for(let i = playIndex; i > lastFixationid; i--){
+                previousStep();
+            }
+        } 
+    }
+    
+    changeType(type){
+        this.restoreType = "";
+        this.restoreType += this.type;
+        this.type = type;
+        this.line.dataset.pattern = this.type + ": " + this.line.dataset.firstFixationid + " - " + this.line.dataset.lastFixationid;
+    }
+    
+    changeFixations(){
+        this.restoreFixations = [];
+        
+        for(const fixation of this.fixations){
+            this.restoreFixations.push(fixation);
+        }
+        
+        this.fixations = [];
+        
+        for(const codeWindow of codeWindows){
+            let selected = codeWindow.cy.$(".selected"); //get every selected node
+
+            for(let i = 0; i < selected.length; i++){ //Create fixation object for every selected node
+                this.fixations.push({                 //in format: {
+                    "node": selected[i],              //                "node": (nodeObject),
+                    "codeWindow": codeWindow          //                "codeWindow: (codeWindow)
+                });                                   //            }
+
+                selected[i].removeClass("selected");
+            }
+        }
+
+        if(this.fixations.length == 0){
+            return false;
+        }
+        
+        this.fixations.sort(function(a, b){
+            let aID = parseInt(a.node.id());
+            let bID = parseInt(b.node.id());
+
+            return (aID === bID) ? 0 :
+                   ((aID > bID) ? 1 : -1);
+        });
+        
+        this._changePatternLine();
+        return true;
+    }
+    
+    _changePatternLine(){
+        this.line.parentElement.removeChild(this.line);
+        this._createPatternLine();
+        sortPatternLines();
+    }
+    
+    restore(){
+        this.type = this.restoreType;
+        this.line.dataset.pattern = this.type + ": " + this.line.dataset.firstFixationid + " - " + this.line.dataset.lastFixationid;
+    }
+    
+    delete(){
+        this.line.parentElement.removeChild(this.line);
+        savedPatterns.splice(savedPatterns.indexOf(this), 1);
+        project.getPatterns().splice(this.index, 1);
+        project.changesPending = true;
+    }
+    
+    edit(){
+        editingPattern = this;
+        project.changesPending = true;
+        document.getElementById("editButtons").classList.add("editButtonsVisible");
+        this.displayPattern();
     }
 }
 
@@ -135,14 +231,6 @@ function sortPatternLines(){
 }
 
 (function(){
-    let buttons = document.querySelectorAll(".patternButton");
-    
-    for(const button of buttons){
-        button.onclick = function(){
-            new Pattern(this.innerHTML, true);
-        }
-    }
-    
     let hideGraph = document.getElementById("hideGraph");
     hideGraph.onclick = function(){
         let graphSection = document.getElementById("patternGraph");
@@ -217,5 +305,37 @@ function sortPatternLines(){
         let transform = "scaleX(" + lastScale + ") translateX(" + (-seekbarWrapper.scrollLeft / lastScale) + "px)";
         
         slidingWindow.style.transform = transform;
+    }
+    
+    document.getElementById("delete").onclick = function(e){
+        contextPattern.delete();
+        contextPattern = null;
+    }
+    
+    document.getElementById("edit").onclick = function(e){
+        contextPattern.edit();
+    }
+    
+    document.getElementById("cancelEdit").onclick = function(){
+        editingPattern.restore();
+        editingPattern = null;
+        document.getElementById("editButtons").classList.remove("editButtonsVisible");
+        for(const codeWindow of codeWindows){
+            codeWindow.cy.$(".selected").removeClass("selected");
+        }
+    }
+    
+    document.getElementById("saveEdit").onclick = function(){
+        let commitChanges = editingPattern.changeFixations();
+        
+        if(commitChanges){
+            project.changePattern(editingPattern);
+        }
+        
+        editingPattern = null;
+        document.getElementById("editButtons").classList.remove("editButtonsVisible");
+        for(const codeWindow of codeWindows){
+            codeWindow.cy.$(".selected").removeClass("selected");
+        }
     }
 })();

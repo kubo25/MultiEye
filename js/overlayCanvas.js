@@ -109,7 +109,12 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                             let dy = position.y * scale >= topY && position.y * scale <= bottomY;
 
                             if(dx && dy){
-                                nodes[i].addClass("selected");
+                                if(nodes[i].hasClass("selected")){
+                                    nodes[i].removeClass("selected");
+                                }
+                                else{
+                                    nodes[i].addClass("selected");
+                                }
                             }   
                         }
                     }
@@ -165,7 +170,12 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                     let dy = (e.clientY - pan) >= (outerPosition.top + position.y * scale - size / 2) && (e.clientY - pan) <= (outerPosition.top + position.y * scale + size / 2);
 
                     if(dx && dy){
-                        nodes[i].addClass("selected");
+                        if(nodes[i].hasClass("selected")){
+                            nodes[i].removeClass("selected");
+                        }
+                        else{
+                            nodes[i].addClass("selected");
+                        }
                         return;
                     }
                 }   

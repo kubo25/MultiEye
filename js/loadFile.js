@@ -12,9 +12,9 @@ function loadFile(filePath){
             return;
         }
 
-        document.title += " - " + path.basename(filePath);
+        document.title += " - " + filePath;
         
-        project = new Project(JSON.parse(data));
+        project = new Project(JSON.parse(data), filePath);
         loadProject();
 
         let max = project.getFixations().length;
