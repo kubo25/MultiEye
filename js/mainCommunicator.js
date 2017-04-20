@@ -36,6 +36,14 @@ ipcRenderer.on("newPath", function(event, filePath){
     document.title = "MultiEye - " + filePath;
 });
 
+ipcRenderer.on("undo", function(event, message){
+    undoArray[undoArray.length - 1].undo();
+});
+
+ipcRenderer.on("redo", function(event, message){
+    redoArray[redoArray.length - 1].redo();
+});
+
 window.onbeforeunload = function(e){
     if(project.changesPending){
         const {remote} = require("electron");

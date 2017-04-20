@@ -13,7 +13,7 @@
     for(const button of buttons){
         button.onclick = function(){
             if(editingPattern === null){
-                new Pattern(this.innerHTML, true);
+                new Pattern(this.innerHTML);
             }
             else{
                 editingPattern.changeType(this.innerHTML);
@@ -26,7 +26,7 @@
     
     submitButton.onclick = function(){
         if(editingPattern === null){
-            new Pattern(customText.value, true);;
+            new Pattern(customText.value);
         }
         else{
             editingPattern.changeType(customText.value);
@@ -39,7 +39,7 @@
     customText.onkeypress = function(e){
         if(e.keyCode === 13){
             if(editingPattern === null){
-                new Pattern(this.value, true);
+                new Pattern(this.value);
             }
             else{
                 editingPattern.changeType(customText.value);

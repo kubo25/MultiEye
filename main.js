@@ -104,11 +104,14 @@ function createWindow () {
                         
                         const prefPath = path.join('file://', __dirname, '/preferences.html');
                         
-                        let win = new BrowserWindow({ width: 600, height: 400 });
+                        let win = new BrowserWindow({ 
+                            width: 600, 
+                            height: 400,
+                            'minWidth': 600,
+                            'minHeight': 400,
+                        });
                         win.on('close', function () { win = null });
                         win.loadURL(prefPath);
-                        win.setResizable(false);
-                        win.setMaximizable(false);
                         win.setMenu(null);
                         
                         win.webContents.once("dom-ready", function(){
@@ -124,6 +127,25 @@ function createWindow () {
                 {
                     label: "Exit",
                     role: "quit"
+                }
+            ]
+        },
+        {
+            label: "Edit",
+            submenu:[
+                {
+                    label: "Undo",
+                    accelerator: "CmdOrCtrl+Z",
+                    click: function(){
+                        mainWindow.webContents.send("undo");
+                    }
+                },
+                {
+                    label: "Redo",
+                    accelerator: "CmdOrCtrl+Y",
+                    click: function(){
+                        mainWindow.webContents.send("redo");
+                    }
                 }
             ]
         },

@@ -31,6 +31,12 @@ let windowsOpen = false;
 //Pattern that is being edited
 let editingPattern = null;
 
+//Array of actions that can be undone
+let undoArray = [];
+
+//Array of action that can be redone
+let redoArray = [];
+
 //Array prototype function for codeWindows array to find which CodeWindow has (file)
 Array.prototype.objectWithFile = function(file){
     for(let i = 0; i < this.length; i++){

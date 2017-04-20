@@ -1,13 +1,14 @@
 let contextPattern = null;
 
 class Pattern{
-    constructor(arg, sort){
+    constructor(arg){
         this.id = savedPatterns.length;
         this.fixations = [];
         this.line = null;
         
         if(typeof arg === "string"){
             this.type = arg;
+            this.typeToRestore = this.type;
             for(const codeWindow of codeWindows){
                 let selected = codeWindow.cy.$(".selected"); //get every selected node
 
@@ -35,10 +36,13 @@ class Pattern{
             
             project.changesPending = true;
             project.savePattern(this);
+            new Action("create", this);
+            redoArray = [];
         }
         else{
             this.type = arg.type;
-                    
+            this.typeToRestore = this.type;
+            
             for(const fixation of arg.fixations){
                 let codeWindow = codeWindows.objectWithFile(fixation.file);
                 
@@ -53,9 +57,7 @@ class Pattern{
         
         this._createPatternLine();
         
-        if(sort === true){
-            sortPatternLines();
-        }
+        sortPatternLines();
     }
     
     _createPatternLine(){
@@ -86,7 +88,7 @@ class Pattern{
         }
         
         let pattern = this;
-        
+    
         this.line.oncontextmenu = function(e){
             contextPattern = pattern;
             let contextMenu = document.getElementById("patternMenu");
@@ -132,8 +134,8 @@ class Pattern{
     }
     
     changeType(type){
-        this.restoreType = "";
-        this.restoreType += this.type;
+        this.typeToRestore = "";
+        this.typeToRestore += this.type;
         this.type = type;
         this.line.dataset.pattern = this.type + ": " + this.line.dataset.firstFixationid + " - " + this.line.dataset.lastFixationid;
     }
@@ -182,16 +184,41 @@ class Pattern{
         sortPatternLines();
     }
     
+    delete(undo = false){
+        this.line.parentElement.removeChild(this.line);
+        savedPatterns.splice(savedPatterns.indexOf(this), 1);
+        project.getPatterns().splice(this.id, 1);
+        project.changesPending = true;
+        
+        if(!undo){
+            new Action("delete", this);
+            redoArray = [];
+        }
+    }
+    
     restore(){
-        this.type = this.restoreType;
+        this._createPatternLine();
+        sortPatternLines();
+        savedPatterns.push(this);
+        project.savePattern(this);
+    }
+            
+    restoreType(){
+        let temp = this.type;
+        this.type = this.typeToRestore;
+        this.typeToRestore = temp;
         this.line.dataset.pattern = this.type + ": " + this.line.dataset.firstFixationid + " - " + this.line.dataset.lastFixationid;
     }
     
-    delete(){
-        this.line.parentElement.removeChild(this.line);
-        savedPatterns.splice(savedPatterns.indexOf(this), 1);
-        project.getPatterns().splice(this.index, 1);
-        project.changesPending = true;
+    restoreChanges(){
+        this.restoreType();
+        let temp = this.fixations;
+        this.fixations = this.restoreFixations;
+        this.restoreFixations = temp;
+        
+        this._changePatternLine();
+        
+        project.changePattern(this);
     }
     
     edit(){
@@ -317,7 +344,8 @@ function sortPatternLines(){
     }
     
     document.getElementById("cancelEdit").onclick = function(){
-        editingPattern.restore();
+        editingPattern.restoreType();
+        editingPattern.typeToRestore = editingPattern.type;
         editingPattern = null;
         document.getElementById("editButtons").classList.remove("editButtonsVisible");
         for(const codeWindow of codeWindows){
@@ -325,13 +353,15 @@ function sortPatternLines(){
         }
     }
     
-    document.getElementById("saveEdit").onclick = function(){
+    document.getElementById("saveEdit").onclick = function(){        
         let commitChanges = editingPattern.changeFixations();
         
         if(commitChanges){
+            new Action("edit", editingPattern);
+            redoArray = [];
             project.changePattern(editingPattern);
         }
-        
+                
         editingPattern = null;
         document.getElementById("editButtons").classList.remove("editButtonsVisible");
         for(const codeWindow of codeWindows){

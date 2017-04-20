@@ -228,12 +228,18 @@ class CodeWindow{
             project.changesPending = true;
             let newPosition = e.target.position();
             let dPosition = {};
-                dPosition.x = newPosition.x - origPosition.x;
-                dPosition.y = newPosition.y - origPosition.y;
             
+            dPosition.x = newPosition.x - origPosition.x;
+            dPosition.y = newPosition.y - origPosition.y;
+
             let nodes = e.cy.nodes();
             
             let id = parseInt(e.target.id());
+            
+            dPosition.id = id;
+            
+            new Action("move", dPosition);
+            redoArray = [];
             
             project.saveFixationEdit(e.target);
             
