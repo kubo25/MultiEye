@@ -17,11 +17,7 @@ function loadFile(filePath){
         project = new Project(JSON.parse(data), filePath);
         loadProject();
 
-        let max = project.getFixations().length;
-
-        let seekbar = document.getElementById("seekbar");
-
-        createTicks(max);
+        createTicks();
     }
 }
 
@@ -31,24 +27,24 @@ function loadProject(){
     let fixations = project.getFixations();
     
     for(let i = 0; i < fixations.length; i++){
-        playIndex++;
+        nodeIndex++;
     
-        let codeWindow = codeWindows.objectWithFile(fixations[i].file); //find if CodeWindow with file already exists
+        let codeWindow = codeWindows.objectWithFile(fixations[i].Data.path); //find if CodeWindow with file already exists
 
         if(codeWindow === null){
-            codeWindow = new CodeWindow(fixations[i].file);
+            codeWindow = new CodeWindow(fixations[i].Data.path);
             
-            let data = fs.readFileSync(fixations[i].file, "utf-8");
+            let data = fs.readFileSync(fixations[i].Data.path, "utf-8");
             
             codeWindow.addText(data);
             codeWindows.push(codeWindow);
         }
 
         //if next fixation is in another file then generate a color for current fixations
-        if(playIndex < fixations.length - 1 && fixations[i].file !== fixations[playIndex + 1].file){
+        if(nodeIndex < fixations.length - 1 && fixations[i].Data.path !== fixations[nodeIndex + 1].Data.path){
             lastColor = '#'+Math.random().toString(16).substr(-6);
             
-            let node = codeWindow.addNode(fixations[i], lastColor, i);
+            let node = codeWindow.addNode(fixations[i], lastColor);
             
             fileLines.push({ //add first end of file line
                 "color": lastColor,
@@ -57,7 +53,7 @@ function loadProject(){
             });
         }
         else if(lastColor !== null){ //if current fixation is first in this file set its color
-            let node = codeWindow.addNode(fixations[i], lastColor, i);
+            let node = codeWindow.addNode(fixations[i], lastColor);
             lastColor = null;
             
             fileLines[fileIndex].node2 = node; //add second end of file line
@@ -65,52 +61,19 @@ function loadProject(){
             fileIndex++;
         }
         else{
-            codeWindow.addNode(fixations[i], null, i);
+            codeWindow.addNode(fixations[i]);
         }
-        
-        codeWindow.edits.push({
-           "range": fixations[i].range,
-            "text": fixations[i].text
-        });
     }
     
     changeScale(true, window.innerHeight - 110, true);
-        
-    let patternWrapper = document.getElementById("patternWrapper");
-    let seekbar = document.getElementById("seekbar");
     
-    playIndex++;
-    let step = seekbar.clientWidth / playIndex;
-    
-    for(let i = 0; i <= playIndex - 1; i++){
-        let line = document.createElement("div");
-                
-        line.style.left = ((i + 1) * step) + (11 - 22 * (i / playIndex)) + "px";
-        line.setAttribute("id", "fix" + i);
-        line.classList.add("fixation");
-        line.textContent = i;
-        
-        let fontSize = 80 / (playIndex - 1);
-        
-        line.style.fontSize = ((fontSize > 1.5) ? 1.5 : fontSize) + "em";
-        
-        patternWrapper.appendChild(line);
-    }
-    
-    playIndex = -1; //reinitialize playIndex
+    nodeIndex = -1; //reinitialize nodeIndex
     fileIndex = 0; //reinitialize fileIndex
-    
-    if(project.getPatterns() !== undefined){
-         //load all patterns saved in project
-        for(const pattern of project.getPatterns()){
-            new Pattern(pattern);
-        }
-
-        sortPatternLines();   
-    }
 }
 
-function createTicks(max){
+function createTicks(){
+    let max = project.getWhole().length;
+    let patternWrapper = document.getElementById("patternWrapper");
     let tickWrapper = document.getElementById("tickWrapper");
     let seekbar = document.getElementById("seekbar");
     
@@ -120,14 +83,43 @@ function createTicks(max){
 
     tickWrapper.style.width = seekbar.clientWidth + "px";
     
-    for(let i = 1; i <= max; i++){
+    let fixationCounter = 0;
+    for(let i = 0; i < max; i++){
+        if(project.getWhole()[i].Name !== "Fixation"){
+            continue;
+        }
+        
+        nodeOrder[fixationCounter].playIndex = i;
+        
         let tick = document.createElement("div");
         let div = document.createElement("div");
         tick.classList.add("tick");        
-        
-        tick.style.left = (i * step) + (11 - 22 * (i / max)) + "px";
+        tick.style.left = ((i + 1) * step) + (11 - 22 * (i / max)) + "px";
         tick.appendChild(div);
         tickWrapper.appendChild(tick);
+        
+        let line = document.createElement("div");      
+        line.style.left = ((i + 1) * step) + (11 - 22 * (i / max)) + "px";
+        line.setAttribute("id", "fix" + fixationCounter);
+        line.classList.add("fixation");
+        line.textContent = fixationCounter;
+        
+        let fontSize = 80 / (max - 1);
+        
+        line.style.fontSize = ((fontSize > 1.5) ? 1.5 : fontSize) + "em";
+        
+        patternWrapper.appendChild(line);
+        
+        fixationCounter++;
+    }
+    
+    if(project.getPatterns() !== undefined){
+         //load all patterns saved in project
+        for(const pattern of project.getPatterns()){
+            new Pattern(pattern);
+        }
+
+        sortPatternLines();   
     }
     
     let slidingWindow = document.getElementById("slidingWindow");

@@ -14,10 +14,12 @@ class CodeWindow{
         this.file = file;
         this.id = codeWindows.length;
         this.lastNode = -1;
-        this.nodeId = 0;
-        this.edits = [];
         this.centerX = 0;
         this.centerY = 0;
+        
+        this.scrollHistory = [];
+        this.cursorHistory = [];
+        this.selectionHistory = [];
         
         let tempEditor;
         
@@ -320,21 +322,19 @@ class CodeWindow{
         this.cyWrapper.style.transform = "";
     }
     
-    addNode(json, color = null, fixationIndex){ 
+    addNode(json, color = null){ 
         //Create new node
         let node = {
             data: {
-                id: playIndex,
-                "duration": json.duration,
-                "fixationIndex": fixationIndex,
-                "originalX": json.x,
-                "originalY": json.y
+                id: nodeIndex,
+                "duration": json.Data.duration,
+                "fixationIndex": nodeIndex,
+                "originalX": json.Data.x,
+                "originalY": json.Data.y
             },
-            position: {x: json.x * scale, y: json.y * scale},
+            position: {x: json.Data.x * scale, y: json.Data.y * scale},
         };
-        
-        this.nodeId++;
-        
+                
         if(this.hidden){
             node.style = {
                 "opacity": 0
@@ -345,7 +345,7 @@ class CodeWindow{
         
         //Change color and shape of last nodes in the same file
         if(color !== null){
-            this.cy.style().selector("#" + playIndex).style({
+            this.cy.style().selector("#" + nodeIndex).style({
                 "background-color" : color,
                 "shape": "rectangle",
             }).update();
@@ -354,16 +354,16 @@ class CodeWindow{
         //Add node information to nodeOrder array
         nodeOrder.push({
             "codeWindow": this,
-            "duration": json.duration
+            "duration": json.duration,
         });
         
         //Create edge between nodes
-        if(this.cy.nodes().length > 1 && nodeOrder[playIndex - 1].codeWindow === this){
+        if(this.cy.nodes().length > 1 && nodeOrder[nodeIndex - 1].codeWindow === this){
             let edge = {
                data: {
-                   id: "edge" + (playIndex - 1),
-                   source: (playIndex - 1),
-                   target: playIndex
+                   id: "edge" + (nodeIndex - 1),
+                   source: (nodeIndex - 1),
+                   target: nodeIndex
                } 
             };
             
@@ -391,38 +391,14 @@ class CodeWindow{
             "height": size
         });
         
-        let edit = this.edits[this.lastNode];
-        
-        if(edit.range !== undefined){
-            this.editor.executeEdits("", [
-                {range: new monaco.Range(
-                    edit.range.startLine,
-                    edit.range.startCol,
-                    edit.range.endLine,
-                    edit.range.endCol),
-                 text: edit.text,
-                 endCursoState: new monaco.Selection(
-                    edit.range.endLine, 
-                    edit.range.endCol, 
-                    edit.range.endLine, 
-                    edit.range.endCol
-                 )
-                }
-            ]);
-            
-            this.editor.pushUndoStop();
-            
-            this.editor.revealLineInCenter(edit.range.endLine);
-                        
-            let codeWindow = this;
-        }
+        nodeOrder[nodeIndex].playIndex = playIndex;
         
         if(this.lastNode > 0){ //if there should be an edge show it too
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 1});
         }
         
-        if(playIndex >= config.fixationsDisplayed){
-            let index = playIndex - config.fixationsDisplayed;
+        if(nodeIndex >= config.fixationsDisplayed){
+            let index = nodeIndex - config.fixationsDisplayed;
             let node = nodeOrder[index].codeWindow.cy.$("#" + index);
             
             if(node.hasClass("selected")){
@@ -439,41 +415,14 @@ class CodeWindow{
         let node = this.cy.nodes()[this.lastNode]; //find last node
         node.style({"opacity": 0}); //make it invisible
         
-        let edit = this.edits[this.lastNode];
-        
-        if(edit.range !== undefined){ 
-            this.editor.getModel().undo();
-            
-            let previousEdit = this.edits[this.lastNode - 1];
-            
-            if(previousEdit !== undefined){            
-                this.editor.revealLineInCenter(previousEdit.range.endLine);
-                
-                let codeWindow = this;
-                setTimeout(function(){
-                    let lineOffset = codeWindow.editor.getScrollTop();
-                    codeWindow.cy.pan({x: 0, y: -lineOffset});
-                    
-                    let scroll = lineOffset / 10 + 300;
-                    scroll -= scroll % 10;
-                    scrollVert.dataset.scroll = scroll;
-                    scrollVert.style.transform = "translateY(" + scroll + "px)";
-                }, 1);
-            }
-        }
-        
         this.lastNode--;
         
-        if(this.lastNode >= 0){ //hide it's edge
+        if(this.lastNode >= 0){ //hide its edge
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 0});
         }
         
-        if(this.lastNode < 0){
-            this.setHidden();
-        }
-        
-        if(playIndex >= config.fixationsDisplayed){
-            let index = playIndex - config.fixationsDisplayed;
+        if(nodeIndex >= config.fixationsDisplayed){
+            let index = nodeIndex - config.fixationsDisplayed;
             let node = nodeOrder[index].codeWindow.cy.$("#" + index);
             let edge = nodeOrder[index].codeWindow.cy.$("#edge" + index);
             node.style({"opacity": 1});
@@ -482,6 +431,103 @@ class CodeWindow{
                 edge.style({"opacity": 1});
             }     
         }
+    }
+    
+    scroll(data){
+        this.scrollHistory.push(data);
+        
+        this.editor.setScrollTop(data.scrollTop);
+        this.editor.setScrollLeft(data.scrollLeft);
+        this.cy.pan({x: -data.scrollLeft, y: -data.scrollTop});
+    }
+    
+    unscroll(){
+        let data = {};
+        
+        if(this.scrollHistory.length - 2 < 0){
+            data.scrollTop = 0;
+            data.scrollLeft = 0;
+        }
+        else{
+            data = this.scrollHistory[this.scrollHistory - 2];
+        }
+        
+        this.scroll(data);
+        
+        this.scrollHistory.pop();
+        this.scrollHistory.pop();
+    }
+    
+    moveCursor(data){
+        this.cursorHistory.push(data);
+        
+        this.editor.setPosition({column: data.position.column + 1, lineNumber: data.position.row + 1});
+    }
+    
+    unmoveCursor(){
+        let data = {position: {}};
+        
+        if(this.scrollHistory.length - 2 < 0){
+            data.position.column = 1;
+            data.position.row = 1;
+        }
+        else{
+            data = this.cursorHistory[this.cursorHistory - 2];
+        }
+        
+        this.moveCursor(data);
+        
+        this.cursorHistory.pop();
+        this.cursorHistory.pop();
+    }
+    
+    selectText(data){
+        this.selectionHistory.push(data);
+        
+        this.editor.setSelection({
+            startColumn: data.selectionStart.column + 1,
+            startLineNumber: data.selectionStart.row + 1,
+            endColumn: data.selectionEnd.column + 1,
+            endLineNumber: data.selectionEnd.row + 1
+        });
+    }
+    
+    unselectText(){
+        let data = {selectionStart: {}, selectionEnd: {}};
+        
+        if(this.selectionHistory.length - 2 < 0){
+            data.selectionStart.column = 1;
+            data.selectionStart.row = 1;
+            data.selectionEnd.column = 1;
+            data.selectionEnd.row = 1;
+        }
+        else{
+            data = this.selectionHistory[this.selectionHistory - 2];
+        }
+        
+        this.selectText(data);
+        
+        this.selectionHistory.pop();
+        this.selectionHistory.pop();
+    }
+    
+    editText(data){
+        this.editor.executeEdits("", [
+            {
+                range: new monaco.Range(
+                    data.change.editStart.row + 1,
+                    data.change.editStart.column + 1,
+                    data.change.editEnd.row + 1,
+                    data.change.editEnd.column + 1),
+                text: data.change.text
+            }
+        ]);
+            
+        this.editor.pushUndoStop();
+    }
+    
+    uneditText(){
+        this.editor.getModel().undo();
     }
     
     setActive(activate){

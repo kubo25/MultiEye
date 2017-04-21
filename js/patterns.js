@@ -122,12 +122,13 @@ class Pattern{
         }
         
         let lastFixationid = parseInt(this.fixations[this.fixations.length - 1].node.id());
+        let lastFixationsIndex = nodeOrder[lastFixationid].playIndex;
         
-        if(lastFixationid > playIndex){
-            loop(lastFixationid - playIndex, true, false);
+        if(lastFixationsIndex > playIndex){
+            loop(lastFixationsIndex - playIndex, true, false);
         }
         else{
-            for(let i = playIndex; i > lastFixationid; i--){
+            for(let i = playIndex; i > lastFixationsIndex; i--){
                 previousStep();
             }
         } 

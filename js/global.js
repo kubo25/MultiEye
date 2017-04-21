@@ -12,6 +12,7 @@ let project = null;
 
 //Order of fixations
 let nodeOrder = [];
+let nodeIndex = -1;
 
 //Array of patterns
 let savedPatterns = [];
@@ -50,7 +51,7 @@ Array.prototype.objectWithFile = function(file){
 //Function to apply preferences after change
 function applyPreferences(oldConfig, newConfig){
     let slidingWindow = document.getElementById("slidingWindow");
-    if(oldConfig !== null){
+    if(oldConfig !== null && project !== null){
         if(oldConfig.fixationsDisplayed !== newConfig.fixationsDisplayed){
             let seekbar = document.getElementById("seekbar");
             let step = 1700 / nodeOrder.length;
@@ -59,7 +60,7 @@ function applyPreferences(oldConfig, newConfig){
             slidingWindow.style.width = (newConfig.fixationsDisplayed * step) + "px";
             slidingWindow.style.left = (step * (playIndex + 1) + 30 - newConfig.fixationsDisplayed * step + 174) + "px";
 
-            if(playIndex + 1 === nodeOrder.length){
+            if(playIndex + 1 === project.getWhole().length){
                 previousStep(true);
                 loop(1, true, true);
             }
@@ -69,7 +70,7 @@ function applyPreferences(oldConfig, newConfig){
             }
 
             if(oldConfig.fixationsDisplayed < newConfig.fixationsDisplayed){
-                let index = playIndex - oldConfig.fixationsDisplayed;
+                let index = nodeIndex - oldConfig.fixationsDisplayed;
                 index = (index > 0) ? index : 0;
                 let diff = newConfig.fixationsDisplayed - oldConfig.fixationsDisplayed;
 
@@ -81,7 +82,7 @@ function applyPreferences(oldConfig, newConfig){
                 }
             }
             else{
-                let diff = playIndex - newConfig.fixationsDisplayed + 1;
+                let diff = nodeIndex - newConfig.fixationsDisplayed + 1;
 
                 for(let i = 0; i < diff && i < nodeOrder.length; i++){
                     let node = nodeOrder[i].codeWindow.cy.$("#" + i);

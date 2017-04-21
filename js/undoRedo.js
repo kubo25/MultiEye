@@ -36,6 +36,7 @@ class Action{
 
                     project.saveFixationEdit(node);
                 }
+                break;
             
             case "create":
                 this.pattern.delete(true);
@@ -66,6 +67,7 @@ class Action{
 
                     project.saveFixationEdit(node);
                 }
+                break;
                 
             case "create":
                 this.pattern.restore();

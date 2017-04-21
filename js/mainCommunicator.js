@@ -37,11 +37,15 @@ ipcRenderer.on("newPath", function(event, filePath){
 });
 
 ipcRenderer.on("undo", function(event, message){
-    undoArray[undoArray.length - 1].undo();
+    if(undoArray.length > 0){
+        undoArray[undoArray.length - 1].undo();
+    }
 });
 
 ipcRenderer.on("redo", function(event, message){
-    redoArray[redoArray.length - 1].redo();
+    if(redoArray.length > 0){
+        redoArray[redoArray.length - 1].redo();
+    }
 });
 
 window.onbeforeunload = function(e){

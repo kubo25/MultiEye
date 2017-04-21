@@ -76,7 +76,8 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                     let boundingRect = codeWindow.getBoundingClientRect();
                     let pan = codeWindow.cy.pan().y;
                     for(let i = 0; i < nodes.length; i++){
-                        if(nodes[i].id() <= playIndex){
+                        let id = parseInt(nodes[i].id());
+                        if(id <= nodeIndex && Math.abs(nodeIndex - id) < config.fixationsDisplayed){
                             let position = nodes[i].position();
 
                             let topX, topY, bottomX, bottomY;
