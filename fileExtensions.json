@@ -1,0 +1,38 @@
+[
+    {
+        "language": "javascript",
+        "extensions":[".js"]
+    },
+    {
+        "language": "json",
+        "extensions":[".json"]
+    },
+    {
+        "language": "c",
+        "extensions":[".c", ".h"]
+    },
+    {
+        "language": "cpp",
+        "extensions":[".cpp", ".hpp"]
+    },
+    {
+        "language": "csharp",
+        "extensions":[".cs"]
+    },
+    {
+        "language": "java",
+        "extensions":[".java"]
+    },
+    {
+        "language": "html",
+        "extensions":[".html"]
+    },
+    {
+        "language": "python",
+        "extensions":[".py"]
+    },
+    {
+        "language": "css",
+        "extensions":[".css"]
+    }
+]

@@ -257,9 +257,14 @@ class CodeWindow{
         });
     }
     
-    addText(data){
+    addText(data, extension){
         let oldModel = this.editor.getModel();
-        let newModel = monaco.editor.createModel(data, config.language);
+        
+        let language = fileExtensions.getLanguage(extension);
+        
+        language = (language !== -1)? language : "plaintext";
+        
+        let newModel = monaco.editor.createModel(data, language);
         
         this.editor.setModel(newModel);
         if(oldModel){
@@ -461,7 +466,7 @@ class CodeWindow{
     moveCursor(data){
         this.cursorHistory.push(data);
         
-        this.editor.setPosition({column: data.position.column + 1, lineNumber: data.position.row + 1});
+        this.editor.setPosition({column: data.position.column, lineNumber: data.position.row});
     }
     
     unmoveCursor(){
@@ -485,10 +490,10 @@ class CodeWindow{
         this.selectionHistory.push(data);
         
         this.editor.setSelection({
-            startColumn: data.selectionStart.column + 1,
-            startLineNumber: data.selectionStart.row + 1,
-            endColumn: data.selectionEnd.column + 1,
-            endLineNumber: data.selectionEnd.row + 1
+            startColumn: data.selectionStart.column,
+            startLineNumber: data.selectionStart.row,
+            endColumn: data.selectionEnd.column,
+            endLineNumber: data.selectionEnd.row
         });
     }
     
@@ -515,10 +520,10 @@ class CodeWindow{
         this.editor.executeEdits("", [
             {
                 range: new monaco.Range(
-                    data.change.editStart.row + 1,
-                    data.change.editStart.column + 1,
-                    data.change.editEnd.row + 1,
-                    data.change.editEnd.column + 1),
+                    data.change.editStart.row,
+                    data.change.editStart.column,
+                    data.change.editEnd.row,
+                    data.change.editEnd.column),
                 text: data.change.text
             }
         ]);

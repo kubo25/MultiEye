@@ -1,14 +1,12 @@
 //Function creates a new CodeWindow object with text from file 
-function loadFile(filePath){
-    projectFilePath = filePath;
-    
-    let extension = path.extname(projectFilePath);
+function loadFile(filePath){    
+    let extension = path.extname(filePath);
 
     if(extension === ".json"){
-        let data = fs.readFileSync(projectFilePath, 'utf-8');    
+        let data = fs.readFileSync(filePath, 'utf-8');    
 
         if(project !== null){
-            ipcRenderer.send("open", projectFilePath);
+            ipcRenderer.send("open", filePath);
             return;
         }
 
@@ -35,8 +33,9 @@ function loadProject(){
             codeWindow = new CodeWindow(fixations[i].Data.path);
             
             let data = fs.readFileSync(fixations[i].Data.path, "utf-8");
+            let extension = path.extname(fixations[i].Data.path);
             
-            codeWindow.addText(data);
+            codeWindow.addText(data, extension);
             codeWindows.push(codeWindow);
         }
 

@@ -3,6 +3,17 @@ const path = require("path");
 
 //Configuration object
 let config = null;
+let fileExtensions = JSON.parse(fs.readFileSync("fileExtensions.json", "utf-8"));
+
+Array.prototype.getLanguage = function(extension){
+    for(const language of this){
+        if(language.extensions.indexOf(extension) > -1){
+            return language.language;
+        }
+    }
+    
+    return -1;
+}
 
 //Array of codeWindows
 let codeWindows = [];

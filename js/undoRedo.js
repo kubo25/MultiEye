@@ -1,10 +1,3 @@
-/*
-move nodes,
-create pattern,
-delete pattern,
-edit pattern
-*/
-
 class Action{
     constructor(type, edits){
         this.type = type;
