@@ -28,12 +28,8 @@ let nodeIndex = -1;
 //Array of patterns
 let savedPatterns = [];
 
-//Array of fileLines
-let fileLines = [];
-
 //Playback indexes
 let playIndex = -1; //integer that says on what index of nodeOrder is the playback currently
-let fileIndex = 0;
 
 //Array of selected codeWindows
 let selectedWindows = [];

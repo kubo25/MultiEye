@@ -102,7 +102,7 @@ class Pattern{
         for(const fixation of this.fixations){
             let div = document.createElement("div");
             let id = parseInt(fixation.node.id());
-            
+
             let fixationLineLeft = parseFloat(document.getElementById("fix" + id).style.left);
             
             div.style.left = (fixationLineLeft - start) + "px";
@@ -310,8 +310,14 @@ function sortPatternLines(){
             slidingWindow.style.transform = scaleX;
             slidingWindow.style.left = (parseInt(slidingWindow.style.left) + 30 * lastScale) + "px";
             
-            loop(1, true, true);
-            previousStep(true);
+            if(playIndex + 1 === project.getWhole().length){
+                previousStep(true);
+                loop(1, true, true);
+            }
+            else{
+                loop(1, true, true);
+                previousStep(true);   
+            }
             
             let newHeight = patternWrapper.getBoundingClientRect().height;
 

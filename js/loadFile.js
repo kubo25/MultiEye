@@ -22,52 +22,45 @@ function loadFile(filePath){
 //Function loads all fixations and patterns
 function loadProject(){
     let lastColor = null;
-    let fixations = project.getFixations();
+    let wholeProject = project.getWhole();
     
-    for(let i = 0; i < fixations.length; i++){
-        nodeIndex++;
-    
-        let codeWindow = codeWindows.objectWithFile(fixations[i].Data.path); //find if CodeWindow with file already exists
+    for(let i = 0; i < wholeProject.length; i++){    
+        let codeWindow = codeWindows.objectWithFile(wholeProject[i].Data.path); //find if CodeWindow with file already exists
 
         if(codeWindow === null){
-            codeWindow = new CodeWindow(fixations[i].Data.path);
+            codeWindow = new CodeWindow(wholeProject[i].Data.path);
             
-            let data = fs.readFileSync(fixations[i].Data.path, "utf-8");
-            let extension = path.extname(fixations[i].Data.path);
+            let data = fs.readFileSync(wholeProject[i].Data.path, "utf-8");
+            let extension = path.extname(wholeProject[i].Data.path);
             
             codeWindow.addText(data, extension);
             codeWindows.push(codeWindow);
         }
+        
+        if(wholeProject[i].Name !== "Fixation"){
+            continue;
+        }
 
+        nodeIndex++;
+        
         //if next fixation is in another file then generate a color for current fixations
-        if(nodeIndex < fixations.length - 1 && fixations[i].Data.path !== fixations[nodeIndex + 1].Data.path){
+        if(nodeIndex < wholeProject.length - 1 && wholeProject[i].Data.path !== wholeProject[nodeIndex + 1].Data.path){
             lastColor = '#'+Math.random().toString(16).substr(-6);
             
-            let node = codeWindow.addNode(fixations[i], lastColor);
-            
-            fileLines.push({ //add first end of file line
-                "color": lastColor,
-                "codeWindow1": codeWindow,
-                "node1": node
-            });
+            codeWindow.addNode(wholeProject[i], lastColor);
         }
         else if(lastColor !== null){ //if current fixation is first in this file set its color
-            let node = codeWindow.addNode(fixations[i], lastColor);
+            codeWindow.addNode(wholeProject[i], lastColor);
             lastColor = null;
-            
-            fileLines[fileIndex].node2 = node; //add second end of file line
-            fileLines[fileIndex].codeWindow2 = codeWindow;
-            fileIndex++;
         }
         else{
-            codeWindow.addNode(fixations[i]);
+            codeWindow.addNode(wholeProject[i]);
         }
     }
     
     changeScale(true, window.innerHeight - 110, true);
     
     nodeIndex = -1; //reinitialize nodeIndex
-    fileIndex = 0; //reinitialize fileIndex
 }
 
 function createTicks(){

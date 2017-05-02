@@ -14,6 +14,7 @@
             "Data": {
                 "editor": 0,
                 "scrollLeft": 0,
+                "path": "testCodes/Rule.cs",
                 "scrollTop": 60
             },
             "Name": "EditorScrollChanged",
@@ -33,7 +34,7 @@
                 "path": "testCodes/Rule.cs"
             },
             "Name": "EditorSwitchTo",
-            "TimeStamp": "1970-01-01T00:00:01.600Z"
+            "TimeStamp": "1970-01-01T00:00:01.630Z"
         },
         {
             "Data": {
@@ -81,6 +82,30 @@
             },
             "Name": "EditorContentChanged",
             "TimeStamp": "1970-01-01T00:00:06.200Z"
+        },
+        {
+            "Data": {
+                "editor": 2,
+                "path": "testCodes/Rule - Copy.cs"
+            },
+            "Name": "EditorSwitchTo",
+            "TimeStamp": "1970-01-01T00:00:10.630Z"
+        },
+        {
+            "Data": {
+                "editor": 3,
+                "path": "testCodes/Rule - Copy (2).cs"
+            },
+            "Name": "EditorSwitchTo",
+            "TimeStamp": "1970-01-01T00:00:10.630Z"
+        },
+        {
+            "Data": {
+                "editor": 4,
+                "path": "testCodes/Rule - Copy (3).cs"
+            },
+            "Name": "EditorSwitchTo",
+            "TimeStamp": "1970-01-01T00:00:10.630Z"
         }
     ],
     "fixations": [
@@ -117,7 +142,7 @@
         {
             "Data": {
                 "duration": 421,
-                "path": "testCodes/Rule.cs",
+                "path": "testCodes/Action.cs",
                 "x": 109,
                 "y": 302
             },
@@ -142,7 +167,9 @@
                 "y": 1452
             },
             "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:04.806Z"
+            "TimeStamp": "1970-01-01T00:00:04.806Z",
+            "x": 79,
+            "y": 1452
         },
         {
             "Data": {
@@ -152,7 +179,9 @@
                 "y": 91
             },
             "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:05.815Z"
+            "TimeStamp": "1970-01-01T00:00:05.815Z",
+            "x": 194,
+            "y": 91
         },
         {
             "Data": {
@@ -162,7 +191,9 @@
                 "y": 764
             },
             "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:06.360Z"
+            "TimeStamp": "1970-01-01T00:00:06.360Z",
+            "x": 525,
+            "y": 764
         },
         {
             "Data": {
@@ -172,7 +203,9 @@
                 "y": 1434
             },
             "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:08.142Z"
+            "TimeStamp": "1970-01-01T00:00:08.142Z",
+            "x": 129,
+            "y": 1434
         },
         {
             "Data": {
@@ -182,7 +215,9 @@
                 "y": 767
             },
             "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:09.475Z"
+            "TimeStamp": "1970-01-01T00:00:09.475Z",
+            "x": 506,
+            "y": 767
         }
     ],
     "patterns": [
@@ -197,7 +232,7 @@
                     "id": "1"
                 },
                 {
-                    "file": "testCodes/Rule.cs",
+                    "file": "testCodes/Action.cs",
                     "id": "3"
                 },
                 {
@@ -206,6 +241,61 @@
                 }
             ],
             "type": "JumpControl"
+        },
+        {
+            "fixations": [
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "0"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "1"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "4"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "6"
+                }
+            ],
+            "type": "LinearHorizontal"
+        },
+        {
+            "fixations": [
+                {
+                    "file": "testCodes/Action.cs",
+                    "id": "2"
+                },
+                {
+                    "file": "testCodes/Action.cs",
+                    "id": "3"
+                }
+            ],
+            "type": "LinearVertical"
+        },
+        {
+            "fixations": [
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "5"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "7"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "8"
+                },
+                {
+                    "file": "testCodes/Rule.cs",
+                    "id": "9"
+                }
+            ],
+            "type": "Thrashing"
         }
     ]
 }

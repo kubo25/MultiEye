@@ -12,14 +12,14 @@ html{
     height: 100%;
 }
 
-body, #boxSelectCanvas, #codeWrapper, #fileLinesCanvas{
+body, #boxSelectCanvas, #codeWrapper{
     margin: 0;
     width: 100%;
     min-height: 100%;
     transition: 0.5s ease all;
 }
 
-#boxSelectCanvas, #fileLinesCanvas{
+#boxSelectCanvas{
     position: absolute;
     top: 0;
     left: 0;
