@@ -272,6 +272,7 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
         }
 
         selectedWindows = [];
+        currentlySelectedIndex = 0;
 
         document.getElementById("selectionButtons").style.opacity = 0;
 
