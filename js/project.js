@@ -27,8 +27,8 @@ class Project{
     //},...]
     getFixations(){
         return this.project.fixations.sort(function(a, b){
-            let timestampA = a.TimeStamp;
-            let timestampB = b.TimeStamp;
+            let timestampA = a.timeStamp;
+            let timestampB = b.timeStamp;
 
             return (timestampA === timestampB) ? 0 :
                    ((timestampA > timestampB) ? 1 : -1);
@@ -110,8 +110,8 @@ class Project{
     getWhole(){
         if(this.wholeArray === null){
             this.wholeArray = this.project.fixations.concat(this.project.events).sort(function(a, b){
-                let timestampA = a.TimeStamp;
-                let timestampB = b.TimeStamp;
+                let timestampA = a.timeStamp;
+                let timestampB = b.timeStamp;
 
                 return (timestampA === timestampB) ? 0 :
                        ((timestampA > timestampB) ? 1 : -1);

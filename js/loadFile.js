@@ -25,27 +25,36 @@ function loadProject(){
     let wholeProject = project.getWhole();
     let fixations = project.getFixations();
     
-    for(let i = 0; i < wholeProject.length; i++){    
-        let codeWindow = codeWindows.objectWithFile(wholeProject[i].Data.path); //find if CodeWindow with file already exists
+    for(let i = 0; i < fixations.length; i++){    
+        let codeWindow = codeWindows.objectWithFile(fixations[i].data.path); //find if CodeWindow with file already exists
 
         if(codeWindow === null){
-            codeWindow = new CodeWindow(wholeProject[i].Data.path);
+            codeWindow = new CodeWindow(fixations[i].data);
             
-            let data = fs.readFileSync(wholeProject[i].Data.path, "utf-8");
-            let extension = path.extname(wholeProject[i].Data.path);
+            let data;
+            
+            try{
+                data = fs.readFileSync(fixations[i].data.path, "utf-8");
+            }
+            catch(e){
+                console.log(i);
+                console.log(fixations[i]);
+            }
+            
+            let extension = path.extname(fixations[i].data.path);
             
             codeWindow.addText(data, extension);
             codeWindows.push(codeWindow);
         }
         
-        if(wholeProject[i].Name !== "Fixation"){
+        if(fixations[i].name !== "Fixation"){
             continue;
         }
 
         nodeIndex++;
         
         //if next fixation is in another file then generate a color for current fixations
-        if(nodeIndex < fixations.length - 1 && fixations[nodeIndex].Data.path !== fixations[nodeIndex + 1].Data.path){
+        if(nodeIndex < fixations.length - 1 && fixations[nodeIndex].data.path !== fixations[nodeIndex + 1].data.path){
             lastColor = '#'+Math.random().toString(16).substr(-6);
             
             codeWindow.addNode(fixations[nodeIndex], lastColor);
@@ -78,7 +87,7 @@ function createTicks(){
     
     let fixationCounter = 0;
     for(let i = 0; i < max; i++){
-        if(project.getWhole()[i].Name !== "Fixation"){
+        if(project.getWhole()[i].name !== "Fixation"){
             continue;
         }
         

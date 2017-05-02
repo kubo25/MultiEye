@@ -9,12 +9,12 @@ function loop(i, next = false, seekbarSet = false){
     playIndex++;
     
     let event = project.getWhole()[playIndex];
-    switch(event.Name){
+    switch(event.name){
         case "EditorSwitchTo":
             activeCodeWindow.setActive(false);
             
         case "EditorOpen":
-            activeCodeWindow = codeWindows.objectWithFile(event.Data.path);
+            activeCodeWindow = codeWindows.objectWithFile(event.data.path);
             activeCodeWindow.setVisible();
             activeCodeWindow.setActive(true);
             break;
@@ -25,11 +25,11 @@ function loop(i, next = false, seekbarSet = false){
             break;
           
         case "EditorScrollChanged":
-            activeCodeWindow.scroll(event.Data);
+            activeCodeWindow.scroll(event.data);
             break;
         
         case "CursorPositionChanged":
-            activeCodeWindow.moveCursor(event.Data);
+            activeCodeWindow.moveCursor(event.data);
             break;
             
         case "EditorClosed":
@@ -37,11 +37,11 @@ function loop(i, next = false, seekbarSet = false){
             break;
             
         case "SelectionChanged":
-            activeCodeWindow.selectText(event.Data);
+            activeCodeWindow.selectText(event.data);
             break;
             
         case "EditorContentChanged":
-            activeCodeWindow.editText(event.Data);
+            activeCodeWindow.editText(event.data);
             break;
             
     }
@@ -53,7 +53,7 @@ function loop(i, next = false, seekbarSet = false){
         duration = 1;
     }
     else{
-        duration = new Date(project.getWhole()[playIndex + 1].TimeStamp) - new Date(event.TimeStamp);
+        duration = new Date(project.getWhole()[playIndex + 1].timeStamp) - new Date(event.timeStamp);
     }
     
     let seekbar = document.getElementById("seekbar");
@@ -93,7 +93,7 @@ function loop(i, next = false, seekbarSet = false){
 function previousStep(scrollbarSet){
     if(playIndex >= 0){
         let event = project.getWhole()[playIndex];
-        switch(event.Name){
+        switch(event.name){
             case "EditorOpen":
                 activeCodeWindow.setHidden(false);
 
@@ -103,7 +103,7 @@ function previousStep(scrollbarSet){
                     activeCodeWindow = null;
                 }
                 else{
-                    activeCodeWindow = codeWindows.objectWithFile(project.getWhole()[playIndex - 1].Data.path);
+                    activeCodeWindow = codeWindows.objectWithFile(project.getWhole()[playIndex - 1].data.path);
                     activeCodeWindow.setActive(true); 
                 }
                 break;

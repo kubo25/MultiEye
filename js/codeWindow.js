@@ -11,7 +11,12 @@ class CodeWindow{
     constructor(file){        
         //Initializing class attributes
         this.selected = false;
-        this.file = file;
+        
+        if(file !== undefined){
+            this.file = file.path;
+            this.editor = file.editor;
+        }
+        
         this.id = codeWindows.length;
         this.lastNode = -1;
         this.centerX = 0;
@@ -332,12 +337,12 @@ class CodeWindow{
         let node = {
             data: {
                 id: nodeIndex,
-                "duration": json.Data.duration,
+                "duration": json.data.duration,
                 "fixationIndex": nodeIndex,
-                "originalX": json.Data.x,
-                "originalY": json.Data.y
+                "originalX": json.data.x,
+                "originalY": json.data.y
             },
-            position: {x: json.Data.x * scale, y: json.Data.y * scale},
+            position: {x: json.data.x * scale, y: json.data.y * scale},
         };
                 
         if(this.hidden){

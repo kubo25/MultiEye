@@ -1,43 +1,43 @@
 {
     "events": [
         {
-            "Data": {
+            "data": {
                 "contents": "",
                 "editor": 0,
                 "path": "testCodes/Rule.cs",
                 "title": "Rule.cs"
             },
-            "Name": "EditorOpen",
-            "TimeStamp": "1970-01-01T00:00:00.000Z"
+            "name": "EditorOpen",
+            "timeStamp": "1970-01-01T00:00:00.000Z"
         },
         {
-            "Data": {
+            "data": {
                 "editor": 0,
                 "path": "testCodes/Rule.cs",
                 "scrollLeft": 0,
                 "scrollTop": 60
             },
-            "Name": "EditorScrollChanged",
-            "TimeStamp": "1970-01-01T00:00:00.100Z"
+            "name": "EditorScrollChanged",
+            "timeStamp": "1970-01-01T00:00:00.100Z"
         },
         {
-            "Data": {
+            "data": {
                 "editor": 1,
                 "path": "testCodes/Action.cs"
             },
-            "Name": "EditorSwitchTo",
-            "TimeStamp": "1970-01-01T00:00:01.000Z"
+            "name": "EditorSwitchTo",
+            "timeStamp": "1970-01-01T00:00:01.000Z"
         },
         {
-            "Data": {
+            "data": {
                 "editor": 0,
                 "path": "testCodes/Rule.cs"
             },
-            "Name": "EditorSwitchTo",
-            "TimeStamp": "1970-01-01T00:00:01.630Z"
+            "name": "EditorSwitchTo",
+            "timeStamp": "1970-01-01T00:00:01.630Z"
         },
         {
-            "Data": {
+            "data": {
                 "editor": 0,
                 "path": "testCodes/Rule.cs",
                 "position": {
@@ -45,11 +45,11 @@
                     "row": 3
                 }
             },
-            "Name": "CursorPositionChanged",
-            "TimeStamp": "1970-01-01T00:00:04.100Z"
+            "name": "CursorPositionChanged",
+            "timeStamp": "1970-01-01T00:00:04.100Z"
         },
         {
-            "Data": {
+            "data": {
                 "editor": 0,
                 "path": "testCodes/Rule.cs",
                 "selectionEnd": {
@@ -61,11 +61,11 @@
                     "row": 3
                 }
             },
-            "Name": "SelectionChanged",
-            "TimeStamp": "1970-01-01T00:00:04.200Z"
+            "name": "SelectionChanged",
+            "timeStamp": "1970-01-01T00:00:04.200Z"
         },
         {
-            "Data": {
+            "data": {
                 "change": {
                     "editEnd": {
                         "column": 5,
@@ -80,142 +80,142 @@
                 "editor": 0,
                 "path": "testCodes/Rule.cs"
             },
-            "Name": "EditorContentChanged",
-            "TimeStamp": "1970-01-01T00:00:06.200Z"
+            "name": "EditorContentChanged",
+            "timeStamp": "1970-01-01T00:00:06.200Z"
         },
         {
-            "Data": {
+            "data": {
                 "editor": 2,
                 "path": "testCodes/Rule - Copy.cs"
             },
-            "Name": "EditorSwitchTo",
-            "TimeStamp": "1970-01-01T00:00:10.630Z"
+            "name": "EditorSwitchTo",
+            "timeStamp": "1970-01-01T00:00:10.630Z"
         },
         {
-            "Data": {
+            "data": {
                 "editor": 3,
                 "path": "testCodes/Rule - Copy (2).cs"
             },
-            "Name": "EditorSwitchTo",
-            "TimeStamp": "1970-01-01T00:00:10.630Z"
+            "name": "EditorSwitchTo",
+            "timeStamp": "1970-01-01T00:00:10.630Z"
         },
         {
-            "Data": {
+            "data": {
                 "editor": 4,
                 "path": "testCodes/Rule - Copy (3).cs"
             },
-            "Name": "EditorSwitchTo",
-            "TimeStamp": "1970-01-01T00:00:10.630Z"
+            "name": "EditorSwitchTo",
+            "timeStamp": "1970-01-01T00:00:10.630Z"
         }
     ],
     "fixations": [
         {
-            "Data": {
+            "data": {
                 "duration": 224,
                 "path": "testCodes/Rule.cs",
                 "x": 49,
                 "y": 318
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:00.080Z"
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:00.080Z"
         },
         {
-            "Data": {
+            "data": {
                 "duration": 496,
                 "path": "testCodes/Rule.cs",
                 "x": 194,
                 "y": 151
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:00.408Z"
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:00.408Z"
         },
         {
-            "Data": {
+            "data": {
                 "duration": 401,
                 "path": "testCodes/Action.cs",
                 "x": 215,
                 "y": 20
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:01.348Z"
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:01.348Z"
         },
         {
-            "Data": {
+            "data": {
                 "duration": 421,
                 "path": "testCodes/Action.cs",
                 "x": 109,
                 "y": 302
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:01.628Z"
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:01.628Z"
         },
         {
-            "Data": {
+            "data": {
                 "duration": 350,
                 "path": "testCodes/Rule.cs",
                 "x": 409,
                 "y": 343
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:02.602Z"
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:02.602Z"
         },
         {
-            "Data": {
+            "data": {
                 "duration": 467,
                 "path": "testCodes/Rule.cs",
                 "x": 79,
                 "y": 1452
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:04.806Z",
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:04.806Z",
             "x": 79,
             "y": 1452
         },
         {
-            "Data": {
+            "data": {
                 "duration": 229,
                 "path": "testCodes/Rule.cs",
                 "x": 194,
                 "y": 91
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:05.815Z",
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:05.815Z",
             "x": 194,
             "y": 91
         },
         {
-            "Data": {
+            "data": {
                 "duration": 306,
                 "path": "testCodes/Rule.cs",
                 "x": 525,
                 "y": 764
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:06.360Z",
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:06.360Z",
             "x": 525,
             "y": 764
         },
         {
-            "Data": {
+            "data": {
                 "duration": 485,
                 "path": "testCodes/Rule.cs",
                 "x": 129,
                 "y": 1434
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:08.142Z",
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:08.142Z",
             "x": 129,
             "y": 1434
         },
         {
-            "Data": {
+            "data": {
                 "duration": 443,
                 "path": "testCodes/Rule.cs",
                 "x": 506,
                 "y": 767
             },
-            "Name": "Fixation",
-            "TimeStamp": "1970-01-01T00:00:09.475Z",
+            "name": "Fixation",
+            "timeStamp": "1970-01-01T00:00:09.475Z",
             "x": 506,
             "y": 767
         }
