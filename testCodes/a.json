@@ -13,8 +13,8 @@
         {
             "Data": {
                 "editor": 0,
-                "scrollLeft": 0,
                 "path": "testCodes/Rule.cs",
+                "scrollLeft": 0,
                 "scrollTop": 60
             },
             "Name": "EditorScrollChanged",
@@ -262,19 +262,6 @@
                 }
             ],
             "type": "LinearHorizontal"
-        },
-        {
-            "fixations": [
-                {
-                    "file": "testCodes/Action.cs",
-                    "id": "2"
-                },
-                {
-                    "file": "testCodes/Action.cs",
-                    "id": "3"
-                }
-            ],
-            "type": "LinearVertical"
         },
         {
             "fixations": [

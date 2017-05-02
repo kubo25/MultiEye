@@ -23,6 +23,7 @@ function loadFile(filePath){
 function loadProject(){
     let lastColor = null;
     let wholeProject = project.getWhole();
+    let fixations = project.getFixations();
     
     for(let i = 0; i < wholeProject.length; i++){    
         let codeWindow = codeWindows.objectWithFile(wholeProject[i].Data.path); //find if CodeWindow with file already exists
@@ -44,17 +45,17 @@ function loadProject(){
         nodeIndex++;
         
         //if next fixation is in another file then generate a color for current fixations
-        if(nodeIndex < wholeProject.length - 1 && wholeProject[i].Data.path !== wholeProject[nodeIndex + 1].Data.path){
+        if(nodeIndex < fixations.length - 1 && fixations[nodeIndex].Data.path !== fixations[nodeIndex + 1].Data.path){
             lastColor = '#'+Math.random().toString(16).substr(-6);
             
-            codeWindow.addNode(wholeProject[i], lastColor);
+            codeWindow.addNode(fixations[nodeIndex], lastColor);
         }
         else if(lastColor !== null){ //if current fixation is first in this file set its color
-            codeWindow.addNode(wholeProject[i], lastColor);
+            codeWindow.addNode(fixations[nodeIndex], lastColor);
             lastColor = null;
         }
         else{
-            codeWindow.addNode(wholeProject[i]);
+            codeWindow.addNode(fixations[nodeIndex]);
         }
     }
     
