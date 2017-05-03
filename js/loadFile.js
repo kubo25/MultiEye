@@ -79,6 +79,12 @@ function createTicks(){
     let tickWrapper = document.getElementById("tickWrapper");
     let seekbar = document.getElementById("seekbar");
     
+    originalWidth = max * 10;
+    
+    originalWidth = (originalWidth > 1700)? originalWidth : 1700;
+    
+    seekbar.style.width = originalWidth + "px";
+    
     let step = seekbar.clientWidth / max;
 
     seekbar.max = max; //set the number of steps on seekbar to the amount of fixations

@@ -10,10 +10,11 @@ function loop(i, next = false, seekbarSet = false){
     
     let event = project.getWhole()[playIndex];
     switch(event.name){
-        case "EditorSwitchTo":
-            activeCodeWindow.setActive(false);
-            
+        case "EditorSwitchTo":            
         case "EditorOpen":
+            if(activeCodeWindow !== null){
+                activeCodeWindow.setActive(false);
+            }
             activeCodeWindow = codeWindows.objectWithFile(event.data.path);
             activeCodeWindow.setVisible();
             activeCodeWindow.setActive(true);
@@ -50,7 +51,7 @@ function loop(i, next = false, seekbarSet = false){
     //if next is set the duration is 1 to prevent async problems from popping up
     let duration;
     if(next || playIndex + 1 === project.getWhole().length){
-        duration = 1;
+        duration = 0;
     }
     else{
         duration = new Date(project.getWhole()[playIndex + 1].timeStamp) - new Date(event.timeStamp);
@@ -63,7 +64,7 @@ function loop(i, next = false, seekbarSet = false){
     if(!seekbarSet){ //move the seekbar thumb
         let graphScrollWrapper = document.getElementById("graphScrollWrapper");
         
-        if((playIndex + 2) * step > seekbarWrapper.clientWidth + seekbarWrapper.scrollLeft){
+        if((playIndex + 4) * step > seekbarWrapper.clientWidth + seekbarWrapper.scrollLeft){
             seekbarWrapper.scrollLeft += step;
             graphScrollWrapper.scrollLeft = seekbarWrapper.scrollLeft;
         }

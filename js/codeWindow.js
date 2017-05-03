@@ -133,7 +133,7 @@ class CodeWindow{
         let codeWindow = this;
         
         this.cy.on("click", function(e){
-            if(e.target === e.cy && selectedWindows.length === 1){
+            if(e.target === e.cy && selectedWindows.length === 1 || e.target.group() === "edges"){
                 windowsOpen = false;
                 selectedWindows = [];
                 codeWindow.unselect();
@@ -143,36 +143,24 @@ class CodeWindow{
                     blur.cyWrapper.classList.remove("blurred");
                 }
             }
-        });
-        
-        this.cy.on("click", "edge", function(e){
-            if(selectedWindows.length === 1){
-                windowsOpen = false;
-                selectedWindows = [];
-                codeWindow.unselect(); 
-                document.getElementById("selectionButtons").style.opacity = 0;
-                
-                for(const blur of codeWindows){
-                    blur.cyWrapper.classList.remove("blurred");
+            else if(e.target.group() === "nodes"){
+                if(e.target.hasClass("selected")){
+                    e.target.removeClass("selected");
+                }
+                else{
+                    e.target.addClass("selected");
                 }
             }
         });
         
-        this.cy.on("click", "node", function(e){
-            if(e.target.hasClass("selected")){
-                e.target.removeClass("selected");
-            }
-            else{
-                e.target.addClass("selected");
-            }
-        });
-        
         this.cy.on("box", "node", function(e){
-            if(e.target.hasClass("selected")){
+            if(parseInt(e.target.id()) <= nodeIndex){
+                if(e.target.hasClass("selected")){
                 e.target.removeClass("selected");
-            }
-            else{
-                e.target.addClass("selected");
+                }
+                else{
+                    e.target.addClass("selected");
+                }   
             }
         });
         
@@ -239,6 +227,10 @@ class CodeWindow{
             dPosition.x = newPosition.x - origPosition.x;
             dPosition.y = newPosition.y - origPosition.y;
 
+            if(dPosition.x <= 1 && dPosition.y <= 1){
+                return;
+            }
+            
             let nodes = e.cy.nodes();
             
             let id = parseInt(e.target.id());
@@ -459,7 +451,7 @@ class CodeWindow{
             data.scrollLeft = 0;
         }
         else{
-            data = this.scrollHistory[this.scrollHistory - 2];
+            data = this.scrollHistory[this.scrollHistory.length - 2];
         }
         
         this.scroll(data);
@@ -482,7 +474,7 @@ class CodeWindow{
             data.position.row = 1;
         }
         else{
-            data = this.cursorHistory[this.cursorHistory - 2];
+            data = this.cursorHistory[this.cursorHistory.length - 2];
         }
         
         this.moveCursor(data);
@@ -512,7 +504,7 @@ class CodeWindow{
             data.selectionEnd.row = 1;
         }
         else{
-            data = this.selectionHistory[this.selectionHistory - 2];
+            data = this.selectionHistory[this.selectionHistory.length - 2];
         }
         
         this.selectText(data);

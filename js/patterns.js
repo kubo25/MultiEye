@@ -1,4 +1,5 @@
 let contextPattern = null;
+let originalWidth;
 
 class Pattern{
     constructor(arg){
@@ -282,7 +283,6 @@ function sortPatternLines(){
     let pushBottom = document.getElementById("pushBottom");
         
     let lastScale = 1;
-    let originalWidth = seekbar.clientWidth;
     let originalHeight;
     
     patternGraph.onwheel = function(e){
