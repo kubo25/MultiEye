@@ -167,8 +167,8 @@ function findSelectedCodeWindows(click, startX, startY, endX, endY){
                     let position = nodes[i].position();
                     let size = nodes[i].outerHeight();
 
-                    let dx = e.clientX >= (outerPosition.left + position.x * scale - size / 2) && e.clientX <= (outerPosition.left + position.x * scale + size / 2);
-                    let dy = (e.clientY - pan) >= (outerPosition.top + position.y * scale - size / 2) && (e.clientY - pan) <= (outerPosition.top + position.y * scale + size / 2);
+                    let dx = e.clientX >= (outerPosition.left + position.x * scale - size * scale / 2) && e.clientX <= (outerPosition.left + position.x * scale + size * scale / 2);
+                    let dy = (e.clientY - pan) >= (outerPosition.top + position.y * scale - size * scale / 2) && (e.clientY - pan) <= (outerPosition.top + position.y * scale + size * scale / 2);
 
                     if(dx && dy){
                         if(nodes[i].hasClass("selected")){
