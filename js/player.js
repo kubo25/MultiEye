@@ -64,7 +64,7 @@ function loop(i, next = false, seekbarSet = false){
     if(!seekbarSet){ //move the seekbar thumb
         let graphScrollWrapper = document.getElementById("graphScrollWrapper");
         
-        if((playIndex + 4) * step > seekbarWrapper.clientWidth + seekbarWrapper.scrollLeft){
+        if((playIndex + 8) * step > seekbarWrapper.clientWidth + seekbarWrapper.scrollLeft){
             seekbarWrapper.scrollLeft += step;
             graphScrollWrapper.scrollLeft = seekbarWrapper.scrollLeft;
         }

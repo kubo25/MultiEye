@@ -2,10 +2,14 @@ const cytoscape = require("cytoscape");
 
 let first = true;
 let scale = 1;
+let tempScale = 0.9;
 let originalScale = 1;
 
 let basicSize = 20;
 let basicFontSize = 18;
+
+let editorWidth = 1712;
+let editorHeight = 917;
 
 class CodeWindow{  
     constructor(file){        
@@ -69,7 +73,8 @@ class CodeWindow{
                 
         amdRequire(['vs/editor/editor.main'], function() {
             tempEditor = monaco.editor.create(document.getElementById(editorDiv.id), {
-                scrollBeyondLastLine: false
+                scrollBeyondLastLine: false,
+                lineHeight: 21,
             });
             
             //First loading takes some time, so create first instance on application init
@@ -179,7 +184,7 @@ class CodeWindow{
             
             let scroll = (Math.ceil(10 * (scrollVert - 300) / 100)) * 100;
             let scrollTop = codeWindow.editor.getScrollTop();
-            if(scrollTop + 600 === codeWindow.editor.getScrollHeight()){
+            if(scrollTop + editorHeight === codeWindow.editor.getScrollHeight()){
                 let transform = scroll - scrollTop;
                 
                 if(transform < 0){
@@ -227,7 +232,7 @@ class CodeWindow{
             dPosition.x = newPosition.x - origPosition.x;
             dPosition.y = newPosition.y - origPosition.y;
 
-            if(dPosition.x <= 1 && dPosition.y <= 1){
+            if(Math.abs(dPosition.x) <= 1 && Math.abs(dPosition.y) <= 1){
                 return;
             }
             
@@ -273,14 +278,25 @@ class CodeWindow{
         this.selected = true;
         
         this.cyWrapper.classList.remove("pendingSelection");
-
-        this.cyWrapper.firstChild.style.transform = "scale(1)";  
-
-        this.cyWrapper.lastChild.style.width = "786px";
-        this.cyWrapper.lastChild.style.height = "590px";
         
-        this.cy.zoom(1);
+        if(!document.getElementById("patternGraph").classList.contains("hidden")){
+            tempScale = 0.7;
+        }
+        else{
+            tempScale = 0.9;
+        }
 
+        this.cyWrapper.firstChild.style.transform = "scale(" + tempScale + ")";  
+
+        this.cyWrapper.lastChild.style.width = ((editorWidth - 14) * tempScale) + "px";
+        this.cyWrapper.lastChild.style.height = ((editorHeight - 10) * tempScale) + "px";
+        
+        this.cy.zoom(tempScale);
+
+        let data = this.scrollHistory[this.scrollHistory.length - 1];
+        
+        this.cy.pan({x: -data.scrollLeft * tempScale, y: -data.scrollTop * tempScale});
+        
         let cy = this.cy;
 
         this.cyWrapper.addEventListener("webkitTransitionEnd", function(){
@@ -296,8 +312,8 @@ class CodeWindow{
         let centerX = codeWrapper.offsetWidth / 2;
         let centerY = codeWrapper.offsetHeight / 2;
 
-        let positionX = centerX - (boundingBox.left + 800 / 2);
-        let positionY = centerY - (boundingBox.top + 600 / 2);
+        let positionX = centerX - (boundingBox.left + editorWidth * tempScale / 2);
+        let positionY = centerY - (boundingBox.top + editorHeight * tempScale / 2);
         
         this.centerX = positionX;
         this.centerY = positionY;
@@ -310,14 +326,18 @@ class CodeWindow{
     }
     
     unselect(){
+        tempScale = scale;
         this.selected = false;
         
         this.cyWrapper.firstChild.style.transform = "scale(" + scale + ")";
         
-        this.cyWrapper.lastChild.style.width = (786 * scale) + "px";
-        this.cyWrapper.lastChild.style.height = (590 * scale) + "px";
+        this.cyWrapper.lastChild.style.width = (editorWidth * scale) + "px";
+        this.cyWrapper.lastChild.style.height = (editorHeight * scale) + "px";
         
         this.cy.zoom(scale);
+        
+        let data = this.scrollHistory[this.scrollHistory.length - 1];
+        this.cy.pan({x: -data.scrollLeft * scale, y: -data.scrollTop * scale});
 
         this.cyWrapper.style.zIndex = "";
 
@@ -393,7 +413,10 @@ class CodeWindow{
             "height": size
         });
         
-        nodeOrder[nodeIndex].playIndex = playIndex;
+        if(nodeIndex < nodeOrder.length){
+            nodeOrder[nodeIndex].playIndex = playIndex;
+
+        }
         
         if(this.lastNode > 0){ //if there should be an edge show it too
             this.cy.$("#edge" + (node.id() - 1)).style({"opacity": 1});
@@ -413,7 +436,11 @@ class CodeWindow{
         }
     }
     
-    hideLastNode(){        
+    hideLastNode(){ 
+        if(this.lastNode === this.cy.nodes().length){
+            this.lastNode--;
+        }
+        
         let node = this.cy.nodes()[this.lastNode]; //find last node
         node.style({"opacity": 0}); //make it invisible
         
@@ -440,7 +467,7 @@ class CodeWindow{
         
         this.editor.setScrollTop(data.scrollTop);
         this.editor.setScrollLeft(data.scrollLeft);
-        this.cy.pan({x: -data.scrollLeft, y: -data.scrollTop});
+        this.cy.pan({x: -data.scrollLeft * tempScale, y: -data.scrollTop * tempScale});
     }
     
     unscroll(){
@@ -576,8 +603,8 @@ function changeScale(down, maxHeight, original = false){
             for(const codeWindow of codeWindows){
                 codeWindow.cyWrapper.firstChild.style.transform = transform;
 
-                let tempHeight = 600 * scale;
-                let tempWidth = 800 * scale;
+                let tempHeight = editorHeight * scale;
+                let tempWidth = editorWidth * scale;
 
                 codeWindow.cyWrapper.style.height = tempHeight + "px";
                 codeWindow.cyWrapper.style.width = tempWidth + "px";
@@ -604,8 +631,8 @@ function changeScale(down, maxHeight, original = false){
             for(const codeWindow of codeWindows){
                 codeWindow.cyWrapper.firstChild.style.transform = transform;
 
-                let tempHeight = 600 * scale;
-                let tempWidth = 800 * scale;
+                let tempHeight = editorHeight * scale;
+                let tempWidth = editorWidth * scale;
 
                 codeWindow.cyWrapper.style.height = tempHeight + "px";
                 codeWindow.cyWrapper.style.width = tempWidth + "px";
