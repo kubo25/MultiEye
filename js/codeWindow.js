@@ -361,7 +361,7 @@ class CodeWindow{
                 
         if(this.hidden){
             node.style = {
-                "opacity": 0
+                "display": "none"
             };
         }
         
@@ -410,7 +410,7 @@ class CodeWindow{
         let size = basicSize * (1 + node.data("duration") / 500); //calculate it's size according to duration
         
         node.style({ //show the node and set it's new size
-            "opacity": 1,
+            "display": "element",
             "width": size,
             "height": size
         });
@@ -444,7 +444,7 @@ class CodeWindow{
         }
         
         let node = this.cy.nodes()[this.lastNode]; //find last node
-        node.style({"opacity": 0}); //make it invisible
+        node.style({"display": "none"}); //make it invisible
         
         this.lastNode--;
         
