@@ -93,6 +93,9 @@ function loop(i, next = false, seekbarSet = false){
 
 function previousStep(scrollbarSet){
     if(playIndex >= 0){
+        if(playIndex >= project.getWhole().length){
+            playIndex = project.getWhole().length - 1;
+        }
         let event = project.getWhole()[playIndex];
         switch(event.name){
             case "EditorOpen":

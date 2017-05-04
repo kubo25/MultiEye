@@ -2,8 +2,7 @@ const cytoscape = require("cytoscape");
 
 let first = true;
 let scale = 1;
-let tempScale = 0.9;
-let originalScale = 1;
+let tempScale = 1;
 
 let basicSize = 20;
 let basicFontSize = 18;
@@ -292,10 +291,12 @@ class CodeWindow{
         this.cyWrapper.lastChild.style.height = ((editorHeight - 10) * tempScale) + "px";
         
         this.cy.zoom(tempScale);
-
-        let data = this.scrollHistory[this.scrollHistory.length - 1];
         
-        this.cy.pan({x: -data.scrollLeft * tempScale, y: -data.scrollTop * tempScale});
+        if(this.scrollHistory.length > 0){
+            let data = this.scrollHistory[this.scrollHistory.length - 1];
+            this.cy.pan({x: -data.scrollLeft * tempScale, y: -data.scrollTop * tempScale});
+        }
+
         
         let cy = this.cy;
 
@@ -336,9 +337,10 @@ class CodeWindow{
         
         this.cy.zoom(scale);
         
-        let data = this.scrollHistory[this.scrollHistory.length - 1];
-        this.cy.pan({x: -data.scrollLeft * scale, y: -data.scrollTop * scale});
-
+        if(this.scrollHistory.length > 0){
+            let data = this.scrollHistory[this.scrollHistory.length - 1];
+            this.cy.pan({x: -data.scrollLeft * scale, y: -data.scrollTop * scale});
+        }
         this.cyWrapper.style.zIndex = "";
 
         this.cyWrapper.style.transform = "";
@@ -617,10 +619,6 @@ function changeScale(down, maxHeight, original = false){
                 codeWindow.cy.zoom(scale);
             }
         }
-        
-        if(original){
-            originalScale = scale;
-        }
     }
     else{
         while(codeWrapper.offsetHeight < maxHeight){
@@ -648,4 +646,5 @@ function changeScale(down, maxHeight, original = false){
         
         changeScale(true, maxHeight);
     }
+    tempScale = scale;
 }
