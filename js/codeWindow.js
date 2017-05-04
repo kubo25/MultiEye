@@ -617,6 +617,10 @@ function changeScale(down, maxHeight, original = false){
 
                 //Zoom according to the scaling
                 codeWindow.cy.zoom(scale);
+                if(codeWindow.scrollHistory.length > 0){
+                    let data = codeWindow.scrollHistory[codeWindow.scrollHistory.length - 1];
+                    codeWindow.cy.pan({x: -data.scrollLeft * scale, y: -data.scrollTop * scale});
+                }
             }
         }
     }
@@ -641,6 +645,10 @@ function changeScale(down, maxHeight, original = false){
 
                 //Zoom according to the scaling
                 codeWindow.cy.zoom(scale);
+                if(codeWindow.scrollHistory.length > 0){
+                    let data = codeWindow.scrollHistory[codeWindow.scrollHistory.length - 1];
+                    codeWindow.cy.pan({x: -data.scrollLeft * scale, y: -data.scrollTop * scale});
+                }
             }
         }
         
