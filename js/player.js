@@ -34,7 +34,7 @@ function loop(i, next = false, seekbarSet = false){
             break;
             
         case "EditorClosed":
-            activeCodeWindow.setHidden();
+            codeWindows.objectWithFile(event.data.path).setHidden();
             break;
             
         case "SelectionChanged":
@@ -126,7 +126,7 @@ function previousStep(scrollbarSet){
                 break;
 
             case "EditorClosed":
-                activeCodeWindow.setVisible();
+                codeWindows.objectWithFile(event.data.path).setVisible();
                 break;
 
             case "SelectionChanged":
