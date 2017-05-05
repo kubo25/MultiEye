@@ -1,0 +1,2007 @@
+{
+  "events": [
+    {
+      "data": {
+        "editor": 25,
+        "title": "events.js",
+        "path": "testCodes/atom-ext-js/events.js",
+        "contents": "'use babel';\r\n\r\nexport class Helpers {\r\n  static checkOwnPropertiesEqual(first, second) {\r\n    for (name in first) {\r\n      if (second.hasOwnProperty(name) === false\r\n          || first[name] !== second[name]) {\r\n          return false;\r\n      }\r\n    }\r\n    return true;\r\n  }\r\n}\r\n\r\n\r\nexport class WindowUpdatedEvent {\r\n  constructor(windowRect) {\r\n    this.Name = \"WindowUpdated\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = windowRect; // WindowRect\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \"\r\n         + \"(\" + this.Data.x + \",\" + this.Data.y + \") \"\r\n         + \"[\" + this.Data.outerWidth + \"x\" + this.Data.outerHeight + \"]\";\r\n  }\r\n}\r\n\r\n\r\nexport class Size {\r\n  constructor(width, height) {\r\n    this.width = width;\r\n    this.height = height;\r\n  }\r\n\r\n  toString() {\r\n    return \"[\" + this.width + \"x\" + this.height + \"]\";\r\n  }\r\n\r\n  equals(other) {\r\n    return other\r\n        && Helpers.checkOwnPropertiesEqual(this, other);\r\n  }\r\n}\r\n\r\n\r\nexport class WindowRect {\r\n  constructor(screenX, screenY, outerWidth, innerWidth, outerHeight, innerHeight, isMaximized) {\r\n    this.x = screenX;\r\n    this.y = screenY;\r\n    this.outerWidth = outerWidth;\r\n    this.innerWidth = innerWidth;\r\n    this.outerHeight = outerHeight;\r\n    this.innerHeight = innerHeight;\r\n    this.isMaximized = isMaximized;\r\n  }\r\n\r\n  equals(other) {\r\n    return other\r\n        && Helpers.checkOwnPropertiesEqual(this, other);\r\n  }\r\n}\r\n\r\n\r\nexport class EditorOpenEvent {\r\n  constructor(editorId, editorTitle, documentPath, documentContents) {\r\n    // add editor.getApproximageScreenLineCount() + editor.getLineCount()\r\n    this.Name = \"EditorOpen\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      title: editorTitle,\r\n      path: documentPath,\r\n      contents: documentContents\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \"\r\n         + this.Data.editor + \" \" + this.Data.title;\r\n  }\r\n}\r\n\r\n\r\nexport class EditorSwitchToEvent {\r\n  constructor(editorId, documentPath) {\r\n    this.Name = \"EditorSwitchTo\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = { editor: editorId, path: documentPath };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class BoundingRect {\r\n  constructor(left, top, right, bottom, width, height) {\r\n    this.left = left;\r\n    this.top = top;\r\n    this.right = right;\r\n    this.bottom = bottom;\r\n    this.width = width;\r\n    this.height = height;\r\n  }\r\n\r\n  static create(boundingRect) {\r\n    if (boundingRect) {\r\n      return new BoundingRect(\r\n        boundingRect.left,\r\n        boundingRect.top,\r\n        boundingRect.right,\r\n        boundingRect.bottom,\r\n        boundingRect.width,\r\n        boundingRect.height\r\n      );\r\n    }\r\n    else {\r\n      return new BoundingRect(0,0,0,0,0,0);\r\n    }\r\n  }\r\n\r\n  equals(other) {\r\n    return other\r\n        && Helpers.checkOwnPropertiesEqual(this, other);\r\n  }\r\n\r\n  toString() {\r\n    return \"(\" + this.left + \",\" + this.top + \") \"\r\n         + \"[\" + this.width + \"x\" + this.height + \"]\";\r\n  }\r\n}\r\n\r\n\r\nexport class EditorResizedEvent {\r\n  constructor(editorId, documentPath, size) {\r\n    this.Name = \"EditorResized\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath,\r\n      size: BoundingRect.create(size)\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor + \": \" + this.Data.size.toString();\r\n  }\r\n}\r\n\r\n\r\nexport class EditorTextLayoutChangedEvent {\r\n  constructor(editorId, documentPath, defaultCharWidth, doubleWidthCharWidth, lineHeight, showsLineNumbers, lineNumberGutterRect) {\r\n    this.Name = \"EditorTextLayoutChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n        editor: editorId,\r\n        path: documentPath,\r\n        defaultCharWidth: defaultCharWidth,\r\n        doubleWidthCharWidth: doubleWidthCharWidth,\r\n        lineHeight: lineHeight,\r\n        showsLineNumbers: showsLineNumbers,\r\n        // scrollLeft: scrollLeft,\r\n        // scrollTop: scrollTop,\r\n        lineNumberGutterRect: lineNumberGutterRect\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n// editor.logScreenLines() -> line and screenLine number + line for the whole document\r\n\r\n// activeEditorResized\r\n// editorContentChanged\r\n// windowUpdated\r\n// aliveEditors\r\n// editorSwitches\r\n// - editorTextLayoutChanged\r\nexport class EditorContentLayoutChangedEvent {\r\n  constructor(editorId, documentPath, lineCount, rows, columns, rowsPerPage, isWrapped, wrapColumn) {\r\n    this.Name = \"EditorContentLayoutChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath,\r\n      lineCount: lineCount, // int\r\n      rows: rows, // int\r\n      columns: columns, // column, row\r\n      rowsPerPage: rowsPerPage,\r\n      isWrapped: isWrapped,\r\n      wrapColumn: wrapColumn\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor + \": \" + this.Data.lineCount + \" (\" + this.Data.rows + \")\"\r\n  }\r\n}\r\n\r\n\r\nexport class EditorScrollChangedEvent {\r\n  constructor(editorId, scrollLeft, scrollTop) {\r\n    this.Name = \"EditorScrollChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      scrollLeft: scrollLeft,\r\n      scrollTop: scrollTop,\r\n      // ed.getHorizontalScrollMargin()\r\n      // horizontalScrollHeight: horizontalScrollHeight,\r\n      // verticalScrollWidth: verticalScrollWidth,\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class EditorContentChangedEvent {\r\n  constructor(editorId, documentPath, change) {\r\n    this.Name = \"EditorContentChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = { editor: editorId, path: documentPath, change: change };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class CursorPositionChangedEvent {\r\n  constructor(editorId, documentPath, position) {\r\n    this.Name = \"CursorPositionChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = { editor: editorId, path: documentPath, position : position };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class SelectionChangedEvent {\r\n  constructor(editorId, documentPath, range) {\r\n    this.Name = \"SelectionChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath,\r\n      selectionStart: {\r\n        row: range.start.row,\r\n        column: range.start.column\r\n      },\r\n      selectionEnd: {\r\n        row: range.end.row,\r\n        column: range.end.column\r\n      }\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class EditorClosedEvent {\r\n  constructor(editorId, documentPath) {\r\n    this.Name = \"EditorClosed\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class DocumentSavedEvent {\r\n  constructor(editorId, documentPath) {\r\n    this.Name = \"DocumentSaved\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class DesktopSizeChangedEvent {\r\n  constructor(size) {\r\n    this.Name = \"DesktopSizeChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = size; // Size\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.toString();\r\n  }\r\n}\r\n"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "2017-05-04T15:02:48.869Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": "testCodes/atom-ext-js/events.js"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "2017-05-04T15:02:48.919Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:48.923Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 48.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:11.577Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 96.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:11.607Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 144.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:11.639Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 192.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:11.66Z"
+    },
+    {
+      "data": {
+        "editor": 28,
+        "title": "helpers.js",
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "contents": "\r\n// taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties\r\n  var SimplePropertyRetriever = {\r\n    getOwnEnumerables: function(obj) {\r\n        return this._getPropertyNames(obj, true, false, this._enumerable);\r\n         // Or could use for..in filtered with hasOwnProperty or just this: return Object.keys(obj);\r\n    },\r\n    getOwnNonenumerables: function(obj) {\r\n        return this._getPropertyNames(obj, true, false, this._notEnumerable);\r\n    },\r\n    getOwnEnumerablesAndNonenumerables: function(obj) {\r\n        return this._getPropertyNames(obj, true, false, this._enumerableAndNotEnumerable);\r\n        // Or just use: return Object.getOwnPropertyNames(obj);\r\n    },\r\n    getPrototypeEnumerables: function(obj) {\r\n        return this._getPropertyNames(obj, false, true, this._enumerable);\r\n    },\r\n    getPrototypeNonenumerables: function(obj) {\r\n        return this._getPropertyNames(obj, false, true, this._notEnumerable);\r\n    },\r\n    getPrototypeEnumerablesAndNonenumerables: function(obj) {\r\n        return this._getPropertyNames(obj, false, true, this._enumerableAndNotEnumerable);\r\n    },\r\n    getOwnAndPrototypeEnumerables: function(obj) {\r\n        return this._getPropertyNames(obj, true, true, this._enumerable);\r\n        // Or could use unfiltered for..in\r\n    },\r\n    getOwnAndPrototypeNonenumerables: function(obj) {\r\n        return this._getPropertyNames(obj, true, true, this._notEnumerable);\r\n    },\r\n    getOwnAndPrototypeEnumerablesAndNonenumerables: function(obj) {\r\n        return this._getPropertyNames(obj, true, true, this._enumerableAndNotEnumerable);\r\n    },\r\n    // Private static property checker callbacks\r\n    _enumerable: function(obj, prop) {\r\n        return obj.propertyIsEnumerable(prop);\r\n    },\r\n    _notEnumerable: function(obj, prop) {\r\n        return !obj.propertyIsEnumerable(prop);\r\n    },\r\n    _enumerableAndNotEnumerable: function(obj, prop) {\r\n        return true;\r\n    },\r\n    // Inspired by http://stackoverflow.com/a/8024294/271577\r\n    _getPropertyNames: function getAllPropertyNames(obj, iterateSelfBool, iteratePrototypeBool, includePropCb) {\r\n        var props = [];\r\n\r\n        do {\r\n            if (iterateSelfBool) {\r\n                Object.getOwnPropertyNames(obj).forEach(function(prop) {\r\n                    if (props.indexOf(prop) === -1 && includePropCb(obj, prop)) {\r\n                        props.push(prop);\r\n                    }\r\n                });\r\n            }\r\n            if (!iteratePrototypeBool) {\r\n                break;\r\n            }\r\n            iterateSelfBool = true;\r\n        } while (obj = Object.getPrototypeOf(obj));\r\n\r\n        return props;\r\n    }\r\n};\r\n"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "2017-05-04T15:03:21.229Z"
+    },
+    {
+      "data": {
+        "editor": 28,
+        "path": "testCodes/atom-ext-js/helpers.js"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "2017-05-04T15:03:21.331Z"
+    },
+    {
+      "data": {
+        "editor": 28,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:21.344Z"
+    },
+    {
+      "data": {
+        "editor": 31,
+        "title": "monitors.js",
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "contents": "'use babel';\r\n\r\nimport { WindowRect, Size } from './events';\r\n\r\nexport default class Monitors {\r\n  static getDesktopSize() {\r\n    return new Size(screen.width, screen.height);\r\n  }\r\n\r\n  static getAtomWindowRect() {\r\n    var dimensions = atom.getWindowDimensions(); // not fully used, contains different X and Y if maximized (not 0,0 byt -8,-8)\r\n    // although the position and different size is valid, we do not care about it\r\n    // see https://blogs.msdn.microsoft.com/oldnewthing/20120326-00/?p=8003 for more info\r\n    var w = atom.window;\r\n    return new WindowRect(w.screenX, w.screenY, w.outerWidth, w.innerWidth, w.outerHeight, w.innerHeight, dimensions.maximized);\r\n  }\r\n}\r\n"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "2017-05-04T15:03:25.619Z"
+    },
+    {
+      "data": {
+        "editor": 31,
+        "path": "testCodes/atom-ext-js/monitors.js"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "2017-05-04T15:03:25.673Z"
+    },
+    {
+      "data": {
+        "editor": 31,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:25.687Z"
+    },
+    {
+      "data": {
+        "editor": 28,
+        "path": "testCodes/atom-ext-js/helpers.js"
+      },
+      "name": "EditorClosed",
+      "timeStamp": "2017-05-04T15:03:25.697Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": "testCodes/atom-ext-js/events.js"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "2017-05-04T15:03:40.284Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 192.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:40.335Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 240.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:41.53Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 288.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:41.563Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 336.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:41.585Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 384.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:41.618Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 432.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:41.64Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 480.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:41.683Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 528.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:42.016Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 576.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:42.036Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 624.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:42.069Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 672.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:42.085Z"
+    },
+    {
+      "data": {
+        "editor": 25,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 720.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:03:42.109Z"
+    }
+  ],
+  "fixations": [
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 127,
+        "y": 60,
+        "duration": 163
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:49.1414703"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 180,
+        "y": 40,
+        "duration": 212
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:49.3451723"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 198,
+        "y": 148,
+        "duration": 90
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:49.7480633"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 188,
+        "y": 327,
+        "duration": 260
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:49.8885811"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 226,
+        "y": 295,
+        "duration": 636
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:50.2025952"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 153,
+        "y": 646,
+        "duration": 121
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:51.1062413"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 153,
+        "y": 642,
+        "duration": 257
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:51.2810628"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 142,
+        "y": 635,
+        "duration": 62
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:51.5802653"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 141,
+        "y": 621,
+        "duration": 192
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:51.6739902"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 150,
+        "y": 39,
+        "duration": 352
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:51.9602008"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 200,
+        "y": 53,
+        "duration": 270
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:52.3439887"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 353,
+        "y": 39,
+        "duration": 248
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:52.6653913"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 308,
+        "y": 48,
+        "duration": 118
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:52.9461356"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 271,
+        "y": 55,
+        "duration": 210
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:53.104229"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 219,
+        "y": 73,
+        "duration": 500
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:53.3579579"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 165,
+        "y": 86,
+        "duration": 174
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:53.8879336"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 227,
+        "y": 93,
+        "duration": 201
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:54.1109555"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 215,
+        "y": 102,
+        "duration": 293
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:54.5303504"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 385,
+        "y": 38,
+        "duration": 169
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:54.894336"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 334,
+        "y": 56,
+        "duration": 191
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:55.1033555"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 188,
+        "y": 79,
+        "duration": 179
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:55.347795"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 243,
+        "y": 85,
+        "duration": 197
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:55.5619936"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 380,
+        "y": 61,
+        "duration": 253
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:55.8411417"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 292,
+        "y": 107,
+        "duration": 134
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:56.137017"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 235,
+        "y": 101,
+        "duration": 367
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:56.3102323"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 280,
+        "y": 92,
+        "duration": 154
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:56.7087733"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 375,
+        "y": 97,
+        "duration": 223
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:56.9121864"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 199,
+        "y": 90,
+        "duration": 205
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:57.1985849"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 175,
+        "y": 92,
+        "duration": 286
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:57.4038081"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 266,
+        "y": 108,
+        "duration": 119
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:57.7278364"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 386,
+        "y": 101,
+        "duration": 191
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:57.8925209"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 227,
+        "y": 125,
+        "duration": 298
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:58.1433711"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 278,
+        "y": 121,
+        "duration": 179
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:58.6440878"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 332,
+        "y": 121,
+        "duration": 206
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:58.8704373"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 292,
+        "y": 124,
+        "duration": 140
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:59.1078912"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 365,
+        "y": 123,
+        "duration": 149
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:59.3068832"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 203,
+        "y": 155,
+        "duration": 228
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:59.5132002"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 216,
+        "y": 142,
+        "duration": 188
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:59.7420825"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 159,
+        "y": 81,
+        "duration": 203
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:59.9538622"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 177,
+        "y": 53,
+        "duration": 199
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:00.1887831"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 248,
+        "y": 70,
+        "duration": 255
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:00.4350656"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 209,
+        "y": 172,
+        "duration": 257
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:00.7379137"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 159,
+        "y": 207,
+        "duration": 275
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:01.0496879"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 53,
+        "y": 330,
+        "duration": 176
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:01.4130285"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 184,
+        "y": 366,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:01.7166331"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 234,
+        "y": 312,
+        "duration": 180
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:01.8463085"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 211,
+        "y": 305,
+        "duration": 342
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:02.0297209"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 274,
+        "y": 477,
+        "duration": 534
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:02.5393337"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 238,
+        "y": 340,
+        "duration": 140
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:03.1359173"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 232,
+        "y": 300,
+        "duration": 217
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:03.2956536"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 173,
+        "y": 703,
+        "duration": 363
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:03.62044"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 158,
+        "y": 664,
+        "duration": 97
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:03.9917506"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 162,
+        "y": 654,
+        "duration": 77
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:04.093178"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 214,
+        "y": 558,
+        "duration": 110
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:04.3115572"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 194,
+        "y": 356,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:04.4926183"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 181,
+        "y": 376,
+        "duration": 78
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:04.6580182"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 186,
+        "y": 358,
+        "duration": 162
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:04.7361957"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 177,
+        "y": 138,
+        "duration": 150
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:04.9541972"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 185,
+        "y": 105,
+        "duration": 178
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:05.1200725"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 253,
+        "y": 104,
+        "duration": 184
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:05.3380788"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 313,
+        "y": 94,
+        "duration": 189
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:05.5637019"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 274,
+        "y": 80,
+        "duration": 181
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:05.7689668"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 190,
+        "y": 73,
+        "duration": 429
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:05.9975958"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 313,
+        "y": 76,
+        "duration": 148
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:06.4900256"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 263,
+        "y": 86,
+        "duration": 226
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:06.6720775"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 335,
+        "y": 88,
+        "duration": 331
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:06.9428462"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 298,
+        "y": 95,
+        "duration": 303
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:07.3157815"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 169,
+        "y": 120,
+        "duration": 85
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:07.6821043"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 209,
+        "y": 631,
+        "duration": 133
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:07.9820545"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 108,
+        "y": 651,
+        "duration": 119
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:08.1682488"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 131,
+        "y": 623,
+        "duration": 128
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:08.3347762"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 205,
+        "y": 93,
+        "duration": 383
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:08.536847"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 157,
+        "y": 86,
+        "duration": 118
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:08.951272"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 289,
+        "y": 67,
+        "duration": 187
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:09.1320987"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 192,
+        "y": 63,
+        "duration": 243
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:09.3725509"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 286,
+        "y": 46,
+        "duration": 239
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:09.6624524"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 216,
+        "y": 67,
+        "duration": 186
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:09.9490855"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 267,
+        "y": 70,
+        "duration": 197
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:10.1750925"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 170,
+        "y": 683,
+        "duration": 179
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:10.4820237"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 107,
+        "y": 657,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:10.6853117"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 99,
+        "y": 644,
+        "duration": 168
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:10.8950458"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 108,
+        "y": 816,
+        "duration": 252
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:11.1261089"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 136,
+        "y": 431,
+        "duration": 259
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:11.5388296"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 138,
+        "y": 912,
+        "duration": 163
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:11.8647474"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 121,
+        "y": 843,
+        "duration": 271
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:12.0664495"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 69,
+        "y": 851,
+        "duration": 190
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:12.3679562"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 140,
+        "y": 657,
+        "duration": 541
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:12.6342769"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 135,
+        "y": 793,
+        "duration": 126
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:13.2305019"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 139,
+        "y": 674,
+        "duration": 101
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:13.5661105"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 151,
+        "y": 654,
+        "duration": 120
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:13.6676963"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 96,
+        "y": 662,
+        "duration": 215
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:13.8344975"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 176,
+        "y": 659,
+        "duration": 252
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:14.1042161"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 282,
+        "y": 823,
+        "duration": 78
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:14.4039444"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 266,
+        "y": 826,
+        "duration": 261
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:14.4821432"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 183,
+        "y": 814,
+        "duration": 72
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:14.843581"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 202,
+        "y": 810,
+        "duration": 62
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:14.916439"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 281,
+        "y": 807,
+        "duration": 246
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:15.0575291"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 366,
+        "y": 802,
+        "duration": 193
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:15.3562879"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 238,
+        "y": 804,
+        "duration": 276
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:15.6042098"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 336,
+        "y": 804,
+        "duration": 455
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:15.9357647"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 10,
+        "y": 601,
+        "duration": 344
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:16.5792076"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 381,
+        "y": 805,
+        "duration": 180
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:17.9195934"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 354,
+        "y": 801,
+        "duration": 179
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:18.1626905"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 404,
+        "y": 809,
+        "duration": 97
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:18.4267455"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 153,
+        "y": 1033,
+        "duration": 95
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:18.6072309"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 269,
+        "y": 371,
+        "duration": 725
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:21.068944"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "x": 172,
+        "y": 188,
+        "duration": 144
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:21.8411819"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "x": 180,
+        "y": 36,
+        "duration": 332
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:22.0401473"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "x": 271,
+        "y": 403,
+        "duration": 115
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:22.4194098"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "x": 266,
+        "y": 407,
+        "duration": 75
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:22.5427244"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "x": 418,
+        "y": 431,
+        "duration": 125
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:22.6887777"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "x": 582,
+        "y": 413,
+        "duration": 117
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:22.9178806"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "x": 236,
+        "y": 754,
+        "duration": 376
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:23.1757259"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "x": 243,
+        "y": 740,
+        "duration": 173
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:23.5831202"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/helpers.js",
+        "x": 170,
+        "y": 569,
+        "duration": 147
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:23.8030984"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 197,
+        "y": 158,
+        "duration": 305
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:25.8220765"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 167,
+        "y": 23,
+        "duration": 340
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:26.1587803"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 316,
+        "y": 41,
+        "duration": 140
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:26.5556541"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 364,
+        "y": 40,
+        "duration": 78
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:26.7431599"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 155,
+        "y": 57,
+        "duration": 397
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:26.8854806"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 247,
+        "y": 71,
+        "duration": 220
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:27.3323172"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 194,
+        "y": 98,
+        "duration": 314
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:27.6072568"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 279,
+        "y": 88,
+        "duration": 161
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:27.9766821"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 161,
+        "y": 110,
+        "duration": 690
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:28.2557882"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 225,
+        "y": 166,
+        "duration": 148
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:28.993392"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 179,
+        "y": 175,
+        "duration": 230
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:29.1734266"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 183,
+        "y": 267,
+        "duration": 278
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:29.4429221"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 343,
+        "y": 249,
+        "duration": 161
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:29.8074162"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 609,
+        "y": 222,
+        "duration": 121
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:30.0469242"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 906,
+        "y": 249,
+        "duration": 142
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:30.2461252"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 992,
+        "y": 256,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:30.4352592"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 218,
+        "y": 270,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:30.5838054"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 156,
+        "y": 196,
+        "duration": 399
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:30.7400457"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 319,
+        "y": 176,
+        "duration": 186
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:31.2016848"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 278,
+        "y": 177,
+        "duration": 220
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:31.4194868"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 502,
+        "y": 167,
+        "duration": 167
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:31.7054798"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 478,
+        "y": 169,
+        "duration": 216
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:31.8887681"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 565,
+        "y": 162,
+        "duration": 204
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:32.1507224"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 636,
+        "y": 169,
+        "duration": 162
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:32.404589"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 714,
+        "y": 169,
+        "duration": 85
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:32.6215868"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 526,
+        "y": 189,
+        "duration": 157
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:32.8781147"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 618,
+        "y": 178,
+        "duration": 171
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:33.0904894"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 698,
+        "y": 180,
+        "duration": 147
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:33.3186639"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 783,
+        "y": 177,
+        "duration": 161
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:33.513131"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 882,
+        "y": 193,
+        "duration": 187
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:33.7180968"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 958,
+        "y": 201,
+        "duration": 227
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:33.9525353"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 176,
+        "y": 229,
+        "duration": 119
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:34.3081767"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 148,
+        "y": 239,
+        "duration": 161
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:34.4663394"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 238,
+        "y": 222,
+        "duration": 242
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:34.6747135"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 249,
+        "y": 207,
+        "duration": 171
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:34.916855"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 323,
+        "y": 201,
+        "duration": 346
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:35.135673"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 285,
+        "y": 196,
+        "duration": 109
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:35.5132784"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 404,
+        "y": 196,
+        "duration": 189
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:35.6869053"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 465,
+        "y": 195,
+        "duration": 209
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:35.9233182"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 529,
+        "y": 193,
+        "duration": 239
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:36.1877385"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 585,
+        "y": 195,
+        "duration": 155
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:36.4777297"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 623,
+        "y": 188,
+        "duration": 62
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:36.6722882"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 208,
+        "y": 228,
+        "duration": 125
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:36.8129333"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 149,
+        "y": 231,
+        "duration": 265
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:36.9776383"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 639,
+        "y": 211,
+        "duration": 417
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:37.34418"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/monitors.js",
+        "x": 159,
+        "y": 250,
+        "duration": 632
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:37.8708836"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 244,
+        "y": 883,
+        "duration": 106
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:40.7065632"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 158,
+        "y": 1025,
+        "duration": 62
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:41.0080197"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 183,
+        "y": 1002,
+        "duration": 265
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:41.1174646"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 269,
+        "y": 1034,
+        "duration": 291
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:41.4054705"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 260,
+        "y": 1244,
+        "duration": 165
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:41.8265111"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 192,
+        "y": 1256,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:42.0260333"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 318,
+        "y": 1118,
+        "duration": 103
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:42.3161128"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 259,
+        "y": 995,
+        "duration": 203
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:42.4664905"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 707,
+        "y": 987,
+        "duration": 295
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:42.7641411"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 688,
+        "y": 986,
+        "duration": 87
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:43.0754031"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 418,
+        "y": 997,
+        "duration": 305
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:43.2415362"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 215,
+        "y": 1095,
+        "duration": 302
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:43.6171428"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 165,
+        "y": 1119,
+        "duration": 210
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:03:43.9741981"
+    }
+  ],
+  "patterns": []
+}

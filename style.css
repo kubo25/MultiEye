@@ -115,6 +115,7 @@ body{
     bottom: 0;
     text-align: center;
     opacity: 0;
+    background-color: var(--red-color);
     transition: opacity 0.4s ease;
 }
 
@@ -124,6 +125,15 @@ body{
     height: 30px;
     line-height: 30px;
     padding: 0;
+    background-color: var(--red-color);
+    color: white;
+    font-weight: bold;
+}
+
+#editButtons input:hover, #editButtons input:focus{
+    font-weight: normal;
+    color: black;
+    background-color: white;
 }
 
 .editButtonsVisible{

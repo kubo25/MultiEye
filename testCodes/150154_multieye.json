@@ -1,0 +1,2279 @@
+{
+  "events": [
+    {
+      "data": {
+        "editor": 22,
+        "title": "events.js",
+        "path": "testCodes/atom-ext-js/events.js",
+        "contents": "'use babel';\r\n\r\nexport class Helpers {\r\n  static checkOwnPropertiesEqual(first, second) {\r\n    for (name in first) {\r\n      if (second.hasOwnProperty(name) === false\r\n          || first[name] !== second[name]) {\r\n          return false;\r\n      }\r\n    }\r\n    return true;\r\n  }\r\n}\r\n\r\n\r\nexport class WindowUpdatedEvent {\r\n  constructor(windowRect) {\r\n    this.Name = \"WindowUpdated\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = windowRect; // WindowRect\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \"\r\n         + \"(\" + this.Data.x + \",\" + this.Data.y + \") \"\r\n         + \"[\" + this.Data.outerWidth + \"x\" + this.Data.outerHeight + \"]\";\r\n  }\r\n}\r\n\r\n\r\nexport class Size {\r\n  constructor(width, height) {\r\n    this.width = width;\r\n    this.height = height;\r\n  }\r\n\r\n  toString() {\r\n    return \"[\" + this.width + \"x\" + this.height + \"]\";\r\n  }\r\n\r\n  equals(other) {\r\n    return other\r\n        && Helpers.checkOwnPropertiesEqual(this, other);\r\n  }\r\n}\r\n\r\n\r\nexport class WindowRect {\r\n  constructor(screenX, screenY, outerWidth, innerWidth, outerHeight, innerHeight, isMaximized) {\r\n    this.x = screenX;\r\n    this.y = screenY;\r\n    this.outerWidth = outerWidth;\r\n    this.innerWidth = innerWidth;\r\n    this.outerHeight = outerHeight;\r\n    this.innerHeight = innerHeight;\r\n    this.isMaximized = isMaximized;\r\n  }\r\n\r\n  equals(other) {\r\n    return other\r\n        && Helpers.checkOwnPropertiesEqual(this, other);\r\n  }\r\n}\r\n\r\n\r\nexport class EditorOpenEvent {\r\n  constructor(editorId, editorTitle, documentPath, documentContents) {\r\n    // add editor.getApproximageScreenLineCount() + editor.getLineCount()\r\n    this.Name = \"EditorOpen\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      title: editorTitle,\r\n      path: documentPath,\r\n      contents: documentContents\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \"\r\n         + this.Data.editor + \" \" + this.Data.title;\r\n  }\r\n}\r\n\r\n\r\nexport class EditorSwitchToEvent {\r\n  constructor(editorId, documentPath) {\r\n    this.Name = \"EditorSwitchTo\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = { editor: editorId, path: documentPath };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class BoundingRect {\r\n  constructor(left, top, right, bottom, width, height) {\r\n    this.left = left;\r\n    this.top = top;\r\n    this.right = right;\r\n    this.bottom = bottom;\r\n    this.width = width;\r\n    this.height = height;\r\n  }\r\n\r\n  static create(boundingRect) {\r\n    if (boundingRect) {\r\n      return new BoundingRect(\r\n        boundingRect.left,\r\n        boundingRect.top,\r\n        boundingRect.right,\r\n        boundingRect.bottom,\r\n        boundingRect.width,\r\n        boundingRect.height\r\n      );\r\n    }\r\n    else {\r\n      return new BoundingRect(0,0,0,0,0,0);\r\n    }\r\n  }\r\n\r\n  equals(other) {\r\n    return other\r\n        && Helpers.checkOwnPropertiesEqual(this, other);\r\n  }\r\n\r\n  toString() {\r\n    return \"(\" + this.left + \",\" + this.top + \") \"\r\n         + \"[\" + this.width + \"x\" + this.height + \"]\";\r\n  }\r\n}\r\n\r\n\r\nexport class EditorResizedEvent {\r\n  constructor(editorId, documentPath, size) {\r\n    this.Name = \"EditorResized\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath,\r\n      size: BoundingRect.create(size)\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor + \": \" + this.Data.size.toString();\r\n  }\r\n}\r\n\r\n\r\nexport class EditorTextLayoutChangedEvent {\r\n  constructor(editorId, documentPath, defaultCharWidth, doubleWidthCharWidth, lineHeight, showsLineNumbers, lineNumberGutterRect) {\r\n    this.Name = \"EditorTextLayoutChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n        editor: editorId,\r\n        path: documentPath,\r\n        defaultCharWidth: defaultCharWidth,\r\n        doubleWidthCharWidth: doubleWidthCharWidth,\r\n        lineHeight: lineHeight,\r\n        showsLineNumbers: showsLineNumbers,\r\n        // scrollLeft: scrollLeft,\r\n        // scrollTop: scrollTop,\r\n        lineNumberGutterRect: lineNumberGutterRect\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n// editor.logScreenLines() -> line and screenLine number + line for the whole document\r\n\r\n// activeEditorResized\r\n// editorContentChanged\r\n// windowUpdated\r\n// aliveEditors\r\n// editorSwitches\r\n// - editorTextLayoutChanged\r\nexport class EditorContentLayoutChangedEvent {\r\n  constructor(editorId, documentPath, lineCount, rows, columns, rowsPerPage, isWrapped, wrapColumn) {\r\n    this.Name = \"EditorContentLayoutChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath,\r\n      lineCount: lineCount, // int\r\n      rows: rows, // int\r\n      columns: columns, // column, row\r\n      rowsPerPage: rowsPerPage,\r\n      isWrapped: isWrapped,\r\n      wrapColumn: wrapColumn\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor + \": \" + this.Data.lineCount + \" (\" + this.Data.rows + \")\"\r\n  }\r\n}\r\n\r\n\r\nexport class EditorScrollChangedEvent {\r\n  constructor(editorId, scrollLeft, scrollTop) {\r\n    this.Name = \"EditorScrollChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      scrollLeft: scrollLeft,\r\n      scrollTop: scrollTop,\r\n      // ed.getHorizontalScrollMargin()\r\n      // horizontalScrollHeight: horizontalScrollHeight,\r\n      // verticalScrollWidth: verticalScrollWidth,\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class EditorContentChangedEvent {\r\n  constructor(editorId, documentPath, change) {\r\n    this.Name = \"EditorContentChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = { editor: editorId, path: documentPath, change: change };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class CursorPositionChangedEvent {\r\n  constructor(editorId, documentPath, position) {\r\n    this.Name = \"CursorPositionChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = { editor: editorId, path: documentPath, position : position };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class SelectionChangedEvent {\r\n  constructor(editorId, documentPath, range) {\r\n    this.Name = \"SelectionChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath,\r\n      selectionStart: {\r\n        row: range.start.row,\r\n        column: range.start.column\r\n      },\r\n      selectionEnd: {\r\n        row: range.end.row,\r\n        column: range.end.column\r\n      }\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class EditorClosedEvent {\r\n  constructor(editorId, documentPath) {\r\n    this.Name = \"EditorClosed\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class DocumentSavedEvent {\r\n  constructor(editorId, documentPath) {\r\n    this.Name = \"DocumentSaved\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = {\r\n      editor: editorId,\r\n      path: documentPath\r\n    };\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.editor;\r\n  }\r\n}\r\n\r\n\r\nexport class DesktopSizeChangedEvent {\r\n  constructor(size) {\r\n    this.Name = \"DesktopSizeChanged\";\r\n    this.TimeStamp = new Date();\r\n    this.Data = size; // Size\r\n  }\r\n\r\n  toString() {\r\n    return this.Name + \" \" + this.Data.toString();\r\n  }\r\n}\r\n"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "2017-05-04T15:01:57.067Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": "testCodes/atom-ext-js/events.js"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "2017-05-04T15:01:57.207Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:01:57.214Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": "testCodes/atom-ext-js/events.js",
+        "position": {
+          "row": 5,
+          "column": 18
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-04T15:01:58.264Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": "testCodes/atom-ext-js/events.js",
+        "position": {
+          "row": 3,
+          "column": 17
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-04T15:01:58.884Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 48.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:01:59.787Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 96.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:01:59.841Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 144.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:01:59.919Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 192.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:00.311Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 240.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:00.368Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 288.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:00.401Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 336.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:00.439Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 384.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:00.507Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 432.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.191Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 480.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.223Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 528.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.239Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 576.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.266Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 624.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.298Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 672.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.327Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 720.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.76Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 768.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.793Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 816.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.815Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 864.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:01.845Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 912.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:02.299Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 960.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:02.318Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1008.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:02.349Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1056.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:02.37Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1104.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:02.39Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1152.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:02.429Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1200.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:03.532Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1248.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:03.563Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1296.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:03.578Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1344.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:03.597Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1392.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:03.634Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1440.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:03.657Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1392.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:05.002Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1344.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:05.026Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1296.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:05.055Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1248.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:05.08Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1296.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.216Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1344.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.246Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1392.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.278Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1440.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.301Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1488.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.328Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1536.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.344Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1584.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.639Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1632.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.67Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1680.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.686Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1776.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.706Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1824.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.745Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1872.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:07.992Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1920.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:08.013Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1968.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:08.04Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2064.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:08.074Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2112.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:08.093Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2064.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:10.751Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2016.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:10.771Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1968.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:10.785Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1920.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:10.816Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1872.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:10.839Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1824.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:12.415Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1776.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:12.442Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1728.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:12.46Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1632.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:12.494Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1584.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:12.526Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1632.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.011Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1680.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.027Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1728.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.047Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1776.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.081Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1824.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.114Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1872.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.415Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1920.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.433Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 1968.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.453Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2016.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.485Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2112.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.509Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2160.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.556Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2208.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.824Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2256.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.851Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2304.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.868Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2352.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.887Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2448.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.919Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2496.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:28.952Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2544.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:32.583Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2592.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:32.645Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2640.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:33.095Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2688.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:33.128Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2736.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:33.161Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2784.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:34.519Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2832.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:34.54Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2880.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:34.588Z"
+    },
+    {
+      "data": {
+        "editor": 22,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 2928.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-04T15:02:34.616Z"
+    }
+  ],
+  "fixations": [
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 175,
+        "y": 149,
+        "duration": 149
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:01:57.7061283"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 157,
+        "y": 28,
+        "duration": 229
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:01:57.8950401"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 216,
+        "y": 36,
+        "duration": 675
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:01:58.1752855"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 217,
+        "y": 315,
+        "duration": 373
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:01:58.9083648"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 174,
+        "y": 556,
+        "duration": 102
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:01:59.3415003"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 156,
+        "y": 638,
+        "duration": 506
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:01:59.5080542"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 157,
+        "y": 759,
+        "duration": 153
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:00.0178309"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 130,
+        "y": 843,
+        "duration": 206
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:00.2182288"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 176,
+        "y": 1028,
+        "duration": 249
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:00.5248311"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 177,
+        "y": 998,
+        "duration": 216
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:00.7816456"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 171,
+        "y": 1045,
+        "duration": 152
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:01.0364352"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 162,
+        "y": 1087,
+        "duration": 192
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:01.2348891"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 162,
+        "y": 1245,
+        "duration": 110
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:01.4308015"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 159,
+        "y": 1358,
+        "duration": 152
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:01.5986134"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 205,
+        "y": 1413,
+        "duration": 145
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:01.7716133"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 198,
+        "y": 1512,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:01.9881265"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 186,
+        "y": 1655,
+        "duration": 136
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:02.2110237"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 162,
+        "y": 1817,
+        "duration": 73
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:02.4475998"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 168,
+        "y": 1797,
+        "duration": 158
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:02.5241712"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 202,
+        "y": 1800,
+        "duration": 331
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:02.7602834"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 253,
+        "y": 1800,
+        "duration": 200
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:03.1308592"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 176,
+        "y": 2007,
+        "duration": 163
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:03.4176962"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 177,
+        "y": 2073,
+        "duration": 364
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:03.8669177"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 230,
+        "y": 2075,
+        "duration": 262
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:04.2940544"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 221,
+        "y": 1549,
+        "duration": 130
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:04.8998883"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 217,
+        "y": 1509,
+        "duration": 326
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:05.0872414"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 223,
+        "y": 1772,
+        "duration": 94
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:05.7163371"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 245,
+        "y": 1779,
+        "duration": 137
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:05.892447"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 228,
+        "y": 1369,
+        "duration": 315
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:06.1076619"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 270,
+        "y": 1375,
+        "duration": 253
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:06.4546553"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 218,
+        "y": 1437,
+        "duration": 223
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:06.7554558"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 238,
+        "y": 2065,
+        "duration": 273
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:07.1395852"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 235,
+        "y": 2323,
+        "duration": 73
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:07.4431425"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 236,
+        "y": 2311,
+        "duration": 75
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:07.5199407"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 246,
+        "y": 2583,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:07.8064411"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 183,
+        "y": 2796,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:08.0531871"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 187,
+        "y": 2884,
+        "duration": 205
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:08.2330945"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 195,
+        "y": 2869,
+        "duration": 174
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:08.4698901"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 255,
+        "y": 2877,
+        "duration": 93
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:08.8279765"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 180,
+        "y": 2759,
+        "duration": 271
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:08.9764363"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 224,
+        "y": 2489,
+        "duration": 272
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:09.3276446"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 290,
+        "y": 2481,
+        "duration": 204
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:09.6387433"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 222,
+        "y": 2289,
+        "duration": 1686
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:09.8742036"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 211,
+        "y": 2143,
+        "duration": 420
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:11.6076967"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 140,
+        "y": 2162,
+        "duration": 94
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:12.0755252"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 280,
+        "y": 2069,
+        "duration": 499
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:12.2261757"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 190,
+        "y": 2151,
+        "duration": 131
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:12.8029053"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 168,
+        "y": 2102,
+        "duration": 70
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:12.9590243"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 203,
+        "y": 2070,
+        "duration": 171
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:13.076425"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 277,
+        "y": 2050,
+        "duration": 100
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:13.308884"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 273,
+        "y": 2069,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:13.4192545"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 250,
+        "y": 2068,
+        "duration": 148
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:13.4887938"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 300,
+        "y": 2063,
+        "duration": 134
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:13.6846343"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 360,
+        "y": 2048,
+        "duration": 196
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:13.9188926"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 412,
+        "y": 1982,
+        "duration": 162
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:14.2637989"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 153,
+        "y": 2091,
+        "duration": 120
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:14.4989119"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 171,
+        "y": 2048,
+        "duration": 78
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:14.6717881"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 152,
+        "y": 2087,
+        "duration": 93
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:14.8232124"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 183,
+        "y": 2161,
+        "duration": 173
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:15.2486809"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 166,
+        "y": 2160,
+        "duration": 136
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:15.4235395"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 181,
+        "y": 2180,
+        "duration": 146
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:15.8653522"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 201,
+        "y": 2166,
+        "duration": 292
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:16.2227953"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 123,
+        "y": 2193,
+        "duration": 181
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:16.5655392"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 114,
+        "y": 2130,
+        "duration": 110
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:16.7885214"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 123,
+        "y": 2114,
+        "duration": 89
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:16.899405"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 133,
+        "y": 2160,
+        "duration": 240
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:17.1148799"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 189,
+        "y": 2163,
+        "duration": 149
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:17.3952043"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 113,
+        "y": 2176,
+        "duration": 101
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:17.5879038"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 116,
+        "y": 2164,
+        "duration": 91
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:17.6972749"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 171,
+        "y": 2176,
+        "duration": 287
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:17.8838677"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 108,
+        "y": 2190,
+        "duration": 274
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:18.2209238"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 164,
+        "y": 2202,
+        "duration": 377
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:18.5354949"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 191,
+        "y": 2362,
+        "duration": 489
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:18.9780722"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 193,
+        "y": 2379,
+        "duration": 242
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:19.511765"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 230,
+        "y": 2410,
+        "duration": 232
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:19.7651735"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 227,
+        "y": 2449,
+        "duration": 111
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:20.0364513"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 252,
+        "y": 2444,
+        "duration": 246
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:20.1512402"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 215,
+        "y": 2400,
+        "duration": 155
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:20.4288139"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 148,
+        "y": 2208,
+        "duration": 174
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:20.6587716"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 156,
+        "y": 2186,
+        "duration": 164
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:20.864381"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 220,
+        "y": 2176,
+        "duration": 117
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:21.0833863"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 289,
+        "y": 2049,
+        "duration": 234
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:21.2630024"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 381,
+        "y": 2040,
+        "duration": 427
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:21.5598796"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 439,
+        "y": 2020,
+        "duration": 304
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:22.028666"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 198,
+        "y": 2183,
+        "duration": 206
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:22.6175972"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 141,
+        "y": 2199,
+        "duration": 173
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:22.8708602"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 239,
+        "y": 2429,
+        "duration": 453
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:23.1225443"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 186,
+        "y": 1989,
+        "duration": 62
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:23.6693251"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 178,
+        "y": 2127,
+        "duration": 418
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:23.8627014"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 393,
+        "y": 2023,
+        "duration": 93
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:24.416792"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 443,
+        "y": 2054,
+        "duration": 78
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:24.6784872"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 205,
+        "y": 2062,
+        "duration": 187
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:25.04676"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 151,
+        "y": 1899,
+        "duration": 227
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:25.4970917"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 210,
+        "y": 1812,
+        "duration": 216
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:25.787375"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 160,
+        "y": 1793,
+        "duration": 232
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:26.0286566"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 190,
+        "y": 1780,
+        "duration": 183
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:26.3072205"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 284,
+        "y": 1781,
+        "duration": 242
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:26.5407623"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 228,
+        "y": 1803,
+        "duration": 547
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:26.8196857"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 237,
+        "y": 1823,
+        "duration": 211
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:27.4232641"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 429,
+        "y": 1843,
+        "duration": 224
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:27.6968682"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 270,
+        "y": 2336,
+        "duration": 227
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:28.0197935"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 278,
+        "y": 2505,
+        "duration": 93
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:28.2501349"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 218,
+        "y": 2604,
+        "duration": 211
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:28.3954315"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 227,
+        "y": 2899,
+        "duration": 352
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:28.6334822"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 228,
+        "y": 3187,
+        "duration": 226
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:29.0630223"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 180,
+        "y": 2928,
+        "duration": 295
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:29.3815362"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 266,
+        "y": 2872,
+        "duration": 176
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:29.7318327"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 176,
+        "y": 2996,
+        "duration": 271
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:29.9668631"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 248,
+        "y": 3220,
+        "duration": 350
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:30.6130605"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 362,
+        "y": 3233,
+        "duration": 188
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:31.0442782"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 596,
+        "y": 3236,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:31.3130876"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 555,
+        "y": 3258,
+        "duration": 148
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:31.552111"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 941,
+        "y": 3227,
+        "duration": 209
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:31.7962993"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 964,
+        "y": 3241,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:32.413984"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 407,
+        "y": 3415,
+        "duration": 60
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:32.8120672"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 190,
+        "y": 3393,
+        "duration": 280
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:32.9256313"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 176,
+        "y": 3465,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:33.339051"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 311,
+        "y": 3446,
+        "duration": 219
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:33.5191955"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 152,
+        "y": 3343,
+        "duration": 125
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:34.060007"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 298,
+        "y": 3413,
+        "duration": 123
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:34.5284741"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 303,
+        "y": 3332,
+        "duration": 586
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:34.8288224"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 335,
+        "y": 3330,
+        "duration": 82
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:35.4270403"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 193,
+        "y": 3343,
+        "duration": 267
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:35.5893883"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 249,
+        "y": 3325,
+        "duration": 62
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:35.9037217"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 241,
+        "y": 3333,
+        "duration": 78
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:35.9818801"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 236,
+        "y": 3332,
+        "duration": 116
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:36.0599603"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 338,
+        "y": 3369,
+        "duration": 266
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:36.3095825"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 387,
+        "y": 3337,
+        "duration": 78
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:36.6259963"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 256,
+        "y": 3326,
+        "duration": 91
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:36.911044"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 180,
+        "y": 3329,
+        "duration": 125
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:37.1114629"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 175,
+        "y": 3355,
+        "duration": 125
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:37.2366025"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 334,
+        "y": 3342,
+        "duration": 146
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:37.4216251"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 296,
+        "y": 3344,
+        "duration": 167
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:37.6106099"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 217,
+        "y": 3297,
+        "duration": 413
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:37.8585013"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 926,
+        "y": 3198,
+        "duration": 350
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:38.4656694"
+    },
+    {
+      "data": {
+        "path": "testCodes/atom-ext-js/events.js",
+        "x": 713,
+        "y": 3193,
+        "duration": 173
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-04T15:02:38.8860653"
+    }
+  ],
+  "patterns": []
+}

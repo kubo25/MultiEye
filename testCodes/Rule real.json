@@ -1,0 +1,423 @@
+{
+"events":[
+    {
+      "data": {
+          "contents": "",
+          "editor": 0,
+          "path": "testCodes/Rule.cs",
+          "title": "Rule.cs"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "data": {
+          "contents": "",
+          "editor": 1,
+          "path": "testCodes/Action.cs",
+          "title": "Action.cs"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "1970-01-01T00:00:05.070Z"
+    },
+    {
+      "data": {
+          "editor": 1,
+          "path": "testCodes/Action.cs"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "1970-01-01T00:00:05.072Z"
+    },
+    {
+      "data": {
+          "editor": 0,
+          "path": "testCodes/Rule.cs"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "1970-01-01T00:00:11.690Z"
+    }
+],
+"fixations" : [
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 70,
+      "y": 14,
+      "duration": 303
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:00.303Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 93,
+      "y": 50,
+      "duration": 303
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:00.606Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 146,
+      "y": 46,
+      "duration": 303
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:00.909Z"
+  },  
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 227,
+      "y": 48,
+      "duration": 484
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:01.393Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 285,
+      "y": 42,
+      "duration": 248
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:01.641Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 192,
+      "y": 70,
+      "duration": 246
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:01.887Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 160,
+      "y": 86,
+      "duration": 421
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:02.308Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 227,
+      "y": 85,
+      "duration": 228
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:02.536Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 200,
+      "y": 100,
+      "duration": 318
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:02.854Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 290,
+      "y": 102,
+      "duration": 329
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:03.183Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 281,
+      "y": 124,
+      "duration": 339
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:03.522Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 185,
+      "y": 127,
+      "duration": 419
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:03.941Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 175,
+      "y": 164,
+      "duration": 261
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:04.202Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 192,
+      "y": 199,
+      "duration": 216
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:04.418Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 241,
+      "y": 226,
+      "duration": 216
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:04.634Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 310,
+      "y": 284,
+      "duration": 216
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:04.850Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 305,
+      "y": 425,
+      "duration": 216
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:05.066Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 183,
+      "y": 180,
+      "duration": 396
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:05.462Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 190,
+      "y": 200,
+      "duration": 305
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:05.767Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 167,
+      "y": 80,
+      "duration": 353
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:06.120Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 172,
+      "y": 294,
+      "duration": 483
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:06.603Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 234,
+      "y": 315,
+      "duration": 479
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:07.082Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 330,
+      "y": 310,
+      "duration": 469
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:07.551Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 282,
+      "y": 296,
+      "duration": 269
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:07.820Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 504,
+      "y": 312,
+      "duration": 331
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:08.151Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 638,
+      "y": 315,
+      "duration": 221
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:08.372Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 290,
+      "y": 297,
+      "duration": 404
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:08.776Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 208,
+      "y": 354,
+      "duration": 444
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:09.220Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 187,
+      "y": 386,
+      "duration": 480
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:09.700Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 380,
+      "y": 386,
+      "duration": 414
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:10.114Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 242,
+      "y": 349,
+      "duration": 488
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:10.602Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 187,
+      "y": 424,
+      "duration": 406
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:11.008Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 489,
+      "y": 496,
+      "duration": 416
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:11.424Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Action.cs",
+      "x": 256,
+      "y": 196,
+      "duration": 260
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:11.684Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 492,
+      "y": 275,
+      "duration": 260
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:11.944Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 229,
+      "y": 346,
+      "duration": 260
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:12.204Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 199,
+      "y": 427,
+      "duration": 260
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:12.464Z"
+  },
+  {
+    "data":{
+      "path": "testCodes/Rule.cs",
+      "x": 315,
+      "y": 424,
+      "duration": 260
+    },
+    "name": "Fixation",
+    "timeStamp": "1970-01-01T00:00:12.724Z"
+  }
+],
+"patterns" : []
+}

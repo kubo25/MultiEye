@@ -1,0 +1,5657 @@
+{
+  "events": [
+    {
+      "data": {
+        "editor": 7,
+        "title": "student1.c",
+        "path": "testCodes/3/student1.c",
+        "contents": "// test.c -- Tyzden 4 - Test\n// Juraj Zec, 11.10.2016 14:10:01\n\n\n// 2 - tvar ok, ale od polovice mali ist dalsie pismena, nie spat - neosetruje nespravny vstup pre velkost obrazca \n// 0.5 - riadky \n// 0.5 - stlpce       \n// 0.5 - opakovanie\n// 0 - struktura\n\n#include <stdio.h>\n\nint main()\n{\n  int i, j, k, l, m, p, v, s, r;\n  char c;\n\n  scanf(\"%d\", &p);\n  c = 'A';\n\n  for (m = 1; m <= p; m++)\n  {\n\n    scanf(\"%d %d %d\", &v, &s, &r);\n\n    if (p < 1 || p > 100 || v < 1 || v > 7 || s < 1 || s > 5 || r < 1 || r > 53)\n      printf(\"Zly vstup\\n\");\n    else\n    {\n\n      for (k = 1; k <= v; k++)\n      {\n        for (j = 1; j <= r; j++)\n        {\n          for (l = 1; l <= s; l++)\n          {\n            for (i = 1; i <= r; i++)\n            {\n\n              if (j <= (r / 2) + 1)\n              {\n                if (i >= j && i <= (r - j + 1))\n                  printf(\"%c\", c);\n                else\n                  printf(\".\");\n              }\n\n              if (j > (r / 2) + 1)\n              {\n                if (i > r - j && i <= j)\n                  printf(\"%c\", c);\n                else\n                  printf(\".\");\n              }\n\n              if (i <= (r / 2))\n                c += 1;\n              else\n                c -= 1;\n            }\n            c = 'A';\n          }\n\n          printf(\"\\n\");\n        }\n      }\n\n      printf(\"\\n\");\n    }\n  }\n  return 0;\n}\n"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "2017-05-02T10:52:30.612Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": "testCodes/3/student1.c"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "2017-05-02T10:52:30.628Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:52:30.634Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:52:30.647Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:52:30.649Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 48.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:52:45.321Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 96.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:52:45.514Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 144.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:52:45.687Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 192.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:52:46.481Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": "testCodes/3/student1.c",
+        "position": {
+          "row": 17,
+          "column": 18
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:52:46.836Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 240.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:52:47.746Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 288.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:30.488Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 336.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:30.65Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 384.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:30.84Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 432.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:32.462Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 480.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:32.688Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 528.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:33.097Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 576.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:33.144Z"
+    },
+    {
+      "data": {
+        "editor": 7,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 617.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:33.63Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "title": "student2.c",
+        "path": "testCodes/3/student2.c",
+        "contents": "#include <stdio.h>\r\n\r\n\r\n// 0.5 - naznak tvaru \r\n// 0.5 - riadky \r\n// 0.5 - stlpce       \r\n// 0 - opakovanie\r\n// 0 - struktura\r\n\r\nint main()\r\n{\r\n  int p,v,s,r,i,j,k,l;\r\n  char z='A';\r\n  int p1,p2;\r\n  \r\n  scanf(\"%d\",&p);\r\n  scanf(\"%d %d %d\", &v,&s,&r);\r\n  //p1=0;\r\n  //p2=r+1;\r\n     if ( (p<1) || (p>100)) printf(\"Nespravny vstup\");\r\n      else if ( (v<1) || (v>7)) printf(\"Nespravny vstup\");\r\n       else if ( (s<1) || (s>5)) printf(\"Nespravny vstup\");\r\n        else if ( (r<1) || (r>53) || (r%2==0)) printf(\"Nespravny vstup\");\r\n        else { //zaciatok obrazku\r\n        \r\n        for (k=1;k<=v;k++)\r\n          \r\n        for (i=1;i<=r;i++){\r\n                   \r\n          for (l=1;l<=s;l++)\r\n           \r\n          for (j=1;j<=r;j++){\r\n           \r\n            \r\n            if ( j<=r-(r-i+1 )) putchar('.'); \r\n          else { printf(\"%c\",z);  (z=='Z') ? z='A' :  z++;}\r\n          }\r\n            \r\n          \r\n          \r\n          putchar('\\n');           \r\n        }\r\n        \r\n           \r\n      } // konec obrazku\r\n  return 0;\r\n}\r\n\r\n"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "2017-05-02T10:53:35.445Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": "testCodes/3/student2.c"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "2017-05-02T10:53:35.451Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:35.455Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:35.464Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:53:35.465Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": "testCodes/3/student2.c",
+        "position": {
+          "row": 2,
+          "column": 0
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:53:36.42Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": "testCodes/3/student2.c",
+        "position": {
+          "row": 3,
+          "column": 0
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:53:37.245Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": "testCodes/3/student2.c",
+        "position": {
+          "row": 2,
+          "column": 0
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:53:37.43Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 48.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:14.522Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 96.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:14.56Z"
+    },
+    {
+      "data": {
+        "editor": 10,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 113.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:15.111Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "title": "student3.c",
+        "path": "testCodes/3/student3.c",
+        "contents": "// test.c -- Tyzden 4 - Test\n// Dominik Sojka, 11.10.2016 14:10:18\n\n\n// 3 - tvar ziadny \n// 0.5 - riadky \n// 0 - stlpce       \n// 0.5 - opakovanie\n// 0.5 - struktura\n\n#include <stdio.h>\n\nint main()\n{\n  int p=0,v=0,s=0,r=0,i=0,j=0,u=0,w=0,pol=0,k=0,l=0,y=0,z=0;\n  int m=0,n=0, o=0;\n  char c='A';\n  \n  scanf(\"%d\",&p); // toto musi ist do samostatnej funkcie\n  if (p>=1 && p<=100){;} //kontrola spravnosti vstupu len pre p\n    else printf(\"Nespravny vstup\");\n\n  scanf(\"%d %d %d\",&v,&s,&r);\n  \n  if ((v>=1 && v<=7)&&(s>=1 && s<=5)){;}\n    else printf(\"Nespravny vstup\"); //kontrola spravnosti vstupu\n  \n  for(m=0;m<v;m++){ // opakovanie obrazka do stlpcov\n  \n    u=1;w=r; // pomocne premenne, ktore mi pomahaju vytvorit trojuholnik\n    pol=((r+1)/2);\n  for (i=0;i<pol;i++){ //stlpce obrazka\n    \n    for(n=0;n<s;n++){ // opakovanie riadkov obrazka\n    \n    for (j=r;j>0;j--){ // riadky obrazka\n      if (j>=u && j<=w){ // rozsah v ktorom chcem pismena\n        printf(\"%c\",c);\n        if (j>pol){         //do pol riadku\n          if (c=='Z'){c='A'; // inkrementacia znaku aj s kontrolou\n          }else{c+=1;}\n        } else{\t\t\t\t//od pol riadku\n          if (c=='Z'){c='A'; // dekrementacia znaku aj s kontrolou\n          }else{c-=1;}\n        }\n      } else {printf(\".\");}\n    }\n      \n    } // koniec cyklu opak. obrazka do riadku\n   c+=2;\n   u++;w--; //dekrementuje a inkrementuje pom. premm. a tie mi rozsiruju rozsah v ktorom chcem pismena\n   printf(\"\\n\");   \n  }\n  \n  //dolna cast obrazka\n  \n  y=z=pol; // priprava pom. premennych\n  y++;z--; // prvy riadok pyramidy nepotrebujeme..\n  \n  for (k=1;k<pol;k++){ //stlpce obrazka\n    for (l=r;l>0;l--){ // riadky obrazka\n      if (l<=y && l>=z){ // rozsah v ktorom chcem pismena\n        printf(\"%c\",c);\n        if (l>pol){         //do pol riadku\n          if (c=='Z'){c='A'; // inkrementacia znaku aj s kontrolou\n          }else{c+=1;}\n        } else{\t\t\t\t//od pol riadku\n          if (c=='Z'){c='A'; // dekrementacia znaku aj s kontrolou\n          }else{c-=1;}\n        }\n      } else {printf(\".\");}\n    }\n   c+=2;\n   y++;z--; //dekrementuje a inkrementuje pom. premm. a tie mi rozsiruju rozsah v ktorom chcem pismena\n   printf(\"\\n\");   \n  }\n  c='A';\n  } // koniec cyklu opak. obrazka do stlpca\n  return 0;\n}\n"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "2017-05-02T10:54:17.164Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "2017-05-02T10:54:17.175Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:17.184Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:17.197Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:17.198Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 9,
+          "column": 0
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:18.17Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 10,
+          "column": 0
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:18.888Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 9,
+          "column": 0
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:19.07Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 48.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:34.24Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 96.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:34.281Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 144.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:34.805Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 192.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:34.91Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 240.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:35.04Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 288.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:35.78Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 336.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:35.856Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 384.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:36.338Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 432.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:36.371Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 480.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:37.571Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 528.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:37.61Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 576.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:37.654Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 624.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:37.728Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 672.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:38.307Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 720.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:38.689Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 768.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:38.729Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 785.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:54:38.786Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 54,
+          "column": 6
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:51.693Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 55,
+          "column": 2
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:52.085Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 65,
+          "column": 14
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:52.641Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 67,
+          "column": 17
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:53.152Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 69,
+          "column": 9
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:53.77Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 71,
+          "column": 5
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:54.659Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 70,
+          "column": 17
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:54.731Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 69,
+          "column": 9
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:54.752Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 68,
+          "column": 14
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:54.777Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 65,
+          "column": 11
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:54.792Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 65,
+          "column": 10
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:54.804Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 64,
+          "column": 8
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:54.821Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 63,
+          "column": 8
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:54.836Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 62,
+          "column": 6
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:54.85Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 61,
+          "column": 10
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:56.056Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 71,
+          "column": 5
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:57.377Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 72,
+          "column": 8
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:57.426Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 73,
+          "column": 15
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:57.473Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 74,
+          "column": 16
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:57.499Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 74,
+          "column": 17
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:57.516Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 75,
+          "column": 3
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:57.557Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 66,
+          "column": 21
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:54:58.043Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 59,
+          "column": 2
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.2Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 60,
+          "column": 2
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.304Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 61,
+          "column": 4
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.321Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 62,
+          "column": 6
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.338Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 63,
+          "column": 9
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.354Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 64,
+          "column": 11
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.371Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 65,
+          "column": 12
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.387Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 66,
+          "column": 13
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.404Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 66,
+          "column": 14
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.421Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 66,
+          "column": 15
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.437Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 67,
+          "column": 15
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.454Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 68,
+          "column": 16
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.473Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 69,
+          "column": 9
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.521Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 70,
+          "column": 16
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.588Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 71,
+          "column": 5
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:00.854Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": "testCodes/3/student3.c",
+        "position": {
+          "row": 62,
+          "column": 23
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:01.794Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 737.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:14.249Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 689.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:14.295Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 641.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:14.72Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 593.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:14.76Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 545.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:14.794Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 497.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:14.811Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 449.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:15.137Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 401.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:15.154Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 353.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:15.176Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 305.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:15.227Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 257.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:15.247Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 209.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:19.009Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 161.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:19.066Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 113.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:19.129Z"
+    },
+    {
+      "data": {
+        "editor": 13,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 65.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:19.618Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "title": "student4.c",
+        "path": "testCodes/3/student4.c",
+        "contents": "// test.c -- Tyzden 4 - Test\n// Timotej Gurka, 11.10.2016 14:10:42\n\n// 0.5 - zaklad - tvar iba naznak \n// 0.5 - riadky \n// 0 - stlpce       \n// 0.5 - opakovanie\n// 0 - struktura\n\n#include <stdio.h>\n\nint main()\n{\n  int p,v,s,r;\n  int i,j,a,c;\n  scanf(\"%d\", &p);\n  for (a=1; a<=p; a++)\n  {\n  \n  scanf(\"%d %d %d\", &v, &s, &r);\n  \n  if (((1<=p) && (p<=100)) && ((1<=v) && (v<=7)) && ((1<=s) && (s<=5)) && ((1<=r) && (r<=53)))  \n  {\n   \n    \n  for (c=1; c<=v; c++)   \n  {\n  for (i=1; i<=r; i++)\n  {\n    for (j=1; j<=r; j++)\n    { \n     \n      if ((i==j) || ((i<r/2+1) && (i<=j)))\n        \n      {if (j<=r/2+1) printf(\"%c\", 'A'-1+j);\n        else\n          if (j>r/2+1) printf(\"%c\", 'A'-1+j-2*(j-(r/2+1)));\n           else printf(\".\"); \n      }\n      else printf(\".\");\n    \n    }\n    printf(\"\\n\");\n    \n  }\n  }\n  }\n  else printf(\"Nespravny vstup\");\n    printf (\"\\n\");\n  }\n  \n  return 0;\n}\n"
+      },
+      "name": "EditorOpen",
+      "timeStamp": "2017-05-02T10:55:20.835Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": "testCodes/3/student4.c"
+      },
+      "name": "EditorSwitchTo",
+      "timeStamp": "2017-05-02T10:55:20.839Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:20.844Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:20.855Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:20.856Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": "testCodes/3/student4.c",
+        "position": {
+          "row": 6,
+          "column": 9
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:21.923Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": "testCodes/3/student4.c",
+        "position": {
+          "row": 5,
+          "column": 15
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:22.682Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": "testCodes/3/student4.c",
+        "position": {
+          "row": 6,
+          "column": 0
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:23.043Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": "testCodes/3/student4.c",
+        "position": {
+          "row": 5,
+          "column": 15
+        }
+      },
+      "name": "CursorPositionChanged",
+      "timeStamp": "2017-05-02T10:55:23.65Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 48.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:33.182Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 96.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:33.257Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 144.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:33.305Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 192.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:33.681Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 218.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:33.729Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 170.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:36.314Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 122.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:36.379Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 74.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:36.426Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 26.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:36.778Z"
+    },
+    {
+      "data": {
+        "editor": 16,
+        "path": null,
+        "scrollLeft": 0.0,
+        "scrollTop": 0.0
+      },
+      "name": "EditorScrollChanged",
+      "timeStamp": "2017-05-02T10:55:36.812Z"
+    }
+  ],
+  "fixations": [
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 132,
+        "y": 141,
+        "duration": 217
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:30.9630237"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 111,
+        "y": 247,
+        "duration": 283
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:31.2304582"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 198,
+        "y": 313,
+        "duration": 177
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:31.5503381"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 100,
+        "y": 109,
+        "duration": 229
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:31.7974385"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 101,
+        "y": 17,
+        "duration": 496
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:32.0867502"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 177,
+        "y": 15,
+        "duration": 409
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:32.6271852"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 235,
+        "y": 20,
+        "duration": 159
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:33.07721"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 211,
+        "y": 22,
+        "duration": 169
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:33.2400853"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 257,
+        "y": 5,
+        "duration": 90
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:33.4496025"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 90,
+        "y": 49,
+        "duration": 183
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:33.5998209"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 221,
+        "y": 29,
+        "duration": 110
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:33.8433702"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 79,
+        "y": 23,
+        "duration": 295
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:34.0036229"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 139,
+        "y": 26,
+        "duration": 159
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:34.3369662"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 177,
+        "y": 32,
+        "duration": 899
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:34.5233923"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 254,
+        "y": 14,
+        "duration": 170
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:35.4695336"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 170,
+        "y": 34,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:35.8098568"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 244,
+        "y": 35,
+        "duration": 263
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:35.9997063"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 268,
+        "y": 27,
+        "duration": 132
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:36.2666412"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 98,
+        "y": 124,
+        "duration": 133
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:36.4625618"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 134,
+        "y": 109,
+        "duration": 266
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:36.6162305"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 180,
+        "y": 103,
+        "duration": 236
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:36.9095676"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 233,
+        "y": 104,
+        "duration": 213
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:37.1825461"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 287,
+        "y": 97,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:37.439275"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 350,
+        "y": 96,
+        "duration": 220
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:37.6459637"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 409,
+        "y": 98,
+        "duration": 356
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:37.9088931"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 538,
+        "y": 109,
+        "duration": 209
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:38.3195076"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 600,
+        "y": 110,
+        "duration": 219
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:38.5794668"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 629,
+        "y": 113,
+        "duration": 300
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:38.8358066"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 700,
+        "y": 119,
+        "duration": 232
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:39.1858262"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 804,
+        "y": 117,
+        "duration": 330
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:39.4754252"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 867,
+        "y": 121,
+        "duration": 203
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:39.8524976"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 167,
+        "y": 161,
+        "duration": 109
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:40.2256877"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 104,
+        "y": 151,
+        "duration": 272
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:40.3790473"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 830,
+        "y": 123,
+        "duration": 243
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:40.7517101"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 133,
+        "y": 134,
+        "duration": 133
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:41.0819808"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 129,
+        "y": 161,
+        "duration": 1292
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:41.2486416"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 94,
+        "y": 221,
+        "duration": 169
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:42.5781947"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 105,
+        "y": 201,
+        "duration": 72
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:42.7585798"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 113,
+        "y": 180,
+        "duration": 226
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:42.83809"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 89,
+        "y": 269,
+        "duration": 1087
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:43.1082154"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 168,
+        "y": 277,
+        "duration": 336
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:44.2384417"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 108,
+        "y": 356,
+        "duration": 110
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:44.6308856"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 80,
+        "y": 351,
+        "duration": 262
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:44.8081721"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 130,
+        "y": 337,
+        "duration": 726
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:45.1146261"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 98,
+        "y": 356,
+        "duration": 499
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:45.8742091"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 70,
+        "y": 348,
+        "duration": 226
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:46.3910363"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 110,
+        "y": 351,
+        "duration": 560
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:46.8044452"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 165,
+        "y": 351,
+        "duration": 176
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:47.4078703"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 108,
+        "y": 343,
+        "duration": 590
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:47.6277624"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 118,
+        "y": 373,
+        "duration": 478
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:48.5115092"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 291,
+        "y": 448,
+        "duration": 276
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:49.0472074"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 259,
+        "y": 466,
+        "duration": 160
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:49.3638993"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 122,
+        "y": 376,
+        "duration": 585
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:49.5709714"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 193,
+        "y": 469,
+        "duration": 702
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:50.3478319"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 160,
+        "y": 561,
+        "duration": 136
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:51.0967124"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 160,
+        "y": 514,
+        "duration": 159
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:51.2673035"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 143,
+        "y": 620,
+        "duration": 463
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:51.9001616"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 505,
+        "y": 474,
+        "duration": 226
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:53.2297667"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 599,
+        "y": 484,
+        "duration": 159
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:53.5100507"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 159,
+        "y": 562,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:53.7470421"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 177,
+        "y": 550,
+        "duration": 130
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:54.2397316"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 201,
+        "y": 1088,
+        "duration": 176
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:54.4534165"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 192,
+        "y": 924,
+        "duration": 189
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:55.4369569"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 130,
+        "y": 515,
+        "duration": 319
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:55.7629691"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 135,
+        "y": 361,
+        "duration": 240
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:56.1327299"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 87,
+        "y": 377,
+        "duration": 263
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:56.4131834"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 154,
+        "y": 382,
+        "duration": 226
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:56.7160661"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 113,
+        "y": 374,
+        "duration": 369
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:56.976721"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 146,
+        "y": 523,
+        "duration": 240
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:57.7726271"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 115,
+        "y": 479,
+        "duration": 216
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:58.0598367"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 95,
+        "y": 435,
+        "duration": 202
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:58.3195072"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 117,
+        "y": 509,
+        "duration": 152
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:58.5423341"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 117,
+        "y": 489,
+        "duration": 150
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:58.7022047"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 183,
+        "y": 473,
+        "duration": 360
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:58.9026575"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 264,
+        "y": 489,
+        "duration": 82
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:59.3129675"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 142,
+        "y": 514,
+        "duration": 193
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:59.5854626"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 139,
+        "y": 459,
+        "duration": 176
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:52:59.8023314"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 238,
+        "y": 459,
+        "duration": 276
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:00.0420068"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 103,
+        "y": 534,
+        "duration": 173
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:00.3758159"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 125,
+        "y": 509,
+        "duration": 109
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:00.5591241"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 112,
+        "y": 515,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:00.9423365"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 280,
+        "y": 522,
+        "duration": 159
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:01.2357301"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 241,
+        "y": 518,
+        "duration": 70
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:01.9321197"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 162,
+        "y": 519,
+        "duration": 329
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:02.1523524"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 125,
+        "y": 516,
+        "duration": 346
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:02.485217"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 62,
+        "y": 509,
+        "duration": 206
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:02.8718919"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 118,
+        "y": 512,
+        "duration": 456
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:03.1184818"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 224,
+        "y": 511,
+        "duration": 170
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:03.6251078"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 193,
+        "y": 514,
+        "duration": 257
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:03.8552591"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 137,
+        "y": 514,
+        "duration": 73
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:04.1419441"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 225,
+        "y": 518,
+        "duration": 246
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:04.3649824"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 403,
+        "y": 511,
+        "duration": 196
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:04.6815531"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 617,
+        "y": 511,
+        "duration": 296
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:04.9412284"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 151,
+        "y": 665,
+        "duration": 180
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:05.5113435"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 112,
+        "y": 595,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:05.7479916"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 203,
+        "y": 552,
+        "duration": 147
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:06.1347377"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 137,
+        "y": 690,
+        "duration": 160
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:06.3309605"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 103,
+        "y": 557,
+        "duration": 303
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:06.9945363"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 196,
+        "y": 546,
+        "duration": 292
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:07.3446887"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 88,
+        "y": 577,
+        "duration": 343
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:07.6914061"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 109,
+        "y": 664,
+        "duration": 219
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:08.071106"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 116,
+        "y": 617,
+        "duration": 190
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:08.3511723"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 155,
+        "y": 646,
+        "duration": 205
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:08.5910129"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 154,
+        "y": 648,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:08.9104896"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 155,
+        "y": 628,
+        "duration": 200
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:09.0237847"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 128,
+        "y": 506,
+        "duration": 166
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:09.6410593"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 145,
+        "y": 473,
+        "duration": 259
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:09.8404823"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 221,
+        "y": 494,
+        "duration": 172
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:10.1442053"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 272,
+        "y": 496,
+        "duration": 323
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:10.3534974"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 218,
+        "y": 467,
+        "duration": 360
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:10.713698"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 271,
+        "y": 519,
+        "duration": 73
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:11.0773974"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 264,
+        "y": 515,
+        "duration": 120
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:11.1971807"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 317,
+        "y": 518,
+        "duration": 236
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:11.3604711"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 569,
+        "y": 519,
+        "duration": 190
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:11.6738225"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 618,
+        "y": 520,
+        "duration": 93
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:11.9069691"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 189,
+        "y": 576,
+        "duration": 310
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:12.0735804"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 155,
+        "y": 657,
+        "duration": 263
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:12.4367812"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 130,
+        "y": 678,
+        "duration": 153
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:12.7436427"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 208,
+        "y": 661,
+        "duration": 83
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:14.4868043"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 205,
+        "y": 706,
+        "duration": 465
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:14.9272984"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 178,
+        "y": 486,
+        "duration": 173
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:15.5099699"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 254,
+        "y": 496,
+        "duration": 316
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:15.7264774"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 288,
+        "y": 495,
+        "duration": 183
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:16.0833308"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 261,
+        "y": 698,
+        "duration": 69
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:16.4397027"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 244,
+        "y": 488,
+        "duration": 229
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:16.8569066"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 303,
+        "y": 487,
+        "duration": 349
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:17.1329935"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 250,
+        "y": 717,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:17.5494192"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 240,
+        "y": 747,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:17.9755898"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 255,
+        "y": 496,
+        "duration": 333
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:18.1055369"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 278,
+        "y": 499,
+        "duration": 99
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:18.4429822"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 173,
+        "y": 495,
+        "duration": 386
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:18.5896859"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 170,
+        "y": 541,
+        "duration": 216
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:19.0128825"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 130,
+        "y": 558,
+        "duration": 94
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:19.2756509"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 126,
+        "y": 419,
+        "duration": 190
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:19.4261449"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 165,
+        "y": 437,
+        "duration": 256
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:19.6426147"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 213,
+        "y": 453,
+        "duration": 215
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:19.9368777"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 182,
+        "y": 339,
+        "duration": 393
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:20.3420999"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 250,
+        "y": 335,
+        "duration": 350
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:20.7787521"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 179,
+        "y": 399,
+        "duration": 239
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:21.1791273"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 159,
+        "y": 462,
+        "duration": 162
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:21.4623136"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 171,
+        "y": 622,
+        "duration": 532
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:21.6778745"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 158,
+        "y": 646,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:22.3318729"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 168,
+        "y": 522,
+        "duration": 216
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:22.4785637"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 240,
+        "y": 502,
+        "duration": 79
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:23.3054785"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 234,
+        "y": 895,
+        "duration": 82
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:25.6130042"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 192,
+        "y": 906,
+        "duration": 106
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:25.7987089"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 184,
+        "y": 866,
+        "duration": 186
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:26.3480326"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 243,
+        "y": 908,
+        "duration": 126
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:27.0347723"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 245,
+        "y": 900,
+        "duration": 69
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:27.2583164"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 228,
+        "y": 954,
+        "duration": 140
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:28.3147639"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 266,
+        "y": 958,
+        "duration": 193
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:28.4978632"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 242,
+        "y": 1073,
+        "duration": 103
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:28.757646"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 248,
+        "y": 1114,
+        "duration": 192
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:29.2479421"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 217,
+        "y": 1013,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:29.8643556"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 208,
+        "y": 1090,
+        "duration": 120
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:30.2642414"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 254,
+        "y": 1121,
+        "duration": 496
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:30.6143814"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 238,
+        "y": 1116,
+        "duration": 113
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:31.6070852"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 173,
+        "y": 1218,
+        "duration": 223
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:31.7903996"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 168,
+        "y": 1190,
+        "duration": 89
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:32.3405153"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 182,
+        "y": 1244,
+        "duration": 106
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:32.4936693"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 179,
+        "y": 1229,
+        "duration": 230
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:32.6168856"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 170,
+        "y": 1359,
+        "duration": 115
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:32.904203"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 136,
+        "y": 1327,
+        "duration": 436
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:33.0372357"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 91,
+        "y": 1433,
+        "duration": 166
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:33.5167983"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 99,
+        "y": 1446,
+        "duration": 209
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:33.7367472"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student1.c",
+        "x": 79,
+        "y": 1475,
+        "duration": 162
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:33.99041"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 98,
+        "y": 140,
+        "duration": 230
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:35.7625102"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 81,
+        "y": 55,
+        "duration": 689
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:36.00318"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 144,
+        "y": 143,
+        "duration": 489
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:37.1166537"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 143,
+        "y": 170,
+        "duration": 346
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:37.6095213"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 95,
+        "y": 31,
+        "duration": 173
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:37.9725455"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 69,
+        "y": 43,
+        "duration": 132
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:38.1727938"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 141,
+        "y": 82,
+        "duration": 393
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:38.3458397"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 206,
+        "y": 89,
+        "duration": 153
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:38.7827818"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 148,
+        "y": 116,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:38.9790358"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 138,
+        "y": 122,
+        "duration": 218
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:39.3677662"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 130,
+        "y": 148,
+        "duration": 192
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:39.5963408"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 157,
+        "y": 145,
+        "duration": 329
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:39.7927162"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 128,
+        "y": 158,
+        "duration": 363
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:40.1491484"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 162,
+        "y": 138,
+        "duration": 496
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:40.5456849"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 102,
+        "y": 141,
+        "duration": 299
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:41.0692893"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 147,
+        "y": 143,
+        "duration": 879
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:41.4123791"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 130,
+        "y": 163,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:42.2958241"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 110,
+        "y": 144,
+        "duration": 269
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:42.6220083"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 146,
+        "y": 133,
+        "duration": 393
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:42.9221047"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 124,
+        "y": 279,
+        "duration": 72
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:44.8954155"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 181,
+        "y": 367,
+        "duration": 116
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:45.0950871"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 146,
+        "y": 355,
+        "duration": 113
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:46.2811329"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 143,
+        "y": 305,
+        "duration": 113
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:46.4780165"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 104,
+        "y": 344,
+        "duration": 136
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:46.7510199"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 136,
+        "y": 109,
+        "duration": 166
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:46.9880976"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 142,
+        "y": 62,
+        "duration": 113
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:47.1813755"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 155,
+        "y": 20,
+        "duration": 257
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:47.3275377"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 451,
+        "y": 3,
+        "duration": 269
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:47.6548225"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 36,
+        "y": 359,
+        "duration": 82
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:48.0205677"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 205,
+        "y": 408,
+        "duration": 162
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:49.2109675"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 178,
+        "y": 418,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:49.3975083"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 232,
+        "y": 388,
+        "duration": 166
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:49.7708726"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 157,
+        "y": 412,
+        "duration": 99
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:49.9877993"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 326,
+        "y": 396,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:50.1574531"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 400,
+        "y": 385,
+        "duration": 146
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:50.5741137"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 161,
+        "y": 418,
+        "duration": 135
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:51.6706834"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 153,
+        "y": 341,
+        "duration": 223
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:51.9738952"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 224,
+        "y": 406,
+        "duration": 70
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:52.52033"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 229,
+        "y": 396,
+        "duration": 137
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:52.5933617"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 174,
+        "y": 408,
+        "duration": 204
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:52.8371298"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 237,
+        "y": 417,
+        "duration": 189
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:53.4072667"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 288,
+        "y": 401,
+        "duration": 216
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:54.1001992"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 200,
+        "y": 485,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:55.0132197"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 174,
+        "y": 623,
+        "duration": 209
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:55.1630895"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 189,
+        "y": 636,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:55.7201315"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 186,
+        "y": 520,
+        "duration": 103
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:57.7896548"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 198,
+        "y": 421,
+        "duration": 103
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:53:59.5795402"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 131,
+        "y": 370,
+        "duration": 79
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:00.083003"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 337,
+        "y": 339,
+        "duration": 124
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:01.1022103"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 236,
+        "y": 378,
+        "duration": 76
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:01.3455889"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 115,
+        "y": 401,
+        "duration": 153
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:01.5520537"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 90,
+        "y": 330,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:01.7888455"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 168,
+        "y": 613,
+        "duration": 62
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:02.7188245"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 229,
+        "y": 765,
+        "duration": 383
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:03.3387102"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 180,
+        "y": 652,
+        "duration": 86
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:03.7754527"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 124,
+        "y": 687,
+        "duration": 126
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:04.0421493"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 187,
+        "y": 708,
+        "duration": 186
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:04.658945"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 162,
+        "y": 672,
+        "duration": 106
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:04.871957"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 157,
+        "y": 610,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:05.1386991"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 289,
+        "y": 791,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:05.4985427"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 242,
+        "y": 788,
+        "duration": 83
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:05.6580783"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 183,
+        "y": 763,
+        "duration": 93
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:05.7551395"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 153,
+        "y": 755,
+        "duration": 152
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:05.9652238"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 156,
+        "y": 764,
+        "duration": 69
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:06.1216662"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 215,
+        "y": 786,
+        "duration": 76
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:06.6178034"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 245,
+        "y": 794,
+        "duration": 83
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:06.6980632"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 191,
+        "y": 785,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:06.9181563"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 290,
+        "y": 779,
+        "duration": 93
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:07.2917658"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 353,
+        "y": 792,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:07.4244109"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 360,
+        "y": 791,
+        "duration": 80
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:07.4909961"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 297,
+        "y": 787,
+        "duration": 109
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:07.6580401"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 357,
+        "y": 774,
+        "duration": 129
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:07.8715193"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 384,
+        "y": 788,
+        "duration": 183
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:08.2641195"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 310,
+        "y": 788,
+        "duration": 77
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:08.494253"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 199,
+        "y": 770,
+        "duration": 80
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:08.7975044"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 234,
+        "y": 784,
+        "duration": 326
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:08.8915091"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 288,
+        "y": 791,
+        "duration": 140
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:09.4472443"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 209,
+        "y": 782,
+        "duration": 133
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:10.5644991"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 211,
+        "y": 609,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:11.9969142"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 167,
+        "y": 873,
+        "duration": 169
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:12.8471241"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 175,
+        "y": 867,
+        "duration": 147
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:13.0371096"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 147,
+        "y": 338,
+        "duration": 250
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:14.1166529"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 150,
+        "y": 347,
+        "duration": 103
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:14.4166815"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 123,
+        "y": 874,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:14.8235667"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 113,
+        "y": 880,
+        "duration": 73
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:14.9702835"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 146,
+        "y": 952,
+        "duration": 200
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:15.3998582"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 160,
+        "y": 947,
+        "duration": 166
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:15.6035881"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 140,
+        "y": 883,
+        "duration": 130
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:16.5901222"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student2.c",
+        "x": 138,
+        "y": 946,
+        "duration": 327
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:16.8298071"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 123,
+        "y": 200,
+        "duration": 413
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:17.6124104"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 87,
+        "y": 200,
+        "duration": 357
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:18.059316"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 183,
+        "y": 241,
+        "duration": 159
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:18.9199909"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 130,
+        "y": 346,
+        "duration": 83
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:19.5027204"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 126,
+        "y": 366,
+        "duration": 139
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:19.5930624"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 256,
+        "y": 352,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:19.8029647"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 242,
+        "y": 376,
+        "duration": 103
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:20.2695223"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 219,
+        "y": 388,
+        "duration": 69
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:20.3962326"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 302,
+        "y": 371,
+        "duration": 166
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:20.5124242"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 364,
+        "y": 354,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:20.8158503"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 136,
+        "y": 433,
+        "duration": 60
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:21.0724864"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 277,
+        "y": 456,
+        "duration": 144
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:21.7853712"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 360,
+        "y": 410,
+        "duration": 70
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:22.1593246"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 428,
+        "y": 385,
+        "duration": 133
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:22.3189857"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 452,
+        "y": 365,
+        "duration": 69
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:22.8489957"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 134,
+        "y": 448,
+        "duration": 73
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:23.3689334"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 125,
+        "y": 517,
+        "duration": 416
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:23.5189643"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 176,
+        "y": 482,
+        "duration": 136
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:24.3118235"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 118,
+        "y": 478,
+        "duration": 152
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:24.5987708"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 503,
+        "y": 373,
+        "duration": 133
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:25.2517299"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 319,
+        "y": 391,
+        "duration": 126
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:25.8421098"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 263,
+        "y": 408,
+        "duration": 130
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:26.0111649"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 434,
+        "y": 370,
+        "duration": 76
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:26.6383276"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 109,
+        "y": 407,
+        "duration": 326
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:26.7783311"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 85,
+        "y": 406,
+        "duration": 73
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:27.1084404"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 357,
+        "y": 388,
+        "duration": 137
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:28.0011712"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 282,
+        "y": 392,
+        "duration": 166
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:28.1848689"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 197,
+        "y": 314,
+        "duration": 132
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:28.3881782"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 138,
+        "y": 380,
+        "duration": 73
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:28.6878602"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 130,
+        "y": 387,
+        "duration": 80
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:28.7641934"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 152,
+        "y": 676,
+        "duration": 274
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:29.4268408"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 307,
+        "y": 585,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:30.3144058"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 378,
+        "y": 504,
+        "duration": 136
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:31.1308348"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 178,
+        "y": 565,
+        "duration": 99
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:31.9107446"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 136,
+        "y": 651,
+        "duration": 169
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:32.3406929"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 185,
+        "y": 869,
+        "duration": 213
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:32.6903539"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 135,
+        "y": 854,
+        "duration": 146
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:32.9605176"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 298,
+        "y": 842,
+        "duration": 90
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:33.4070415"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 407,
+        "y": 854,
+        "duration": 139
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:33.6678231"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 204,
+        "y": 1071,
+        "duration": 199
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:35.147"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 151,
+        "y": 955,
+        "duration": 186
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:35.5170416"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 125,
+        "y": 953,
+        "duration": 425
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:35.7173004"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 114,
+        "y": 1180,
+        "duration": 89
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:36.4036401"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 91,
+        "y": 1180,
+        "duration": 133
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:36.900107"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 148,
+        "y": 1176,
+        "duration": 76
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:37.170449"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 93,
+        "y": 1223,
+        "duration": 106
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:37.3734215"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 147,
+        "y": 1399,
+        "duration": 67
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:38.0597643"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 200,
+        "y": 1575,
+        "duration": 173
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:39.1598427"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 100,
+        "y": 1585,
+        "duration": 352
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:39.3792316"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 77,
+        "y": 1558,
+        "duration": 213
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:39.7459556"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 320,
+        "y": 1573,
+        "duration": 200
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:40.0296886"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 132,
+        "y": 1613,
+        "duration": 133
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:41.5624147"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 171,
+        "y": 1570,
+        "duration": 83
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:42.0490766"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 278,
+        "y": 1579,
+        "duration": 149
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:42.4293913"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 27,
+        "y": 1156,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:42.6723649"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 9,
+        "y": 1073,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:42.8485163"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 10,
+        "y": 1037,
+        "duration": 376
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:43.0289867"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 127,
+        "y": 1094,
+        "duration": 566
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:43.752427"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 104,
+        "y": 1137,
+        "duration": 286
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:44.3588494"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 112,
+        "y": 1126,
+        "duration": 209
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:44.6490926"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 324,
+        "y": 1390,
+        "duration": 89
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:45.2590575"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 281,
+        "y": 1425,
+        "duration": 86
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:45.5455804"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 58,
+        "y": 1178,
+        "duration": 600
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:45.8276937"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 16,
+        "y": 1090,
+        "duration": 516
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:46.4317394"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 29,
+        "y": 1093,
+        "duration": 169
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:47.0418269"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 157,
+        "y": 1574,
+        "duration": 100
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:49.1979389"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 103,
+        "y": 1601,
+        "duration": 169
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:49.3414979"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 108,
+        "y": 1592,
+        "duration": 76
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:49.5145472"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 148,
+        "y": 1660,
+        "duration": 119
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:49.6616657"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 138,
+        "y": 1644,
+        "duration": 264
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:49.8910624"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 192,
+        "y": 1650,
+        "duration": 116
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:50.1911221"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 160,
+        "y": 1304,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:50.4714838"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 134,
+        "y": 1359,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:50.8343254"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 134,
+        "y": 1345,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:50.9075629"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 91,
+        "y": 1208,
+        "duration": 127
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:51.1340448"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 81,
+        "y": 1170,
+        "duration": 276
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:51.314343"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 120,
+        "y": 1140,
+        "duration": 72
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:52.1885512"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 146,
+        "y": 1435,
+        "duration": 83
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:52.8475361"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 143,
+        "y": 1424,
+        "duration": 79
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:53.057288"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 165,
+        "y": 1519,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:53.7472784"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 118,
+        "y": 1613,
+        "duration": 146
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:54.1405025"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 129,
+        "y": 1465,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:54.3543057"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 131,
+        "y": 1478,
+        "duration": 90
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:54.4306124"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 111,
+        "y": 1314,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:54.7373476"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 103,
+        "y": 1328,
+        "duration": 232
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:54.8373615"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 1,
+        "y": 1357,
+        "duration": 159
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:55.2338239"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 87,
+        "y": 1388,
+        "duration": 180
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:56.4567622"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 47,
+        "y": 1552,
+        "duration": 159
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:57.183654"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 51,
+        "y": 1546,
+        "duration": 83
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:57.3470972"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 102,
+        "y": 1535,
+        "duration": 286
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:57.5536139"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 120,
+        "y": 1356,
+        "duration": 76
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:57.9033833"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 122,
+        "y": 1520,
+        "duration": 150
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:58.6032637"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 241,
+        "y": 1277,
+        "duration": 79
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:59.2864287"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 234,
+        "y": 1286,
+        "duration": 66
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:59.5000862"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 49,
+        "y": 1298,
+        "duration": 246
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:54:59.8099384"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 32,
+        "y": 1522,
+        "duration": 150
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:00.5926197"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 76,
+        "y": 1529,
+        "duration": 189
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:00.9232139"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 120,
+        "y": 1358,
+        "duration": 153
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:01.2194727"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 88,
+        "y": 1281,
+        "duration": 179
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:01.5463046"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 150,
+        "y": 1241,
+        "duration": 82
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:02.0360148"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 303,
+        "y": 1270,
+        "duration": 189
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:02.4492119"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 249,
+        "y": 1301,
+        "duration": 176
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:02.8061179"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 266,
+        "y": 1282,
+        "duration": 89
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:03.0226095"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 131,
+        "y": 1306,
+        "duration": 69
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:03.1660084"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 95,
+        "y": 1324,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:03.5492607"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 131,
+        "y": 1314,
+        "duration": 276
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:03.7323445"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 265,
+        "y": 1297,
+        "duration": 202
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:04.0659394"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 304,
+        "y": 1282,
+        "duration": 110
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:04.341923"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 134,
+        "y": 1348,
+        "duration": 120
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:04.7056377"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 108,
+        "y": 1405,
+        "duration": 183
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:04.8724041"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 148,
+        "y": 1416,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:05.1460241"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 143,
+        "y": 1427,
+        "duration": 189
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:05.9323627"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 164,
+        "y": 1406,
+        "duration": 116
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:06.158656"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 154,
+        "y": 1334,
+        "duration": 103
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:06.3554014"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 156,
+        "y": 1389,
+        "duration": 136
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:06.6519253"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 215,
+        "y": 1400,
+        "duration": 143
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:06.8515888"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 134,
+        "y": 1339,
+        "duration": 73
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:07.1218874"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 144,
+        "y": 1364,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:07.8783204"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 203,
+        "y": 1424,
+        "duration": 250
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:08.3011853"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 224,
+        "y": 1384,
+        "duration": 339
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:08.7085374"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 158,
+        "y": 1422,
+        "duration": 246
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:09.1051936"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 190,
+        "y": 1378,
+        "duration": 220
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:09.4711839"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 228,
+        "y": 1393,
+        "duration": 113
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:10.0276547"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 205,
+        "y": 1400,
+        "duration": 243
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:10.1680346"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 164,
+        "y": 1435,
+        "duration": 353
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:10.6349036"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 216,
+        "y": 1450,
+        "duration": 96
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:11.3305261"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 200,
+        "y": 1436,
+        "duration": 110
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:11.6143721"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 135,
+        "y": 1472,
+        "duration": 63
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:12.0608212"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 135,
+        "y": 1461,
+        "duration": 99
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:12.1315"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 64,
+        "y": 1567,
+        "duration": 594
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:12.3067216"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 82,
+        "y": 1564,
+        "duration": 350
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:12.9409426"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 166,
+        "y": 1318,
+        "duration": 117
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:13.627127"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 163,
+        "y": 1182,
+        "duration": 226
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:14.2437684"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 169,
+        "y": 1013,
+        "duration": 573
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:14.6437698"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 143,
+        "y": 940,
+        "duration": 166
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:15.644053"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 162,
+        "y": 846,
+        "duration": 126
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:15.9606202"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 421,
+        "y": 911,
+        "duration": 106
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:17.0341823"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 505,
+        "y": 919,
+        "duration": 82
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:17.3005748"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 113,
+        "y": 1066,
+        "duration": 176
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:18.2801992"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 144,
+        "y": 532,
+        "duration": 375
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:19.0206969"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student3.c",
+        "x": 222,
+        "y": 370,
+        "duration": 779
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:20.5327707"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 156,
+        "y": 321,
+        "duration": 140
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:21.3591977"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 125,
+        "y": 224,
+        "duration": 163
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:21.5826069"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 141,
+        "y": 149,
+        "duration": 1429
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:21.7861604"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 137,
+        "y": 157,
+        "duration": 239
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:23.6795387"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 93,
+        "y": 76,
+        "duration": 163
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:23.9795847"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 96,
+        "y": 36,
+        "duration": 360
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:24.1556013"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 160,
+        "y": 60,
+        "duration": 229
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:24.5556169"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 228,
+        "y": 58,
+        "duration": 256
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:24.8252586"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 300,
+        "y": 50,
+        "duration": 233
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:25.1321761"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 202,
+        "y": 76,
+        "duration": 359
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:25.4124252"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 258,
+        "y": 72,
+        "duration": 276
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:25.808779"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 161,
+        "y": 118,
+        "duration": 293
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:26.132301"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 251,
+        "y": 60,
+        "duration": 370
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:26.7884987"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 154,
+        "y": 88,
+        "duration": 289
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:27.208627"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 218,
+        "y": 76,
+        "duration": 222
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:27.542427"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 145,
+        "y": 110,
+        "duration": 229
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:27.8151933"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 105,
+        "y": 76,
+        "duration": 305
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:28.0521529"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 138,
+        "y": 133,
+        "duration": 583
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:28.3882545"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 165,
+        "y": 147,
+        "duration": 169
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:28.9780977"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 176,
+        "y": 159,
+        "duration": 130
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:29.4413148"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 131,
+        "y": 271,
+        "duration": 307
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:29.6275388"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 269,
+        "y": 754,
+        "duration": 116
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:30.3582276"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 232,
+        "y": 784,
+        "duration": 202
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:30.5447934"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 109,
+        "y": 866,
+        "duration": 119
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:31.9876651"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 120,
+        "y": 1061,
+        "duration": 183
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:33.933574"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 121,
+        "y": 561,
+        "duration": 93
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:35.157407"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 121,
+        "y": 584,
+        "duration": 82
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:35.3410894"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 84,
+        "y": 1078,
+        "duration": 156
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:35.6238985"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 173,
+        "y": 346,
+        "duration": 263
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:36.4798481"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 458,
+        "y": 288,
+        "duration": 86
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:36.8500774"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 452,
+        "y": 296,
+        "duration": 79
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:36.9435991"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 131,
+        "y": 206,
+        "duration": 173
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:37.0834971"
+    },
+    {
+      "data": {
+        "path": "testCodes/3/student4.c",
+        "x": 185,
+        "y": 16,
+        "duration": 749
+      },
+      "name": "Fixation",
+      "timeStamp": "2017-05-02T10:55:38.4831535"
+    }
+  ],
+  "patterns": []
+}
