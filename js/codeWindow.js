@@ -105,7 +105,7 @@ class CodeWindow{
             style: [{
                     selector: 'node',
                     style: {
-                        shape: 'circle',
+                        shape: 'ellipse',
                         'background-color': 'black',
                         'background-opacity': 0.7,
                         'content': 'data(id)',

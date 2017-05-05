@@ -1,27 +1,27 @@
 {
-  "name": "multieye",
-  "version": "0.4.0",
-  "description": "Multi-document eye tracking visualizer",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron --high-dpi-support=1 --force-device-scale-factor=1 ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kubo25/MultiEye.git"
-  },
-  "author": "Jakub Hučko",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kubo25/MultiEye/issues"
-  },
-  "homepage": "https://github.com/kubo25/MultiEye#readme",
-  "dependencies": {
-    "cytoscape": "^3.0.0",
-    "electron": "^1.6.2",
-    "monaco-editor": "^0.8.3"
-  },
-  "devDependencies":{
-    "electron-reload": "^1.1.0"
-  }
+    "name": "multieye",
+    "version": "0.7.0",
+    "description": "Multi-document eye tracking visualizer",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron --high-dpi-support=1 --force-device-scale-factor=1 ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kubo25/MultiEye.git"
+    },
+    "author": "Jakub Hučko",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/kubo25/MultiEye/issues"
+    },
+    "homepage": "https://github.com/kubo25/MultiEye#readme",
+    "dependencies": {
+        "electron": "^1.6.2",
+        "cytoscape": "^3.0.0",
+        "monaco-editor": "^0.8.3"
+    },
+    "devDependencies":{
+        "electron-reload": "^1.1.0"
+    }
 }
