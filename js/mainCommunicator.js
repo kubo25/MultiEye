@@ -15,7 +15,7 @@ ipcRenderer.on("open", function(event, filePath){
 });
 
 ipcRenderer.on("export", function(event, message){
-    let patternPath = path.dirname(project.filePath).replace(/\\/g, "\\\\") + "\\" + path.basename(project.filePath, ".json") + "Patterns.json";
+    let patternPath = path.dirname(project.filePath).replace(/\\/g, "\\\\") + "\\" + path.basename(project.filePath, projectExtension) + "Patterns" + projectExtension;
     ipcRenderer.send("export", [patternPath, project.getPatterns()]); 
 });
 

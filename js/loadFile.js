@@ -2,7 +2,7 @@
 function loadFile(filePath){    
     let extension = path.extname(filePath);
 
-    if(extension === ".json"){
+    if(extension === projectExtension){
         let data = fs.readFileSync(filePath, 'utf-8');    
 
         if(project !== null){

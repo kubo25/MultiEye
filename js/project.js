@@ -1,3 +1,5 @@
+let projectExtension = ".json";
+
 class Project{
     constructor(json, filePath){
         this.project = json;
@@ -13,16 +15,13 @@ class Project{
     //Method to return an array of all fixations
     //Format of return array:
     //[{
-    //  "duration": (int),
-    //  "file": (filePath),
-    //  "x": (int),
-    //  "y": (int),
-    //  "text": (string),
-    //  "range":{
-    //    "startLine": (int),
-    //    "startCol": (int),
-    //    "endLine": (int),
-    //    "endCol": (int)
+    //  "name": "Fixation",
+    //  "timeStamp": (time stamp),
+    //  "data":{
+    //    "duration": (int),
+    //    "path": (file path),
+    //    "x": (int),
+    //    "y": (int)
     //  }
     //},...]
     getFixations(){
@@ -55,7 +54,7 @@ class Project{
         this.project.patterns = patterns;
     }
     
-    //Method to add a pattern object to the project
+    //Method to add a pattern object to the project to be saved
     savePattern(pattern){
         let savedPattern = {
             "type": pattern.type,
@@ -74,6 +73,7 @@ class Project{
         this.project.patterns.push(savedPattern);
     }
     
+    //Method to change a saved pattern
     changePattern(pattern){
         this.project.patterns[pattern.id].type = pattern.type;
         let fixations = [];
@@ -90,6 +90,7 @@ class Project{
         this.project.patterns[pattern.id].fixations = fixations;
     }
     
+    //Method to change the position of a fixation
     saveFixationEdit(fixation){
         let saved = this.getFixations()[parseInt(fixation.data("fixationIndex"))];
         let pos = fixation.position();
@@ -103,10 +104,21 @@ class Project{
     }
     
     //Method to return the events
+    //Format of return array:
+    //[{
+    //  "name": (string),
+    //  "timeStamp": (time stamp),
+    //  "data":{
+    //    "editor": (int),
+    //    "path": (file path),
+    //    content based on the type of the event
+    //  }
+    //},...]
     getEvents(){
         return this.project.events;
     }
     
+    //Method to return the combined array of fixations and events sorted by their time stamps
     getWhole(){
         if(this.wholeArray === null){
             this.wholeArray = this.project.fixations.concat(this.project.events).sort(function(a, b){

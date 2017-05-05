@@ -35,9 +35,6 @@ function createWindow () {
 
                         let options = {
                             title: "Open File",
-                            filters: [
-                                {name: "JSON", extensions: ["json"]}
-                            ]
                         };
 
                         dialog.showOpenDialog(mainWindow, options, function(filename){
@@ -82,9 +79,6 @@ function createWindow () {
 
                         let options = {
                             title: "Import Patterns",
-                            filters: [
-                                {name: "JSON", extensions: ["json"]}
-                            ]
                         };
 
                         dialog.showOpenDialog(mainWindow, options, function(filename){
@@ -269,9 +263,6 @@ ipcMain.on("saveAs", function(event, args){
     let options = {
         title: "Save As...",
         defaultPath: args[0],
-        filters: [
-            {name: "JSON", extensions: ["json"]}
-        ]
     };
     
     dialog.showSaveDialog(mainWindow, options, function(filename){
@@ -312,9 +303,6 @@ ipcMain.on("export", function(event, args){
     let options = {
         title: "Export Patterns As...",
         defaultPath: args[0],
-        filters: [
-            {name: "JSON", extensions: ["json"]}
-        ]
     };
     
     dialog.showSaveDialog(mainWindow, options, function(filename){
