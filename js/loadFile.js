@@ -121,6 +121,12 @@ function createTicks(){
         fixationCounter++;
     }
     
+    //Fixes scrolling desynchronization at the end of seekbar
+    let pushLine = document.createElement("div");
+    pushLine.classList.add("fixation");
+    pushLine.style.left = (max * step + 200) + "px";
+    patternWrapper.appendChild(pushLine);
+    
     if(project.getPatterns() !== undefined){
          //load all patterns saved in project
         for(const pattern of project.getPatterns()){
