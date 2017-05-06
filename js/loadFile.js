@@ -145,7 +145,18 @@ function createTicks(){
 function importPatterns(filePath){
     let patterns = fs.readFileSync(filePath, "utf-8");
     
+    savedPatterns = [];
+    
     project.setPatterns(JSON.parse(patterns));
+    
+    
+    let patternLines = document.getElementsByClassName("patternLine");
+    let patternWrapper = document.getElementById("patternWrapper");
+    let length = patternLines.length;
+    
+    for(let i = 1; i < length; i++){
+        patternWrapper.removeChild(patternLines[1]);
+    }
     
     for(const pattern of project.getPatterns()){
         new Pattern(pattern);
