@@ -12,7 +12,7 @@ class Project{
         }
     }
     
-    //Method to return an array of all fixations
+    //Method to return an array of all fixations sorted by time stamps
     //Format of return array:
     //[{
     //  "name": "Fixation",
@@ -103,7 +103,7 @@ class Project{
         return this.project;
     }
     
-    //Method to return the events
+    //Method to return the events sorted by time stamps
     //Format of return array:
     //[{
     //  "name": (string),
@@ -115,7 +115,13 @@ class Project{
     //  }
     //},...]
     getEvents(){
-        return this.project.events;
+        return this.project.events.sort(function(a, b){
+                let timestampA = a.timeStamp;
+                let timestampB = b.timeStamp;
+
+                return (timestampA === timestampB) ? 0 :
+                       ((timestampA > timestampB) ? 1 : -1);
+        });
     }
     
     //Method to return the combined array of fixations and events sorted by their time stamps
