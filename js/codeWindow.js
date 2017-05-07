@@ -590,7 +590,7 @@ class CodeWindow{
     }
 }
 
-function changeScale(down, maxHeight, original = false){
+function changeScale(down, maxHeight){
     if(nodeOrder.length <= 0){
         return;
     }
